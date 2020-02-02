@@ -1,3 +1,6 @@
 - filename: serde-1.md
   name: 'Rust の serde を読む(1): serde の基本'
   uri: https://qiita.com/kobae964/items/e5f2f979af876712a23b
+- filename: serde-2.md
+  name: 'Rust の serde を読む(2): serialize を読む'
+  uri: https://qiita.com/kobae964/items/86d8e27604d53cddb47d
