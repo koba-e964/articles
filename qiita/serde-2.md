@@ -17,7 +17,7 @@ serde の内部構造を解説するシリーズの第2回です。今回は ser
 # serializer プロトタイピング: ゼロコスト抽象化編
 ## 他の言語の serializer と比較した時の serde の serializer
 serialize は、実はさほど難しい処理ではありません。
-直感的には、例えば動的型付け言語の場合には、以下のように単に再帰を行うだけでよさそうです。(以下は JSON への変換を行う処理の擬似コード)
+直感的には、例えば動的型付き言語の場合には、以下のように単に再帰を行うだけでよさそうです。(以下は JSON への変換を行う処理の擬似コード)
 
 ```javascript
 
@@ -45,7 +45,7 @@ function marshal_array(array) {
 }
 ...
 ```
-実際この方法でも serialize はできますし、何らかのリフレクションが使えるのであれば、おそらく楽です。Go ではこのような実装がされています (https://github.com/golang/go/blob/go1.13.7/src/encoding/json/encode.go#L392-L437) が、Rust は違うアプローチを取り、静的型付け言語の強みを活かしています。
+実際この方法でも serialize はできますし、何らかのリフレクションが使えるのであれば、おそらく楽です。Go ではこのような実装がされています (https://github.com/golang/go/blob/go1.13.7/src/encoding/json/encode.go#L392-L437) が、Rust は違うアプローチを取り、静的型付き言語の強みを活かしています。
 
 以下では、Rust で serialize ライブラリを作ろうとしたらどうなるか、の[プロトタイピング](https://ja.wikipedia.org/wiki/%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0)をしたいと思います。つまり、ごく一部の例について、「ゼロコスト抽象化」という基本原理を元に serialize 処理を汎用化していって、どういうことになるかを見ていきたいと思います。`serde` にはところどころ触れながらも、あくまで必要になったことだけをやります。また、あとで `serde` の実際の設計と照らし合わせて答え合わせをします。
 
@@ -855,3 +855,4 @@ const _IMPL_SERIALIZE_FOR_B: () = { ... }
 
 [serde-json]: https://docs.serde.rs/serde_json/
 [serde_yaml]: https://docs.serde.rs/serde_yaml/
+[yaml-rust]: https://github.com/chyh1990/yaml-rust
