@@ -4,3 +4,6 @@
 - filename: serde-2.md
   name: 'Rust の serde を読む(2): serialize を読む'
   uri: https://qiita.com/kobae964/items/86d8e27604d53cddb47d
+- filename: indep-set-w1-hardness.md
+  name: '独立集合問題の W[1] 困難性'
+  uri: https://qiita.com/kobae964/items/0ec34f7940dcbc95ad1d
