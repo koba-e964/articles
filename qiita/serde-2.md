@@ -801,6 +801,7 @@ const _IMPL_SERIALIZE_FOR_B: () = { ... }
     ) -> Result<Self::SerializeTupleStruct, Self::Error>;
 ```
 今回の場合は `name = "B", len = 4` です。`name` が必要なのはそうだろうという気がします (構造体の名前 serialize したい場合があるはずなので) ですが、長さを serialize する必要があるというのは謎です。実は、[serde-json] では[長さ 0 の場合とそれ以外の場合を場合分けしています](https://github.com/serde-rs/json/blob/v1.0.44/src/ser.rs#L326-L338)。長さ 0 の場合は単に `[]` を出力して終わり、長さが 1 以上の場合は `[` だけを出力して残りは別の状態 `Compound::Map` に委ねています。
+(追記: 例えば msgpack では長さを serialize しています。 ([https://github.com/3Hren/msgpack-rust/blob/84fb34b57b6df35813779cd54735240ba1115558/rmp-serde/src/encode.rs#L531-L537](https://github.com/3Hren/msgpack-rust/blob/84fb34b57b6df35813779cd54735240ba1115558/rmp-serde/src/encode.rs#L531-L537)))
 
 ### serialize_field
 
