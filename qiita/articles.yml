@@ -7,3 +7,6 @@
 - filename: indep-set-w1-hardness.md
   name: '独立集合問題の W[1] 困難性'
   uri: https://qiita.com/kobae964/items/0ec34f7940dcbc95ad1d
+- filename: erlang-procon.md
+  name: 'AtCoder に登録したら解くべき精選過去問 10 問を Erlang で解いてみた'
+  uri: https://qiita.com/kobae964/items/7bf1c8e3356a69b33ecf
