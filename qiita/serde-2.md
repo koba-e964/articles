@@ -247,7 +247,7 @@ fn main() {
 
 - serialize_A で `Vec` を作っているが、元の `serialize_A_to_json` にはそんなものはなかった。
 - int だけ特別扱いせずに、serialize できるものをまとめたトレイトが欲しい。(仮にそのトレイトが `ToySerialize` という名前だとする。)
-- int の配列だけでなく `ToySerialize` の配列を扱おうとすると、引数として `<T: ToySerialize> impl IntoIterator<Item = T>` のようなものを持つ必要が出てくる。しかし、要素の型が全部同じとは限らないので、それはできない。よって、`impl Iterator<Item = Box<dyn ToySerialize>>` みたいな型を受け取るより他ないと思われるが、これだと box 化による実行時オーバヘッドのせいで多少重くなる。
+- int の配列だけでなく `ToySerialize` の配列を扱おうとすると、引数として `<T: ToySerialize> impl IntoIterator<Item = T>` のようなものを持つ必要が出てくる。しかし、要素の型が全部同じとは限らないので、それはできない。~~よって、`impl Iterator<Item = Box<dyn ToySerialize>>` みたいな型を受け取るより他ないと思われるが、これだと box 化による実行時オーバヘッドのせいで多少重くなる。~~ ToySerialize は [object safe](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects) なトレイトではない (serialize を行うメソッドが必然的に型パラメータ `S: ToySerializer` を持つ) ため、このような方法はそもそも使えない。(2020-08-07 追記)
 
 #### serialize_A で Vec を作りたくない
 これについては、`ジェネリックなシークエンスを扱うためにどうする?` でまとめて扱います。
@@ -272,7 +272,7 @@ fn serialize_seq<T: ToySerialize, W: Write>(self, a: impl IntoIterator<Item = T>
 ```rust
 fn serialize_seq<W: Write>(self, a: impl IntoIterator<Item = Box<dyn ToySerialize>>, writer: W) -> Result<()>;
 ```
-これはヘテロジーニアスな配列を問題なく受け取れますが、`Box` で包んでいるために動的ディスパッチが発生し、遅いという問題があります。元の `serailize_A_to_json` にはこのようなオーバヘッドはなかったはずです。
+~~これはヘテロジーニアスな配列を問題なく受け取れますが、`Box` で包んでいるために動的ディスパッチが発生し、遅いという問題があります。元の `serailize_A_to_json` にはこのようなオーバヘッドはなかったはずです。~~ ToySerialize は [object safe](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects) なトレイトではない (`serialize` が型パラメータ `S: ToySerializer, W: Write` を持つ) ため、このような方法はそもそも使えません。(2020-08-07 追記)
 
 そこでどうするか? この問題は serializer 側でリストの要素の処理をさせようとしたことによって発生したので、serialize 側でリストの要素の処理をさせればよいのです!
 
