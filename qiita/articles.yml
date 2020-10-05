@@ -10,3 +10,6 @@
 - filename: erlang-procon.md
   name: 'AtCoder に登録したら解くべき精選過去問 10 問を Erlang で解いてみた'
   uri: https://qiita.com/kobae964/items/7bf1c8e3356a69b33ecf
+- filename: yukicoder-auto.md
+  name: 'yukicoder に自動で解答を送信するツールを作った'
+  uri: https://qiita.com/kobae964/items/31e43d9ec5d43af39e62
