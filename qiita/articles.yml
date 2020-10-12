@@ -13,3 +13,6 @@
 - filename: yukicoder-auto.md
   name: 'yukicoder に自動で解答を送信するツールを作った'
   uri: https://qiita.com/kobae964/items/31e43d9ec5d43af39e62
+- filename: regex-compile-1.md
+  name: '正規言語でもコンパイルがしたい！(1): コンパイルの理論'
+  uri: https://qiita.com/kobae964/items/81058a229dced09dd2ab
