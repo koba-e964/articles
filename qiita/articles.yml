@@ -16,3 +16,6 @@
 - filename: regex-compile-1.md
   name: '正規言語でもコンパイルがしたい！(1): コンパイルの理論'
   uri: https://qiita.com/kobae964/items/81058a229dced09dd2ab
+- filename: cargo-dep-patch.md
+  name: 'cargo の dependency patch のミスでハマった話'
+  uri: https://qiita.com/kobae964/items/238d208342c1d2c44bea
