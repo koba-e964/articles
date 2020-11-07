@@ -19,3 +19,6 @@
 - filename: cargo-dep-patch.md
   name: 'cargo の dependency patch のミスでハマった話'
   uri: https://qiita.com/kobae964/items/238d208342c1d2c44bea
+- filename: elixir-rust-rustler.md
+  name: '[バージョンアップに追従] Elixirから簡単にRustを呼び出せるRustler #1 準備編 [rustler 0.21.1]'
+  uri: https://qiita.com/kobae964/items/eda6df04e76278388a54
