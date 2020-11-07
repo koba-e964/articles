@@ -240,5 +240,5 @@ mix.exsの追加とexample.exを追加しただけで、rustの関数を呼び�
 (コピペ + 改変ここまで)
 
 # まとめ
-使用したコードは https://github.com/koba-e964/phx_rust_21 に置いてあります。
+使用したコードは https://github.com/koba-e964/phx_rust_21/tree/intro に置いてあります。
 次回の[Elixirから簡単にRustを呼び出せるRustler #2 クレートを使ってみる](https://qiita.com/twinbee/items/54e8a4ec73bc27abd10e)はまだ試していないため、この記事の続きが必要かどうかは未定です。
