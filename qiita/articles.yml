@@ -22,3 +22,9 @@
 - filename: elixir-rust-rustler.md
   name: '[バージョンアップに追従] Elixirから簡単にRustを呼び出せるRustler #1 準備編 [rustler 0.21.1]'
   uri: https://qiita.com/kobae964/items/eda6df04e76278388a54
+- filename: creo.md
+  name: 'Rust で競技プログラミングの作問支援ツールを作った話'
+  uri: https://qiita.com/kobae964/items/9f006e36915ba3a09794
+- filename: rustler-yielding-nif.md
+  name: 'Rustler で行儀の良い NIF を書く'
+  uri: https://qiita.com/kobae964/items/9b8e78b8b0f3ca0f7e19
