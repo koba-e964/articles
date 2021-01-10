@@ -1,0 +1,16 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://yukicoder.me/problems/no/1322] 解いた。時間かかりすぎ
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2125 -> 2135 (+10)
+lichess tactics: 2194 (進捗なし)
+
+解けなかった問題:
+[https://www.chess.com/puzzles/problem/493352]: クイーンをトラップできるのに気付かなかった。
+

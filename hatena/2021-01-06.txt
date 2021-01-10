@@ -1,0 +1,15 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/pakencamp-2020-day1:title] A-F, K, O だけ解いた。O の掃き出しが見えないのは反省。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2135 -> 2118 (-17)
+lichess tactics: 2194 (進捗なし)
+
+解けなかった問題:
+[https://www.chess.com/puzzles/problem/148780/practice]: 最初ずっと 1... Ba5+ の筋ばかり考えていた。(2. Qxa5 には 2... Qc6+ 3. Ka7 Ra8# なので。) 1... Rb8+ は 2. Kc6 から先が見えず棄却してしまったが、実は 2... Qa8+ からメイトがあった。

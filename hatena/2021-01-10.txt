@@ -1,0 +1,20 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://yukicoder.me/problems/no/1330:title] 信じられないくらい頭が悪く、自力で解けず…。
+[https://yukicoder.me/problems/no/1331:title] N <= 10^5, O(N^{1.5}) で 1.5s は、やめようね！と思ったけど、この前も[https://atcoder.jp/contests/abc187/tasks/abc187_f:title=ABC で n <= 18 の O(3^n) (3s) が出た]し、時代が変わった気がする。
+[https://yukicoder.me/problems/no/1333:title] 全方位木 DP はいらない。辺 2 個の積の数え上げは、親-子孫、子孫-子孫の 2 種類を考えないとダメ。この手の数え上げで MECE にするのちょっと注意力が試されませんか?
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2174 -> 2198 (+24)
+lichess tactics: 2194 (進捗なし)
+
+面白かった問題:
+[https://www.chess.com/puzzles/problem/595352] 手数計算が苦手すぎる。初手 1. Nf3-h4+ Kf5-g4 2. Nxf2 とするより、1. Nf1 とした方が、白ポーンの昇格までの手数が稼げるという話だった。その後 f2 の黒ポーンを除去するまでに手こずるはずで、うまく昇格してできたクイーンを使って寄せなければならない。
+[https://www.chess.com/puzzles/problem/1114060] 3... Qxe5+ が正解なのに手癖で 3... Kxe5 としてしまった。反省。

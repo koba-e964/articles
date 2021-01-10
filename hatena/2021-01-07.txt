@@ -1,0 +1,16 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/pakencamp-2020-day1:title] 全完
+M の決定的解法として O(2^W W log N) のもの (頻度表を log_2 N 回 OR 畳み込みし、2 以上の値を 1 に潰す) しか思いつかなかったけど、想定解頭良すぎ
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2118 -> 2147 (+29)
+lichess tactics: 2194 (進捗なし)
+
+解けなかった問題:
+[https://www.chess.com/puzzles/problem/579382] メイトを狙うのかと思ったらクイーンを閉じ込める問題だった。初手 1... Rf8xf4 と切ってもうまくいかなくて、かといって 1... Qd7-h3 も後続手が思いつかず、途方に暮れていた。

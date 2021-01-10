@@ -1,0 +1,19 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2147 -> 2171 (+24)
+lichess tactics: 2194 (進捗なし)
+
+面白かった問題:
+[https://www.chess.com/puzzles/problem/42893] 最初 1. Kc6-b5 Ra4-a7 のあとルックの逃げ場所が広くてうまく行かなそうだったのだが、実は 2. Kb5-b6 のあと 2... Ra7-h7 には 3. Be8-g6+ が、2... Ra7-e7 には 3. Rg1-e1+ があり、逃げ場所がなかった。
+[https://www.chess.com/puzzles/problem/763656] 1. Qf7-g8+, 2.Qh7+, 3. Qxd3 というフォークの掛け方が面白かった。
+[https://www.chess.com/puzzles/problem/1201284] 1. Qd3-g6 Nb4xc2 2. Qxe6+ Kg8-h8 3. Nd6xf7+ という筋でクイーンを抜くことを考えたが、間違いだった。1... Qc6xc2 とクイーンでビショップを取られると瓦解する。さらに 2... Kg8-h7 とされた場合も最善手が 3. Qf5+ からの永久チェックになってしまう。
+
+

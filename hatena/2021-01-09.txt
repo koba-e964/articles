@@ -1,0 +1,17 @@
+** 開発
+進捗なし
+
+** 競プロ
+簡単な問題を何問か解いた。作問も試みたが進捗なし。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2171 -> 2174 (+3)
+lichess tactics: 2194 (進捗なし)
+
+面白かった問題:
+[https://www.chess.com/puzzles/problem/1177934] 1... Qf6xf2+ 2. Kg1-h1 は必然だがその後が難しかった。2... h7-h6 が好手で、次の 3... Qf1+ 4. Re1xf1 Rxf8-f1# の詰みと 3... Qxe1+ からの詰みを同時に受けながら、3... Rf8xe8 のクイーン取りを受けることが難しい。3. Qe8-e2 には 3... Qxe2 でよい (4. Rxe2 Rf1# なのでタダ)。
+[https://www.chess.com/puzzles/problem/578958] 1. Rh8-g8+ Kg5-f4 2. Rxg4 Kxg4 までは必然。その後 3. Kb3-c3 として d5 のポーンの昇格を防ぎたくなるが、そうなると 3... Kf5 4. Kd4 Ke6 5. a3-a4 としたときに、白のポーンが黒のキングで取られてしまう。正着は 3. a3-a4 だった。
+[https://www.chess.com/puzzles/problem/643200] 1... Bg7xd4 2. Qd3xd4 Rc2xf2 3. Rf1xf2 Qa2xb2+ という筋を読んでいたが、この場合 3. Qxf2 とされてしまい大損になる。正解は先に 1... Rc2xf2 で、2. Rxf2 に 2... Bxd4 とすれば 3. Qxd4 には 3... Qxb2+、3. Rbf1 には 3... Bxf2+ がある。
