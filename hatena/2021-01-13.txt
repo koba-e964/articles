@@ -1,0 +1,20 @@
+** 開発
+進捗なし
+
+** 競プロ
+ABC の解説動画を作ってみている 動画制作難しすぎる (小さい編集をする場合でも毎回動画全てのエンコーディングが必要で、時間がかかりまくっていてつらい。ffmpeg やめるべきか?)
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2205 -> 2188 (-17)
+lichess tactics: 2194 (進捗なし)
+
+解けなかった問題:
+[https://www.chess.com/puzzles/problem/1155412] mate in 2 を逃すのはダメ。
+[https://www.chess.com/puzzles/problem/121895] 最終局面で何が良いのかわかりにくくて難しい。
+[https://www.chess.com/puzzles/problem/28725] 1... Qxd4 に 2.Qd2xd4 とできないのがポイント。この手のうっかりしたらメイトがかかるみたいな問題が苦手すぎる
+
+

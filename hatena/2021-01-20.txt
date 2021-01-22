@@ -1,0 +1,19 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2183 -> 2188 (+5)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/1108360] 秒に追われると厳しい。
+

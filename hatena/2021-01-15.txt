@@ -1,0 +1,16 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/arc034/tasks/arc034_4:title] 解き直した 詰めるのに時間かかりすぎ
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2223 -> 2226 (+3)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/681860] 読み抜け。
+
+[https://www.chess.com/puzzles/problem/1002372] よくわからず。

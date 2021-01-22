@@ -1,0 +1,20 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://codeforces.com/contest/1473/problem/E:title=edu102-E] ただの拡張ダイクストラだった なぜすぐ見えなかったのか
+[https://codeforces.com/contest/1473/problem/F:title=edu102-F] ただのフロー? 誤読していた。O(n^2) 辺張るとまずいので節約して張る。
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+[https://koba-e964.gitbook.io/choral-music-latin-trans/ubicaritas/1:title] 訳した。
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2173 -> 2165 (-8)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/1219085] 謎。昇格するときになるべくチェックになるようにすれば 1 手稼げるということらしい。

@@ -1,0 +1,22 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+久々にチェスをやった 43 局くらい指して疲れた
+
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 667 -> 1000 (+333)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2226 -> 2189 (-37)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/762286] 2. Rf2-f7+ は開き王手。
+[https://www.chess.com/puzzles/problem/1074442] 1. Qc3-c2 としてルックの道を開けながら詰めろをかけるのがうまい。
+
+<iframe id="7448052" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7448052"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7448052"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+
+5. Be6 は 6. d5 でダメ。その後 ... Bxc6+ でフォークをかけられるのが目に見えていたから、それ以前に c6 の地点を受けないとダメだった。

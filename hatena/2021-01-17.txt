@@ -1,0 +1,21 @@
+** 開発
+進捗なし
+
+** 競プロ
+yukicoder の自明を 3 問くらい解いた だから何?
+ARC (keyence 2021) の upsolving やらんとなあ バチャ形式が望ましいけどバチャだと疲れる上にまとまった時間が取りにくくて厭
+[https://codeforces.com/contest/1473/problem/E:title=edu102-E] 解けず。助けてくれ
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2189 -> 2173 (-26)
+lichess tactics: 2194 (進捗なし)
+
+<iframe id="7453476" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7453476"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7453476"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+
+6... Bf8-e7?? で評価値が急降下するの非直感的すぎる 7. Qd1-d5! がかなりきついらしいけど…。
+駒の展開のさせ方がわからない

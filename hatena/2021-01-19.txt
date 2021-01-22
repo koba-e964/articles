@@ -1,0 +1,20 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://codeforces.com/contest/1473/problem/G:title=edu102-G] わからず。
+
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2165 -> 2183 (+18)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/706082] 1. Qe3-h7+ は 1... Kg7-f8 2. Bd4-e5+ Ke8 で手が続かない。黒キングが e8 に逃げられないように 1 手目は 1. Qg6+ である必要があった。直感的にクイーンの横利きを活かしたくなるのだが…。
+

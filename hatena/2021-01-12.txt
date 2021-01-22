@@ -1,0 +1,16 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2211 -> 2205 (-6)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/774828] 1. Be3xf4 Qb7-b6+ 2. Kg1-h1 という筋を考えていたが、2... Qxd8 3. Qh4xd8 Rf8xd8 4. Rc3xc6 と進むと 4... Rd1# となる。 2. Be3 が正解。
+

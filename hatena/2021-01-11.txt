@@ -1,0 +1,14 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/abc188:title] F がメモ化再帰で、これぞ ABC という感情に。
+[https://yukicoder.me/problems/no/1322:title] 実装に 1.8 時間といったところ。発想は面白いのだが、この手の Lucy の篩は実装の細かいところを詰めるのが大変。
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2198 -> 2211 (+13)
+lichess tactics: 2194 (進捗なし)

@@ -1,0 +1,19 @@
+** 開発
+進捗なし
+
+** 競プロ
+ABC 188 (A-C) の解説動画を作ってみた　
+[https://www.youtube.com/watch?v=-ZK0XBuDGxg&t=7s&ab_channel=HKoba:embed:cite]
+
+英語喋るの難しすぎる
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2188 -> 2223 (+35)
+lichess tactics: 2194 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/1105554] よく狙いがわからなかった。ポーンの個数の差が重要なのかな? 1... Nd7xe5 2. Nd4-c2 Bc8xg4 と進めば 2 ポーン差にはなるが、それで良いのかどうかも、なぜその局面で評価値が -5.3 くらいになるのかも謎。
+[https://www.chess.com/puzzles/problem/357263] 間接的なピンに気づかなかった。
+
