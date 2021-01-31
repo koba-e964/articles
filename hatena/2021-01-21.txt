@@ -1,0 +1,26 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2188 -> 2190 (+2)
+lichess tactics: 2194 -> 2210 (+16)
+
+
+[https://www.chess.com/puzzles/problem/1215646] 4. Kc2-b3 には 4... Qe1-d1# があった。
+[https://www.chess.com/puzzles/problem/761840] 1... Qb6-a6+ 2. Qd3xa6 Rf2xf3+ 3. Kh3-h4 g4-g5+ 4. Kxg5 Be5-f6+ で詰みだと思ったが、 3. Kg2 とされたら詰まない。1... Rxh2+ が正解で、2. Re2xh2 Qg1 としたときに白キングに受けがない。
+
+[https://lichess.org/training/zFMZC] ?
+[https://lichess.org/training/1n6M6] こういう endgame はよくわからない。
+[https://lichess.org/training/7qoQa] 謎。誰か 64. Ng5-f7 の意味を教えてくれ なぜ 64. Nxe6+ ではダメなのか
+[https://lichess.org/training/bcqty] 27. Rc1-c8+ と 27. Qe6xd6 で迷ったが、c1 のルックが 1 段目から離れると黒クイーンで詰んでしまうので、27.Qxd6 が正解。
+

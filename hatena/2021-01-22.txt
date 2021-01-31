@@ -1,0 +1,26 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2190 -> 2182 (-8)
+lichess tactics: 2210 (進捗なし)
+
+[https://www.chess.com/puzzles/problem/774024] この形で 1. Qf2 としたとき、何もなければ次に 2. Qf7+ から詰むのを知らなかった。
+[https://www.chess.com/puzzles/problem/1195988] ポーンを取りまくって b4 のポーンを昇格させる。
+
+
+
+** その他
+[https://twitter.com/waki1711/status/1352429215178575873:embed]
+解いている最中は解くことしか頭になく、「自然 vs 人工」の対比がまずいということには思い至らなかった。反省。
+

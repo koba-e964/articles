@@ -1,0 +1,25 @@
+** 開発
+進捗なし
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/blitz/koba-e964:title=chess.com blitz] 1091 -> 1103 (+12)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2115 -> 2125 (+10)
+lichess tactics: 2249 -> 2228 (-21)
+
+
+[https://lichess.org/training/pYW7V] Rook endgame を履修しなければ。
+
+[https://www.chess.com/live/game/6358470265]
+
+<iframe id="7500846" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7500846"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7500846"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+
+逆転。自分の指した対局の棋譜を覚えておくというのが難しく、できるまでにかなり時間がかかりそうな気がする。

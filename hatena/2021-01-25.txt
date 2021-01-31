@@ -1,0 +1,30 @@
+** 開発
+昔書いた [https://github.com/koba-e964/rusthello:title] (Rust でのオセロ実装のフォーク) の自分で書いた場所だけ別のプロジェクトに切り出して、同時に WASM の勉強がてらオセロができる Web ページを作りたいと思ってからかなり時間が経った。なので置き場所のリポジトリを作った。命名センスがなく noirblanc のような安直な名前しか付けられない。
+[https://github.com/koba-e964/noirblanc:embed:cite]
+設計は未定だけどちゃんと真面目に考えたいな
+以下ぼんやり考えていること
+
+- xxxx_core: 基本機能。棋譜から From したり棋譜へと Into したりもここ。エンジン用のインターフェイスもここに置くかどうか迷う。そもそもエンジンのコンフィグなんて個別具体事象なのにインターフェイスで抽象化できるのか? と思ったけど普通に最善手検討とかは共通しているから抽象化の意味はありそう
+- xxxx_ai: エンジン関連の機能置き場 複数のエンジンを置きたい場合どうしようかな 単に複数併置するだけかな
+- xxxx_interface: 外部とやり取りするための機能置き場 別のリポジトリに作ったほうがいいかもね
+- xxxx_learning: エンジンのパラメータ学習用の機能置き場 実装できるかな?
+
+
+
+write! マクロが std::io::Error も std::fmt::Error も返せるの謎だったけど、[https://doc.rust-lang.org/std/fmt/trait.Write.html:title] あたりのドキュメントとかソースに、std::io::Write と std::fmt::Write それぞれが別の返り値型の write_fmt メソッドを定義することで実現している旨が書かれていた。std::io::Write::write_fmt を呼び出す際、Display などで定義された fmt メソッドとエラー型が違う問題をどうしているのかと思ったが、[https://github.com/rust-lang/rust/blob/1.49.0/library/std/src/io/mod.rs#L1496-L1529:title=write_fmt のデフォルト実装]内で対処していた。基本的に fmt::Write の枠組みの内部でやるが、write が io::Error を返したら内部にそのエラーを保持しつつ Err(fmt::Error) を返す。そりゃそうか
+
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1001 (進捗なし)
+[https://www.chess.com/stats/live/blitz/koba-e964:title=chess.com blitz] 1089 -> 1091 (+2)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2169 -> 2119 (-50)
+lichess tactics: 2210 (進捗なし)

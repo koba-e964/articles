@@ -1,0 +1,33 @@
+** 開発
+進捗なし
+
+
+今月の進捗:
++ ラテン語合唱曲の解説をやるサイトを作った。
++ SETH の下で独立集合の O^*(3^w) 時間アルゴリズムが最適であることの証明を読み進めた
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/blitz/koba-e964:title=chess.com blitz]: 1103 -> 1114 (+11)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2118 -> 2120 (+2)
+lichess tactics: 2228 -> 2218 (-10)
+
+
+[https://www.chess.com/puzzles/problem/1163392]
+
+[https://www.chess.com/game/live/6404689461] 
+
+<iframe id="7520302" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7520302"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7520302"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+
+暗譜。一局覚えるために盤上で駒を動かしまくって 2 時間経過、みたいなのをやめたい。もっと効率的にできないかなあ。
+
+** その他
+たくさんのことについて進捗を出すのが難しい…。一ヶ月くらいのそこそこ長いスパンではどれも満遍なくやって、という風にしたいのだけど。

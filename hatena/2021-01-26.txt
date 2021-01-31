@@ -1,0 +1,20 @@
+** 開発
+進捗なし
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2119 -> 2115 (-4)
+lichess tactics: 2210 -> 2249 (+39)
+
+
+[https://lichess.org/training/tWt8l] 1. Ng3-f5 ではなく取りにくい 1. Nh5 が正解。[https://news.yahoo.co.jp/byline/matsumotohirofumi/20200805-00191901/:title=王位戦の幻の13銀]を思わせる手で好き。
+[https://lichess.org/training/Wtpea] 2. Kh2-g1 は 2... Bd6-c5+ 3. Ng2-e3 Qe7-g5 からキングの頭を攻められて -2.1 点くらいらしい。
+

@@ -1,0 +1,29 @@
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 -> 1001 (+1)
+[https://www.chess.com/stats/live/blitz/koba-e964:title=chess.com blitz] 1149 -> 1089 (-60)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2148 -> 2169 (+21)
+lichess tactics: 2210 (進捗なし)
+
+完全に読みの能力が衰えている いまだに結構タダで取られる 終わりの方は眠くて全然読みが働かなかった
+
+
+** 印象に残った試合
+
+[https://www.chess.com/live/game/6332902498]
+<iframe id="7486920" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7486920"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7486920"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+
+「普段よくハマる f7 にナイトとビショップを集結させる戦法」に Italian game: Knight attack という名前が付いていることを知った。とくに今回受けた攻撃を Fried liver attack と呼ぶらしい。6. Ng5xf7が成立するの驚き最小の原則に反するだろ
+ハメ手 (?) にハマってからは普通に負けだったが強引にポーンを昇格させて、勝利…
+
+もっと研究というか手を読む癖つけたほうがいいかなあ

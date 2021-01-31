@@ -1,0 +1,19 @@
+** 開発
+進捗なし
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2079 -> 2118 (+39)
+
+[https://www.chess.com/puzzles/problem/606250] 1. Qe2-d2 がなぜか見えなかった。普通に詰めろなのに
+
+
+[https://www.youtube.com/watch?v=xmXwdoRG43U&ab_channel=MagnusCarlsen] これの Board 1 と Board 3 を暗譜。Board 1 の途中 move 10 あたりの 「私は私、俺も俺」パートがなかなか覚えにくい。もっと相手の手に対応して欲しい

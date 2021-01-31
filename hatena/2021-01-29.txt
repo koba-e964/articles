@@ -1,0 +1,14 @@
+** 開発
+進捗なし
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2095 -> 2079 (-16)

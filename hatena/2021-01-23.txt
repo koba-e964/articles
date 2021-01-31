@@ -1,0 +1,22 @@
+** 開発
+進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/abc189:title=ABC189] 41m24s で 20.5 位。昔は速解き多少できたはずなのに、今は今回の E とかで詰まってしまう有様…。
+
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/live/bullet/koba-e964#recent:title=chess.com bullet] 1000 (進捗なし)
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2182 -> 2148 (-34)
+lichess tactics: 2210 (進捗なし)
+
+** その他
+[https://twitter.com/naoyafujiwara/status/1352882400091463680:title]
+伝言ゲームで情報が歪曲される例を見つけてしまった こわ
+ソースを確認するのは本当に大事ですね…。
+
