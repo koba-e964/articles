@@ -1,0 +1,16 @@
+レート変化などを毎日載せるのは無意味なので、一週間ごとに遷移を記録することにする。
+** 数学
+そういえば Elo rating system の数学的なバックグラウンドについて知らないなと思って調べたら、[https://en.wikipedia.org/wiki/Gumbel_distribution:title=Gumbel 分布]を使うとうまく説明できることを知った。(本当にこれが Elo rating system の想定する分布なのかは知らないが)
+
+理解の推移:
++ 最初は「『強さ』というパラメタがあり、それの比で勝率が決まる」という信念が基本だと雑に思っていた
++ [https://www.youtube.com/watch?v=AsYfbmp0To0&ab_channel=singingbanana] を観て、特定の分布に従う確率変数の差が従う分布がロジスティック分布であれば ok ということに気づいた
++ 色々調べて、Gumbel 分布が条件を満たすことを知った。つまり、X_1 ~ Gumbel(μ_1, β), X_2 ~ Gumbel(μ_2, β) のとき X_1 - X_2 ~ Logistic(μ_1 - μ_2, β) である。
+
+こうなると「強さの比で勝率が決まる」みたいなのは完全に後付けに見えてくる。上の分布がロジスティック分布でなく例えば正規分布でも何も問題は起きないため。
+
+** チェス
+
+解けなかった。内容は省略。
+[https://www.chess.com/puzzles/problem/1146256]
+[https://www.chess.com/puzzles/problem/631216]

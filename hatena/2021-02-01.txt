@@ -1,0 +1,21 @@
+** 開発
+進捗なし
+
+
+** 競プロ
+進捗なし
+
+
+** ラテン語
+進捗なし
+
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2120 -> 2150 (+30)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1500? -> 1661? (+161?)
+
+[https://lichess.org/onsLnwO7]
+<iframe src="https://lichess.org/embed/onsLnwO7#0?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
+15 分切れ負けのつもりが、間違えて 0 分 + 1 手 15 秒加算のルールでやってしまった。Wayward Queen Attack はやはり応対を正しくされると弱い。
+全部暗譜すると負担が大きすぎるから、最初の 15 手-20 手くらいだけ暗譜するようにした方がいいかも。

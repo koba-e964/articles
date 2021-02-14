@@ -1,0 +1,11 @@
+** 数学
+統計について復習。カイ2乗分布について導出をやった。習ったばかりの頃は勝手に難しいイメージを持っていたが今見たらそこまでステップ数が多くなかった。
+t 分布についても導出を追ってみたいと思ったが、そこそこ重そう…。 ([http://www.math.s.chiba-u.ac.jp/~wang/teaching/b20405.pdf] を見た)
+
+
+
+** ラテン語
+[https://koba-e964.gitbook.io/choral-music-latin-trans/simileestregnum:title]を書いた。
+
+** チェス
+[https://lichess.org/storm:title] Puzzle Storm 面白い。

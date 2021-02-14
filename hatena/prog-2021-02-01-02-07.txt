@@ -1,0 +1,14 @@
+** 数学
+χ2乗分布の導出、t 分布の導出、(標本平均 - 平均) / sqrt(不偏分散 / n) ~ t(n-1) の導出をやった。
+
+** 競プロ
+ABC 解いたくらい。割と無。
+
+** ラテン語
+[https://koba-e964.gitbook.io/choral-music-latin-trans/simileestregnum:title=Simile est regnum] の訳を書いた。
+次は [https://www.cpdl.org/wiki/index.php/Vinea_mea_electa:title=vinea mea electa] あたりをやりたい。
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2120 -> 2215 (+95)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1500? -> 1661? (+161?)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2218 (進捗なし)

@@ -1,0 +1,7 @@
+** チェス
+[https://www.chess.com/puzzles/problem/1230285] 4. Bc1-g5+ という、ビショップがどく手がチェックで入るのが重要。
+
+[https://www.chess.com/live/game/6436601180]
+大ブランダー。4. Ng5?? もさることながら、5. d4?? と反射的に当てに行くのがよくない。フォークだが 5... Qxg2 の方が早い。
+<iframe id="7534432" allowtransparency="true" frameborder="0" style="width:100%;border:none;" src="//www.chess.com/emboard?id=7534432"></iframe><script>window.addEventListener("message",e=>{e['data']&&"7534432"===e['data']['id']&&document.getElementById(`${e['data']['id']}`)&&(document.getElementById(`${e['data']['id']}`).style.height=`${e['data']['frameHeight']+30}px`)});</script>
+

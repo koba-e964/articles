@@ -1,0 +1,11 @@
+** 開発
+(今日ではないが) [https://www.shogi.or.jp/player/:title] から棋士の情報を取って JSON へと加工するスクリプトを書いた。 [https://github.com/koba-e964/elo-simulator/blob/b317c9304f3242dcc7539dea23408cfff7774962/scripts/fetch-players.py:title=fetch-players.py]
+見た範囲で、例えば[https://www.shogi.or.jp/match/junni/2020/79b1/index.html:title=順位戦]の対局表・戦績は (テクストのパースなので) まだできそうな気がする。[https://www.shogi.or.jp/match/ryuuou/34/2hon.html:title=竜王戦]のトーナメント表は画像なので地獄そう。
+誰か戦績データを一括で JSON とかで公開してくれないかなあ。
+
+
+** 競プロ
+OpenCup サボり。
+
+** チェス
+対局サボり。chessx というアプリケーションの使い方を学んだ。

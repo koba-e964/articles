@@ -1,0 +1,10 @@
+** 数学
+[http://www.math.s.chiba-u.ac.jp/~wang/teaching/b20405.pdf] を参考にして、(bar X - μ) / sqrt(S / n) が t 分布に従うことを少し追った。
+
+- X ~ N(0, 1), Y ~ χ_n^2 で X と Y が独立のとき、Z := X/sqrt(Y/n) の従う分布の確率密度関数は Γ((n+1)/2)/(sqrt(n*pi)Γ(n/2)) * (z^2/n+1)^{-(n+1)/2} である。つまり自由度 n の t 分布に従う。
+  これは積分計算でできる。
+- X_1, ..., X_{n+1} ~ N(μ, σ^2) のとき、(bar X - μ)sqrt(n) / σ ~ N(0, 1), nS / σ^2 ~ χ_n^2
+  多分正しい。[https://mathtrain.jp/chinijoproof:title] にそれっぽいことが書いてあると思うけど、ちゃんと読んでいない。
+- X_1, ..., X_{n+1} ~ N(μ, σ^2) のとき、bar X - μ と S は独立である。
+  これはよくわからないが、これも [https://mathtrain.jp/chinijoproof:title] に書いてあるはず。
+ 

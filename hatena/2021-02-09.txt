@@ -1,0 +1,23 @@
+** 開発
+[https://matklad.github.io//2021/02/06/ARCHITECTURE.md.html:title]
+OSS を管理する人はソフトウェアの構成を書くべきであるという話。
+[https://github.com/rust-analyzer/rust-analyzer/blob/d7c99931d05e3723d878bea5dc26766791fa4e69/docs/dev/architecture.md:title=rust-analyzer の architecture.md] が例としてあげられていた。こういうのを読むのはそこそこ楽しい。使っているクレイトの機能と用途が簡潔にまとめられており、勉強にもなる。
+
+** チェス
+[https://www.youtube.com/watch?v=ryIQByN3HiE&ab_channel=%E3%80%90%E3%83%81%E3%82%A7%E3%82%B9%E3%80%91%E7%B4%80%E4%BA%BA%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB] 観たけどよくわからない。
+
+[https://lichess.org/4YdwX6AD/black] こんな簡単に負けちゃ、ダメだろ
+<iframe src="https://lichess.org/embed/4YdwX6AD/black?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
+反射的に 9... Bd7 と合駒するのがダメ。ルックを閉じ込めるので指しにくいが 9... Kf8 が正しい。というより、その後 10. Bxd7+ Kxd7 11. Qb5+ Nc6 12. Ne5+ あたりまで一直線なのだから読むべき。
+
+
+[https://lichess.org/mCqrbYSB/black] 勝ち試合ができて、よかったね
+
+
+<iframe src="https://lichess.org/embed/mCqrbYSB/black?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
+22 手目あたりから ... Nh5 が候補手に現れるが、謎。エンジンの読み筋を見ると 23...Nh5 24. Ra2 Re3 25. Rd1 Nxg3+ 26. Qxg3 Bf5 で d3 のポーンが落ちるという狙いだったのかな? 複雑すぎる。
+23... Re3 はなんとなく気持ちがわかる気がする。
+29... Bxd3 あたりでポーンが何個か取れる形になるので勝ちを意識したが、正しかったらしい。
+34. Qxf7+ について、今回はビショップで守られていたから問題なかったが、指す直前にはこの筋は見えていなかったので反省。
