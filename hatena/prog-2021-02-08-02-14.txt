@@ -1,0 +1,19 @@
+** 数学
+[https://arxiv.org/abs/1809.00533:title] を読んで [https://en.wikipedia.org/wiki/Chudnovsky_algorithm:title=Chudnovsky のアルゴリズム] (円周率の計算) の証明を追った。概略だけ理解できたような。
+
+** 開発
+[https://github.com/koba-e964/elo-simulator:title=elo-simulator] で必要になるスクリプト類 ([https://github.com/koba-e964/elo-simulator/blob/4a7f37e8130cc9d5f75e082a7ea4b3c702045133/scripts/fetch-junni.py:title=順位戦の結果を取得して JSON にするやつ]) を書いた。
+GitHub Actions で定期実行をする仕組みを調べた。実行される時刻はそこまで正確ではない。
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2215 -> 2289 (+74)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1661? -> 1751? (+90?)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2218 -> 2246 (+28)
+
+棋譜の暗譜をサボりがち。

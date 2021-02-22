@@ -1,0 +1,8 @@
+** チェス
+lichess のタクティクスでレートを溶かしまくった。(出題されるパズルを低レート寄りにしたため。) 明らかに低レートに対する成功率が弱いので、当面の目標は低レートのパズルを安定させるということで。
+
+解けなかったパズルのうち理屈がよくわからないもの:
+[https://lichess.org/training/q2qaK]
+[https://lichess.org/training/wenaH]
+[https://www.chess.com/puzzles/problem/678190] ポーンエンディング
+[https://www.chess.com/puzzles/problem/1263065] ポーンエンディング

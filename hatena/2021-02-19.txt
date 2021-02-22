@@ -1,0 +1,12 @@
+** 数学
+j 不変量が整数ならば e^{pi sqrt(d)} がほとんど整数になるのは理解したが、ある種の d について j 不変量が整数になる理由がわからない。
+近いのはこのあたり。
+[https://math.stackexchange.com/questions/3305239/prove-je-is-an-integer-for-an-elliptic-curve-with-cm-by-a-quadratic-field-of-c:embed:cite]
+ググってみたらこれが載っている文献を発見できた。
+Lemma 4.1 は [https://www.springer.com/gp/book/9789386279156:title] に記述があるらしい。
+この部分だけまとめた PDF が公開されていた。ありがとう。
+[http://www.crm.umontreal.ca/sms/2014/pdf/ghate.pdf]
+
+
+** チェス
+[https://www.chess.com/puzzles/problem/1082104] 先に 2... Qd7xb5 ではなく 2... Nb4xc2+ としなければならない。なぜなら 2... Qxb5 3. Nc3xe5 Nxc2+ 4. Ke1-d1 Nxa1 の後 5. Nxc7+ が待っているため。

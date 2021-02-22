@@ -1,0 +1,9 @@
+日中はずっと将棋 (朝日杯) を観ていた。
+
+** 開発
+順位戦の情報を取得して JSON にするスクリプトを書いた。[https://github.com/koba-e964/elo-simulator/blob/4a7f37e8130cc9d5f75e082a7ea4b3c702045133/scripts/fetch-junni.py:title]
+これを定期的に実行して、結果として得られる JSON をどこかに公開したいのだが、どうやったらできるだろうか?
+
+
+** チェス
+[https://www.chess.com/puzzles/problem/630350] 2... Rxa3 が見えなかった。

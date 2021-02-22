@@ -1,0 +1,31 @@
+** 開発
+定期的に棋戦の情報を JSON 形式にして公開するためには以下が必要。
++ 定期的に現在行われている棋戦の情報をダウンロードし、JSON に変換する仕組み。おそらく [https://gotohayato.com/content/514/:title] でできる。
++ 現在行われている棋戦の情報を取得する仕組み。これがないと、例えば順位戦の場合には 1 年に 1 度ソースコード内の期を書き換える必要がある。これは棋戦が多くなると難しくなるはず。
++ 実行して得られた成果物を公開する仕組み。[https://qiita.com/peaceiris/items/d401f2e5724fdcb0759d:title] あたりを見れば良さそう。
+
+…ということを考えたが、実験や実装には至っておらず…。
+
+** チェス
+[https://www.chess.com/puzzles/problem/776536]
+
+[https://lichess.org/3TePbPUO/white]
+<iframe src="https://lichess.org/embed/3TePbPUO?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
+途中押していた気がするのだが、24. Rg3?? で頓死。
+
+21. Re3: Rc3 だと手損せずに済んだ。
+24. Rg3??: f2 が急所であることは認識していたが、24... Qd2 と入り込まれる手が見えていなかった。
+
+
+[https://lichess.org/KxdRhhpJ/black]
+<iframe src="https://lichess.org/embed/KxdRhhpJ/black?theme=auto&bg=auto"
+width=600 height=397 frameborder=0></iframe>
+途中まで苦しかったものの、勝ててよかった。
+16... Nd4: 17. Nxe5 がある。やるなら 16... Qe7 などとしてから。
+19... b5: 18 手目からその筋があった。ビショップが端に行ったら常にこの筋を頭に入れたい。
+
+
+
+** その他
+[https://yuchiki1000yen.hatenablog.com/entry/2020/12/27/225203#%E3%82%B7%E3%83%A5%E3%83%AF%E3%83%BC%E3%81%A8%E3%83%8F%E3%82%A4%E3%82%B7%E3%83%A5%E3%83%AF%E3%83%BC%E3%81%AE%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91:title] この辺個人的に雑な理解をしていたが、こういう話があったのか…。
