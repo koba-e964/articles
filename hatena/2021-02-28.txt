@@ -1,0 +1,7 @@
+** 数学
+[http://websites.math.leidenuniv.nl/algebra/:title] の Number Rings について、5 章の Minkowski bound のあたりを斜め読みしている。体積の部分がよくわからない。特に "普通の体積" の 2 倍になる理由が。
+
+** 競プロ
+[https://codeforces.com/blog/entry/88215:title=OpenCup GP of Tokyo] に参加した。自分は G, H の 2 完。チームは 4 完。
+[http://yang33-kassa.hatenablog.com/entry/2017/12/21/202812:title=NimK] 知らなかった。
+競プロのモチベ up

@@ -1,0 +1,10 @@
+** 開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] の main が任意の多項式を入力として取れるように修正中。
+その過程で BigInt の直列化・脱直列化などをやりたいのだが、もともとの impl Serialize for BigInt の実装だと例えば 5 が [1,[5]] みたいな値へと直列化される。どうしてこんなことに…。
+欲しいのは "5" なり "-214" なりという文字列なので、なんとかして実装を上書きする方法を探している。-> 愚直な方法 (新しい型を用意して、直列化・脱直列化はすべてその新しい型経由で行い、変換は手動) でやった。[https://github.com/koba-e964/rust-number-theory/commit/c6c443e3ff1cae8a7c73088077c1892326441408:title=コミット]
+
+** 競プロ
+[https://atcoder.jp/contests/abc193/:title=ABC193] 参加。62 位で大敗。E で不必要に詰まったのとバグを埋め込んだので、弁解の余地無し。
+
+** チェス
+[https://www.chess.com/puzzles/problem/771730] 先に 1... f6-f5 だと 2. Qg4-g3 Qa4-d1+ 3. Re2-e1 でダメ。先に 1... Qd1+ が必要。

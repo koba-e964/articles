@@ -1,0 +1,5 @@
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]をやっている。[https://rustwasm.github.io/docs/book/game-of-life/hello-world.html:title=第4.2章]は完了した。www/package.json に pkg の情報を追記しなければいけないのを見落としており、リコンパイルしても挙動が変わらずかなり苦しんだ。(他にもパッケージ名を変えなければいけないところを見逃していた。) チュートリアルを飛ばし読みするのはよくない。
+
+** チェス
+[https://lichess.org/training/4B5tZ] 多分キングで g1 の白ルックを取りに行けということかな?

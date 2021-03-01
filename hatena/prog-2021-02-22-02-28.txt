@@ -1,0 +1,18 @@
+** 数学
+[http://websites.math.leidenuniv.nl/algebra/:title] の Number Rings: 2 章から 5 章をランダムアクセスしながら読み。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル] 4.2-4.4 節終わらせ。
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] をちょっと触り。今後新しい機能 (素イデアルの分解・GNFS など) を追加したくなった時の準備。
+
+** 競プロ
+[https://atcoder.jp/contests/abc193/:title=ABC193] 参加。62 位。
+[https://codeforces.com/blog/entry/88215:title=OpenCup GP of Tokyo] 参加。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2201 -> 2223 (+22)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2213 -> 2255 (+42)

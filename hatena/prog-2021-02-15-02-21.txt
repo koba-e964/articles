@@ -1,0 +1,17 @@
+** 数学
+J invariant の整数性について追った。よくわからずじまい。
+
+** 開発
+進捗なし
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2289 -> 2201 (-88)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1751? -> 1812? (+61?)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2246 -> 2213 (-33)
+lichess の tactics について、出る問題を normal にした状態で下がったレートがある程度取り戻せた。
