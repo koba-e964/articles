@@ -28,3 +28,6 @@
 - filename: rustler-yielding-nif.md
   name: 'Rustler で行儀の良い NIF を書く'
   uri: https://qiita.com/kobae964/items/9b8e78b8b0f3ca0f7e19
+- filename: nyuushi-qe-satto.md
+  name: '大学の数学の入試問題を量化子消去でサッと解く'
+  uri: https://qiita.com/kobae964/items/30dcb77837068b2638be
