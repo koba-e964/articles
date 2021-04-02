@@ -1,0 +1,13 @@
+** 数学
+[https://twitter.com/kobae964/status/1373082050110976003:embed]
+という文脈で、本当に冪根で表せるんだっけ? 表せるならその方法は? というのが気になった。調べてみたら以下の文献を見つけた。
+[http://www-users.math.umn.edu/~garrett/m/algebra/notes/19.pdf] ([http://www-users.math.umn.edu/~garrett/m/algebra/:title=Minnesota 大学の講義]から。[https://math.stackexchange.com/questions/92587/cyclotomic-polynomials-explicitly-solvable:title=StackExchange] から辿った。)
+
+少なくとも 1 の 7 乗根の場合は Lagrange resolvent を経由することで冪根で表せることを理解した。
+
+** チェス
+[https://www.chess.com/puzzles/problem/994932] 2... Na6-c5 に対しクイーンを逃げてしまうとほとんどの場合で 3... Nb3+ 4. Kd2-d3 Qb2-c3+ から即詰み。3. Qd3-c4 であればこの筋はすぐにはないが 3... d6-d5 で結局この筋から逃げられない。
+[https://www.chess.com/puzzles/problem/591238] 取り返したりするのは 2. Qh5xf7+ や 2. Nf7xd8 などでよくないので、当たっているクイーンを逃げなければならない。1... Qd8-d7 と逃げたとする。2. Nxh6+ gxh6 3. Rf1xf8+ Kg8xf8 とナイトをサクリファイスする手が成立するらしいのだが、なぜそれで有利になるのかは謎。(黒ナイトはフォークで取れるので、互角には少なくともなる。玉頭のポーン構造の差?)
+
+** その他
+スプラ2: ガチエリア A+ -> S。土日は平日に比べ平均レベルがそこまで強くない気がする。

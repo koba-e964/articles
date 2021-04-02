@@ -1,0 +1,6 @@
+** 数学
+[http://www2.biglobe.ne.jp/~optimist/algebra/fermat2_proof.html#proof10:title] の命題 10 の証明から群コホモロジーの雰囲気がする。するものの群コホモロジーはよくわからない。
+
+
+** 開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 類数計算を実装している。類数と単数規準の積がゼータ関数の留数で表せるという話があるので、それを使ってうまくバウンドする処理を実装している。

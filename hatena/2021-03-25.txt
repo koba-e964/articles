@@ -1,0 +1,4 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] mod p での多項式の素因数分解を実装した。
+[https://github.com/koba-e964/rust-number-theory/commit/e8728c26a3af5dd9cd593ad9156268ce8d341549:title]
+280 行で 3 時間くらいかかっているから、時速 90〜100 行くらい?

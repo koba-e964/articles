@@ -1,0 +1,2 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-quantifier-elimination:title] 作り出した。まずは論理式の構文解析のところから。

@@ -1,0 +1,13 @@
+** 競プロ
+[https://csacademy.com/contest/round-9/task/sum-of-squares/] 解いた。分割数と似ていることに気付くのに無限時間かかった。(提出: [https://csacademy.com/submission/3132612/:title=#3132612])
+[http://degwer.hatenablog.com/entry/20170829:title] を適用しようとしたら、ちょうど K 分割にしなければいけないところにうまく対応できず、失敗。
+[https://atcoder.jp/contests/tdpc/tasks/tdpc_concatenation:title] 解いた。なぜ昔は解けなかったのか。
+[https://atcoder.jp/contests/tdpc/tasks/tdpc_graph:title] 解いた。面白かった。
+
+
+
+** チェス
+[https://www.chess.com/puzzles/problem/1069754] 1. Nc3xb5 Bb4xd2+ となった場合は 2. Qe3xd2 とすれば 2... cxb5 ができず白有利。(2... cxb5?? 3. Qd8#)
+
+** その他
+ガチアサリ S -> A+

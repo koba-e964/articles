@@ -1,0 +1,5 @@
+** 数学
+[https://www.csd.uwo.ca/~mmorenom/Publications/Quantifier_Elimination_by_Cylindrical_Algebraic_Decomposition_Based_on_Regular_Chains.JSC_version.pdf:title=Quantifier Elimination の論文]を読み始めた。
+** チェス
+[https://www.chess.com/puzzles/problem/1189744] ?
+[https://www.chess.com/puzzles/problem/1035682] メイト見逃し。

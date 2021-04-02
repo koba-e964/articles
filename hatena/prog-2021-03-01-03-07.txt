@@ -1,0 +1,22 @@
+** 数学
+[http://websites.math.leidenuniv.nl/algebra/:title] の Number Rings: 進捗なし
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル] 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] 進捗なし
+
+** 競プロ
+[https://codeforces.com/blog/entry/88215:title=GP of Tokyo] D の解説を読み。
+[https://csacademy.com/contest/round-9/tasks/] 解き。
+[https://atcoder.jp/contests/tdpc:title] 残っていた Q, R を解いて、数年越しに全完。
+[https://atcoder.jp/contests/cpsco2019-s2/tasks/cpsco2019_s2_g:title] 解き。
+[https://atcoder.jp/contests/abc194:title=ABC 194] 解き。F に 4h40m かかった。やる気の欠如。
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2223 -> 2214 (-9)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2255 -> 2200 (-55)

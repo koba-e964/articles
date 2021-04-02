@@ -1,0 +1,9 @@
+** 数学
+[https://twitter.com/kobae964/status/1373514831760781316:embed]
+[https://twitter.com/kobae964/status/1373515135487070208:embed]
+このあたりの不勉強がやっと解消された気がする。今まで S4 |> A4 |> V = <(12)(34), (13)(24)> という減少列に沿って解いていくのかなと思っていたが、そうではなく S4 から一度に V に降りる。
+
+[http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JTNB/2004-1/Belabas.pdf] の分数イデアルの逆について、よくわからないまま。と思ったが、整数基底 w_i について T := (Tr(w_i w_j))_{ij} としたとき、T^{-1} が (w_i) の trace dual (の (w_i) を基底とした表示) であることは簡単な線形代数だった。(T^{-1}TE = E)
+
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] イデアル関連の関数を実装中。

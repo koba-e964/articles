@@ -1,0 +1,5 @@
+** 競プロ
+GCJ Qualification Round: visible な 41 点を獲得。
+
+** 数学
+[https://www.isibang.ac.in/~sury/algoiisc.pdf] を読んで単数群・イデアル類群の計算法を調べている。

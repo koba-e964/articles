@@ -1,0 +1,4 @@
+** 数学
+[https://math.stackexchange.com/questions/3180079/computing-the-unit-group-of-a-residue-ring:title] を読んだ。
+単数群の計算方法について調べているが、当てずっぽうな方法 (小さい整数を調べて関係式を導く) しか見つからない。
+[https://www.isibang.ac.in/~sury/algoiisc.pdf] では n の素因数分解と Q(sqrt(-n)) のイデアル類群の 2-Sylow 部分群の計算が同値と書いてあり、イデアル類群の計算と単数群の計算は近しいため、どちらも難しい気がする。

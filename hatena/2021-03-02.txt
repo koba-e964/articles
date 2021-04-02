@@ -1,0 +1,6 @@
+** 競プロ
+[https://codeforces.com/blog/entry/88215:title=GP of Tokyo] の D の解説を読んでいる。ただでさえ難しい multipoint evaluation というテクニックに、さらに transposition というテクニックを適用しなければならず、前途多難。今週中に実装が完了できれば御の字。
+
+** チェス
+[https://lichess.org/training/ohZOn]
+[https://lichess.org/training/m5aaW] 44. Rh1-h7+ をみている。

@@ -1,0 +1,5 @@
+** 数学
+[http://websites.math.leidenuniv.nl/algebra/:title] の Number Rings: Lemma 5.2 の後の注釈で、内積が 2 倍になると面積が 2 倍になるのは、距離が sqrt(2) 倍になるため。
+
+** その他
+[https://shitforces.herokuapp.com/contest/snc5:title=ソートなぞなぞコンテスト] に参加した。

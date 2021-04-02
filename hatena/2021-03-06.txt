@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/cpsco2019-s2/tasks/cpsco2019_s2_g:title] 解いた。未証明だけど。
+[https://atcoder.jp/contests/abc194:title=ABC 194] 解いている。 F だるい

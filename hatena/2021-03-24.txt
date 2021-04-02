@@ -1,0 +1,5 @@
+** 数学
+[https://www.cryptrec.go.jp/exreport/cryptrec-ex-0021-2001.pdf] の 2.3.1 で、mod p で 1 次の因子を見つけるのが効率的にできるのを知った。x^{(p-1)/2}+1 との gcd を取るのはどこかで見たことがあったが、それを a ずらしても問題ないのは気づかなかった。
+
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] 不正確な (f64 で計算する) 判別式を計算する関数を追加した。これは計算が楽になるというメリットを持つ。結果は有理整数だとわかっているので有理整数に十分近ければ確信を持ってその値だと言える。

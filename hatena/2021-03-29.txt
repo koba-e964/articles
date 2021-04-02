@@ -1,0 +1,6 @@
+** 開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 単数群の基底を求める処理を書いている。
+
+
+** チェス
+[https://www.chess.com/puzzles/problem/1063084] 1... Qe6xe2+ 2. Ke1xe2 e7-e5 3. dxe5 fxe5 に対してビショップを逃げると 4... e4 でナイトが取れる。

@@ -1,0 +1,2 @@
+** 趣味開発
+[https://github.com/sile/trackable/pull/4:title] semver-trick を野のクレートに適用した。trackable が提供している型は必然的に pervasive な使われ方をするので、依存ライブラリ (主に frugalos) が助かる。

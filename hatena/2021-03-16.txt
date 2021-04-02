@@ -1,0 +1,3 @@
+** チェス
+[https://lichess.org/training/XFlN2] ナイトをとりたい。29. Qf5xc8 に対して 29... Nb5-d4 であれば 30. Rc1-c7+ がある。30... Ke7-f6 には 31. Ng3-e4+ Kg6 32. Qe8#がある。
+[https://lichess.org/training/UH0lj] 隙ができたのでポーンをすすめたい。

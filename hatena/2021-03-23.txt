@@ -1,0 +1,6 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] イデアルの逆を実装した。また、different の逆を計算する関数を実装した。ただの線形代数とはいえこれほど簡単に different などが計算できるというのは感動すら覚える。
+
+** チェス
+[https://www.chess.com/puzzles/problem/1099616] 昇格したときにチェックがかかるようにする。
+[https://www.chess.com/puzzles/problem/1069754] 18 日前に見たことがあったのに解けなかった。

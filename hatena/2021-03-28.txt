@@ -1,0 +1,2 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] 代数体の単数群の生成元を計算する処理を書いている。二次体で単数の候補を見つけるところまでは書けた。

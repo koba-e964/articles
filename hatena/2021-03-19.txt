@@ -1,0 +1,2 @@
+** 趣味開発
+[http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JTNB/2004-1/Belabas.pdf] を見て (分数) イデアルの実装をやっている。逆分数イデアルの実装がまだわかっておらず、面倒そう。

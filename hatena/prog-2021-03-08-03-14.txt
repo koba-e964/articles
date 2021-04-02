@@ -1,0 +1,21 @@
+** 数学
+[http://websites.math.leidenuniv.nl/algebra/:title] の Number Rings: 進捗なし
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル] 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] 進捗なし
+[https://github.com/sile/trackable/pull/2:title] PR 出し。マージ済み。
+[https://github.com/frugalos/kanils/tree/poc/without-futures:title] 依存性を大幅に減らせると思ったので実験。
+[https://github.com/koba-e964/rust-quantifier-elimination:title] 作り出し。論理式の構文解析を書き。
+[https://github.com/sile/trackable/pull/4:title] semver-trick 適用。
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2214 -> 2084 (-30)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2200 (進捗なし)

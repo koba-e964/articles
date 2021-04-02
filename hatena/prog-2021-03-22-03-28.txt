@@ -1,0 +1,19 @@
+** 数学
+[http://www.kurims.kyoto-u.ac.jp/EMIS/journals/JTNB/2004-1/Belabas.pdf]: different の逆を計算するアルゴリズムを読んだ。
+[https://www.isibang.ac.in/~sury/algoiisc.pdf] を読んで単数群・イデアル類群の計算法を調べている。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル] 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory] イデアルの逆を実装。不正確な判別式実装。mod p での多項式の 1 次因数分解実装。単数群の計算のうち、生成元の候補発見まで実装。
+[https://github.com/koba-e964/rust-quantifier-elimination:title] 進捗なし
+
+** 競プロ
+GCJ Qual 通過。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2181 -> 2162 (-19)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2085 (進捗なし)

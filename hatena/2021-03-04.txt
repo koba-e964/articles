@@ -1,0 +1,4 @@
+** 競プロ
+[https://csacademy.com/contest/round-9/tasks/] 何問か解いた。
+[https://csacademy.com/contest/round-9/task/sum-of-squares/] 考え中。
+[https://codeforces.com/blog/entry/88215:title=GP of Tokyo] D: イカのせいで時間がなく放置。

@@ -1,0 +1,6 @@
+** 競プロ
+[https://codeforces.com/blog/entry/88215:title=GP of Tokyo] の D の解説を読んでいる。解法に必要なものは理解できた気持ちになった。明日は実装したい。
+
+** チェス
+[https://www.chess.com/puzzles/problem/1266387] 1... Qe5-e3 で 2... Qxf2# を狙うのが良いらしい。2. Ra3xd3 Rd4xd3 から先の理屈はよくわからない。
+[https://www.chess.com/puzzles/problem/768278]
