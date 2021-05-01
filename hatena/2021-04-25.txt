@@ -1,0 +1,2 @@
+** 数学
+Enumerative Combinatorics の勉強会に参加。練習問題 3 3 (b) が難しい。

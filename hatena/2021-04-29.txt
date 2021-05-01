@@ -1,0 +1,5 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 有理素数の素イデアル分解 (Dedekind) を実装した。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 4 の訳を進めた。

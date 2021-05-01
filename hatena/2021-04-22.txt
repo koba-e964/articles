@@ -1,0 +1,6 @@
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問]をやっている。 005 - Restricted Digits（★7）が難しかった。
+
+** チェス 
+[https://lichess.org/training/DbkLd] 18... Rh8-h1+ 19. Kf1-e2 からの攻めの続け方がわからなかったが、19... Rh3 とナイトを狙うのがうまい。18... Rh3 だと 19. Nf3-g1 と躱される。
+lichess puzzle のレートが 2300 くらいに上がった。じっくり考えると明らかにレートが上がるが、その後じっくり考える体力が無くなった時に下がる。

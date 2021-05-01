@@ -1,0 +1,7 @@
+** 数学
+コホモロジー泥沼
+(特に dimension-shifting などが絡んだ) 同型射を明示的に書き下そうとするとかなり面倒
+
+類体論に気を取られすぎて、数論関係のプログラミングが止まっている。
+
+Corestriction map について、[https://www.jmilne.org/math/CourseNotes/CFT.pdf] の II.1.11 (Shapiro's lemma) のあたりを読んで、well-definedness は  H^i(H, A) -> H^i(H, A) (ただし Z[H]-mod の projective resolution として ...-> Z[G^2] -> Z[G] -> Z をとる) -> H^i(G, Ind^G_H A) -> H^i(G, A) という変換が全て well-defined であること、それの「中身」である Hom_H(Z[H^{i+1}], A) -> Hom_H(Z[G^{i+1}, A]) -> Hom_G(Z[G^{i+1}, Ind^G_H A]) の部分はおそらく well-defined にできなさそう、というのを調べた。何が本質的な原因なのかはよくわからない。Z^{i+1}(H, A) の元であることか、あるいは部分加群 B^{i+1}(H, A) で割っていることかのどちらか、という気はするが。追う気力がない。

@@ -1,0 +1,9 @@
+** 数学
+[https://mathoverflow.net/questions/389042/galois-cohomology-with-coefficients-in-the-unit-group-of-a-cyclotomic-field:title] について、調べていたら[https://tsujimotter.hatenablog.com/entry/principal-ideal-theorem-and-group-cohomology:title]で H^1(G, U_L) ~= P_L^G/P_K というのを見つけた。これが私の欲しいものである可能性は高いけど、類体論を知らないため謎。
+
+** チェス
+昨日納得できなかった問題:
+[https://www.chess.com/puzzles/problem/1186205] 1... Qc7-g3+ 2. Kg1-h1 は自然。何もしなければ 3. Bc1-f4 で詰めろクイーン取りがかかってしまうので、2... Bf8-d6 で受ける必要がある。
+
+** その他
+確定申告をした。不連続関数に対するヘイトが溜まった。

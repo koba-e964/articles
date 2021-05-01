@@ -1,0 +1,18 @@
+** 数学
+多項式 mod p の素因数分解について勉強した。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2234 -> 2281 (+47)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2097 -> 2173 (+76)

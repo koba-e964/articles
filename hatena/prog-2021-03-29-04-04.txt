@@ -1,0 +1,22 @@
+** 数学
+[https://www.isibang.ac.in/~sury/algoiisc.pdf]: mu_K の計算アルゴリズムを読み。
+LLL アルゴリズム、それを使った短いベクトル列挙アルゴリズムの勉強中。
+[https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC%E7%90%86%E8%AB%96:title]の訳を修正。
+群コホモロジーの復習を少々。
+[https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC%E7%90%86%E8%AB%96:title] の訳を修正。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル] 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 二次体に限った類数計算と単数群計算を実装。LLL を実装。
+[https://github.com/koba-e964/rust-quantifier-elimination:title] 進捗なし
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2162 -> 2159 (-3)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2085 -> 2087 (+2)

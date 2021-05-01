@@ -1,0 +1,2 @@
+** チェス
+[https://lichess.org/training/cY8Q1] 24... Nh3xf4 に対して 25. Qe3-f3 Nxe2 26. Qxe2 と進んだ場合は 26... h4 か 26... f4 で g3 を狙うのが厳しい。 

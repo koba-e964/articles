@@ -1,0 +1,2 @@
+** 数学
+Enumerative Combinatorics の練習問題を解いている。Poset の問題 (3 11 (c)) があり、そのために poset の列挙・同型判定を書いた。

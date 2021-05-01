@@ -1,0 +1,8 @@
+** 数学
+以下の命題の証明を調べるなどした。
++ 局所有限な閉集合の族の union は閉である。
++ ハウスドルフ群において、離散部分群は閉である。 -> [https://math.stackexchange.com/questions/29515/why-is-every-discrete-subgroup-of-a-hausdorff-group-closed:title]
+
+また、単数群のコホモロジーについて進展があった。
+G := Gal(L/K) のときの H^1(G, U_L) について、[https://tsujimotter.hatenablog.com/entry/principal-ideal-theorem-and-group-cohomology:title]の定理 5.1.7 に |H^0(G, U_L)| / |H^1(G, U_L)| = 2^ρ / [L : K] というのがあった。[https://mathoverflow.net/questions/389042/galois-cohomology-with-coefficients-in-the-unit-group-of-a-cyclotomic-field:title] のケースだと、K の (p-1)/2 個の無限素点は L/K ですべて分岐するため ρ = (p-1) / 2 であり、|H^0(G_r, U_L)| = 2^{(p-1)/2} となりそうなので、|H^1(G_r, U_L)| = 2 というのが言える。(と同時に、[tex: H^0(G_r, U_L) = U_K/N_{L/K}(U_L)] が {±1} に等しいという予想が間違っていることも言える。)
+H^0(G, U_L) や H^1(G, U_L) の計算公式もありそうな気がするが、調査不足でまだ不明。

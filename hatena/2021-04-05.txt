@@ -1,0 +1,7 @@
+** 数学
+Fincke-Pohst の短いベクトル列挙について、Cholesky -> LLL -> ソート -> Cholesky -> 列挙 という順番で処理しているが、なぜ LLL -> Cholesky -> 列挙 という処理ではダメなのか知りたい。
+
+** チェス
+納得いかない問題:
+[https://www.chess.com/puzzles/problem/1186205] 謎
+[https://www.chess.com/puzzles/problem/765710] 謎

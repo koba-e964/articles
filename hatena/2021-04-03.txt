@@ -1,0 +1,7 @@
+** 数学
+LLL アルゴリズム、それを使った短いベクトル列挙アルゴリズムの勉強中。
+[https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%B3%E3%83%9E%E3%83%BC%E7%90%86%E8%AB%96:title]の訳を修正した。
+[https://en.wikipedia.org/wiki/Kummer_theory:title] の群コホモロジーの長完全系列を明示的に計算して、connection map がクンマー理論の同型と似た形をしていそう、というのを納得した。 
+
+** 開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: LLL アルゴリズムを実装した。

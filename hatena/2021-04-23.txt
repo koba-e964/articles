@@ -1,0 +1,5 @@
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 今まで出題された 22 問すべて通した。
+
+** チェス 
+[https://boardgamearena.com/] のチェスを何戦かやった。対局後棋譜が簡単にコピペできないので振り返りがだるい。

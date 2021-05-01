@@ -1,0 +1,23 @@
+** 数学
+位相群の定理を追い。
+[https://mathoverflow.net/questions/389042/galois-cohomology-with-coefficients-in-the-unit-group-of-a-cyclotomic-field:title] 多少進展あり。
+類体論やコホモロジー論について多少追うものの、corestriction map の well-definedness あたりで挫折。
+
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+今週は類体論の勉強を熱心にやっていたので進捗なし。
+
+** 競プロ
+進捗なし
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2159 -> 2234 (+75)
+[https://lichess.org/@/koba-e964/perf/rapid:title=lichess rapid]: 1812? (進捗無し)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2087 -> 2097 (+10)

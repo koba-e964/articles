@@ -1,0 +1,7 @@
+** 数学
+[https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields] を読んでいて、x^q が線形写像であることを利用して計算量を抑えるところが賢いと思った。
+
+
+** チェス
+[https://www.chess.com/puzzles/problem/1310281] Qxf3+ と Nf1+ を実現させるのが狙いのはず。
+[https://lichess.org/training/UZZcj] プロモーションを狙うのかな? こういうポーン構造っぽい問題がかなり苦手

@@ -1,0 +1,2 @@
+** 開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: [https://www.isibang.ac.in/~sury/algoiisc.pdf] を見る限り roots of unity の計算に LLL が必要っぽい。LLL 実装するか…。

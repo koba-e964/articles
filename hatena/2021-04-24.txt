@@ -1,0 +1,2 @@
+** 趣味開発
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 多項式 mod p の squarefree factorization の部分を実装した。

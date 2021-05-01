@@ -1,0 +1,10 @@
+** 数学
+Cantor–Zassenhaus algorithm について、分解できる確率の解析がよくわからない。
+- なぜ 2d-1 次までのランダムな多項式をとる必要があるのか? d 次ではダメなのか
+- 確率分布は?
+
+** 競プロ
+ABC198 の問題を解いた。F について、昔[https://atcoder.jp/contests/aising2020/tasks/aising2020_f:title=類題]を見たことがあったから、考察の重要な一ステップを簡単にできた。
+
+** チェス
+[https://lichess.org/training/j1ONL] 31... dxc4 だけは 32. Rd1xd8+ Kg8-h7 33. Rh8# があるのでないと思ったが、実は 32...Bc5-f8 があった。

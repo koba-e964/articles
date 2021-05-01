@@ -1,0 +1,3 @@
+** 数学
+昨日に引き続き位相について調べているが、詰まっている。
+「D が離散部分集合で K がコンパクト部分集合の時、D /\ K は有限」をいうためには D は閉集合であることが望ましい ([https://math.stackexchange.com/questions/80802/is-a-discrete-set-inside-a-compact-space-necessarily-finite:title=根拠]) のだが、今回単数群が イデール群 (のしかるべき部分群) において閉であるかどうかがわからない。

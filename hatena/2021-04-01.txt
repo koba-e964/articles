@@ -1,0 +1,6 @@
+** 数学
+単数群を係数としてもつガロアコホモロジーについて、周辺知識が欲しいので質問を投げた。
+[https://mathoverflow.net/questions/389042/galois-cohomology-with-coefficients-in-the-unit-group-of-a-cyclotomic-field:embed:cite]
+
+** 類数計算
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 二次体の類数が計算できた。実際に Q(sqrt(41)) と Q(sqrt(229)) で動作確認をした。#Cl(Q(sqrt(41))) = 1 で #Cl(Q(sqrt(229))) = 3 である。また基本単数はそれぞれ {32 + 5 sqrt(41)} と {(15 + sqrt(229)) / 2} である。
