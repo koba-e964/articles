@@ -1,0 +1,23 @@
+** 数学
+Hall の定理、Dilworth の定理、Koenig の定理などの同値性の証明を追った。
+ノート: [https://gist.github.com/koba-e964/08e633d57f8ea2b87b8e5356b41d9c4d:title]
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 48-52 解き。
+[https://atcoder.jp/contests/arc120:title=ARC120]: D 解き。
+[https://atcoder.jp/contests/cf17-tournament-round3-open:title]: E を解き、F を解説 AC。
+[https://atcoder.jp/contests/hbpc2012/tasks/hbpc_3]: 解き。
+[https://atcoder.jp/contests/cf18-relay-open:title]: G, I 解説 AC、J 解き。
+[https://atcoder.jp/contests/code-festival-2014-morning-hard:title]: D を解説 AC。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2361 -> 2320 (-41)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2226 (進捗なし)

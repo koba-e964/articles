@@ -1,0 +1,5 @@
+** 競プロ
+[https://atcoder.jp/contests/kupc2012:title]: J を解いた。
+- J: ネタバレ→<span style="color: #ffffff">最適二分探索木の構築と同様に Knuth-Yao speedup で O(n^2) 時間。</span>←ネタバレ
+[https://atcoder.jp/contests/indeednow-finala-open:title]: F を解説 AC した。
+- F: ネタバレ→<span style="color: #ffffff">愚直はフローに帰着。満点解法はフロー解法に対して結婚定理を適用してそれぞれの好みの人数の条件を得て、4 + 3 で分割して半分全列挙のように分けて計算する。</span>←ネタバレ

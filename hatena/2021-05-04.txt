@@ -1,0 +1,5 @@
+** 競プロ
+[https://atcoder.jp/contests/past202104-open:title=PAST 第六回]を解いた。O 見えるのに時間がかかって、反省。
+[https://atcoder.jp/contests/past202012-open:title=PAST 第五回]を解いた。
+- I: 遷移列挙が面倒。
+- M: log^4 -> log くらいになって面白いタイプの典型問題だと思った。

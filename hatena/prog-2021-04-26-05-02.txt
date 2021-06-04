@@ -1,0 +1,17 @@
+** 数学
+Enumerative Combinatorics の練習問題を解き。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 多項式の因数分解 mod p を実装。全ての有理素数に Dedekind の分解が適用できる場合 (Q(cbrt(7)) など) の類数・単数群の生成元の計算を実装。
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 23-29 解き。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 4 を翻訳。
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2203 -> 2202 (-1)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2212 -> 2236 (+24)

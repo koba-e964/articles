@@ -1,0 +1,2 @@
+** 数学
+Enumerative Combinatorics のゼミに参加。3.11 をやったが、中身があまり追えていない。

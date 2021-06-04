@@ -1,0 +1,3 @@
+** 競プロ
+AtCoder の Rust での AC 数のランキングで、自分の両隣の人との AC 数の差を表示するスクリプトを書いた。
+[https://github.com/koba-e964/contest/commit/1b291c951cd44b82b73f0c7d9319159c63ebdb05:title]

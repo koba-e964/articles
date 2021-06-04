@@ -1,0 +1,6 @@
+** 競プロ
+[https://atcoder.jp/contests/wupc2nd:title=第2回早稲田大学プログラミングコンテスト]: A-D, F-H を解いた。
+- F: ネタバレ→<span style="color: #ffffff">8NML 頂点のグラフを作ったら MLE して嫌な気持ちに。結局 辺の行き先を usize ではなく i32 で持ってメモリ半減・グラフを Vec<Vec<(i32, i32)>> ではなく一本の Vec<(i32, i32)> で持ってアロケーションを減らす で強引に通した。</span>←ネタバレ 提出: [https://atcoder.jp/contests/wupc2nd/submissions/22584493:title=#22584493]
+- H: ネタバレ→<span style="color: #ffffff">座圧で N <= 400 にできるのはいいとして、区間系苦手すぎて dp[i][j] -> dp[x][y] という遷移に 1 区間あたり O(N^2) 時間かけて何ら問題ないこと、区間を (終点, Reverse(始点)) の順にソートすればよいことに気づくのが遅れた。ソート順はちゃんと詰めていないが (終点, 始点) でもよいかも</span>←ネタバレ 提出: [https://atcoder.jp/contests/wupc2nd/submissions/22618604:title=#22618604]
+[https://atcoder.jp/contests/abc201:title=ABC201]: A-F を解いた。
+GCJ 2021 Round2 に参加して落ちた。

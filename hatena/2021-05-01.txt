@@ -1,0 +1,3 @@
+** 競プロ
+[https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7:title]: 予選 R1C に参加した。26 位だけど 1A, 1B で通過した人も合わせて実質 3026 位。
+[https://atcoder.jp/contests/zone2021:title]: 52 位。C の実装が微妙に負担だった。

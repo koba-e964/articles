@@ -1,0 +1,4 @@
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 35-37 を解いた。
+[https://atcoder.jp/contests/joi2021yo2:title=JOI 2020/2021 二次予選 過去問]の E を解いた。2-SAT っぽい考察で面白かった。
+[https://atcoder.jp/contests/joi2021ho:title=JOI 2020/2021 本選]: A, B, C を解いた。

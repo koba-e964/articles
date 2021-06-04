@@ -1,0 +1,6 @@
+** 数学
+Hall の定理、Dilworth の定理、Koenig の定理などの同値性の証明を追った。
+ノート: [https://gist.github.com/koba-e964/08e633d57f8ea2b87b8e5356b41d9c4d:title]
+
+** 競プロ
+[https://atcoder.jp/contests/arc120:title=ARC120]: D を解いた。

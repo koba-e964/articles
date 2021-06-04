@@ -1,0 +1,5 @@
+** 競プロ
+自明な問題は載せるのをやめます。
+[https://atcoder.jp/contests/code-thanks-festival-2014-b-open:title=code thanks festival 2014 B]: 解いた。
+- H: ネタバレ→<span style="color: #ffffff">単純な必要条件の列挙 (連結成分 - 1, 奇数次数の点 / 2 - 1) ではうまくいかない。偶数次数の点しかない連結成分を別の連結成分と繋ごうとする時、絶対に奇数次数の点を 1 個増やしてしまうため。</span>←ネタバレ
+[https://atcoder.jp/contests/ukuku09:title]: B のように区間を分割していくのってどうやってやればいいんだっけ…? → [https://atcoder.jp/contests/ukuku09/submissions/2799320:title=#2799320] のように、大きい順に見て UF に最左や最右の位置を持たせるという方法もある。また [l, r) の min を m としたとき、値が m である一番左の位置を i としたとき、[l, i) と [i + 1, r) で分けてしまうという方法もある。[i + 1, r) には m が含まれるかもしれないが、その場合上昇幅が 0 になるのでないのと同じ。

@@ -1,0 +1,6 @@
+** 競プロ
+[https://atcoder.jp/contests/past202104-open:title=PAST 第六回]を解いている。
+- G で詰まって反省。
+- M で HashMap<i64, BTreeSet<(usize, usize)>> が登場し嫌な気持ちに。
+- N は前半部分が[https://atcoder.jp/contests/tkppc3/tasks/tkppc3_f:title=既出]。
+- O は考察中。考察力遅すぎ

@@ -1,0 +1,5 @@
+** 競プロ
+[https://atcoder.jp/contests/cf17-tournament-round3-open:title]: E を解き、F を解説 AC した。
+- E: [https://atcoder.jp/contests/cf17-tournament-round3-open/editorial/1946]
+- F: ネタバレ→<span style="color: #ffffff">サイクルに含まれる頂点集合を全探索すればよさそうというのはわかったが肝心の方法がわからなかった。そのサイクルを 1 点にまとめたらグラフは木になり、逆にそういう木が与えられたとき元のなもりグラフを復元する方法はちょうど (余計な次数)!/Π(各頂点の余計な次数)! 通りなので、DP で高速化できる程度に簡単な式になる。</span>←ネタバレ
+なもりグラフ -> サイクル + 森 の分解をやる関数をライブラリにした。

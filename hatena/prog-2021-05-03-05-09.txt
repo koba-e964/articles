@@ -1,0 +1,24 @@
+** 数学
+Enumerative Combinatorics のゼミに参加。3.11 をやった。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 30-34 解き。
+[https://atcoder.jp/contests/past202104-open:title=PAST 第六回] 解き。
+[https://atcoder.jp/contests/past202012-open:title=PAST 第五回] 解き。
+[https://atcoder.jp/contests/abc200:title=ABC200] に参加。D, E, F すべてで失敗し大敗。
+[https://atcoder.jp/contests/joig2021-open:title]: A-E を埋め。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2202 -> 2187 (-15)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2236 -> 2277 (+41)
+
+** その他
+「風の声を聴きながら」の耳コピ。一番だけ。

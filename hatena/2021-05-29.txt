@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/cf18-relay-open:title]: G, I を解説 AC し、J を解いた。
+- J: ネタバレ→<span style="color: #ffffff">n^2 が通る制約なので最初はフローかと思ったが、冷静に考えたら [0, i) までの情報を持っておける + 区間で更新する際前計算が効く ということに気づいたので、OK。</span>←ネタバレ
