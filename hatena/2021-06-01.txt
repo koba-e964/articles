@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/pakencamp-2018-day3:title]: G を解いた。
+- G: [https://atcoder.jp/contests/pakencamp-2018-day3/editorial/2012]

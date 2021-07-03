@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/code-festival-2014-final:title]: G を解いた。
+[https://atcoder.jp/contests/code-festival-2014-exhibition-open:title]: A を解いた。

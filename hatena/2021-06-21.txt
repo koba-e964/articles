@@ -1,0 +1,2 @@
+** 競プロ
+[https://atcoder.jp/contests/jsc2019-final:title]: E を解いた。Aho-Corasick を履修した。

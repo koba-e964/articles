@@ -1,0 +1,23 @@
+** 数学
+進捗なし
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 66-71 解き。
+[https://atcoder.jp/contests/cf16-exhibition-final:title]: F 解き。
+[https://atcoder.jp/contests/utpc2012:title]: J を解説 AC。
+[https://github.com/koba-e964/contest/commit/702a7441058d7c1c67952b5f2563712b7a86debe] HL 分解を実装。
+[https://atcoder.jp/contests/dwango2016-prelims:title]: E 解き。
+[https://atcoder.jp/contests/ddcc2016-qual:title]: D 解説 AC。重心分解の実装が難しかった。
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2442 -> 2390 (-52)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2226 (進捗なし)

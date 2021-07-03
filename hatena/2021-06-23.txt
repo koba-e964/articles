@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/keyence2021:title]: D を解いた。
+[https://atcoder.jp/contests/joisc2010:title]: DNAの合成 を解いた。Aho-Corasick の復習。

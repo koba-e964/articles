@@ -1,0 +1,3 @@
+** 趣味開発
+cafecoder 用の提出スクリプトを書いた。
+[https://github.com/koba-e964/contest/blob/master/cafecoder/submit.py:title]

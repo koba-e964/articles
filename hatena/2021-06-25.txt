@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/code-festival-2014-exhibition-open:title]: B を解いた。平衡二分木を列として使用。
+[https://atcoder.jp/contests/arc111:title=ARC111]: D を解いた。

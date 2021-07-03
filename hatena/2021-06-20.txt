@@ -1,0 +1,2 @@
+** 競プロ
+[https://atcoder.jp/contests/ddcc2016-qual:title]: D を解説 AC した。重心分解の実装が難しかった。

@@ -1,0 +1,2 @@
+** 競プロ
+[https://codingcompetitions.withgoogle.com/codejam/round/0000000000432ad5/0000000000432df6]: 考えて解法になりそうなものはわかった。実装はまだ。

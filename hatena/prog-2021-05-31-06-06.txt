@@ -1,0 +1,23 @@
+** 数学
+マトロイドの合併がマトロイドであることの証明を追った。
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+cafecoder 用の提出スクリプトを書いた。 [https://github.com/koba-e964/contest/blob/master/cafecoder/submit.py:title]
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 53-59 解き。
+[https://atcoder.jp/contests/pakencamp-2018-day3:title]: G 解き。
+[https://atcoder.jp/contests/tkppc2:title]: E, F 解き。
+[https://codeforces.com/contest/1535:title=Educational Codeforces Round 110]: 参加。A-D の 4 完。
+[https://cafecoder.top/contests/coffee001:title=Cafecoder Coffee Break 001] に参加した。A-D, F の 5 完。
+
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2320 -> 2392 (+72)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2226 (進捗なし)

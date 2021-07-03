@@ -1,0 +1,4 @@
+** 競プロ
+[https://atcoder.jp/contests/ttpc2019:title]: J を解説 AC した。H を解いた。
+- H: 解説では動的 segment tree を使うやり方が紹介されていたが、AVL tree の方が簡単そうなのでそちらを実装した。どちらの方がいいのかは不明。
+[https://atcoder.jp/contests/arc122:title=ARC122]: 参加した。A-E の 5 完。

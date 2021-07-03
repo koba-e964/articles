@@ -1,0 +1,2 @@
+** 競プロ
+Hu-Tucker のアルゴリズムを実装した。 [https://atcoder.jp/contests/atc002/submissions/23142200:title=AtCoder#23142200]

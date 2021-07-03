@@ -1,0 +1,4 @@
+** 競プロ
+[https://atcoder.jp/contests/tkppc2:title]: F を解いた。
+Monge 性を完全に誤解していたことが発覚。
+[https://codeforces.com/contest/1535:title=Educational Codeforces Round 110]: 参加。A-D の 4 完。
