@@ -1,0 +1,48 @@
+** 今週の目標
+
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習
+- [https://codeforces.com/contest/1552:title=CGR15] 復習
+- p-recursive 履修
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+
+*** 07-26 (月)
+FPS 復習
+0.7 時間
+
+*** 07-27 (火)
+Bostan-Mori 履修
+4.0 時間
+
+*** 07-28 (水)
+研究
+復習も兼ね[https://atcoder.jp/contests/past202107-open/editorial/2352:title=解説]執筆
+[https://codeforces.com/contest/1552:title=CGR15] G 復習
+5.2 時間
+
+*** 07-29 (木)
+彩色と DAG の関係式の証明を考える ([http://oeis.org/A003024:title] の a(n) = Sum_{k=1..n} (-1)^(n-k)*A046860(n,k))
+2.6 時間
+
+*** 07-30 (金)
+[https://codeforces.com/contest/1552:title=CGR15] H, I 復習
+2.3 時間
+
+*** 07-31 (土)
+[https://codeforces.com/contest/1552:title=CGR15] I 復習
+5.9 時間
+
+*** 08-01 (日)
+[https://codeforces.com/contest/1554:title=CF 735 (Div. 2)] E upsolving
+holonomic sequence の第 N 項を求める 履修
+2.5 時間
+
+
+** 振り返り
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習: untouched
+- [https://codeforces.com/contest/1552:title=CGR15] 復習: done
+- p-recursive 履修: done
+
+合計: 23.2 時間

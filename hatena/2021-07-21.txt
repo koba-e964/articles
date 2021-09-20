@@ -1,0 +1,2 @@
+** 競プロ
+[https://judge.yosupo.jp/problem/log_of_formal_power_series]: 実装した。

@@ -1,0 +1,6 @@
+** 競プロ
+[https://www.luogu.com.cn/problem/P5900:title]: 解いた。
+[https://www.luogu.com.cn/problem/P6295:title]: 解いた。
+Euler transform の復習をした。
+
+[https://www.youtube.com/watch?v=_f9ZBdK4JAE:title]で「模試や過去問の時間を勉強時間に入れるな」という話があったので、ABC とかに出ても (非自明な問題が出ない限り) わざわざ記録しないことにします。

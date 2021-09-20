@@ -1,0 +1,23 @@
+** 数学
+進捗なし
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/typical90:title=競プロ典型 90 問] 78-83 解き。
+[https://atcoder.jp/contests/kupc2020:title]: D 解き。F 解説 AC。
+[https://atcoder.jp/contests/arc111:title]: C, E 解き。
+[https://atcoder.jp/contests/acl1:title]: A-E 解き。
+[https://atcoder.jp/contests/arc119:title]: D 解き。
+[https://atcoder.jp/contests/joi2006ho:title]: D (問題 4) 解き。
+[https://atcoder.jp/contests/abc208:title=ABC208]: F 解説 AC。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2375 -> 2297 (-78)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2226 (進捗なし)

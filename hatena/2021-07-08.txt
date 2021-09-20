@@ -1,0 +1,2 @@
+** 競プロ
+[https://atcoder.jp/contests/joi2019yo:title]: F (座席 (Seats)) を解いた。

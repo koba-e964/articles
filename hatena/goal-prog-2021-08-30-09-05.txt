@@ -1,0 +1,55 @@
+** 今週の目標
+最低やりたいこと
+- [https://atcoder.jp/contests/abc216/tasks/abc216_h:title=ABC216-H] upsolving
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H)
+できたらやりたいこと
+- [https://atcoder.jp/contests/utpc2013/tasks/utpc2013_08:title] (双対性の練習問題) を解く
+
+最低目標: 15 時間
+
+** やったこと・勉強時間
+
+*** 08-30 (月)
+[https://atcoder.jp/contests/abc216/tasks/abc216_h:title=ABC216-H] upsolving
+0.0 時間
+
+*** 08-31 (火)
+[https://atcoder.jp/contests/utpc2013/tasks/utpc2013_08:title]
+1.4 時間
+
+*** 09-01 (水)
+復習
+0.4 時間
+
+*** 09-02 (木)
+SRM812-1H upsolving
+4.7 時間
+
+*** 09-03 (金)
+[https://atcoder.jp/contests/joisc2021/tasks/joisc2021_c:title]: 考察
+0.3 時間
+
+*** 09-04 (土)
+復習
+0.4 時間
+
+*** 09-05 (日)
+slope trick の復習
+[https://atcoder.jp/contests/joisc2021/tasks/joisc2021_c:title]: 考察
+1.6 時間
+
+** 振り返り
+*** 目標
+最低やりたいこと
+- [https://atcoder.jp/contests/abc216/tasks/abc216_h:title=ABC216-H] upsolving done
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H) untouched
+できたらやりたいこと
+- [https://atcoder.jp/contests/utpc2013/tasks/utpc2013_08:title] (双対性の練習問題) を解く done
+
+*** それ以外
+特になし
+
+合計時間: 8.8 時間
+
+** 反省点
+時間が取れなかった。

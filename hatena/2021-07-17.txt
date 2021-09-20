@@ -1,0 +1,5 @@
+** 数学
+EC 3.13 の予習をした。
+** 競プロ
+[https://atcoder.jp/contests/abc210:title=ABC210]: F を解いた。
+[https://atcoder.jp/contests/joiopen2012:title]: A を解いた。面白い DP の形。

@@ -1,0 +1,3 @@
+** 競プロ
+[https://atcoder.jp/contests/joi2006ho:title]: D (問題 4) を解いた。解説によると、最悪計算量が保証されていないらしい。なんだこれは。
+[https://atcoder.jp/contests/abc208:title=ABC208]: A-E を解いた。F はツイッターで解法を見た。ラグランジュ補間を O(K^2) と思い込んでおり、失敗。

@@ -1,0 +1,54 @@
+** 今週の目標
+
+- [https://atcoder.jp/contests/arc124:title=ARC124]: F upsolving
+- [https://codeforces.com/gym/103185:title=2020-2021-latin-american-regional]: I upsolving
+- [https://codeforces.com/gym/102920:title=2020-2021-asia-seoul-regional]: 復習
+
+最低目標: 15 時間
+
+** やったこと・勉強時間
+
+*** 08-23 (月)
+[https://codeforces.com/gym/103185:title=2020-2021-latin-american-regional]: I upsolving
+1.1 時間
+
+*** 08-24 (火)
+[https://atcoder.jp/contests/nikkei2019-2-final:title]: D AC
+2.0 時間
+
+*** 08-25 (水)
+genocon
+2.6 時間
+
+*** 08-26 (木)
+genocon
+luogu P4464 (dirichlet convolution, multiplicative functions)
+5.0 時間
+
+*** 08-27 (金)
+luogu P4464
+2.4 時間
+
+*** 08-28 (土)
+luogu P6516 (binary splitting)
+1.6 時間
+
+*** 08-29 (日)
+luogu P6031, P2791 (E[x^L])
+2.8 時間
+
+** 振り返り
+*** 目標
+- [https://atcoder.jp/contests/arc124:title=ARC124]: F upsolving untouched
+- [https://codeforces.com/gym/103185:title=2020-2021-latin-american-regional]: I upsolving done
+- [https://codeforces.com/gym/102920:title=2020-2021-asia-seoul-regional]: 復習 untouched
+
+*** それ以外
+luogu の FPS 問題ばかりやっていた気がする。
+
+合計時間: 17.5 時間
+
+** 反省点
+LGV 公式知らなかった (ABC216-H)
+ARC124-F もう後回しにした方がいいレベルで遅延している
+復習とか指定された日にやらず、後回しにしがち

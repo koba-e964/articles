@@ -1,0 +1,45 @@
+** 今週の目標
+
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習
+- [https://loj.ac/p/6538:title=LOJ 6538] (アルキル基の数え上げ) 解く
+
+最低目標: 15 時間
+
+** やったこと・勉強時間
+
+*** 08-09 (月)
+subset convolution の勉強
+2.1 時間
+
+*** 08-10 (火)
+0.0 時間
+
+*** 08-11 (水)
+[https://loj.ac/p/6538:title=LOJ 6538] (アルキル基の数え上げ): [https://loj.ac/s/1221184]
+2.1 時間
+
+*** 08-12 (木)
+0 時間
+
+*** 08-13 (金)
+2020-2021-latin-american-regional B, F
+2.2 時間
+
+*** 08-14 (土)
+RMQ 整備
+4.6 時間
+
+*** 08-15 (日)
+RMQ 整備
+2020-2021-latin-american-regional F
+3.8 時間
+
+** 振り返り
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習 untouched
+- [https://loj.ac/p/6538:title=LOJ 6538] (アルキル基の数え上げ) 解く done
+
+合計: 15.0 時間
+
+** 反省点
+Regional 1 回 (12 問) の復習でおよそ 1 週間使ってしまう。
+ARC124-F の upsolving を放置してしまった。

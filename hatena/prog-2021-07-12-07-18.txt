@@ -1,0 +1,25 @@
+** 数学
+EC 3.13 の準備と発表。[https://github.com/koba-e964/ec-exercises/blob/master/sec-3-13.tex]
+
+** 開発
+[https://rustwasm.github.io/docs/book/game-of-life/introduction.html:title=WASM のチュートリアル]: 進捗なし
+[https://github.com/koba-e964/rust-number-theory/blob/master/src/main.rs:title=rust-number-theory]: 進捗なし
+[https://github.com/koba-e964/rust-quantifier-elimination:title]: 進捗なし
+
+** 競プロ
+[https://atcoder.jp/contests/abc209:title=ABC209]: F 解き。
+[https://atcoder.jp/contests/joi2013yo:title]: F を解説・サンプルコードを見て実装。
+[https://atcoder.jp/contests/joi2011yo:title]: F 解き。
+[https://atcoder.jp/contests/joisc2007/tasks/joisc2007_circui:title]: 解き。
+[https://atcoder.jp/contests/joisc2009/tasks/joisc2009_starry_sky:title]: 解き。
+[https://atcoder.jp/contests/abc210:title=ABC210]: F 解き。
+[https://atcoder.jp/contests/joiopen2012:title]: A 解き。
+[https://atcoder.jp/contests/joi2017yo:title]: F 解き。
+[https://www.luogu.com.cn/problem/P4548:title]: 解説 AC。
+
+** ラテン語
+[https://geoffreysteadman.files.wordpress.com/2019/05/ritchie.may2019.pdf:title=Ritchie’s Fabulae Faciles]: 進捗なし
+
+** チェス
+[https://www.chess.com/stats/puzzles/koba-e964:title=chess.com] tactics: 2261 -> 2277 (+16)
+[https://lichess.org/@/koba-e964/all:title=lichess] tactics: 2226 (進捗なし)

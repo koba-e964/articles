@@ -1,0 +1,50 @@
+** 今週の目標
+
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習
+- [https://www.luogu.com.cn/problem/P5828:title=luogu P5828] (labeled 2-edge connected graphs) 解く
+- [https://loj.ac/p/6538:title=LOJ 6538] (アルキル基の数え上げ) 解く
+
+最低目標: 15 時間
+
+** やったこと・勉強時間
+
+*** 08-02 (月)
+0.0 時間
+
+*** 08-03 (火)
+[https://www.luogu.com.cn/problem/P5828:title=luogu P5828]
+2.9 時間
+
+*** 08-04 (水)
+composition of FPS
+10.7 時間
+
+*** 08-05 (木)
+[https://www.luogu.com.cn/problem/P5828:title=luogu P5828] 解説 AC
+[https://atcoder.jp/contests/joiopen2012:title=joiopen2012] C AC
+2.6 時間
+
+*** 08-06 (金)
+[https://atcoder.jp/contests/arc124:title=ARC124] E 解説 AC
+1.1 時間
+
+*** 08-07 (土)
+[https://codeforces.com/contest/1548:title=CF 736] E upsolving
+0.8 時間
+
+*** 08-08 (日)
+[https://codeforces.com/contest/1548:title=CF 736] E upsolving
+3.5 時間
+
+** 振り返り
+- [https://atcoder.jp/contests/arc124:title=ARC124] 復習 incomplete
+- [https://www.luogu.com.cn/problem/P5828:title=luogu P5828] (labeled 2-edge connected graphs) 解く done
+- [https://loj.ac/p/6538:title=LOJ 6538] (アルキル基の数え上げ) 解く untouched
+
+合計: 21.5 時間
+
+** 反省点
+貴重な問題を誤読とかで潰すと非常にもったいない。
+復習・未解決の問題を考察することに対する心理的ハードルが高すぎる。
+立式すらできない -> 立式でき、高速化などを考えるフェイズである -> 高速化でき、理論的には解けている -> 実装できる
+のステップをうまく踏む (ヒントを見る際も、一度に複数ステップ見ないように意識する)

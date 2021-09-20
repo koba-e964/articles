@@ -1,0 +1,11 @@
+** 競プロ勉強
+[https://judge.yosupo.jp/problem/log_of_formal_power_series]: 実装。
+FFT ライブラリの高速化をした。
+[https://atcoder.jp/contests/past202107-open:title=第七回 アルゴリズム実技検定]: バーチャルコンテストをやった。
+[https://www.luogu.com.cn/problem/P6800:title]: 解いた。
+[https://www.luogu.com.cn/problem/P5900:title]: 解いた。
+[https://www.luogu.com.cn/problem/P6295:title]: 解いた。
+Euler transform の復習をした。
+
+** コンテスト
+[https://atcoder.jp/contests/arc124:title=ARC124], [https://codeforces.com/contest/1552:title=Codeforces Global Round 15] に出場。

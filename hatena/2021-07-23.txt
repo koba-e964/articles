@@ -1,0 +1,2 @@
+** 競プロ
+[https://atcoder.jp/contests/past202107-open:title=第七回 アルゴリズム実技検定]: バーチャルコンテストをやった。約 2 時間。
