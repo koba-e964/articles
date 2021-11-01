@@ -1,0 +1,45 @@
+** 今週の目標
+最低やりたいこと
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving
+- holonomic sequence auto O(n)
+できたらやりたいこと
+- [https://codeforces.com/contest/1580:title=CF #745] upsolving
+- An O (nr) Algorithm for the Subset-sum Problem ([Pisinger, 1995]) を理解する
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 10-11 (月)
+全方位木 DP
+4.1h
+
+*** 10-12 (火)
+0.0h
+
+*** 10-13 (水)
+max heap push average O(1)
+0.3h
+
+*** 10-14 (木)
+yukicoder 1559
+0.9h
+
+*** 10-15 (金)
+0.0h
+
+*** 10-16 (土)
+yukicoder 956
+2.7h
+
+*** 10-17 (日)
+0.0h
+
+** 振り返り
+*** 目標
+*** それ以外
+なし
+
+合計時間: 8.0 時間
+
+** 反省点
+タスクが進んでいない

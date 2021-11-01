@@ -1,0 +1,48 @@
+** 今週の目標
+最低やりたいこと
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H)
+- SA-IS 整備
+できたらやりたいこと
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 09-06 (月)
+0.0 時間
+
+*** 09-07 (火)
+SA-IS 整備
+taylor shift, sample point shift 勉強
+3.6 時間
+
+*** 09-08 (水)
+[https://atcoder.jp/contests/joisc2021/tasks/joisc2021_c:title] AC
+1.3 時間
+
+*** 09-09 (木)
+0.0 時間
+
+*** 09-10 (金)
+0.0 時間
+
+*** 09-11 (土)
+ABC218-H upsolving
+1.6 時間
+
+*** 09-12 (日)
+opencup, hackercup 2021 round 1
+0.0 時間
+
+** 振り返り
+*** 目標
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H) untouched
+- SA-IS 整備 done
+
+*** それ以外
+taylor shift, sample point shift 勉強
+
+
+合計時間: 6.5 時間
+
+** 反省点
+コンテスト参加が多すぎて、勉強時間が取れなかった。

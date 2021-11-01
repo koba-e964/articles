@@ -1,0 +1,50 @@
+** 今週の目標
+最低やりたいこと
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H)
+- Dynamic Convex Hull Trick の整備
+できたらやりたいこと
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 09-20 (月)
+[https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G)
+6.0h
+
+*** 09-21 (火)
+[https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (H)
+2.5h
+
+*** 09-22 (水)
+[https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (H)
+4.5h
+
+*** 09-23 (木)
+[https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (H)
+9.1h
+
+*** 09-24 (金)
+yukicoder 1691
+2.0h
+
+*** 09-25 (土)
+FHC R2
+0.0h
+
+*** 09-26 (日)
+ACPC2021Day3, OpenCup GP of Xian
+0.0h
+
+** 振り返り
+*** 目標
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H) done
+- Dynamic Convex Hull Trick の整備 untouched
+
+*** それ以外
+matroid intersection の練習問題を解いた。
+
+合計時間: 24.1 時間
+
+** 反省点
+土日はコンテストが多く、競プロの練習をする時間が取りにくい。

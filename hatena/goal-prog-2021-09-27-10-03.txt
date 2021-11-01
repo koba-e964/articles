@@ -1,0 +1,47 @@
+** 今週の目標
+最低やりたいこと
+- Dynamic Convex Hull Trick の整備
+- [https://atcoder.jp/contests/abc220:title=ABC220] upsolving (G, H)
+できたらやりたいこと
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving
+- [https://codeforces.com/contest/1580:title=CF #745] upsolving
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 09-27 (月)
+0.0h
+
+*** 09-28 (火)
+yukicoder 758
+1.4h
+
+*** 09-29 (水)
+0.0h
+
+*** 09-30 (木)
+[https://codeforces.com/contest/1580:title=CF #745]
+0.0h
+
+*** 10-01 (金)
+0.0h
+
+*** 10-02 (土)
+yukicoder 1145, 1694-1696
+8.0h
+
+*** 10-03 (日)
+yukicoder 1116
+4.1h
+
+** 振り返り
+*** 目標
+- Dynamic Convex Hull Trick の整備 untouched
+- [https://atcoder.jp/contests/abc220:title=ABC220] upsolving (G, H) untouched
+*** それ以外
+
+合計時間: 13.5 時間
+
+** 反省点
+頭の明晰さ (考察する対象を間違えない・数える対象を間違えないなど) に問題点がある。
+土曜になるまでやる気が起きなかった。

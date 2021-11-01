@@ -1,0 +1,52 @@
+** 今週の目標
+最低やりたいこと
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H)
+- [https://www.facebook.com/codingcompetitions/hacker-cup/2021/round-1/problems/C:title=FHC2021 Round 1 C] upsolving
+できたらやりたいこと
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 09-13 (月)
+0.0 時間
+
+*** 09-14 (火)
+[https://www.facebook.com/codingcompetitions/hacker-cup/2021/round-1/problems/C:title=FHC2021 Round 1 C] upsolving
+2.4 時間
+
+*** 09-15 (水)
+yukicoder 1651, 1296
+1.6 時間
+
+*** 09-16 (木)
+yukicoder 137
+3.7 時間
+
+*** 09-17 (金)
+SRM 813
+0.0 時間
+
+*** 09-18 (土)
+ABC 219 参加
+0.0 時間
+
+*** 09-19 (日)
+ABC219-H 復習
+opencup GP of IMO
+1.0 時間
+
+** 振り返り
+*** 目標
+最低やりたいこと
+- [https://codeforces.com/contest/1556:title=Deltix Round, Summer 2021] upsolving (G, H) untouched
+- [https://www.facebook.com/codingcompetitions/hacker-cup/2021/round-1/problems/C:title=FHC2021 Round 1 C] upsolving done
+
+*** それ以外
+なし
+
+合計時間: 8.7 時間
+
+** 反省点
+全方位木 DP の実装に 1 時間くらいかかっていて、ダメ
+SRM ではミスが命取りになるので気をつける
+自明な問題に時間を使いすぎた

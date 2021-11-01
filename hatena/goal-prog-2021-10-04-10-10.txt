@@ -1,0 +1,49 @@
+** 今週の目標
+最低やりたいこと
+- Dynamic Convex Hull Trick の整備
+- [https://atcoder.jp/contests/abc220:title=ABC220] upsolving (G, H)
+できたらやりたいこと
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving
+- [https://codeforces.com/contest/1580:title=CF #745] upsolving
+- An O (nr) Algorithm for the Subset-sum Problem ([Pisinger, 1995]) を理解する
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 10-04 (月)
+[https://atcoder.jp/contests/abc220:title=ABC220] upsolving (G, H)
+1.4h
+
+*** 10-05 (火)
+0.0h
+
+*** 10-06 (水)
+0.0h
+
+*** 10-07 (木)
+0.0h
+
+*** 10-08 (金)
+yukicoder 31, 980, 1302
+1.8h
+
+*** 10-09 (土)
+garner’s algorithm
+1.2h
+
+*** 10-10 (日)
+CHT
+5.5h
+
+** 振り返り
+*** 目標
+- Dynamic Convex Hull Trick の整備 done
+- [https://atcoder.jp/contests/abc220:title=ABC220] upsolving (G, H) done
+*** それ以外
+なし
+
+合計時間: 9.9 時間
+
+** 反省点
+二連続で ABC 全完できていて幸先が良い。
+FHC: 考察も実装も遅くて痛い目に遭った。

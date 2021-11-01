@@ -1,0 +1,42 @@
+** 今週の目標
+最低やりたいこと
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving
+- holonomic sequence auto O(n)
+できたらやりたいこと
+- [https://codeforces.com/contest/1580:title=CF #745] upsolving
+- An O (nr) Algorithm for the Subset-sum Problem ([Pisinger, 1995]) を理解する
+
+最低目標: 10 時間
+
+** やったこと・勉強時間
+*** 10-18 (月)
+0.0h
+
+*** 10-19 (火)
+0.0h
+
+*** 10-20 (水)
+0.0h
+
+*** 10-21 (木)
+0.0h
+
+*** 10-22 (金)
+0.0h
+
+*** 10-23 (土)
+0.0h
+
+*** 10-24 (日)
+0.0h
+
+** 振り返り
+*** 目標
+- [https://codeforces.com/contest/1569/problem/F:title=ECR113-F] upsolving untouched
+- holonomic sequence auto O(n) untouched
+*** それ以外
+なし
+
+合計時間: 0.0 時間
+
+** 反省点
