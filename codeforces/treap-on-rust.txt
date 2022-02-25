@@ -1,0 +1,34 @@
+UPD: Fixed the code (insertion in a random order), based on the comment.
+
+I recently implemented Treap, one of various kinds of binary search trees (BSTs), on Rust. It is a balanced BST, which means that it ensures that tree depth is always $O(\log(n))$ where $n =$ (the number of items in a tree). That is achieved by using randomisation. (For more details see <a href="https://en.wikipedia.org/wiki/Treap">Treap &mdash; Wikipedia</a>.)
+
+Experiments
+------------------
+Here are results of some experiments (UPD: these experiments themselves take $O(n^2)$-time, because function depth() takes $O(n)$-time, which is called in each iteration.):<br>
+
+(1) Insertion of 10000 elements in the ascending order:<br>
+http://ideone.com/tSrw7u <br>
+It took 11.7 seconds to insert 30000 elements in the ascending order, and it got Time Limit Exceeded (>15.0sec) when the number of elements is >100000. You'll see that the depth of the treap increases in logarithmic speed.
+
+(2) Insertion of 10000 elements in a random order: <br>
+http://ideone.com/pW7sBf <br>
+It took 15.0<s>11.8</s> seconds to insert 30000 elements in a random order. Like (1), the depth of the treap increases in logarithmic speed, too.
+
+
+Here is a graph that indicates how the depth of the treap grows as the number of elements increases.
+The horizontal line shows the number of nodes in the treap and the vertical one shows the depth of the treap.
+![ ](/predownloaded/c1/33/c133263db6f114705bf950e7edf0c7a23c322eb5.png)
+
+Conclusion
+------------------
+We have a balanced BST, whose depth is bounded by $O(\log(\mathrm{size}))$ !<br>
+Unfortunately, a solution ([submission:25637342]) to [problem:785E] that uses this treap, which should work in $O(n\log(n) + q(\log(n))^2)$-time, got the Time limit exceeded verdict. That seems because of its heavy constant factor, but I'm not sure.
+
+References
+------------------
+The code I used in these experiments is avaliable at: https://github.com/koba-e964/contest/blob/906fcb07057b72496407b3c6e6a422e48e60dc6f/comm/Treap.rs<br>
+http://ideone.com/tSrw7u <br>
+http://ideone.com/pW7sBf <br>
+
+This implementation of treap largely depends on the slide (https://www.slideshare.net/iwiwi/2-12188757, written in Japanese) by [user:iwiwi,2017-04-24].
+This implementation of treap is verified by http://arc061.contest.atcoder.jp/submissions/1172709 (AtCoder ARC 061 D, problem statement is avaliable at http://arc061.contest.atcoder.jp/tasks/arc061_b ).

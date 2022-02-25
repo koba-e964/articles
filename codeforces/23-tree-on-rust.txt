@@ -1,0 +1,42 @@
+Hi, everyone!
+
+I recently implemented [2-3 tree](https://en.wikipedia.org/wiki/2%E2%80%933_tree), a balanced tree data structure, on Rust. The key feature of this tree is, that all the leaves are at the same depth. The implementation is available here: [GitHub](https://github.com/koba-e964/contest/blob/61af81645a9c1287e3302642696f4fb5e5db47fb/comm/TwoThreeTree.rs)
+
+
+Implementation Details
+------------------
+2-3 tree data structure is represented by an enum with three constructors: `Tip`, `Two` and `Three`.
+`Tip` is a leaf, with no elements inside. `Two` is a node with one element and two children, and `Three` is a node with two elements and three children. 
+
+The current implementation supports `insert()` operation only. It uses a helper function, named `insert_sub()`. `tree.insert_sub(x)` inserts an element `x` to a tree `tree`, and returns either:<br>
+(1) `Ok(ret)`, meaning `ret` is the resulting tree, or<br>
+(2) `Err((t1, t2, val))`, meaning that the resulting tree has an overcrowded node, so it must be split into two trees `t1`, `t2`, with the middle element `val` moved up.<br>
+`insert()` invokes `insert_sub()`, and<br>
+(1) if the result was `Ok(ret)`, returns `ret`, or<br>
+(2) if the result was `Err((t1, t2, val))`, returns `Two(_, val, t1, t2)`.<br>
+
+Experiments
+------------------
+Two kinds of experiments were conducted. 1 million elements were inserted into a 2-3 tree, (1) in the ascending order and (2) in a random order. In each iteration, the depth of the 2-3 tree is checked, and if there is a change, the new depth is displayed. The experiment itself took $O(n \log(n))$-time, because the depth of a 2-3 tree can be calculated by checking its leftmost leaf only. ([Experiments of treap](http://codeforces.com/blog/entry/51148) took $O(n^2)$-time.)
+
+(1) in the ascending order: http://ideone.com/62Seqz
+
+(2) in a random order: http://ideone.com/6DHM21
+
+Here is a graph that illustrates how the depth grows as elements are inserted.
+The horizontal line shows the number of nodes in the 2-3 tree and the vertical one shows the depth of the 2-3 tree. 
+![ ](/predownloaded/59/a4/59a4c3c0056e8c40f42830388dc563e138444ad3.png)
+
+Note that one has not only an asymptotic upper bound $O(\log n)$ of the depth, but also a strict upper bound $\log_2 (n + 1)$. That is because all the leaves of the 2-3 tree are at the same depth. (From this property, it can be shown that a 2-3 tree of depth $d$ has at least $2^d - 1$ nodes.) It is also worth noting that unlike [experiments on treap](http://codeforces.com/blog/entry/51148), there is no decrease of depth in the random case.
+
+Conclusion
+------------------
+We have the 2-3 tree data structure, implemented on Rust!
+
+References
+------------------
+The code is available here: https://github.com/koba-e964/contest/blob/61af81645a9c1287e3302642696f4fb5e5db47fb/comm/TwoThreeTree.rs <br>
+http://ideone.com/62Seqz <br>
+http://ideone.com/6DHM21
+
+The implementation was done with the aid of this slide: https://www.slideshare.net/sandpoonia/23-tree
