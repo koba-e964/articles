@@ -1,0 +1,55 @@
+digraph modules {
+	graph [
+		dpi = 1000;
+	]
+	// nodes
+	packed;
+	"lib::Match";
+	state_id;
+	error;
+	"ahocorasick::MatchKind";
+	classes;
+	buffer;
+	prefilter;
+	automaton;
+	nfa;
+	dfa;
+	ahocorasick;
+
+	// edges
+	state_id -> error;
+	prefilter -> packed;
+	prefilter -> "ahocorasick::MatchKind";
+	prefilter -> "lib::Match";
+	"ahocorasick::MatchKind" -> "packed::MatchKind";
+	automaton -> prefilter;
+	automaton -> "lib::Match";
+	automaton -> state_id;
+	automaton -> "ahocorasick::MatchKind";
+	nfa -> prefilter;
+	nfa -> automaton;
+	nfa -> "lib::Match";
+	nfa -> state_id;
+	nfa -> "ahocorasick::MatchKind";
+	nfa -> error;
+	nfa -> classes;
+	dfa -> nfa;
+	dfa -> prefilter;
+	dfa -> automaton;
+	dfa -> "lib::Match";
+	dfa -> state_id;
+	dfa -> "ahocorasick::MatchKind";
+	dfa -> error;
+	dfa -> classes;
+	ahocorasick -> buffer;
+	ahocorasick -> prefilter;
+	ahocorasick -> packed;
+	ahocorasick -> automaton;
+	ahocorasick -> nfa;
+	ahocorasick -> dfa;
+	ahocorasick -> "lib::Match";
+	ahocorasick -> state_id;
+	ahocorasick -> "ahocorasick::MatchKind";
+	ahocorasick -> error;
+	ahocorasick -> classes;
+}

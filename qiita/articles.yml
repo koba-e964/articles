@@ -1,3 +1,21 @@
+- filename: monad-tips.md
+  name: 'モナドTipsについて'
+  uri: https://qiita.com/kobae964/items/fb78b970b149ba77e29a
+- filename: power-of-sheaves.md
+  name: '層圏トポス: 層の巾'
+  uri: https://qiita.com/kobae964/items/0d86d178cb69b607151a
+- filename: limit-and-colimit.md
+  name: '層圏トポス: limit と colimit'
+  uri: https://qiita.com/kobae964/items/f71fea385921e14f436d
+- filename: schreier-sims-1.md
+  name: 'Schreier-SimsのアルゴリズムをRustで実装した (1)'
+  uri: https://qiita.com/kobae964/items/8fb8ab9dd4a87e17e273
+- filename: separating-initialization.md
+  name: 'リファクタリングテクニック - 初期化処理の分離'
+  uri: https://qiita.com/kobae964/items/bd354e95e344e7a22a94
+- filename: aho-corasick-0.7.6/article.md
+  name: 'aho-corasick 0.7.6 コードリーディング'
+  uri: https://qiita.com/kobae964/items/1efe53dc7afe79b64f22
 - filename: serde-1.md
   name: 'Rust の serde を読む(1): serde の基本'
   uri: https://qiita.com/kobae964/items/e5f2f979af876712a23b
