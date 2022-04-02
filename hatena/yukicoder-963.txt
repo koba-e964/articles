@@ -1,0 +1,95 @@
+最近流行りの例のアレ。
+[https://yukicoder.me/problems/no/963:title]
+
+** 問題
+長さ N の交代順列の個数を、mod 1012924417 (= 483 * 2^21 + 1) で割ったあまりを求めよ。
+交代順列: 1 から N の並び替えであって、任意の i (2 <= i <= N - 1) に対して a[i - 1] < a[i] と a[i] > a[i + 1] が同値であるもの。
+
+- 2 <= N <= 202020
+
+** 解法
+N=i のときの問題の答えを dp[i] と置き、そのうち左端で a[1] < a[2] が成り立っているものだけの個数を dp2[i] と置く。n >= 2 のとき dp2[n] = dp[n] / 2 であり、0 <= n <= 1 のときは dp2[n] = dp[n] = 1 とする。
+そうすると、挿入 DP の考え方で、n >= 2 のとき dp[n] = \sum_{j = 0}^{n - 1} dp2[j] * dp2[n - 1 - j] * C(n - 1, j) が言える。(n を j 番目に入れるとき、n の左側に置く数の選び方は C(n - 1, j) 通り、n の左右の並べ方はそれぞれ dp2[j], dp2[n - 1 - j] 通り。)
+ep[i] := dp2[i] / i! と置くことにすると、n >= 2 のとき ep[n] = \sum_{j = 0}^{n - 1} ep[j] * ep[n - 1 - j] / n が言える。これは、左側からだんだん値が決まっていく畳み込みなので、分割統治しながら FFT をしていけば解ける。(O(N log^2 N) 時間)
+さらに考察を進めることもできる。[tex:E := \sum_{n = 0}^{\infty} ep\[i\] x^i] と置く。このとき、漸化式を E の式で表しなおすと、[tex:E = 1 + x/2 + \int_0^x E(t)^2/2 dt] となる。両辺を微分すると [tex: E' = (1 + E^2) / 2] となり、これを初期条件 E(0) = 1 の下で解くと E(x) = tan(x/2 + pi/4) = (1 + sin x) / cos x となる。sin, cos のテイラー展開は簡単にわかり、形式的冪級数の商は O(N log N) 程度で計算する方法があるので、全体で O(N log N) 時間で解ける。
+** 登場する典型
+- 動的 FFT
+-- [http://sigma425.hatenablog.com/entry/2017/09/26/021732:title] で言われているテクニック
+- 母関数
+-- 最近の流行り (?)
+-- 四則演算が O(N log N) とかでできる。分割数とかも[https://twitter.com/maroon_kuri/status/1171708639914029057:title=計算できる]らしい。
+** 実装上の注意点
+- FFT で元にする範囲、計算した結果を書き込む範囲に気をつける。今回の場合は以下の2つ:
+-- [0, x) * [0, x) を [x, 2x) に書き込む
+-- 2x <= lo のときに [0, <b>2</b>x) * [lo, lo + x) <b>の2倍</b>を [lo + x, lo + 2x) に書き込む。2倍するのは [0, 2x) 側が左右両方に現れうるためで、2x まで見ないといけないのは lo -> lo + 2x - 1 みたいな遷移があり得るため。なお、FFT の幅は 2x でよい。長さ 2x のところで1周するが、1周した後の値は x 番目の左側にしか来ないため。
+- 初期値に気をつける
+-- 今回は ep[0] = ep[1] = 1
+
+提出: [https://yukicoder.me/submissions/414769:title=#414769] (Rust)
+(動的 FFT)
+>|rust|
+fn rec(lo: usize, hi: usize, dp: &mut [ModInt], ep: &mut [ModInt],
+       fac: &[ModInt], invfac: &[ModInt]) {
+    let n = hi - lo;
+    debug_assert!(n.is_power_of_two());
+    if (lo, hi) == (0, 2) {
+        dp[0] += 1;
+        dp[1] += 1;
+        ep[0] += 1;
+        ep[1] += 1;
+        return;
+    }
+    if n == 1 {
+        return;
+    }
+    let mid = (lo + hi) / 2;
+    rec(lo, mid, dp, ep, fac, invfac);
+    // FFT
+    let zeta = ModInt::new(5).pow((MOD - 1) / n as i64);
+    let mut tmp = vec![ModInt::new(0); n];
+    let mut tmp2 = vec![ModInt::new(0); n];
+    for i in lo..mid {
+        tmp[i - lo] = ep[i];
+    }
+    // Difference can be anything in [1, n - 1].
+    for i in 0..n {
+        tmp2[i] = ep[i];
+    }
+    fft::transform(&mut tmp, zeta, 1.into());
+    fft::transform(&mut tmp2, zeta, 1.into());
+    let mut invn = ModInt::new(n as i64).inv();
+    // If not overlapping, multiply by two.
+    if lo != 0 {
+        invn *= 2;
+    }
+    for i in 0..n {
+        tmp[i] = tmp[i] * tmp2[i] * invn;
+    }
+    fft::transform(&mut tmp, zeta.inv(), 1.into());
+    for i in mid..hi {
+        dp[i] += tmp[i - lo - 1] * fac[i - 1];
+        ep[i] += tmp[i - lo - 1] * fac[i - 1] * invfac[i] * invfac[2];
+    }
+    rec(mid, hi, dp, ep, fac, invfac);
+}
+
+fn solve() {
+    let out = std::io::stdout();
+    let mut out = BufWriter::new(out.lock());
+    macro_rules! puts {
+        ($($format:tt)*) => (write!(out,$($format)*).unwrap());
+    }
+    input!(n: usize);
+    const W: usize = 1 << 18;
+    let (fac, invfac) = fact_init(W);
+    let mut dp = vec![ModInt::new(0); W];
+    let mut ep = vec![ModInt::new(0); W];
+    rec(0, W, &mut dp, &mut ep, &fac, &invfac);
+    //debugln!("{:?}", dp);
+    //debugln!("{:?}", ep);
+    puts!("{}\n", dp[n]);
+}
+||<
+
+** まとめ
+solved 数少なすぎ && そろそろ形式的冪級数ライブラリを整備しなければ…。

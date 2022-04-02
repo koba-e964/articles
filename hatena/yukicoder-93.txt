@@ -1,0 +1,70 @@
+挿入 DP の問題を集中特訓していたのに、どうしても挿入 DP 解法が思いつかず別解で通してしまった。
+[https://yukicoder.me/problems/no/93:title]
+
+** 問題
+N 点の順列 p であって以下を満たすものの個数を mod (10^9 + 7) で求めよ:
+- 1 <= i <= N - 2 なるすべての i に対し、|p[i] - p[i + 2]| != 1
+
+制約
+- 1 <= N <= 1000
+
+** 解法
+包除原理を使う。
+まず、ある部分集合 [tex:V \subseteq \{1, 2, \ldots, N - 2\}] について、任意の [tex: i \in V] に対して |p[i] - p[i + 2]| = 1 であるようなの順列の個数を求める。このとき、i が 2 個間隔で繋がっている場所には連続した整数が入る。(例: |p[3] - p[5]| = 1 かつ |p[5] - p[7]| = 1 かつ |p[7] - p[9]| = 1 の場合、p[3], p[5], p[7], p[9] には連続した 4 個の整数が昇順または降順に入る。)このような連続した制約のことを <b>streak</b> と呼び、制約で言及される要素の個数を streak の<b>長さ</b>と呼ぶ。V を決めたとき、streak の長さが a_0, a_1, ..., a_{k-1} とすると、場合の数は k! 2^{a_i の中で 2 以上のものの個数} である。
+包除原理の係数は (-1)^|V| = (-1)^{n+k} であるため、(-1)^{n+k} k! 2^{a_i の中で 2 以上のものの個数} の和が求められれば良い。V の要素を 2, 4, 6, 8, ..., 1, 3, 5, 7, ... と調べて行くことで、自然に (i) streak を伸ばす (ii) 今の streak を打ち切って新しい長さ 1 の streak を始める の2遷移を持つ DP ができる。(2 * floor(N / 2) から 1 への streak を繋ぐことはできないので、その場合は (i) の遷移をなくす)
+最終的に必要な状態は (場所, streak の個数, 現在の streak の長さが 2 以上か) である。計算量は O(N^2) 時間、O(N^2) 空間である。
+
+** 登場する典型
+- 包除原理
+- 持つべき状態数を削減する
+-- 数式を見て、現在の streak の長さの区別が 2 通りでよいこと、streak の個数が必要で局所的に計算できないこと、などを判断する (たとえば個数の部分が 2^k であれば、1 個増える遷移を行うたびに 2 倍すればよく、個数を持つ必要はない)
+
+** 実装上の注意点
+- 正しい式を詰める
+-- 最初 N!/(a_0!a_1!...a_{k-1}!) * 2^{a_i の中で 2 以上のものの個数} だと思ったので (なんで?)
+-- 手拍子で立式するのをやめる
+-- <b>実装する前に</b>小さい例で試す
+
+提出: [https://yukicoder.me/submissions/477257:title] (Rust)
+
+>|rust|
+// Tags: insertion-dp, inclusion-exclusion-principle
+fn solve() {
+    let out = std::io::stdout();
+    let mut out = BufWriter::new(out.lock());
+    macro_rules! puts {
+        ($($format:tt)*) => (let _ = write!(out,$($format)*););
+    }
+    input!(n: usize);
+    let (fac, _invfac) = fact_init(n + 1);
+    // dp[pos][#cluster][is >= 2]
+    let mut dp = vec![vec![[ModInt::new(0); 2]; n + 1]; n + 1];
+    if n % 2 == 0 {
+        dp[1][1][0] -= 1;
+    } else {
+        dp[1][1][0] += 1;
+    }
+    for i in 1..n {
+        let cut = i == n / 2 || i == n;
+        for j in 0..n {
+            let val = dp[i][j][1] * 2 + dp[i][j][0];
+            dp[i + 1][j + 1][0] -= val;
+        }
+        if !cut {
+            for j in 0..n + 1 {
+                let val = dp[i][j][0] + dp[i][j][1];
+                dp[i + 1][j][1] += val;
+            }
+        }
+    }
+    let mut tot = ModInt::new(0);
+    for i in 0..n + 1 {
+        let tmp = (dp[n][i][0] + dp[n][i][1] * 2) * fac[i];
+        tot += tmp;
+    }
+    puts!("{}\n", tot);
+}
+||<
+
+** まとめ
+挿入 DP をマスターしたい。

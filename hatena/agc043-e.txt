@@ -1,0 +1,122 @@
+本番は ABD しか解けず無事死亡した模様。物理学科の人たちが E を通していて本気でびっくりした。
+[https://atcoder.jp/contests/agc043/tasks/agc043_e:title]
+
+** 問題
+整数 N と、それぞれの部分集合 [tex: S \subseteq \{0, \ldots, N-1\}] に対して 0 または 1 の整数 a[S] が与えられる。 
+以下の条件を満たす xy 平面内の 閉曲線 C を構成せよ。
+- 任意の [tex: S \subseteq \{0, \ldots, N-1\}] に対し、以下が成立する:
+--  {(i + 0.5, 0.5) | i in S} の点を通過せずに、閉曲線 C を全て y < 0 の領域に移動できる <=> a[S] = 1
+
+答えは以下の形式で与えること。
+長さ 250000 以下の点列 (x_i, y_i) (0 <= i <= L) であって、以下を満たすもの:
+- 全て整数座標で、0 <= x_i <= N かつ 0 <= y_i <= 1
+- 隣り合う2点は距離1
+- 閉曲線である。つまり、(x_0, y_0) = (x_L, y_L)
+
+** 解法
+自明な条件として、a[0] = 0であれば非合理。また [tex: S \subseteq T] なる S,T に対して、 a[S] = 0 かつ a[T] = 1 の場合も非合理。
+これ以外の場合に条件を満たす閉曲線 C を構成する。
+
+与えられた集合 S に対して、{(i + 0.5, 0.5) | i in S} の点を通らずに閉曲線 C を y < 0 の領域に移動できない場合に、C を S によって<b>ブロックされる</b>ということにする。
+S にはブロックされるが、 S の真の部分集合についてはブロックされないような (0,0) を基点とする閉曲線 f(S) を構成する。
+- S が 1 点集合 S = {v} の場合は、(v + 0,5, 0.5) の周りを回る閉曲線 (0, 0) -> ... -> (v, 0) -> (v, 1) -> (v + 1, 1) -> (v + 1, 0) -> ... -> (0, 0) が条件を満たす。
+- S が 2 点以上の集合の場合、適当に一点取って v とし、C1 := f(v), C2 := f(S - {v}) とおく。このとき、[https://ja.wikipedia.org/wiki/%E4%BA%A4%E6%8F%9B%E5%AD%90:title=交換子] C1 C2 C1^{-1} C2^{-1} は条件を満たす。R^2 - {(i + 0.5, 0.5) | i in S - {v}} において C1 は 1 点と[https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%A2%E3%83%88%E3%83%94%E3%83%BC:title=ホモトピック]であり、w in S - {v} としたとき R^2 - {(i + 0.5, 0.5) | i in S - {v}} において C2 = f(S - {v}) は 1 点とホモトピックである。(帰納法で示せる)
+
+a[S] = 0 である全ての S に対して f(S) を計算し、それらを繋げたものを C とすれば、C は与えられた条件を満たす。
+
+C の長さを見積もりたい。S が 1 点集合のとき |f(S)| <= 2N + 2 である。S が k 点集合のとき、|f(S)| <= 2(2N + 2 + f(S - {v})) であることから帰納法で |f(S)| <= (2N + 2) * (2^k - 1) が言える。これらの和の最悪ケースは、[tex: \sum_{k = 0}^N (2N + 2) 2^k C(N, k) = (2N + 2) 3^N] を上回らない。N = 8 のとき (2N + 2) 3^N = 118098 である。
+
+** 登場する典型
+- 群論の一般的な知識
+-- [https://ja.wikipedia.org/wiki/%E4%BA%A4%E6%8F%9B%E5%AD%90:title=交換子]
+-- (基点を固定した) 閉曲線たちが (ホモトピーを無視すれば) 群をなすこと
+
+
+** 実装上の注意点
+- バグを埋め込みやすく、出力された閉曲線が正しいかどうかもチェックするのが難しいため、小さい例 (N = 2, a = 1110 など) で慎重に意図通りか確かめる。
+- あまり場合分けをしないようにする。この手の AtCoder の構成ゲーは出力のリミットがかなりゆるく設定されていることが多いので、なあなあでも通る (は?)
+
+提出: [https://atcoder.jp/contests/agc043/submissions/11076006:title=#11076006] (Rust)
+
+>|rust|
+fn conn<T: Eq + Copy + std::fmt::Debug>(ans: &mut Vec<T>, ops: &[T]) {
+    assert_eq!(ans.last(), ops.first());
+    for i in 1..ops.len() {
+        ans.push(ops[i]);
+    }
+}
+
+fn calc(n: usize, bits: usize) -> Vec<(i64, i64)> {
+    if bits == 0 {
+        return vec![(0, 0)];
+    }
+    let mut ma = 0;
+    for i in 0..n {
+        if (bits & 1 << i) != 0 {
+            ma = i;
+        }
+    }
+    let mut sub = calc(n, bits ^ 1 << ma);
+    let mut t = vec![];
+    for i in 0..ma + 1 {
+        t.push((i as i64, 0));
+    }
+    t.push((ma as i64, 1));
+    t.push((ma as i64 + 1, 1));
+    for i in (0..ma + 2).rev() {
+        t.push((i as i64, 0));
+    }
+    if bits == 1 << ma {
+        return t;
+    }
+    let mut ans = vec![(0, 0)];
+    // commutator
+    conn(&mut ans, &sub);
+    conn(&mut ans, &t);
+    sub.reverse();
+    t.reverse();
+    conn(&mut ans, &sub);
+    conn(&mut ans, &t);
+    ans
+}
+
+fn solve() {
+    let out = std::io::stdout();
+    let mut out = BufWriter::new(out.lock());
+    macro_rules! puts {
+        ($($format:tt)*) => (let _ = write!(out,$($format)*););
+    }
+    input! {
+        n: usize,
+        a: chars,
+    }
+    for i in 0..1 << n {
+        for j in 0..1 << n {
+            if (i & j) == i && a[i] == '0' && a[j] == '1' {
+                puts!("Impossible\n");
+                return;
+            }
+        }
+    }
+    if a[0] == '0' {
+        puts!("Impossible\n");
+        return;
+    }
+    let mut ans = vec![(0, 0)];
+    for i in 1..1 << n {
+        if a[i] == '1' {
+            continue;
+        }
+        conn(&mut ans, &calc(n, i));
+    }
+    assert!(ans.len() - 1 <= 250_000);
+    puts!("Possible\n");
+    puts!("{}\n", ans.len() - 1);
+    for (x, y) in ans {
+        puts!("{} {}\n", x, y);
+    }
+}
+||<
+
+** まとめ
+何で群論知っていながら詳細詰めるのに1時間半もかかったの?

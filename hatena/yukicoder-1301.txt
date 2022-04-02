@@ -1,0 +1,130 @@
+解説より速い方法で AC できたので記念に。
+[https://yukicoder.me/problems/no/1031:title]
+
+** 問題
+長さ N の順列 p が与えられる。以下をちょうど1回実行して得られる順列として、あり得るものの個数を計算せよ:
+1. non-empty な区間 [l, r] を選ぶ。
+2. [l, r] の範囲内の max と min について、それら 2 要素を入れ替える。
+
+制約
+- 1 <= N <= 100000
+- p は 1, 2, ..., N の順列
+
+** 解法
+max と min の組み合わせとしてそれぞれ p[l], p[r] が選ばれることと、以下の条件は同値:
+- p の l 番目と r 番目の間に、p[r] より小さい要素や p[l] より大きい要素が存在しない。
+
+r を全探索して、l としてあり得る値の個数を高速に求める方針をとる。
+まず、各 r について、r を含む p[r] 以上の要素の範囲を求める。これは SparseTable と二分探索を用いて O(N log N) 時間でできる。この範囲を R(r) と呼ぶことにする。
+次に、各 r について、l としてあり得る要素の個数を求める。これは l in R(r) かつ p の l 番目と r 番目の間に p[l] より大きい要素が存在しないことと同値。
+まず l < r となるもののみを数える。r を左からスキャンして、p[r] から左側に貪欲に取っていった単調増加部分列 (の添字列) をスタックを使って管理する (要素を追加・削除) ことにすると、このスタックに載っていてかつ R(r) の要素でもあるようなものが全て l としてあり得る。スタックの操作がならし O(1) 時間、スタックに載っているある値以上の要素の個数を調べるのが二分探索で O(log N) 時間でできるため、合計 O(N log N) 時間である。
+l > r となるものを数えるには、右からスキャンすればよく、そのときも同様の解析ができる。
+
+以上から、合計 O(N log N) 時間でできた。
+
+** 登場する典型
+- SparseTable
+-- RMQ + 二分探索のような、セグメント木で愚直に実行すると O(N log^2 N) 時間かかる処理を O(N log N) 時間に抑えるときに重宝する
+- スタック
+-- 「現在の要素から貪欲に取っていったときの増加列」などを作りたいとき、スタックで合計 O(N) 時間で作れる
+
+** 実装上の注意点
+- off-by-one error に注意する
+
+提出: [https://yukicoder.me/submissions/471138:title] (Rust)
+
+>|rust|
+fn solve() {
+    let out = std::io::stdout();
+    let mut out = BufWriter::new(out.lock());
+    macro_rules! puts {
+        ($($format:tt)*) => (let _ = write!(out,$($format)*););
+    }
+    input! {
+        n: usize,
+        p: [usize; n],
+    }
+    let mut tot = 0i64;
+    let spt = SparseTable::new(&p, min);
+    let mut lohi = vec![(0, 0); n];
+    for i in 0..n {
+        let mut fail = n;
+        let mut pass = i;
+        while fail - pass > 1 {
+            let mid = (pass + fail) / 2;
+            if spt.query(i, mid) < p[i] {
+                fail = mid;
+            } else {
+                pass = mid;
+            }
+        }
+        let hi = pass;
+        // bias: -1
+        fail = 0;
+        pass = i + 1;
+        while pass - fail > 1 {
+            let mid = (pass + fail) / 2;
+            if spt.query(mid - 1, i) < p[i] {
+                fail = mid;
+            } else {
+                pass = mid;
+            }
+        }
+        let lo = pass - 1;
+        lohi[i] = (lo, hi);
+    }
+    let mut st: Vec<(usize, usize)> = vec![];
+    // left -> right
+    for i in 0..n {
+        let lo = lohi[i].0;
+        while let Some(x) = st.pop() {
+            if x.0 > p[i] {
+                st.push(x);
+                break;
+            }
+        }
+        // binsect bias = -1
+        let mut pass = st.len() + 1;
+        let mut fail = 0;
+        while pass - fail > 1 {
+            let mid = (pass + fail) / 2;
+            if st[mid - 1].1 >= lo {
+                pass = mid;
+            } else {
+                fail = mid;
+            }
+        }
+        tot += (st.len() + 1 - pass) as i64;
+        st.push((p[i], i));
+    }
+    // right -> left
+    st.clear();
+    for i in (0..n).rev() {
+        let hi = lohi[i].1;
+        while let Some(x) = st.pop() {
+            if x.0 > p[i] {
+                st.push(x);
+                break;
+            }
+        }
+        // binsect bias = -1
+        let mut pass = st.len() + 1;
+        let mut fail = 0;
+        while pass - fail > 1 {
+            let mid = (pass + fail) / 2;
+            if st[mid - 1].1 <= hi {
+                pass = mid;
+            } else {
+                fail = mid;
+            }
+        }
+        tot += (st.len() + 1 - pass) as i64;
+        st.push((p[i], i));
+    }
+    
+    puts!("{}\n", tot);
+}
+||<
+
+** まとめ
+区間系が苦手すぎる。

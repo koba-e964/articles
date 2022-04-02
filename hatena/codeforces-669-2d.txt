@@ -1,0 +1,85 @@
+考察・実装合計で 2 時間かかった上に、無駄な実装をしてしまった。
+[https://codeforces.com/contest/1407/problem/D:title]
+
+** 問題
+長さ n の数列 h が与えられる。1 番目の要素から n 番目の要素まで離散的ジャンプだけを使って移動したい。i < j に対して i から j へのジャンプが<b>離散的</b>であるとは、max(h[i+1], ..., h[j-1]) < min(h[i], h[j]) または min(h[i+1], ... h[j-1]) > max(h[i], h[j]) が成立することをいう。離散的ジャンプの最小回数を求めよ。
+
+制約
+- 2 <= n <= 3 * 10^5
+- 1 <= h[i] <= 10^9
+
+** 解法
+愚直な O(N^2) DP (dp[i] := i から n までの最短手数) を考える。i から j へジャンプできるのは j が i+1 から貪欲に取った単調増加列か単調減少列に含まれる場合に限られる。i の降順に見て、貪欲な単調増加列・単調減少列を stack で管理すれば遷移すべき頂点の集合はわかる。遷移の個数の合計が問題だが、一般には O(N^2) であるため、RMinQ に対応できるセグメント木などで stack の中身に対応する要素を持てば、計算量は O(N log N) 時間となる。(実は、editorial によれば遷移の個数は 4N 以下であるため、このような仕掛けは不要である。)
+
+** 登場する典型
+- stack を使って、現在の地点から見た貪欲な単調増加列・単調減少列を持つ
+-- stack の上を二分探索して、どこまでが遷移としてありえるかを調べる
+- うまい数え方で、遷移の個数が合計 O(N) であることを示す
+
+** 実装上の注意点
+- 二分探索で off-by-one error が多発しやすいので、stack がどの順番でデータを持つか、二分探索でどこを見るべきかを正確に詰める
+-- 今回の場合、降順にデータを持っている stack s に対しては s[j] >= h[i] なる最大の j が欲しいものであり、j が 0 以上なら j 以降の全ての要素を、j が -1 なら 0 以降の全ての要素が遷移先としてありえるので、セグメント木へのクエリは [max(1, j) - 1, |st|) となる。
+
+提出: [https://codeforces.com/contest/1407/submission/93371509:title=#93371509] (Rust)
+
+>|rust|
+// SegTree, upper_bound omitted
+
+fn solve() {
+    let out = std::io::stdout();
+    let mut out = BufWriter::new(out.lock());
+    macro_rules! puts {
+        ($($format:tt)*) => (let _ = write!(out,$($format)*););
+    }
+    input! {
+        n: usize,
+        h: [i64; n],
+    }
+    let mut coord = h.clone();
+    coord.sort(); coord.dedup();
+    let mut dp = vec![0; n];
+    let mut up: Vec<Reverse<(i64, usize)>> = vec![];
+    const INF: i64 = 1 << 50;
+    let mut ups = SegTree::new(n + 1, min, INF);
+    let mut down: Vec<(i64, usize)> = vec![];
+    let mut downs = SegTree::new(n + 1, min, INF);
+    up.push(Reverse((h[n - 1], n - 1)));
+    ups.update(0, 0);
+    down.push((h[n - 1], n - 1));
+    downs.update(0, 0);
+    for i in (0..n - 1).rev() {
+        let idx = up.upper_bound(&Reverse((h[i], 0)));
+        let idx = max(idx, 1) - 1;
+        let val = ups.query(idx, up.len());
+        let mut mi = val;
+        let idx = down.upper_bound(&(h[i], 1 << 30));
+        let idx = max(idx, 1) - 1;
+        let val = downs.query(idx, down.len());
+        mi = min(mi, val);
+        dp[i] = mi + 1;
+        // upd
+        while let Some(Reverse((x, idx))) = up.pop() {
+            if x <= h[i] {
+                continue;
+            }
+            up.push(Reverse((x, idx)));
+            break;
+        }
+        up.push(Reverse((h[i], i)));
+        ups.update(up.len() - 1, dp[i]);
+        while let Some((x, idx)) = down.pop() {
+            if x >= h[i] {
+                continue;
+            }
+            down.push((x, idx));
+            break;
+        }
+        down.push((h[i], i));
+        downs.update(down.len() - 1, dp[i]);
+    }
+    puts!("{}\n", dp[0]);
+}
+||<
+
+** まとめ
+遷移の個数が O(N) であることを示せず、O(N^2) を O(N log N) に高速化する典型テクニックの適用でかなり詰まってしまった。反省。
