@@ -1,0 +1,19 @@
+<p>Haskellでインタプリタ( https://github.com/koba-e964/experiment/tree/master/typeinf )を書いていて、エラー処理をしたくなったのでモナド変換子ErrorTを導入しました。その後別の環境でコンパイルしてみたら</p>
+<blockquote>
+<pre><span class="hs-comment">(前略) Use Control.Monad.Except instead (後略)</span></pre>
+</blockquote>
+<p> と怒られてしまったのでびっくりして確認すると、どうやらmtlのバージョンがエラー処理を書いた環境は2.0以前、別の環境では2.2.0.1(2.2.1かも？記憶があいまい)だったのが原因だったようです。</p>
+<p>このControl.Monad.Exceptというモジュールは、ここ2週間くらい前(2014/6/2)にリリースされたmtl-2.2.1 ( http://hackage.haskell.org/package/mtl-2.2.1 )で新たに導入されたようです。</p>
+<p> </p>
+<p>新しく導入されたモナド変換子ExceptTと、以前からあったErrorT (Control.Monad.Error)との違いですが、見たところ型変数eに関する制約が無くなったというのが唯一の違いであるように思われます。ErrorTの各種インスタンス宣言には、</p>
+<blockquote>
+<p>(<a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> m, <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Error-Class.html#t:Error">Error</a> e) =&gt; <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Except.html#t:MonadError">MonadError</a> e (<a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Error.html#t:ErrorT">ErrorT</a> e m)</p>
+<p>(<a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> m, <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Error.html#t:Error">Error</a> e) =&gt; <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> (<a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Error.html#t:ErrorT">ErrorT</a> e m)</p>
+</blockquote>
+<p>のように、Error eという宣言が必要でしたが、ExceptTのインスタンス宣言には必要ありません。(例:</p>
+<blockquote>
+<p><a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> m =&gt; <a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Except.html#t:MonadError">MonadError</a> e (<a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Except.html#t:ExceptT">ExceptT</a> e m)</p>
+<p><a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> m =&gt; <a href="http://hackage.haskell.org/package/base-4.6.0.1/docs/Control-Monad.html#t:Monad">Monad</a> (<a href="http://hackage.haskell.org/package/mtl-2.2.1/docs/Control-Monad-Except.html#t:ExceptT">ExceptT</a> e m)</p>
+</blockquote>
+<p>など)</p>
+<p> </p>

@@ -1,3 +1,18 @@
+- filename: haskell-errort-exceptt.html
+  name: 'Haskellでのエラー処理について(ErrorT, ExceptT)'
+  uri: https://koba-e964.hatenablog.com/entry/2014/06/17/004011
+- filename: lambda-ski.txt
+  name: 'ラムダ式→SKIコンビネータ項'
+  uri: https://koba-e964.hatenablog.com/entry/2014/08/08/003223
+- filename: data-structure-and-algebraic-structure.txt
+  name: 'データ構造と代数構造'
+  uri: https://koba-e964.hatenablog.com/entry/2016/12/14/214132
+- filename: unitary/unitary.txt
+  name: '(I + 2iZ)/sqrt(5) というユニタリ変換を基本的なゲートで作る話'
+  uri: https://koba-e964.hatenablog.com/entry/2018/07/08/193213
+- filename: factorial-mod-p.txt
+  name: '階乗 mod pの高速な実装 (Rust)'
+  uri: https://koba-e964.hatenablog.com/entry/2019/05/22/020912
 - filename: yukicoder-951.txt
   name: 'yukicoder No.951 【本日限定】１枚頼むともう１枚無料！'
   uri: https://koba-e964.hatenablog.com/entry/2020/01/01/200537

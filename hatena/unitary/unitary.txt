@@ -1,0 +1,72 @@
+Q#というMS製の量子計算用言語の言語仕様 [https://docs.microsoft.com/en-us/quantum/quantum-qr-statements?view=qsharp-preview#repeat-until-success-loop:title] を読んでいたら、
+[tex:(I+2iZ)/\sqrt{5} = \frac{1}{\sqrt{5}}\begin{pmatrix}1+2i & 0 \\ 0 & 1-2i\end{pmatrix}] というゲートが、基本的なゲートたちと観測の組み合わせで正確に実現できるという話を見たので、調べてみました。
+
+** 準備
+
+状態|0>を[tex:\begin{pmatrix}1\\0\end{pmatrix}]、状態|1>を[tex:\begin{pmatrix}0\\1\end{pmatrix}]とします。状態ベクトルを複数並べた時の表示も、適切に定義されているものとします。例えば、
+[tex:\displaystyle |00\rangle = \begin{pmatrix}1\\0\\0\\0\end{pmatrix}],[tex:\displaystyle |01\rangle = \begin{pmatrix}0\\1\\0\\0\end{pmatrix}],[tex:\displaystyle |10\rangle = \begin{pmatrix}0\\0\\1\\0\end{pmatrix}],[tex:\displaystyle |11\rangle = \begin{pmatrix}0\\0\\0\\1\end{pmatrix}]
+です。
+
+[tex:|+\rangle]と[tex:|-\rangle]を、それぞれ[tex:|+\rangle:=\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)],[tex:|-\rangle:=\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)]と定義します。
+
+[tex:\langle 0|]と[tex:\langle 1|]を、[tex:\langle i|j\rangle = \delta_{ij}] が成り立つような線形写像とします。ここで[tex:\delta_{ij}]は[https://ja.wikipedia.org/wiki/%E3%82%AF%E3%83%AD%E3%83%8D%E3%83%83%E3%82%AB%E3%83%BC%E3%81%AE%E3%83%87%E3%83%AB%E3%82%BF:title=クロネッカーのデルタ]です。2量子ビット以上の系についても、[tex:\langle ik|jl\rangle = \delta_{ij}\delta_{kl}]などのように定義されているものとします。
+
+ビットの位置は先頭が第0ビットであるものとします。0-indexedです。
+
+以下の基本的なゲートたちの知識を仮定します。
+[tex:X := \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}] (Xゲート, X|0> = |1>, X|1> = |0>)
+[tex:Z := \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}] (Zゲート, Z|0> = |0>, Z|1> = -|1>)
+[tex:T := \begin{pmatrix}1 & 0 \\ 0 & e^{i\pi/4}\end{pmatrix}] (Tゲート, Z|0> = |0>, [tex: Z|1\rangle = e^{i\pi/4}|1\rangle])
+
+CCNOT: (Toffoliゲート、CCNOT|11a> = |11(1-a)>, CCNOT|abc>=|abc> (a=0またはb=0のとき)
+また、[1] に倣って、作りたいユニタリ変換にV_3という名前をつけます。
+[tex:\displaystyle V_3 := (I+2iZ)/\sqrt{5} = \frac{1}{\sqrt{5}}\begin{pmatrix}1+2i & 0 \\ 0 & 1-2i\end{pmatrix}]
+
+Aがエルミート行列([tex:A =A^\dagger])のとき、Aをオブザーバブルと呼びます。オブザーバブルAに関する観測とは、量子ビットをAの固有ベクトルの一つへと収縮させる行為を指します。量子ビット[tex:|\psi\rangle]に対して、この量子ビットがAの固有ベクトル|v>へと収縮する確率は[tex:|\langle v|\psi \rangle|^2]です。
+例えば、Xゲートはエルミート行列ですが、Xに関してある量子ビット[tex:|\psi\rangle]を観測すると、[tex:\frac{1}{\sqrt{2}}(|0\rangle+|1\rangle)] または [tex:\frac{1}{\sqrt{2}}(|0\rangle-|1\rangle)] のどちらかの状態に収縮します。前者に収縮する確率は[tex:|\frac{1}{\sqrt{2}}(\langle 0|+\langle 1|)|\psi\rangle|^2]で、後者に収縮する確率は[tex:|\frac{1}{\sqrt{2}}(\langle 0|-\langle 1|)|\psi\rangle|^2]です。
+
+** やり方
+[1]のFigure 1.(a) の量子回路に即して説明します。この回路は、[tex:S=T^2]ゲート1個と、Zゲート1個、およびXゲートに関する観測を2回行う回路です。この回路に量子ビット[tex:|\psi\rangle]を入力すると、確率5/8で[tex:V_3|\psi\rangle]に、確率3/8で[tex:|\psi\rangle]になります。よって、平均8/5回でユニタリ変換V_3が実現できます。
+<figure class="figure-image figure-image-fotolife" title="[1]の Figure 1 (a)。Exp[T]=12.8というのはほげほげ">[f:id:koba-e964:20180708180243p:plain]<figcaption>[1]の Figure 1.(a)。Exp[T]=12.8というのは、平均でTゲートを実行する回数が12.8回という意味です。1個のToffoliゲートはTゲート4個で実現されています。(8/5)*2*4=12.8なので勘定があっています。</figcaption></figure>
+
+この事実を計算で示すのが、この記事の目標です。1ステップずつ見ていきましょう。
+
+
+** 証明
+[tex: |\psi\rangle = a|0\rangle + b|1\rangle]と置きます。aとbは[tex:|a|^2+|b|^2=1]を満たす複素数であることに注意してください。
+Ancilla bit (操作のために追加で足される量子ビット) たちも合わせた初期状態は
+
+[tex: |\Psi_0\rangle := \displaystyle |+\rangle \otimes |+\rangle \otimes |\psi\rangle= \frac{1}{2}(a|000\rangle + b|001\rangle+ a|010\rangle + b|011\rangle+ a|100\rangle + b|101\rangle+ a|110\rangle + b|111\rangle)]
+です。
+
+これにToffoliゲートを適用すると、
+[tex:\displaystyle |\Psi_1\rangle := \frac{1}{2}(a|000\rangle + b|001\rangle+ a|010\rangle + b|011\rangle+ a|100\rangle + b|101\rangle+ b|110\rangle + a|111\rangle)]
+になります。
+これの第2ビット(ancilla bitではないビット)にSゲートを適用すると、
+[tex:\displaystyle |\Psi_2\rangle := \frac{1}{2}(a|000\rangle + ib|001\rangle+ a|010\rangle + ib|011\rangle+ a|100\rangle + ib|101\rangle+ b|110\rangle + ia|111\rangle)]
+になります。
+
+これにもう一度Toffoliゲートを適用すると、
+[tex:\displaystyle |\Psi_3\rangle := \frac{1}{2}(a|000\rangle + ib|001\rangle+ a|010\rangle + ib|011\rangle+ a|100\rangle + ib|101\rangle+ ia|110\rangle + b|111\rangle)]
+になります。
+
+これにZゲートを適用すると、
+[tex:\displaystyle |\Psi_4\rangle := \frac{1}{2}(a|000\rangle - ib|001\rangle+ a|010\rangle - ib|011\rangle+ a|100\rangle - ib|101\rangle+ ia|110\rangle - b|111\rangle)]
+になります。
+
+これのancilla bitたちをXに関して観測しましょう。両方のビットで|+>が観測されると第2ビットが[tex:V_3|\psi\rangle]になるということだったので、それを確かめます。これが起こる確率は、[tex:|\langle++|\Psi_4\rangle|^2]で与えられるので、計算します。ここで、[tex:\displaystyle\langle++|:=\frac{1}{\sqrt{2}}(\langle 0|+\langle 1|) \otimes \frac{1}{\sqrt{2}}(\langle 0|+\langle 1|) = \frac{1}{2}(\langle 00|+\langle 01|+\langle 10|+\langle 11|)]です。
+[tex:\displaystyle\langle++|\Psi_4\rangle=\frac{1}{4}((3+i)a|0 \rangle + (-1-3i)b|1\rangle)]のため、
+[tex:\displaystyle |\langle++|\Psi_4\rangle|^2=\frac{1}{16}(10|a|^2+10|b|^2)=\frac 58]です。
+観測後の第2ビットの状態は、[tex:\langle++|\Psi_4\rangle]を規格化することで得られ、
+[tex:\displaystyle|\psi'\rangle := \frac{1}{\sqrt{10}}((3+i)a|0 \rangle + (-1-3i)b|1\rangle)]です。
+
+量子ビットの状態は、絶対値1の複素数倍を無視するので、これは
+[tex:\displaystyle V_3|\psi\rangle=\frac{1}{\sqrt{5}}((1+2i)a|0\rangle+(1-2i)b|1\rangle)]
+と等価です。([tex:V_3|\psi\rangle =\frac{1+i}{\sqrt{2}}|\psi'\rangle]となります。)
+
+[tex:|\Psi_4\rangle]のancilla bitたちの観測時に|++>以外が観測された場合には第2ビットが[tex:|\psi\rangle]のままとなりますが、これの計算は読者への演習問題とします。 (訳: 疲れました)
+
+
+
+** References
+[1] Paetznick, A., & Svore, K. M. (2013). Repeat-Until-Success: Non-deterministic decomposition of single-qubit unitaries, 1–26. Retrieved from http://arxiv.org/abs/1311.1074[f:id:koba-e964:20180708180243p:plain]

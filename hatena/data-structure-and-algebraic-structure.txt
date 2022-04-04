@@ -1,0 +1,67 @@
+この記事は、[http://www.adventar.org/calendars/1466/:title]の15日目の記事です。
+
+* この記事について
+去年(2015年)の12月ごろ、「セグメント木が任意のモノイドに対して使えるという(当たり前のことが)明示的に書かれた日本語の記事がないなぁ」と思い、「(当時)来年のAdvent Calendarあたりに書こうか」と思ったので書きました。その後調べてみましたが、どうやらこの1年(2015年12月-2016年12月)で割と書かれたようでした。(この記事の意味とは…)
+前述のように多数の記事がこの1年間で出たので、この記事は主にそれらへのリンクを貼り、場合によってコードを紹介することにします。
+* データ構造と代数構造
+** セグメント木 <=> モノイド
+集合M、Mの要素eとその上の二項演算*があり、*が
+- e * x = x * e = x ((2016/12/15 1:39修正:e -> x,単純な誤り))
+- x * (y * z) = (x * y) * z
+が成立する場合、(M, e, *)は<b>モノイド</b>であるという。
+モノイド(M, e, *)に対して、<b>セグメント木</b>というデータ構造で、Mの元からなる配列を表現できる。このデータ構造は構築がO(n)ででき、1要素の更新と区間に対する*の演算(区間和((本来は可換でない演算に「和」という表現を使うのは望ましくないのですが、以下で紹介するBITにおける語法と整合させるため「区間和」と呼んでいます)) )がO(log(n) )でできる。(nは配列の長さ)
+詳しくはここをみてください:
+[http://qiita.com/hama_du/items/34955bc7dfc64ba0d5e5:embed:cite]
+[http://qiita.com/TobiasGSmollett/items/f3562a746cff2479211b#range-minimum-query:embed:cite]
+*** サンプルコード
+C++: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.cpp:title]
+Scala: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.scala:title]
+Rust: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.rs:title]
+
+
+** BIT <=> アーベル群
+
+(先頭からの累積和を計算するだけなら可換モノイド(= アーベル群 - 逆元 = モノイド + 可換律)でよい)
+セグメント木と同じく構築O(n)、1要素の更新と区間和がO(log(n))でできる。
+
+アーベル群の上の累積和を使う問題: 蟻本をみてください。その他自分が解いた問題の中で:
+[http://arc033.contest.atcoder.jp/tasks/arc033_3:title]
+[http://arc043.contest.atcoder.jp/tasks/arc043_c:title]
+[http://yukicoder.me/problems/no/449:title]
+
+*** サンプルコード
+C++: [https://github.com/koba-e964/contest/blob/master/comm/BIT.cpp:title]
+
+** 遅延セグメント木 <=> 作用付きモノイド
+[https://tomcatowl.github.io/blog/2016/12/13/ds-and-alg-2/:title]に詳しく書いてあるので、参照されたい。
+***サンプルコード
+バグっているのしかないので掲載できません…(>_<)
+
+** SparseTable <=> 交叉半束(meet-semilattice)
+集合Aとその上の二項演算/\があり、それが
+- idempotency (べき等律) a /\ a = a
+- commutativity (可換律) a /\ b = b /\ a
+- associativity (結合律) a /\ (b /\ c) = (a /\ b) /\ c
+を満たす場合、(A, /\)は<b>交叉半束</b>であるという。
+
+交叉半束については、SparseTableというデータ構造をつかって、構築O(n * log(n)), 区間クエリO(1)で計算ができる。(更新は無理)
+*** サンプルコード
+C++: [https://github.com/koba-e964/contest/blob/master/comm/SparseTable.cpp:title]
+Java: [https://github.com/koba-e964/contest/blob/master/comm/SparseTable.java:title]
+
+** ダイクストラ法 <=> closed semiring (若干おまけ)
+ダイクストラ法がsemiring (R ∪ {∞}, min, +, ∞, 0) ((このsemiringには<b>Tropical Semiring</b>という名前が付いている。))のsemiring構造の上で成り立っているアルゴリズムであることはよく知られている。これを一般化し、closed semiringというクラスに含まれる任意のsemiringで似たようなことができるらしい。("closed"というのは、ダイクストラ法の中で要請される色々な要請を満たす取り扱いやすい性質のことである。) 詳しくは[http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.367.5897&rep=rep1&type=pdf:title=(Mohri, 2002)]を参照されたい。
+*** (2016/12/15 12:50追記)サンプルコード
+C++: [https://github.com/koba-e964/contest/blob/master/comm/dijkstra.cpp:title]
+Scala: [https://github.com/koba-e964/contest/blob/master/comm/Dijkstra.scala:title]
+Rust: [https://github.com/koba-e964/contest/blob/master/comm/Dijkstra.rs:title]
+
+
+* 参考
+割と内容が被っている+丁寧な記事。みなさん読むべし。
+[https://tomcatowl.github.io/blog/2016/12/12/ds-and-alg-1/:embed:cite]
+[https://tomcatowl.github.io/blog/2016/12/13/ds-and-alg-2/:embed:cite]
+
+(2016/12/16 16:50追記)
+翌日は[https://twitter.com/codera_iroha:title=古寺いろは@競プロ応援アカウント]さんの[http://www.slideshare.net/chokudai/iroha2016:title=AtCoderに毎回参加したくなる仕組み]と、[https://twitter.com/ainu7:title=@ainu7]さんの記事です。
+
