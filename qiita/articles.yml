@@ -49,3 +49,6 @@
 - filename: nyuushi-qe-satto.md
   name: '大学の数学の入試問題を量化子消去でサッと解く'
   uri: https://qiita.com/kobae964/items/30dcb77837068b2638be
+- filename: yoneda-free-theorem.md
+  name: '米田の補題、Free theorem と病的な Haskell の関数'
+  uri: https://qiita.com/kobae964/items/7a2f4cbd955de3a66c0a
