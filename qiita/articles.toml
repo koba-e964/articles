@@ -1,0 +1,107 @@
+[[articles]]
+filename = "monad-tips.md"
+name = "モナドTipsについて"
+tags = ["Haskell", "圏論", "数学", "ラムダ計算", "モナド"]
+uri = "https://qiita.com/kobae964/items/fb78b970b149ba77e29a"
+
+[[articles]]
+filename = "power-of-sheaves.md"
+name = "層圏トポス: 層の巾"
+tags = ["数学", "層", "ドワンゴ数学ゼミ", "層圏トポス"]
+uri = "https://qiita.com/kobae964/items/0d86d178cb69b607151a"
+
+[[articles]]
+filename = "limit-and-colimit.md"
+name = "層圏トポス: limit と colimit"
+tags = ["数学", "層", "ドワンゴ数学ゼミ", "層圏トポス"]
+uri = "https://qiita.com/kobae964/items/f71fea385921e14f436d"
+
+[[articles]]
+filename = "schreier-sims-1.md"
+name = "Schreier-SimsのアルゴリズムをRustで実装した (1)"
+tags = ["数学", "グラフ理論", "群論", "計算機代数"]
+uri = "https://qiita.com/kobae964/items/8fb8ab9dd4a87e17e273"
+
+[[articles]]
+filename = "separating-initialization.md"
+name = "リファクタリングテクニック - 初期化処理の分離"
+tags = ["リファクタリング", "Rust"]
+uri = "https://qiita.com/kobae964/items/bd354e95e344e7a22a94"
+
+[[articles]]
+filename = "aho-corasick-0.7.6/article.md"
+name = "aho-corasick 0.7.6 コードリーディング"
+tags = ["Rust", "コードリーディング", "文字列アルゴリズム"]
+uri = "https://qiita.com/kobae964/items/1efe53dc7afe79b64f22"
+
+[[articles]]
+filename = "serde-1.md"
+name = "Rust の serde を読む(1): serde の基本"
+tags = ["Rust", "serialize", "serde"]
+uri = "https://qiita.com/kobae964/items/e5f2f979af876712a23b"
+
+[[articles]]
+filename = "serde-2.md"
+name = "Rust の serde を読む(2): serialize を読む"
+tags = ["Rust", "serialize", "serde"]
+uri = "https://qiita.com/kobae964/items/86d8e27604d53cddb47d"
+
+[[articles]]
+filename = "indep-set-w1-hardness.md"
+name = "独立集合問題の W[1] 困難性"
+tags = ["アルゴリズム", "数学", "NP完全", "計算複雑性理論", "計算量"]
+uri = "https://qiita.com/kobae964/items/0ec34f7940dcbc95ad1d"
+
+[[articles]]
+filename = "erlang-procon.md"
+name = "AtCoder に登録したら解くべき精選過去問 10 問を Erlang で解いてみた"
+tags = ["Erlang", "競技プログラミング"]
+uri = "https://qiita.com/kobae964/items/7bf1c8e3356a69b33ecf"
+
+[[articles]]
+filename = "yukicoder-auto.md"
+name = "yukicoder に自動で解答を送信するツールを作った"
+tags = ["競技プログラミング", "yukicoder"]
+uri = "https://qiita.com/kobae964/items/31e43d9ec5d43af39e62"
+
+[[articles]]
+filename = "regex-compile-1.md"
+name = "正規言語でもコンパイルがしたい！(1): コンパイルの理論"
+tags = ["正規表現", "コンパイル", "オートマトン"]
+uri = "https://qiita.com/kobae964/items/81058a229dced09dd2ab"
+
+[[articles]]
+filename = "cargo-dep-patch.md"
+name = "cargo の dependency patch のミスでハマった話"
+tags = ["Rust", "cargo", "依存関係"]
+uri = "https://qiita.com/kobae964/items/238d208342c1d2c44bea"
+
+[[articles]]
+filename = "elixir-rust-rustler.md"
+name = "[バージョンアップに追従] Elixirから簡単にRustを呼び出せるRustler #1 準備編 [rustler 0.21.1]"
+tags = ["Rust", "Elixir", "ffi"]
+uri = "https://qiita.com/kobae964/items/eda6df04e76278388a54"
+
+[[articles]]
+filename = "creo.md"
+name = "Rust で競技プログラミングの作問支援ツールを作った話"
+tags = ["Rust", "cli", "DI", "競技プログラミング"]
+uri = "https://qiita.com/kobae964/items/9f006e36915ba3a09794"
+
+[[articles]]
+filename = "rustler-yielding-nif.md"
+name = "Rustler で行儀の良い NIF を書く"
+tags = ["Erlang", "Rust", "Elixir", "ffi"]
+uri = "https://qiita.com/kobae964/items/9b8e78b8b0f3ca0f7e19"
+
+[[articles]]
+filename = "nyuushi-qe-satto.md"
+name = "大学の数学の入試問題を量化子消去でサッと解く"
+tags = ["数学", "論理学", "入試問題"]
+uri = "https://qiita.com/kobae964/items/30dcb77837068b2638be"
+
+[[articles]]
+filename = "yoneda-free-theorem.md"
+name = "米田の補題、Free theorem と病的な Haskell の関数"
+tags = ["Haskell", "圏論", "数学", "自然変換", "米田の補題"]
+uri = "https://qiita.com/kobae964/items/7a2f4cbd955de3a66c0a"
