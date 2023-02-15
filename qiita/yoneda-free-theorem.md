@@ -106,3 +106,29 @@ False
 
 
 しかし `pathological` は自然変換ではないので `id` と食い違っていても何の問題もありません。また自然変換でないので、Free theorem から分かりますが性質のよい部品だけから作ることはできず、`typeOf` や `unsafeCoerce` などの黒魔術が必要となります。
+
+### 追記 (2023/02/16)
+viercc さんから以下のような提案をいただきました:
+https://twitter.com/viercc/status/1546791629843238917
+
+このような工夫をすると `Typeable b` という制約なしで `forall b. b -> b` 型の値を定義できます。
+
+```Haskell
+$ ghci
+GHCi, version 9.4.4: https://www.haskell.org/ghc/  :? for help
+ghci> true = True
+ghci> false = False
+ghci> import System.Mem.StableName
+ghci> import System.IO.Unsafe
+ghci> pathEq a b = unsafePerformIO $ do; x <- makeStableName $! a; y <- makeStableName $! b; return (eqStableName x y)
+ghci> import Unsafe.Coerce 
+ghci> pathological x = if pathEq x true || pathEq x false then unsafeCoerce (not (unsafeCoerce x)) else x
+ghci> pathological true
+False
+ghci> pathological false
+True
+ghci> pathological 1
+1
+ghci> :t pathological 
+pathological :: b -> b
+```
