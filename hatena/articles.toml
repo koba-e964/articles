@@ -1,0 +1,88 @@
+[[articles]]
+filename = "haskell-errort-exceptt.html"
+name = "Haskellでのエラー処理について(ErrorT, ExceptT)"
+uri = "https://koba-e964.hatenablog.com/entry/2014/06/17/004011"
+
+[[articles]]
+filename = "lambda-ski.txt"
+name = "ラムダ式→SKIコンビネータ項"
+uri = "https://koba-e964.hatenablog.com/entry/2014/08/08/003223"
+
+[[articles]]
+filename = "data-structure-and-algebraic-structure.txt"
+name = "データ構造と代数構造"
+uri = "https://koba-e964.hatenablog.com/entry/2016/12/14/214132"
+
+[[articles]]
+filename = "unitary/unitary.txt"
+name = "(I + 2iZ)/sqrt(5) というユニタリ変換を基本的なゲートで作る話"
+uri = "https://koba-e964.hatenablog.com/entry/2018/07/08/193213"
+
+[[articles]]
+filename = "factorial-mod-p.txt"
+name = "階乗 mod pの高速な実装 (Rust)"
+uri = "https://koba-e964.hatenablog.com/entry/2019/05/22/020912"
+
+[[articles]]
+filename = "yukicoder-951.txt"
+name = "yukicoder No.951 【本日限定】１枚頼むともう１枚無料！"
+uri = "https://koba-e964.hatenablog.com/entry/2020/01/01/200537"
+
+[[articles]]
+filename = "yukicoder-963.txt"
+name = "yukicoder No.963 門松列列（2）"
+uri = "https://koba-e964.hatenablog.com/entry/2020/01/08/022138"
+
+[[articles]]
+filename = "dwacon6th-prelims-c.txt"
+name = "第6回 ドワンゴからの挑戦状 予選 C - Cookie Distribution"
+uri = "https://koba-e964.hatenablog.com/entry/2020/01/15/025115"
+
+[[articles]]
+filename = "agc043-e.txt"
+name = "AGC043 E - Topology"
+uri = "https://koba-e964.hatenablog.com/entry/2020/03/22/164824"
+
+[[articles]]
+filename = "yukicoder-93.txt"
+name = "yukicoder No.93 ペガサス"
+uri = "https://koba-e964.hatenablog.com/entry/2020/05/07/145214"
+
+[[articles]]
+filename = "yukicoder-1301.txt"
+name = "yukicoder No.1031 いたずら好きなお姉ちゃん"
+uri = "https://koba-e964.hatenablog.com/entry/2020/05/10/184709"
+
+[[articles]]
+filename = "codeforces-669-2d.txt"
+name = "Codeforces Round #669 (Div. 2) D. Discrete Centrifugal Jumps"
+uri = "https://koba-e964.hatenablog.com/entry/2020/09/21/110149"
+
+[[articles]]
+filename = "yukicoder-1304.txt"
+name = "yukicoder No.1304 あなたは基本が何か知っていますか？私は知っています．"
+uri = "https://koba-e964.hatenablog.com/entry/2020/12/02/011015"
+
+[[articles]]
+filename = "joi-2005-4-5-translation.txt"
+name = "第５回日本情報オリンピック本選の問題文 (問題4, 問題5) を日本語訳しました"
+tags = ["競プロ"]
+uri = "https://koba-e964.hatenablog.com/entry/2021/07/07/013600"
+
+[[articles]]
+filename = "code-festival-2018-final-open-h.txt"
+name = "CODE FESTIVAL 2018 Final (Parallel) H - Pothunter"
+tags = ["競プロ"]
+uri = "https://koba-e964.hatenablog.com/entry/2022/04/02/200032"
+
+[[articles]]
+filename = "abc246-g.txt"
+name = "ABC246 G - Game on Tree 3"
+tags = ["競プロ"]
+uri = "https://koba-e964.hatenablog.com/entry/2022/04/03/133057"
+
+[[articles]]
+filename = "absolute-pitch-1.txt"
+name = "絶対音感と譜読みの早さ: (1)特殊な認知について"
+tags = ["絶対音感", "譜読み", "合唱", "ピアノ"]
+uri = "https://koba-e964.hatenablog.com/entry/2022/06/18/233000"
