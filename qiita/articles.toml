@@ -105,3 +105,9 @@ filename = "yoneda-free-theorem.md"
 name = "米田の補題、Free theorem と病的な Haskell の関数"
 tags = ["Haskell", "圏論", "数学", "自然変換", "米田の補題"]
 uri = "https://qiita.com/kobae964/items/7a2f4cbd955de3a66c0a"
+
+[[articles]]
+filename = ""
+name = "パス検出・サイクル検出 競プロ"
+tags = ["競技プログラミング"]
+uri = "https://qiita.com/kobae964/private/4a43f4bf6d0eae7839b1"
