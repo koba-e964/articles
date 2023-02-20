@@ -108,6 +108,6 @@ uri = "https://qiita.com/kobae964/items/7a2f4cbd955de3a66c0a"
 
 [[articles]]
 filename = ""
-name = "パス検出・サイクル検出 競プロ"
+name = "パス検出・サイクル検出・数え上げ 競プロ"
 tags = ["競技プログラミング"]
 uri = "https://qiita.com/kobae964/private/4a43f4bf6d0eae7839b1"
