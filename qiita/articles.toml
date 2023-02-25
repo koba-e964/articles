@@ -107,7 +107,13 @@ tags = ["Haskell", "圏論", "数学", "自然変換", "米田の補題"]
 uri = "https://qiita.com/kobae964/items/7a2f4cbd955de3a66c0a"
 
 [[articles]]
-filename = ""
+filename = "path-cycle-detection.md"
 name = "パス検出・サイクル検出・数え上げ 競プロ"
 tags = ["競技プログラミング"]
 uri = "https://qiita.com/kobae964/private/4a43f4bf6d0eae7839b1"
+
+[[articles]]
+filename = "inclusion-exclusion.md"
+name = "包除原理"
+tags = ["競技プログラミング"]
+uri = "https://qiita.com/kobae964/private/ccb05edb05802853200f"
