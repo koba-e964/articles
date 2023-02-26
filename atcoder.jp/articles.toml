@@ -17,3 +17,8 @@ uri = "https://atcoder.jp/contests/abc223/editorial/3584"
 [[articles]]
 filename = "abc275-g.md"
 uri = "https://atcoder.jp/contests/abc275/editorial/5771"
+
+[[articles]]
+filename = "abc278-h.md"
+title = "公式解説の補足"
+uri = "https://atcoder.jp/contests/abc278/editorial/5867"
