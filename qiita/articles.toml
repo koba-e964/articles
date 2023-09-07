@@ -123,3 +123,14 @@ filename = "kyoupro-error-prone.md"
 name = "競プロ 間違いやすいところまとめ"
 tags = ["競プロ", "Rust"]
 uri = "https://qiita.com/kobae964/private/0290fdd0b5ffdcd7dd5b"
+
+[[articles]]
+filename = "tree-counting.md"
+name = "木の個数"
+tags = [
+    "競プロ",
+    "数え上げ",
+    "FPS",
+    "母関数",
+]
+uri = "https://qiita.com/kobae964/private/3f8bc67c8f464f57df4c"
