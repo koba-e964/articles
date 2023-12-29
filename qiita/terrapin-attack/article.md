@@ -7,9 +7,11 @@
 # 基本用語
 - パケット: SSH で送受信されるデータのまとまり。パケットは TCP のチャネルにそのまま流されるので、受信者がバイト列をパケットに分割することが一意にできるように、長さの情報が含まれている。中間者は以下のような方法で特定のパケットを取り除くことができる。
   - 暗号化されていないパケット: 長さが簡単にわかるので、その長さだけバイト列を除去すれば良い。
-  - 暗号化されているパケット: 長さも暗号化されているが、定型文などで長さが予測できる場合はその長さだけ取り除くことができる。
+  - 暗号化されているパケット: 長さも暗号化されていることがある[^maybe-encrypted]が、定型文などで長さが予測できる場合はその長さだけ取り除くことができる。
 - Sequence Number: SSH で今までに送信・受信したパケットの総数。送信・受信で別々にカウンターを持つ。
 クライアントとサーバーで同じ値を持っていることが想定されているが、これを中間者がうまく操作してクライアント・サーバー双方を騙せることがこの攻撃のポイント。
+
+[^maybe-encrypted]: 暗号化方式によって異なる。Chacha20-Poly1305 は暗号化する (パケットの他の部分と違う共通鍵で)。AES-GCM および *-EtM の場合は長さ部分を暗号化しない ([AES-GCM の実装](https://github.com/warp-tech/russh/blob/v0.40.2/russh/src/cipher/gcm.rs#L187), [*-ETM の実装](https://github.com/warp-tech/russh/blob/v0.40.2/russh/src/cipher/block.rs#L179))。E&M の場合は長さ部分ごと暗号化する ([実装](https://github.com/warp-tech/russh/blob/v0.40.2/russh/src/cipher/block.rs#L184))。
 
 # 攻撃手法
 
@@ -24,9 +26,9 @@
 これらを踏まえての攻撃手段は以下。
 - 暗号化通信時の最初の EXT_INFO パケットを落とす
   - そのとき (サーバーの Snd) = (クライアントの Rcv) となるようにするため、暗号化していないときにパケットを水増しする
-  - これにより、サーバー認証や暗号化が弱い形式になる。EXT_INFO は自分が認識できる拡張機能などの伝達のために使われており、その伝達に失敗すると拡張機能が使えず弱い暗号化や弱い認証方式を強制される。これにより影響を受けるのは例えば以下:
-    - OpenSSH 9.5p1 で導入された keystroke obfuscation (SSH_MSG_PING メッセージをサーバーが認識する必要があるので、サーバーが認識できることをクライアントに教える必要がある。プロトコルの仕様: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/PROTOCOL#L129-L133)
-    - `server-sig-algs`: クライアントの認証に使えるアルゴリズムの伝達に使われる。これがないと `ssh-rsa` (RSA + SHA-1) を強制される ([[RFC8332]] の Section 3.3)
+  - これにより、サーバー・クライアントの認証などが弱い形式になる。EXT_INFO は自分が認識できる拡張機能などの伝達のために使われており、その伝達に失敗すると拡張機能が使えず弱い暗号化や弱い認証方式を強制される。これにより影響を受けるのは例えば以下:
+    - OpenSSH 9.5p1 で導入された keystroke obfuscation (SSH_MSG_PING メッセージをサーバーが認識する必要があるので、サーバーは自分が認識できるということをクライアントに教える必要がある。プロトコルの仕様: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/PROTOCOL#L129-L133)
+    - `server-sig-algs`: クライアントの認証に使えるアルゴリズムの伝達のために、サーバーが使う。これがないと `ssh-rsa` (RSA 署名 + 内部でハッシュ関数として SHA-1 を使用) を強制される。 ([[RFC8332]] の Section 3.3)
 
 # 脆弱・非脆弱なパターン
 どんな方式であれ、パケットの暗号化は以下のような関数とみなすことができる:
@@ -107,7 +109,7 @@ cipher + mac: `chacha20-poly1305@openssh.com`
   - 暗号化 (`self.cipher.apply_keystream`) のあとで認証タグの計算 (`self.mac.compute`) が行われることがわかる。
 
 ### CBC-EtM
-CTR と違い CBC は前のパケットの最後のブロック (暗号文) をノンスにするのだった。そのため、中間者は受信者に取り除いたパケットの次のパケットだけを正しいものと誤認させるだけで、それ以降の全てのパケットを正しいものと誤認させることができる。
+CTR と違い CBC は前のパケットの最後のブロック (暗号文) をノンスにするのだった。そのため、中間者は受信者に、中間者が取り除いたパケットの次のパケットだけを正しいものと誤認させるだけで、それ以降の全てのパケットを正しいものと誤認させることができる。
 
 1 つのパケットだけを誤認させることができる確率は意外と高く、著者らはターゲットとなる実装に依存して 0.03%-83% 程度と見積もっている。
 
@@ -121,9 +123,11 @@ CTR と違い CBC は前のパケットの最後のブロック (暗号文) を�
   - 送信: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/kex.c#L355-L357
   - 確認: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/kex.c#L1182-L1190
 
-お互いに strict key exchange に対応していることがお互いに確認できたら、以下の 2 個を行うことができる:
+お互いに strict key exchange に対応していることがお互いに確認できたら、以下の 2 個の対抗策を行う:
 - 最初の鍵交換時、予期しないパケットが来たら通信を終了する
+  - 実装: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/kex.c#L488-L492
 - 鍵交換完了時に sequence number をリセットする
+  - 実装: https://github.com/openssh/openssh-portable/blob/V_9_6_P1/packet.c#L1224-L1227
 
 これらはどちらか片方だけでも Terrapin attack を防ぐはず。
 
@@ -138,3 +142,11 @@ CTR と違い CBC は前のパケットの最後のブロック (暗号文) を�
 [Atk-page]: https://terrapin-attack.com/
 [Atk-paper]: https://arxiv.org/abs/2312.12422
 [RFC8332]: https://datatracker.ietf.org/doc/html/rfc8332
+
+# この記事での用語の使い方
+- `暗号化` は `encryption` の訳語である。
+- `暗号化方式` は `encryption mode` の訳語である。
+- `暗号文` は `ciphertext` の訳語である。
+- `RSA 署名` は `RSA signature` の訳語である。
+- `認証タグ` は `message authentication code` の訳語である。
+- 曖昧性を避けるために、`暗号` という単語は使用していない。
