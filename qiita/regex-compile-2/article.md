@@ -1,11 +1,11 @@
 ## 概要
-正規表現のコンパイルの方法はあま
-り知られていません。そのため、自分の学習も兼ねて説明します。何回かに分けて、様々なトピックについて詳しく説明していきます。
+正規表現のコンパイルの方法はあまり知られていません。そのため、自分の学習も兼ねて説明します。何回かに分けて、様々なトピックについて詳しく説明していきます。
 
 [1. コンパイルの理論](https://qiita.com/kobae964/items/81058a229dced09dd2ab)
 **2. 各言語・ライブラリーにおけるコンパイル処理の実装**
 3. 自分でコンパイル処理を実装する (予定)
 
+今回は Go, Rust について実装を見ていきたいと思います。
 
 ## Go
 
@@ -64,4 +64,24 @@ $ go run .
 - ptr = 4, pc = 5: alt -> 4, 6 があるので、次の行き先を 4 または 6 から選べる。ここでは 6 を選ぶ。
 - ptr = 4, pc = 6: match があるので、マッチが見つかったとみなす。
 
-1,2,3 が a{2,} に、 4,5,6 が .* に対応しているとみなすことができます。
+プログラム中で 1,2,3 が a{2,} に、 4,5,6 が .* に対応しているとみなすことができます。
+
+これ以上の詳しい説明は https://github.com/koba-e964/code-reading/tree/master/algorithm/go~go1.21.6-regexp にあります。
+
+## Rust
+Rust の標準には正規表現を扱うモジュールはありませんが、regex というライブラリーがありこれが正規表現を扱います。
+https://github.com/rust-lang/regex/tree/1.10.3
+
+担当は以下の通りです。
+- パースは https://docs.rs/regex-syntax/0.8.2/regex_syntax/ 
+- コンパイルは https://github.com/rust-lang/regex/blob/1.10.3/regex-automata/src/meta/regex.rs#L3543-L3560
+- オートマトンは https://docs.rs/regex-automata/latest/regex_automata/
+
+
+- Ast: https://docs.rs/regex-syntax/0.8.2/regex_syntax/ast/enum.Ast.html
+  - 普通の enum
+- Hir: TODO
+
+
+
+$O(nL)$ 時間は保証されています。
