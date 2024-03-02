@@ -1,6 +1,6 @@
 ## 概要
 yukicoder の問題にソースコードを提出する機能を持つ、コマンドラインツールを作成した。
-https://github.com/koba-e964/contest/blob/master/yukicoder/submit.py
+https://github.com/koba-e964/contest/blob/7129c735c3e5cfd0e57702ad66748af986296a89/yukicoder/submit.py
 
 ## 作成した経緯
 もともと提出を手動でやるのが面倒だと思っていた。
@@ -80,7 +80,7 @@ api_key: 'API-KEY-XXXX'
 - 当時は技術力が低く、設定ファイル用のスキーマを定義することのメリットを知らなかった
 
 今回は 2. を採用した。理由は上記の逆および個人の好みである。
-なお、スキーマ定義および検証には [Cerberus](https://docs.python-cerberus.org/en/stable/) を使用した。[^why-not-json-schema]
+なお、スキーマ定義および検証には [Cerberus](https://docs.python-cerberus.org/) を使用した。[^why-not-json-schema]
 
 [^do-you-know-about-json]: JSON が JavaScript 由来なのを知ってますか?
 [^why-not-json-schema]: スキーマ定義言語として JSON Schema を使用しなかった理由は、JSON Schema は JSON 用であり YAML に使うためには微妙に追加の手間が必要であるため、そして今回の設定ファイルの規模 (数項目) に対してスキーマがかなり大きくなってしまい管理が大変になることが予測されたためである。Cerberus を使うとスクリプト内にスキーマを埋め込む格好になり、今回の規模であれば楽。

@@ -45,7 +45,7 @@ $ mix rustler.new
 Elixir 側の Module 名と Rust でのユニット名 (ファイル名) をそれぞれ対話形式で聞いてくるので、`NifExample`, `example` と入力します。
 これで準備は完了です。
 
-ここで指定した「example」をAtom化した `:example` は Ruslter の[公式ドキュメント](https://hexdocs.pm/rustler/basics.html)内では **NIF ID** と呼ばれています。
+ここで指定した「example」をAtom化した `:example` は Ruslter の[公式ドキュメント](https://web.archive.org/web/20201103012635/https://hexdocs.pm/rustler/basics.html)内では **NIF ID** と呼ばれています。
 
 ```
 $ mix rustler.new

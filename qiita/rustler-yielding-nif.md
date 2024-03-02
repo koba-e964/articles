@@ -25,7 +25,7 @@ NIF を使うためには、NIF を使って解くべき問題をうまく設定
 今回は[最小シュタイナー木](https://ja.wikipedia.org/wiki/%E3%82%B7%E3%83%A5%E3%82%BF%E3%82%A4%E3%83%8A%E3%83%BC%E6%9C%A8)を NIF を使って計算させることにしました。これは以下のような問題です。
 > シュタイナー木とは、エッジの集合$E$とノードの集合$V$から成る無向グラフ $G=(V,E)$ において、$V$の部分集合$T$が与えられたとき、$T$に含まれるノードすべてを含む木のことである。グラフのエッジに重みがつけられている時、重みの和が最小であるシュタイナー木を求めよ。
 
-これは [Dreyfus-Wagner のアルゴリズム](http://www.prefield.com/algorithm/dp/steiner_tree.html) を使うことで解けます。ここでは詳しい解説は行いませんが、計算量は $n = |V|, m = |E|, k = |T|$ として $O(3^k n + 2^k m \log n)$ 時間です。指数時間アルゴリズムですから、$k$ の増加とともにかかる時間が急増します。
+これは [Dreyfus-Wagner のアルゴリズム](https://web.archive.org/web/20200222051102/http://www.prefield.com/algorithm/dp/steiner_tree.html) を使うことで解けます。ここでは詳しい解説は行いませんが、計算量は $n = |V|, m = |E|, k = |T|$ として $O(3^k n + 2^k m \log n)$ 時間です。指数時間アルゴリズムですから、$k$ の増加とともにかかる時間が急増します。
 
 ## 実装
 https://rhye.org/post/native-scheduling-erlang/ を参考にしました。
