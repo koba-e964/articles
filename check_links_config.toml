@@ -1,0 +1,90 @@
+retry_count = 5
+text_file_extensions = [
+    ".md",
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/685820977784033281"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/685820977784033281", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/685853872867246081"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/685853872867246081", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/686201693453729792"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/686201693453729792", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/794866198206771204"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/794866198206771204", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/795293767875969025"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/795293767875969025", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/kobae964/status/795294376909934592"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/kobae964/status/795294376909934592", # No alternatives
+]
+
+[[ignores]]
+url = "https://twitter.com/viercc/status/1546791629843238917"
+codes = [403]
+reason = """
+X does not allow access without login.
+"""
+considered_alternatives = [
+    "https://twitter.com/viercc/status/1546791629843238917", # No alternatives
+]
+
+[[ignores]]
+url = "https://www.sciencedirect.com/science/article/pii/0304397594000973"
+codes = [403]
+reason = "Always returns 403."
+considered_alternatives = [
+    "https://www.semanticscholar.org/paper/Fixed-Parameter-Tractability-and-Completeness-Downey-Fellows/ca84d533bbaf2563ea5d91bc944bb2d379550ae4",
+]
+
+[[ignores]]
+url = "http://www.prefield.com/algorithm/dp/steiner_tree.html"
+codes = [401]
+reason = "Became private. Being a substring of a valid URL."
+considered_alternatives = [
+    "https://web.archive.org/web/20200222051102/http://www.prefield.com/algorithm/dp/steiner_tree.html",
+]
