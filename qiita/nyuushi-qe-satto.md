@@ -5,6 +5,7 @@ author: kobae964
 slide: false
 ---
 # 編集履歴
+- 2024-03-03 HTTP のリンクを一部 HTTPS に修正しました。
 - 2023-10-03 インストール方法を編集しました。また todai-2012-1, todai-2023-3-1 を追加しました。
 - 2021-03-10 初稿を発行しました。
 
@@ -27,7 +28,7 @@ $$ a^2 - 4b < 0$$
 
 詳しくは [Quantifier Elimination - Wikipedia](https://en.wikipedia.org/wiki/Quantifier_elimination) を見てください。[^video]
 
-[^video]: 私が量化子消去を最初に知ったのは http://www.kmonos.net/wlog/129.html#_2300130307 です。そこでも紹介されていますが、https://www.youtube.com/watch?v=IHkbXpjiX5g&ab_channel=OginoNobuyaOginoNobu という面白い動画があるので観ましょう。
+[^video]: 私が量化子消去を最初に知ったのは https://www.kmonos.net/wlog/129.html#_2300130307 です。そこでも紹介されていますが、https://www.youtube.com/watch?v=IHkbXpjiX5g&ab_channel=OginoNobuyaOginoNobu という面白い動画があるので観ましょう。
 
 ## QEPCAD について
 実数に関する[冠頭標準形](https://ja.wikipedia.org/wiki/%E5%86%A0%E9%A0%AD%E6%A8%99%E6%BA%96%E5%BD%A2)の論理式の量化子消去を行うことのできるソフトウェアです。冠頭標準形というのは、$\forall x. \exists y. x > y$ のように、論理式の先頭だけに量化子があるような論理式のことです。
