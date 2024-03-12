@@ -88,3 +88,14 @@ reason = "Became private. Being a substring of a valid URL."
 considered_alternatives = [
     "https://web.archive.org/web/20200222051102/http://www.prefield.com/algorithm/dp/steiner_tree.html",
 ]
+
+[[ignores]]
+url = "https://t.co/eUqnKnynQh"
+has_tls_error = true
+codes = [200]
+reason = """https://zenn.dev/masaaania/articles/eeecaf1f1a08ee
+Certificate the server provides is not valid (a part of the chain is returned).
+"""
+considered_alternatives = [
+    "https://www.cs.bham.ac.uk//~pbl/cbpv.html",
+]
