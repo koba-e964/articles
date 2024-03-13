@@ -24,9 +24,5 @@ jobs:
 
       - name: Check hyperlinks
         run: |
-          sudo apt-get update && sudo apt-get install --assume-yes ca-certificates
-          # https://betterstack.com/community/questions/how-to-display-remote-sll-certificate-details-with-cli-tools/#solution-1-using-openssl
-          echo | openssl s_client -showcerts -servername www.cs.bham.ac.uk -connect www.cs.bham.ac.uk:443 2>/dev/null | openssl x509 -inform pem -noout -text
-          curl -k -vvI https://www.cs.bham.ac.uk/~pbl/cbpv.html
           go install github.com/koba-e964/link-checker@latest
           link-checker
