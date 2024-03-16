@@ -72,16 +72,55 @@ $ go run .
 Rust の標準には正規表現を扱うモジュールはありませんが、regex というライブラリーがありこれが正規表現を扱います。
 https://github.com/rust-lang/regex/tree/1.10.3
 
+流れは https://docs.rs/regex-automata/0.4.5/regex_automata/nfa/thompson/index.html の通りです。
+
 担当は以下の通りです。
-- パースは https://docs.rs/regex-syntax/0.8.2/regex_syntax/ 
+- パースは https://docs.rs/regex-syntax/0.8.2/regex_syntax/
+  - &str -> Ast -> Hir をやる
 - コンパイルは https://github.com/rust-lang/regex/blob/1.10.3/regex-automata/src/meta/regex.rs#L3543-L3560
+  - Hir -> NFA -> PikeVM などをやる
+  - https://docs.rs/regex-automata/0.4.5/regex_automata/nfa/thompson/index.html
 - オートマトンは https://docs.rs/regex-automata/latest/regex_automata/
 
 
 - Ast: https://docs.rs/regex-syntax/0.8.2/regex_syntax/ast/enum.Ast.html
   - 普通の enum
 - Hir: TODO
+- meta::Regex: TODO
 
+$O(nL)$ 時間で動作することは保証されています。
 
+実際に正規表現 `a|bcd*` をコンパイルしてみた結果を読みましょう。
 
-$O(nL)$ 時間は保証されています。
+```
+PikeVM { config: Config { match_kind: None, pre: None }, nfa: thompson::NFA(
+>000000: binary-union(7, 1)
+ 000001: \x00-\xFF => 0
+ 000002: a => 8
+ 000003: b => 4
+ 000004: c => 5
+ 000005: binary-union(6, 8)
+ 000006: d => 5
+^000007: binary-union(2, 3)
+ 000008: MATCH(0)
+
+transition equivalence classes: ByteClasses(0 => [\x00-`], 1 => [a], 2 => [b], 3 => [c], 4 => [d], 5 => [e-\xFF], 6 => [EOI])
+)
+ }
+```
+
+`>` は start_unanchored (文字列の任意の位置から開始可能) の位置を表します。
+
+`a|bcd*` にマッチする文字列 s = `ebcdd` を例にして、どのように実行されるか見ましょう。
+- ptr = 0, pc = 0: binary-union(7, 1) があるので、次の行き先を 7 または 1 から選べる。ここでは 1 を選ぶ。
+- ptr = 0, pc = 1: \x00-\xFF はすべてのバイトにマッチする。当然 `e` にもマッチするので pc = 0 にする。
+- ptr = 1, pc = 0: binary-union(7, 1) があるので、次の行き先を 7 または 1 から選べる。ここでは 7 を選ぶ。
+- ptr = 1, pc = 7: binary-union(2, 3) があるので、次の行き先を 2 または 3 から選べる。ここでは 3 を選ぶ。
+- ptr = 1, pc = 3: b は `b` にマッチする。pc = 4 にする。
+- ptr = 2, pc = 4: c は `c` にマッチする。pc = 5 にする。
+- ptr = 3, pc = 5: binary-union(6, 8) があるので、次の行き先を 6 または 8 から選べる。ここでは 8 を選ぶ。
+- ptr = 3, pc = 8: MATCH(0) があるので、マッチして完了。
+
+この実行結果だと、 a**bc**dd の部分にマッチしたことになります。
+
+これ以上の詳しい説明は https://github.com/koba-e964/code-reading/tree/master/algorithm/regex~1.10.3 にあります。
