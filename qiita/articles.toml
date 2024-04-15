@@ -157,3 +157,9 @@ filename = "regex-compile-2/article.md"
 name = "正規言語でもコンパイルがしたい！(2): 各言語・ライブラリーにおけるコンパイル処理の実装"
 tags = ["正規表現", "コンパイル", "オートマトン"]
 uri = "https://qiita.com/kobae964/items/df6586342798db28237f"
+
+[[articles]]
+filename = "nim-problems.md"
+name = "競プロの Nim 問題まとめ (ネタバレあり)"
+tags = ["競技プログラミング", "ゲーム"]
+uri = "https://qiita.com/kobae964/items/775c10877763a65a0328"
