@@ -86,3 +86,9 @@ filename = "absolute-pitch-1.txt"
 name = "絶対音感と譜読みの早さ: (1)特殊な認知について"
 tags = ["絶対音感", "譜読み", "合唱", "ピアノ"]
 uri = "https://koba-e964.hatenablog.com/entry/2022/06/18/233000"
+
+[[articles]]
+filename = "yukicoder-1962.txt"
+name = "yukicoder 1962 の解説の解説の解説"
+tags = ["競プロ", "形式的冪級数", "数え上げ"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/04/15/230008"
