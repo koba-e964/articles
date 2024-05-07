@@ -163,3 +163,9 @@ filename = "nim-problems.md"
 name = "競プロの Nim 問題まとめ (ネタバレあり)"
 tags = ["競技プログラミング", "ゲーム"]
 uri = "https://qiita.com/kobae964/items/775c10877763a65a0328"
+
+[[articles]]
+filename = "sums-in-o1.md"
+name = "色々な和を O(1) で計算しよう!"
+tags = ["競技プログラミング", "Rust"]
+uri = "https://qiita.com/kobae964/items/b665c1f8fc8402219316"
