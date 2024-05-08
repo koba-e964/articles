@@ -17,7 +17,7 @@ $0 \le a \le n$ のとき、
 
 ```rust:diffsum.rs
 fn diffsum(n: i64, a: i64) -> i64 {
-    let mut tot = a * (a - 1) / 2;
+    let mut tot = a * (a + 1) / 2;
     tot += (n - a) * (n - a + 1) / 2;
     tot
 }
@@ -42,7 +42,7 @@ ARC176-D https://atcoder.jp/contests/arc176/tasks/arc176_d
 1. $\sum_{1\le i \le n, i \neq b} |i-a|$
 2. $\sum_{\\{i, j\\} \subseteq \\{1,\ldots,n\\}, \\{i,j\\} \cap \\{a,b\\} = \emptyset} |i-j|$ ($a \neq b$)
 
-`1.` は `diffsum(n, a) - (b - a).abs()` で簡単。`2.` について、包除原理を使ってみよう。
+`1.` は `diffsum(n, a) - a - (b - a).abs()` で簡単。`2.` について、包除原理を使ってみよう。
 考慮すべき条件は $i=a$, $i=b$, $j=a$, $j=b$ の 4 種類。これらの部分集合について包除原理を使えば良いが、考慮すべき部分集合は
 |条件|重み|
 |--|--|

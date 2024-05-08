@@ -169,3 +169,9 @@ filename = "sums-in-o1.md"
 name = "色々な和を O(1) で計算しよう!"
 tags = ["競技プログラミング", "Rust"]
 uri = "https://qiita.com/kobae964/items/b665c1f8fc8402219316"
+
+[[articles]]
+filename = "dp-with-classes.md"
+name = "線型変換をやる DP の状態をまとめるやつ"
+tags = ["競技プログラミング"]
+uri = "https://qiita.com/kobae964/private/3b06c13bbdb4946d707a"
