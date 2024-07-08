@@ -92,3 +92,9 @@ filename = "yukicoder-1962.txt"
 name = "yukicoder 1962 の解説の解説の解説"
 tags = ["競プロ", "形式的冪級数", "数え上げ"]
 uri = "https://koba-e964.hatenablog.com/entry/2024/04/15/230008"
+
+[[articles]]
+filename = "downunderctf-2024.txt"
+name = "DownUnderCTF 2024 writeup"
+tags = ["CTF"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/07/07/220920"
