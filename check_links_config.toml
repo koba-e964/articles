@@ -99,3 +99,21 @@ Certificate the server provides is not valid (a part of the chain is returned).
 considered_alternatives = [
     "https://www.cs.bham.ac.uk//~pbl/cbpv.html",
 ]
+
+[[ignores]]
+url = "https://codeforces.com/gym/102028/problem/L"
+codes = [403]
+reason = """This URL returns 403 when accessed by GitHub Actions.
+"""
+considered_alternatives = [
+    "https://codeforces.com/gym/102028/problem/L",
+]
+
+[[ignores]]
+url = "https://codeforces.com/contest/1109/problem/D"
+codes = [403]
+reason = """This URL returns 403 when accessed by GitHub Actions.
+"""
+considered_alternatives = [
+    "https://codeforces.com/contest/1109/problem/D",
+]
