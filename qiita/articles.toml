@@ -175,3 +175,9 @@ filename = "dp-with-classes.md"
 name = "線型変換をやる DP の状態をまとめるやつ"
 tags = ["競技プログラミング"]
 uri = "https://qiita.com/kobae964/private/3b06c13bbdb4946d707a"
+
+[[articles]]
+filename = "ec2-instance-internet.md"
+name = "EC2 instance をインターネットに繋ぐ"
+tags = ["AWS", "EC2", "メモ"]
+uri = "https://qiita.com/kobae964/items/1650a2cbef50264eb256"
