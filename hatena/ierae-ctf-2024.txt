@@ -1,0 +1,301 @@
+[https://ierae-ctf.com/challenges:title=IERAE CTF 2024] にチーム poteti fan club で参加した。日本時間で 2024-09-21 15:00 から 2024-09-22 15:00 まで。
+
+結果は 5/224 位。
+私は 1 問しか解けなかった上にそれも共同作業だったが、せっかくなので残しておく。
+
+* 解法集
+** Heady Heights
+- 88 ビットのランダムな素数 p 
+- 88 ビットのランダムな整数 a, b
+- 0 以上 p^7 未満の整数 secret
+- フラグを表す整数 m
+が裏で決まっている。EllipticCurve(Zmod(p^8), [a, b]) 上で以下のようにとった 3 点が与えられるので、m を求めよ。
+- P: x 座標が 1337 である点
+- Q: secret * P に等しい
+- R: x 座標が secret * m % (p^8) である点
+
+まずは p, a, b を求める必要がある。3 点与えられているので連立方程式を立てれば p^8 のある倍数が得られるが、それの因数分解は普通にやると難しい。[https://inaz2.hatenablog.com/entry/2016/01/20/022936:title=Coppersmith の定理]を使って p が計算できるらしいが未確認。(その部分はチームメイトにやってもらった。)
+
+(2024-09-24 12:30 追記) Coppersmith ではうまくいかなかったので ECM (楕円曲線を用いた素因数分解法) を使った。
+
+>|python|
+import time
+import ast
+
+
+with open('transcript.txt', 'r') as f:
+    lines = f.readlines()
+    x1, x2, x3 = ast.literal_eval(lines[0])
+    y1, y2, y3 = ast.literal_eval(lines[1])
+
+
+def find_nab() -> tuple[int, int, int]:
+    """
+    (a multiple of p^8, = a mod p^8, = b mod p^8)
+    """
+    # c[i] = y[i]^2 - x[i]^3 = a * x[i] + b (mod p^8)
+    c1 = y1^2 - x1^3
+    c2 = y2^2 - x2^3
+    c3 = y3^2 - x3^3
+
+    # d[i] = (c[i] - c[1]) * (x[5-i] - x[1]) = a * (x[2] - x[1]) * (x[3] - x[1]) (mod p^8)
+    d2 = (c2 - c1) * (x3 - x1)
+    d3 = (c3 - c1) * (x2 - x1)
+
+    n = abs(d2 - d3)
+    a = (c2 - c1) * pow(x2 - x1, -1, n)
+    b = (c1 - a * x1) % n
+    return (n, a, b)
+
+
+def find_p(n: int) -> int:
+    start = time.time()
+    f = ECM()
+    while True:
+        found, rest = f.find_factor(n, factor_digits=27)
+        (x, y) = found.perfect_power()
+        print(f'# ({time.time() - start:.2f}s) Found factor: {found} = {x}^{y}')
+        if n % (x^8) == 0:
+            return x
+        n = rest
+
+
+def main() -> None:
+    (n, a, b) = find_nab()
+    p = find_p(n)
+    print(f'p = {p}')
+    print(f'a = {a % p^8}')
+    print(f'b = {b % p^8}')
+
+
+if __name__ == '__main__':
+    main()
+||<
+
+結果は以下のようになり、p, a, b が求められた。
+>|text|
+$ sage solve0.sage
+# (0.02s) Found factor: 2 = 2^1
+# (0.03s) Found factor: 2 = 2^1
+# (0.06s) Found factor: 2 = 2^1
+# (0.07s) Found factor: 2 = 2^1
+# (4.93s) Found factor: 35764881942880514781 = 35764881942880514781^1
+# (220.32s) Found factor: 6223974622975369169562567725786857145362115460942923157165606761078369051592612183748734385724872112349709798180553302509115878018664263543083742427898087620984517306384044470054975520797172723893645179096435041 = 223490196137382483691737269^8
+p = 223490196137382483691737269
+a = 296018244906604047474066870
+b = 229833986083217530673727493
+||<
+
+p, a, b がわかったら [https://github.com/koba-e964/code-reading/blob/master/algorithm/smart-attack/README.md:title=SSSA Attack] を行う。
+E を mod p での (つまり [tex: \mathbb{F}_p] 上の) 楕円曲線、E' を mod p^8 での (つまり [tex: \mathbb{Z}/p^8\mathbb{Z}] 上の) 楕円曲線とする。このとき、[tex: E' \simeq E \times \mathbb{Z}/p^7\mathbb{Z}] が成立する (特に、位数は |E'| = |E| * p^7 である)。
+(以下 SSSA attack の軽い説明) 楕円曲線の座標系を変換し (z, w) = (-x/y, -1/y) として z, w を使うことにすると、楕円曲線の単位元は (z, w) = (0, 0) となり扱いやすくなる。
+ここで P や Q の位数 order を P や Q に掛けたものを oP, oQ と置くと、それを E 上で行った場合は E の単位元 ( (0, 0) ) になるが E' 上で行った場合は (p の倍数, p の倍数) になるのがポイント。
+- zw-座標で表された、z 座標が p の倍数である 2 点 (z1, w1), (z2, w2) を足すと、z = z1 + z2 + (p^2 の倍数) となるので、p^2 の倍数の差を無視すれば k * (z1, w1) = (k * z1, ...) である。これを利用して oP, oQ から secret % p が求められる。
+- secret % p^2 を求めるには、oQ の代わりに oQ - secret * oP に対して同じようなことをやれば良い。secret % p^3, ... も同様。
+
+>|python|
+from Crypto.Util.number import long_to_bytes
+import math
+from Crypto.Util import number
+import ast
+
+
+with open('transcript.txt', 'r') as f:
+    lines = f.readlines()
+    x1, x2, x3 = ast.literal_eval(lines[0])
+    y1, y2, y3 = ast.literal_eval(lines[1])
+
+K = 8
+p = 223490196137382483691737269
+a = 296018244906604047474066870
+b = 229833986083217530673727493
+mod = p**K
+
+
+def xy_to_zw(mo: int, point: tuple[int, int]) -> tuple[int, int]:
+    (x, y) = point
+    w = number.inverse(-y, mo)
+    z = x * w % mo
+    return (z, w)
+
+class ECZW:
+    def __init__(self, mo: int, a1: int, a2: int, a3: int, a4: int, a6: int):
+        """y^2 + a1 * x * y + a3 * y = x^3 + a2 * x^2 + a4 * x + a6
+        w = z^3 + a1 * z * w + a2 * z^2 * w + a3 * w^2 + a4 * z * w^2 + a6 * w^3
+        """
+        self.mo = mo
+        self.a1 = a1
+        self.a2 = a2
+        self.a3 = a3
+        self.a4 = a4
+        self.a6 = a6
+
+    @staticmethod
+    def simplified(mo: int, a: int, b: int):
+        """Simplified form: y^2 = x^3 + a * x + b
+        w = z^3 + a * z * w^2 + b * w^3
+        """
+        return ECZW(mo, 0, 0, 0, a, b)
+
+    def is_on(self, point: tuple[int, int]) -> bool:
+        return self.g(point) == 0
+
+    def g(self, point: tuple[int, int]) -> bool:
+        mo = self.mo
+        a1 = self.a1
+        a2 = self.a2
+        a3 = self.a3
+        a4 = self.a4
+        a6 = self.a6
+        (z, w) = point
+        rhs = z * z * z + a1 * z * w + a2 * z * z * w + a3 * w * w + a4 * z * w * w + a6 * w * w * w
+        return (rhs - w) % mo
+
+    def g_z(self, point: tuple[int, int]) -> int:
+        """∂g/∂z(point)
+        """
+        (z, w) = point
+        mo = self.mo
+        a1 = self.a1
+        a2 = self.a2
+        a4 = self.a4
+        return (3 * z * z + a1 * w + 2 * a2 * z * w + a4 * w * w) % mo
+
+    def g_w(self, point: tuple[int, int]) -> int:
+        """∂g/∂w(point)
+        """
+        (z, w) = point
+        mo = self.mo
+        a1 = self.a1
+        a2 = self.a2
+        a3 = self.a3
+        a4 = self.a4
+        a6 = self.a6
+        return (a1 * z + a2 * z * z + 2 * a3 * w + 2 * a4 * z * w + 3 * a6 * w * w - 1) % mo
+
+    def inv(self, p: tuple[int, int]) -> tuple[int, int]:
+        """Computes -p
+        """
+        mo = self.mo
+        a1 = self.a1
+        a3 = self.a3
+        (z, w) = p
+        invden = number.inverse(a1 * z + a3 * w - 1, mo)
+        return (z * invden % mo, w * invden % mo)
+
+    def add(self, p1: tuple[int, int], p2: tuple[int, int]) -> tuple[int, int]:
+        """Computes p1 + p2
+        """
+        mo = self.mo
+        a1 = self.a1
+        a2 = self.a2
+        a3 = self.a3
+        a4 = self.a4
+        a6 = self.a6
+        (z1, w1) = p1
+        (z2, w2) = p2
+        lam = None
+        invlam = None
+        if z1 == z2 and w1 == w2:
+            nom = self.g_z(p1)
+            den = -self.g_w(p1) % mo
+            if math.gcd(den, mo) != 1:
+                invlam = den * number.inverse(nom, mo) % mo
+            else:
+                lam = nom * number.inverse(den, mo) % mo
+        elif math.gcd(abs(z2 - z1), mo) != 1:
+            invlam = (z2 - z1) * number.inverse(w2 - w1, mo) % mo
+        else:
+            lam = (w2 - w1) * number.inverse(z2 - z1, mo) % mo
+        if lam is not None:
+            nu = (w1 - z1 * lam) % mo
+            zsum = -(a1 * lam + a2 * nu + a3 * lam * lam + 2 * a4 * lam * nu + 3 * a6 * lam * lam * nu) \
+                * number.inverse(1 + lam * (a2 + lam * (a4 + a6 * lam)), mo)
+            z3 = -(z1 + z2 - zsum) % mo
+            w3 = (lam * z3 + nu) % mo
+        elif invlam is not None:
+            mu = (z1 - invlam * w1) % mo
+            wsum = -number.inverse(a6 + invlam * (a4 + invlam * (a2 + invlam)), mo) \
+                * (a3 + mu * (a4 + 2 * a2 * invlam) + a1 * invlam + 3 * invlam * invlam * mu)
+            w3 = -(w1 + w2 - wsum)
+            w3 %= mo
+            z3 = (invlam * w3 + mu) % mo
+        else:
+            z = z1
+            z3 = z
+            # TODO: a6 != 0 must hold
+            wsum = (a3 + a4 * z) * number.inverse(-a6, mo) % mo
+            w3 = (wsum - w1 - w2) % mo
+        return self.inv((z3, w3))
+
+    def mul(self, x: int, p: tuple[int, int]) -> tuple[int, int]:
+        """Computes x * p
+        """
+        result = (0, 0)
+        cur = p
+        while x > 0:
+            if x % 2 == 1:
+                result = self.add(result, cur)
+            cur = self.add(cur, cur)
+            x //= 2
+        return result
+
+    def lift(self, less_mo: int, p: tuple[int, int]) -> tuple[int, int]:
+        """Hensel lifting to mod less_mo^2
+        """
+        assert less_mo * less_mo == self.mo
+        mo = self.mo
+        g_z = self.g_z(p)
+        g_w = self.g_w(p)
+        (z, w) = p
+        if g_z % less_mo != 0:
+            newz = (z - self.g(p) * number.inverse(g_z, mo)) % mo
+            assert self.is_on((newz, w))
+            return (newz, w)
+        neww = (w - self.g(p) * number.inverse(g_w, mo)) % mo
+        assert self.is_on((z, neww))
+        return (z, neww)
+
+
+def main() -> None:
+    E = EllipticCurve(Zmod(p^K), [a, b])
+
+    assert E.is_on_curve(x1, y1)
+    assert E.is_on_curve(x2, y2)
+    assert E.is_on_curve(x3, y3)
+
+    order = 5 * 7 * 13 * 70169606322566202068537
+    assert EllipticCurve(Zmod(p), [a, b])(x1, y1) * order == 0
+    ec = ECZW.simplified(p^K, a, b) # EC mod p^8
+    P1 = xy_to_zw(p^K, (x1, y1))
+    P2 = xy_to_zw(p^K, (x2, y2))
+    assert ec.is_on(P1)
+    assert ec.is_on(P2)
+    oP1 = ec.mul(order, P1)
+    assert ec.is_on(oP1)
+    disclog = 0
+    for i in range(K - 1):
+        oP2 = ec.mul(order, ec.add(P2, ec.inv(ec.mul(disclog, P1))))
+        assert ec.is_on(oP2)
+        assert oP1[0] % p == 0
+        assert oP2[0] % (p^(i + 1)) == 0
+        v1 = oP1[0] // p
+        v2 = oP2[0] // (p ^ (i + 1))
+        cur = v2 * pow(v1, -1, p) % p
+        disclog += cur * (p ^ i)
+        print(f'# disclog[{i}] =', disclog)
+    print("# disclog =", disclog)
+    m = x3 * pow(disclog, -1, p ^ 8) % (p ^ 8)
+    print(long_to_bytes(m).decode())
+
+    assert E(x1, y1) * disclog == E(x2, y2)
+
+
+if __name__ == '__main__':
+    main()
+||<
+
+[https://gist.github.com/elliptic-shiho/d13c2333adb4a94514753c8ca85a3f8e:title=公式解法]を見たら楕円曲線の自前実装ではなく Qp 上の EllipticCurve を使っており、そちらの方が楽だった。
+
+* まとめ
+SSSA Attack についての認識が甘く、気づくのに時間がかかった。
