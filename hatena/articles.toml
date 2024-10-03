@@ -110,3 +110,9 @@ filename = "ierae-ctf-2024.txt"
 name = "IERAE CTF 2024 writeup"
 tags = ["CTF"]
 uri = "https://koba-e964.hatenablog.com/entry/2024/09/22/235027"
+
+[[articles]]
+filename = "buckeyectf-2024.txt"
+name = "BuckeyeCTF 2024 writeup"
+tags = ["CTF"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/10/03/112843"
