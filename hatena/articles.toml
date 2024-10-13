@@ -116,3 +116,9 @@ filename = "buckeyectf-2024.txt"
 name = "BuckeyeCTF 2024 writeup"
 tags = ["CTF"]
 uri = "https://koba-e964.hatenablog.com/entry/2024/10/03/112843"
+
+[[articles]]
+filename = "alpacahack-round-5.txt"
+name = "AlpacaHack Round 5 (Crypto) writeup"
+tags = ["CTF", "cryptography"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/10/13/100843"
