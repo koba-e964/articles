@@ -1,0 +1,82 @@
+[https://spookyctf.ctfd.io/challenges:title=SpookyCTF 2024] にチーム [https://spookyctf.ctfd.io/teams/589:title=zk-aficionado] で参加した。日本時間で 2024-10-26 08:00 から 2024-10-28 08:30 まで。
+
+結果は 122/831 位。
+crypto 問題だけ解いた感想としてはかなりワクワクコンテストだった。来年以降の犠牲者を減らすべく解けた問題について書く。
+問題で与えられるソースコードや説明が self-contained ではなく、いろいろな推測をする必要があることに注意。
+
+* 解法集
+** crypto
+*** the-moth-flies-at-dawn
+単語が並べられた wordList.txt と、それらのうちどれか一つのハッシュ値 (アルゴリズム不明) が書かれた hash.txt が与えられるので、どれのハッシュ値か当てる問題。
+View Hints をすると「SHA256 を調べろ」(It would be a SHAme if all 256 of these meals went to waste.) と書いてあるので、それによってハッシュアルゴリズムに当たりをつける。
+
+>|python|
+from hashlib import sha256
+
+
+def main() -> None:
+    with open('hash.txt', 'r') as f:
+        hash_value = bytes.fromhex(f.read().strip())
+    with open('wordList.txt', 'r') as f:
+        words = f.read().splitlines()
+    for word in words:
+        if sha256(word.encode()).digest() == hash_value:
+            print(f'NICC{{{word}}}')
+            return
+
+
+if __name__ == '__main__':
+    main()
+||<
+
+*** encryption-activated
+ciphertext[i] = plaintext[i] - (letter + i) によって暗号化されたデータが与えられるので、letter を推測して復元せよという問題。
+単に letter を総当たりしてそれっぽいものを探せば良いが、与えられる flag.output は最後に改行文字があり、それを無視して復元する必要があることに注意。
+
+>|python|
+def mycipher(myinput: str, myletter: str) -> None:
+    rawdecrypt = list(myinput)
+    for iter in range(0,len(rawdecrypt)):
+        rawdecrypt[iter] = chr(ord(rawdecrypt[iter]) + ord(myletter))
+        myletter = chr(ord(myletter) + 1)
+    if any(c < 0x20 or c > 0x7e for c in map(ord, rawdecrypt)):
+        return
+    encrypted = "".join(rawdecrypt)
+    print("NICC{" + encrypted + "}", myletter)
+
+
+def main() -> None:
+    with open("flag.output", "rb") as f:
+        cipher = f.read().strip()
+    for c in range(32, 127):
+        mycipher(cipher.decode(), chr(c))
+
+
+if __name__ == "__main__":
+    main()
+||<
+
+*** tracking-the-beast
+問題文のストーリー部分は完全に無視できて、重要なのは以下の部分だけ。
+- the curve y^2 = x^3 + 73x + 42 mod 251
+-- 楕円曲線の問題である
+- Flag Format: NICC{(##,##)}
+-- 楕円曲線の点を答えさせたいことがわかる
+- at (26,38)
+-- おそらく基点 (ベースとなる点)
+- A large depiction of Green Lantern with 13 rings on his fingers
+-- Google 検索したら [https://www.reddit.com/r/comicbooks/comments/a6prip/green_lantern_49_cover_art_by_darryl_banks/:title=49 巻]であることがわかる
+
+これらのことから、点が答えなら与えられた基点のスカラー倍くらいしか方法がないことが推測できるので、(26,38) * 49 = (72,17) が答えである。フラグは <code>NICC{(72,17)}</code> である。
+
+計算には SageMath などを使えば良い。SageMath を使うと以下のように計算できる。
+>|python|
+sage: E = EllipticCurve(GF(251), [73, 42])
+sage: E
+Elliptic Curve defined by y^2 = x^3 + 73*x + 42 over Finite Field of size 251
+sage: E(26, 38) * 49
+(72 : 17 : 1)
+||<
+
+* まとめ
+crypto じゃなくて guessing を名乗ってくれ
