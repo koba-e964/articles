@@ -1,0 +1,56 @@
+最近の CTF では Approximate GCD を要求されることが多い。直近では 2024/10/26 の CTF ([https://koba-e964.hatenablog.com/entry/2024/11/01/103550:title=ISITDTU CTF QUALS 2024]) で出題された。そのとき出題された Sign という問題において、解く側にはサンプルとなる署名を何個取るかの自由度があり、それによって Approximate GCD に渡す整数の個数が決まる。
+Approximate GCD には以下のようなトレードオフがある。
+- 正しさ: 整数の個数が少なすぎると正しい答えが出ない確率が高い。
+- 速度: Approximate GCD は内部で [https://en.wikipedia.org/wiki/Lenstra%E2%80%93Lenstra%E2%80%93Lov%C3%A1sz_lattice_basis_reduction_algorithm:title=LLL アルゴリズム]を使っているので、一応多項式時間で動作はするものの整数の個数が多すぎると時間がかかる。
+
+これにより、Approximate GCD に渡すべき整数の個数が分からなかったので調査した。
+
+実験に使ったコードは[https://github.com/koba-e964/code-reading/tree/master/algorithm/approximate-gcd-experiment:title=コード置き場]にある。またデータをまとめたスプレッドシートは [https://docs.google.com/spreadsheets/d/1nmj0uAPWkWbC0uXBoA7eBef_a6cRJ-UgTDuuh0gAc2Y/edit?usp=sharing:title] にある。
+
+* 結論
+nums を長さ n の s ビット程度の整数列とする。Approximate GCD ([https://github.com/koba-e964/code-reading/blob/master/algorithm/approximate-gcd-experiment/approx_gcd.sage:title=approx_gcd.sage] の <code>approx_gcd(d: list[int], approx_error: int) -> int</code>) を <code>approx_gcd(nums, 2**b)</code> の形で呼び出す時、返ってくる間違った値は (s-b)/n + b ビット程度である。d ビット程度の値が欲しい場合は、(s-b)/n + b < d となるように十分大きい n を選ぶべきである。(n > (s - b) / (d - b))
+Sign の場合、s = 2048 * 11 = 22528, b = 256, d = 2048 であったので、n > (22528 - 256) / (2048-256) ~= 12.43 である必要があった。(実装の都合上、n = (サンプル数) - 1 だったので、(サンプル数) >= 14 が必要。)
+
+* 前提知識
+Approximate GCD というのは、以下のような問題、およびそれを解くアルゴリズムのことを意味している。
+>>
+n 個の整数 nums が与えられる。nums[i] が全て g の倍数に近いような、最大の g を求めよ。(どの程度の差であれば「近い」とみなすのかは問題によって決まる。)
+<<
+
+参考資料はなかなか見つかりにくいが、例えば以下を参考にされたい。
+- [https://furutsuki.hatenablog.com/entry/2021/09/23/122340:title=Approximate GCDとして解く問題 - RCTF 2021 Uncommon Factor 2 / Midnightsun CTF 2021 Finals Flåarb.tar.xz writeup - ふるつき]
+- [https://martinralbrecht.wordpress.com/2020/03/21/the-approximate-gcd-problem/:title=The Approximate GCD Problem - malb::blog]
+- [https://koba-e964.hatenablog.com/entry/2024/10/13/100843:title=AlpacaHack Round 5 (Crypto) writeup - koba-e964の日記]
+
+実装は [https://github.com/koba-e964/code-reading/blob/master/algorithm/approximate-gcd-experiment/approx_gcd.sage:title=approx_gcd.sage] を参考にされたい。
+
+* 実験
+** 予備実験
+筆者はまず、「n 個の整数を approx_gcd に与えるのであれば、失敗確率は [tex:1-1/\zeta(n)] で成功確率は [tex:1/\zeta(n)] だろう」と考え、実験した。(ζ は[https://ja.wikipedia.org/wiki/%E3%83%AA%E3%83%BC%E3%83%9E%E3%83%B3%E3%82%BC%E3%83%BC%E3%82%BF%E9%96%A2%E6%95%B0:title=ゼータ関数]であり、なぜゼータ関数が登場するのかは [https://mathlog.info/articles/2953:title=任意に選んだn数が互いに素になる確率 | Mathlog] などを参考にすること。失敗するのは欲しい gcd で割ったときの商がたまたま互いに素でなかったときである。)
+
+結果は予想に反し、n <= 12 のとき (num_sigs <= 13 のとき) 確実に失敗し、n >= 13 のとき (num_sigs >= 14 のとき) 確実に成功した。
+データについては[https://github.com/koba-e964/code-reading/tree/master/algorithm/approximate-gcd-experiment:title=コード置き場]の exp-0.sage, exp-0.log を見ること。
+
+** 誤差の実験 (Sign)
+num_sigs <= 13 のとき確実に失敗したので、gcd として得られた値が本来欲しい値と比べてどのくらい大きいかを実験した。
+データについては[https://github.com/koba-e964/code-reading/tree/master/algorithm/approximate-gcd-experiment:title=コード置き場]の exp-1-error.sage, exp-1-error.log を見ること。
+結果は以下のように、(反比例) + (定数) ビットという形になった。
+
+><figure class="figure-image figure-image-fotolife" title="exp-1-error.sage の結果 (表)">[f:id:koba-e964:20241103094650p:plain]<figcaption>exp-1-error.sage の結果 (表)</figcaption></figure><
+
+><figure class="figure-image figure-image-fotolife" title="exp-1-error.sage の結果 (グラフ)">[f:id:koba-e964:20241103094516p:plain]<figcaption>exp-1-error.sage の結果</figcaption></figure><
+
+** 誤差の実験 (10000 ビットのランダムな整数)
+ランダムな整数については (反比例) + (定数) ビットという形になる可能性があると思い、10000 ビットのランダムな整数を num_nums 個与える実験をした。(2 <= num_nums <= 16)
+データについては[https://github.com/koba-e964/code-reading/tree/master/algorithm/approximate-gcd-experiment:title=コード置き場]の exp-2.sage, exp-2.log を見ること。
+
+結果はやはり (反比例) + (定数) ビットであった。
+
+><figure class="figure-image figure-image-fotolife" title="exp-2.sage の結果 (表)">[f:id:koba-e964:20241103100105p:plain]<figcaption>exp-2.sage の結果 (表)</figcaption></figure><
+><figure class="figure-image figure-image-fotolife" title="exp-2.sage の結果 (グラフ)">[f:id:koba-e964:20241103100139p:plain]<figcaption>exp-2.sage の結果 (グラフ)</figcaption></figure><
+
+* 結論
+nums を長さ n の s ビット程度のランダムな整数列とする。Approximate GCD ([https://github.com/koba-e964/code-reading/blob/master/algorithm/approximate-gcd-experiment/approx_gcd.sage:title=approx_gcd.sage] の <code>approx_gcd(d: list[int], approx_error: int) -> int</code>) を <code>approx_gcd(nums, 2**b)</code> の形で呼び出す時、返ってくる値は (s-b)/n + b ビット程度である。
+この結論は以下の理屈で正当化できる。また実験とも整合している。
+- b が十分に大きい場合、全ての整数を 2^b で割れば nums は 2^(s-b) 程度のランダムな<strong>実数</strong>列と見なせる。これに対して LLL をやって得られる結果の大きさは s-b のみに依存し、s や b そのものには依存しないはず。そのため最終的なビット長は (s-b の式) + b ビットになるはず。
+- ビット長は n に関して単調減少であるはず。

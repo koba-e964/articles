@@ -134,3 +134,9 @@ filename = "isitdtu-ctf-quals-2024.txt"
 name = "ISITDTU CTF QUALS 2024 writeup"
 tags = ["CTF", "cryptography"]
 uri = "https://koba-e964.hatenablog.com/entry/2024/11/01/103550"
+
+[[articles]]
+filename = "approx-gcd-survey/approx-gcd-survey.txt"
+name = "Approximate GCD の返り値の大きさについて、あるいは我々は何個のサンプルを取るべきか"
+tags = ["CTF", "cryptography"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/11/03/120213"
