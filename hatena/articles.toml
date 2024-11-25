@@ -140,3 +140,9 @@ filename = "approx-gcd-survey/approx-gcd-survey.txt"
 name = "Approximate GCD の返り値の大きさについて、あるいは我々は何個のサンプルを取るべきか"
 tags = ["CTF", "cryptography"]
 uri = "https://koba-e964.hatenablog.com/entry/2024/11/03/120213"
+
+[[articles]]
+filename = "seccon-ctf-13-quals.txt"
+name = "SECCON CTF 13 Quals writeup"
+tags = ["CTF", "cryptography"]
+uri = "https://koba-e964.hatenablog.com/entry/2024/11/25/165649"
