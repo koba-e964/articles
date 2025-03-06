@@ -261,6 +261,7 @@ strings などで中身を調べると mruby という文字列が見つかる�
 準同型暗号で秘密裏に計算をやる役をこなせ。長さ $8192 = 2^{13}$ の実数のベクトルが与えられるので、round ごとに決められた計算をせよ。ジャッジ側で真の値との平均誤差 (MAE) を計算し、それの小さい方が勝ち。
 
 Round 2: 長さ 8192 のベクトルを $4096 \times 2$ 行列とみなす。行列の行ごとに 2 個の  max を計算し、それを行の最初の要素に格納せよ。残りの要素はどうなっていても問題ない。
+Round 3: 長さ 8192 のベクトルを $256 \times 32$ 行列とみなす。行列の行ごとに 32 個の  標本平均 $a$ と標本分散 $v$ を計算し、それぞれの要素 $x$ を $(x-a)/\sqrt{v}$ で置き換えよ。
 Round 4: 長さ 8192 のベクトルを $512 \times 16$ 行列とみなす。行列の行ごとに 16 個の max を計算し、それを行の最初の要素に格納せよ。残りの要素はどうなっていても問題ない。
 
 ### 解法 (Round 2)
@@ -399,6 +400,201 @@ def main():
     ans_buf = ans.save_to_buffer()
     with open('./ans.enc', 'wb') as f:
         f.write(ans_buf)
+    
+
+main()
+```
+:::
+
+### 解法 (Round 3)
+二日目は Round 3 から始まった。問題の中身もよくわからないので格闘していた。
+結局この round では以下のものを実装した。
+- grader (手元で生成した秘密鍵・公開鍵・テストデータに対する MAE を出力するスクリプト)
+- 秘密鍵をオプションで受け取って復号後の値を表示する関数 (`debug`, デバッグ用)
+
+この round ではスコアそのものは惨憺たるものだったが、上 2 つは Round 4 で役に立った。
+
+::: details solve-chal3.py
+```python
+import pyhelayers
+from pyhelayers import CTileTensor as CTT, CTile
+import numpy as np
+
+from sklearn.linear_model import HuberRegressor, LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+from scipy.optimize import minimize
+
+import sys
+
+N = 2**8
+M = 2**5
+EPS = 1e-5
+
+
+def calc_coef(d):
+    N = 2**11
+
+    xs = []
+    
+    sigma = [0.5 + 0.5 * i / (N - 1) for i in range(N)]
+    
+    for i in range(N):
+        xs.append(sigma[i])
+
+    xs = np.array(xs)
+    ys = np.divide(1., np.sqrt(xs))
+
+    def l1_loss(coeffs, x, y):
+        poly_vals = np.polyval(coeffs, x)
+        return np.sum(np.abs(poly_vals - y))
+    
+    initial_guess = np.polyfit(xs, ys, d)
+    result = minimize(l1_loss, initial_guess, args=(xs, ys), method='Powell')
+    coef = result.x
+    
+    print(coef)
+
+    m = 0
+    for i in range(len(xs)):
+        # a = coef_3[0] * (xs[i] ** 3) + coef_3[1] * xs[i] * xs[i] + coef_3[2] * xs[i] + coef_3[3]
+        x = xs[i]
+        a = 0
+        for j in range(d + 1):
+            a += coef[j] * (x ** (d - j))
+        b = xs[i]**-0.5
+        m += abs(a - b)
+    print(f'# error: {m / len(xs)}')
+    
+    return coef
+
+
+
+def zero(x):
+    xx = CTile(x)
+    xx.multiply_scalar(0)
+    return xx
+    
+
+def one(x):
+    xx = CTile(x)
+    xx.multiply_scalar(0)
+    xx.add_scalar(1)
+    return xx
+
+
+def multiply_scalar(x, v):
+    xx = CTile(x)
+    xx.multiply_scalar(v)
+    return xx
+
+def multiply(x, y):
+    xx = CTile(x)
+    xx.multiply_raw(y)
+    return xx
+
+def pow(x, n):
+    xx = one(x)
+    for i in range(n):
+        xx.multiply(x)
+    
+    return xx
+
+def add_scalar(x, v):
+    xx = CTile(x)
+    xx.add_scalar(v)
+    return xx
+
+def add(x, y):
+    xx = CTile(x)
+    xx.add(y)
+    return xx
+
+def sub(x, y):
+    xx = CTile(x)
+    xx.sub(y)
+    return xx
+
+def sum(x):
+    xx = CTile(x)
+    xx.inner_sum()
+    return xx
+
+
+def avg(x):
+    xx = CTile(x)
+    xx.inner_sum()
+    xx.multiply_scalar(1.0 / (N * M))
+    return xx
+
+def square(x):
+    xx = CTile(x)
+    xx.square()
+    return xx
+
+
+def var(x):
+    n = 2**13
+    a = sum(x)
+    an = multiply_scalar(a, 1.0 / n)
+    d = sub(x, an)
+    c = square(d)
+    d = sum(c)
+    dn = multiply_scalar(d, 1.0 / n)
+    return dn
+
+def rotate(x, n):
+    xx = CTile(x)
+    xx.rotate(n)
+    return xx
+
+
+def sqrt(x, d):
+    coef = calc_coef(d)
+    
+    res = zero(x)
+    
+    for i in range(d + 1):
+        if i == 0:
+            res = multiply_scalar(x, coef[i])
+        else:
+            res.add_scalar(coef[i])
+            if i != d:
+                res.multiply(x)
+    
+    return res
+
+
+def debug(v, encoder):
+    plain = encoder.decrypt_decode_double(v)
+    print(plain[:3])
+
+
+def main():
+    pubkeypath = sys.argv[1]
+    he_context = pyhelayers.SealCkksContext()
+    he_context.load_from_file(pubkeypath)
+    if len(sys.argv) >= 3:
+        he_context.load_secret_key_from_file(str(sys.argv[2]))
+    encoder = pyhelayers.Encoder(he_context)
+    buf = open("./enc", "rb").read()
+    a = pyhelayers.load_ctile(he_context, buf)
+    
+
+    vg = avg(a)
+    v = multiply_scalar(one(a), 1.2)
+    invstd = sqrt(v, 6)
+    ans = sub(a, vg)
+    ans = multiply_scalar(ans, 0.71)
+    
+    ans_buf = ans.save_to_buffer()
+    with open('./ans.enc-3', 'wb') as f:
+        f.write(ans_buf)
+    
+    if len(sys.argv) >= 3:
+        debug(a, encoder)
+        debug(vg, encoder)
+        debug(v, encoder)
     
 
 main()
@@ -635,3 +831,13 @@ main()
 
 # 参考資料
 https://zenn.dev/sigma425/articles/39dbe84df2390f (sigma さんの writeup)
+
+# Writeup 賞用の写真
+会場の写真を writeup に 2 枚以上載せるという制約がある。
+スタッフに撮っていただいた写真
+![](https://storage.googleapis.com/zenn-user-upload/dd9d4ed4723e-20250306.png)
+チームメイトにもらった写真
+![](https://storage.googleapis.com/zenn-user-upload/a45350be5fdb-20250306.png)
+
+# その他の写真
+![](https://storage.googleapis.com/zenn-user-upload/5a626e88e078-20250306.png)
