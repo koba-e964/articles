@@ -1,5 +1,11 @@
 [[articles]]
 filename = "seccon-ctf-13-finals-writeup/article.md"
 name = "SECCON CTF 13 Final writeup"
-tags = ["CTF", "crypto", "tech"]
+tags = ["CTF", "crypto", "Tech"]
 uri = "https://zenn.dev/koba_e964/articles/0af3ffe837508a"
+
+[[articles]]
+filename = "seccon-ctf-13-finals-watching-writeup.md"
+name = "SECCON CTF 13 決勝観戦CTF writeup"
+tags = ["CTF", "crypto", "Tech"]
+uri = "https://zenn.dev/koba_e964/articles/3772edb9f21e30"
