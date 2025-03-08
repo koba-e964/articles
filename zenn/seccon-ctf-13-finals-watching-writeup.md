@@ -33,7 +33,11 @@ Additive abelian group isomorphic to Z/34323988300653048574909503995406966086347
 <https://hackmd.io/@FurgjSzLSjeQo0q8zgTaqQ/HJT3Raboyx#Customizable-EC> の解法。特に理由がなければ極力これを採用すべきである。
 - Anomalous curve を使えば一発で離散対数が求められる
   - 解法 1 のやり方は素数の bit 数に制限があると使えない可能性がある
- 
+
+なお、anomalous curve の生成には以下のツールが使える:
+- <https://github.com/J08nY/ecgen>: C で書かれており速いことが期待されるが複雑である。
+- <https://github.com/koba-e964/code-reading/tree/master/algorithm/gen-anomalous> のスクリプト (`gen.sage`): たった 75 行程度であり単純である。このスクリプトから生成方法を学ぶこともできる。
+
 ### 解法 3
 ランダムに曲線を生成して小さい位数の点を持つのを待つ。
 
