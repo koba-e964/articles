@@ -1,0 +1,25 @@
+* セキュリティー・CTF
+https://github.com/cryptocoinjs/secp256k1-node/security/advisories/GHSA-584q-6j8j-r5pm
+- Invalid curve attack の亜種。2^35 回程度の前計算を行うことで、 11 回の通信 (ECDH) で秘密鍵を特定できるのが特筆すべき点。
+-- 下手したら CTF で出題可能なくらいセットアップが楽。
+
+​​https://www.latacora.com/blog/2024/07/29/crypto-right-answers-pq/
+- Cryptographic Right Answers (https://www.latacora.com/blog/2018/04/03/cryptographic-right-answers/) のポスト量子版。
+-- 非対称暗号技術が主に影響を受ける。
+-- 耐量子暗号はどれを勉強したら良いか方針を決めにくいので、こういった記事はかなり参考になる。
+
+https://storj.dev/blog/two-mul-or-not-two-mul
+- Go 言語標準ライブラリーの Ed25519 実装において、19 倍する処理の高速化。高速化コミットは[https://github.com/golang/go/commit/6719336428da455c0708c7f1564c873d6f6e2c6d:title=これ]。
+-- [tex:p = 2^{255} - 19] を位数とした有限体の上の演算が高速になる。よって Ed25519 関連の全ての演算速度が底上げされる。 
+-- Go 言語にもまだこのような高速化の余地が残っていたのがかなり意外だった。
+
+
+* 数学
+https://note.com/yu_kishi248/n/n1f99eb4435b5
+- SO(3, R) の有限部分群の分類。「巡回群、二面体群、正多面体の対称性の群 のいずれか」という結論になる。整数についての議論を駆使して証明する。
+-- 結論が単純であり、議論もギリギリ高校生が追えそうな雰囲気がある。
+
+* 曲
+https://www.youtube.com/watch?v=NkxsPu9Z-r8&ab_channel=KotoHa-Topic
+- 「ましろ色シンフォニー SANA EDITION」の ED テーマ「春を連れて」。
+-- 0:48 付近の [https://dic.nicovideo.jp/a/blackadder%20chord:title=Blackadder chord] (Iaug/♯IV) が心地よい。
