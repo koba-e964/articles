@@ -9,3 +9,9 @@ filename = "seccon-ctf-13-finals-watching-writeup.md"
 name = "SECCON CTF 13 決勝観戦CTF writeup"
 tags = ["CTF", "crypto", "Tech"]
 uri = "https://zenn.dev/koba_e964/articles/3772edb9f21e30"
+
+[[articles]]
+filename = "tsukuctf-2025-writeup.md"
+name = "TsukuCTF 2025 writeup"
+tags = ["CTF", "crypto", "Tech"]
+uri = "https://zenn.dev/koba_e964/articles/34bf5e65d5d342"
