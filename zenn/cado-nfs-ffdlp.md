@@ -1,3 +1,33 @@
+# まとめ
+p が 256 bit 程度のとき、有限体上の離散対数問題 (FFDLP) は 30 分くらいで解けるため、CTF の時間制限の中ですら有効である。競技者は積極的にそのやり方を試すべきである。作問者は p を 512 bit 程度にしてその解法を封じるべきである。
+
+# 注意
+[IERAE CTF 2025 で出題された Cipher Brothers (medium)](https://gmo-cybersecurity.com/blog/ierae-ctf-2025-writeup-crypto/) のネタバレを含む。
+
+# 理論
+有限体上の離散対数問題 (FFDLP) とは以下のような問題である。
+
+> 整数 $a, b$ と素数 $p$ がわかっている。このとき $a^x \equiv b \pmod{p}$ となる $x$ を求めよ。
+
+この問題には [GNFS](https://ja.wikipedia.org/wiki/%E4%B8%80%E8%88%AC%E6%95%B0%E4%BD%93%E7%AF%A9%E6%B3%95) を用いた解法が知られている。[^1]
+
+[^1]: GNFS は素因数分解のアルゴリズムとして有名だが、少し修正することで FFDLP も解ける。
+
+$p$ が 256 bit の場合、必要な手間はおよそ 47 bit ($2^{47}$ 回の計算) 程度である。
+
+# 実践
+
+## インストールバトル
+- <https://gitlab.inria.fr/cado-nfs/cado-nfs> を読んでがんばってくれ
+- x86_64 なら動くはず
+- 筆者は GitHub Codespaces で動かした
+
+## 本丸
+IERAE CTF 2025 で [Cipher Brothers (medium)](https://gmo-cybersecurity.com/blog/ierae-ctf-2025-writeup-crypto/) という問題が出題された。
+
+この問題そのものは、ElGamal 暗号化の不適切な使用を咎める問題であるが、そもそも modulus が 256 bit 程度と非常に短いので、正攻法で解けてしまう。
+
+以下は配布スクリプトをローカルで動かして得られる出力である。
 ```
 $ python server.py 
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
@@ -8,12 +38,12 @@ c1: 1677686000024433208404013271082684238381543348605647411098761184053106388464
 c2: 17312389444159424432880742499318648086587714590988164668646265834663708400738
 ```
 
-$\log_g h$ を求めるには $\log_u h$ と $\log_u g$ を求めれば良い。 (ここで、 $u$ は cado-nfs が勝手に決める生成元)
+$x = \log_g h$ を求めれば正攻法で $m$ がわかる。 $\log_g h$ を求めるには $\log_u h$ と $\log_u g$ を求めれば良い。 (ここで、 $u$ は cado-nfs が勝手に決める生成元)
 
-`./cado-nfs.py -dlp -ell (p-1) target=(h) (p)` と `./cado-nfs.py -dlp -ell (p-1) target=(g) (p)` を実行し、 $a_2 / a_1 \pmod{p-1}$ を計算すればそれが答えである。
+`./cado-nfs.py -dlp -ell ((p-1)/2) target=(h) (p)` と `./cado-nfs.py (一時ファイルの場所) target=(g)` を実行し、順に結果を $a_1, a_2$ としたとき $a_1 / a_2 \pmod{p-1}$ を計算すればそれが答えである。
 
 ```bash
-./cado-nfs.py -dlp -ell 79938156244279490196917570063539966343976157459476321233940429171848106787198 target=44466765521008176715623609408764237450859969023369800232513568424301429892003 79938156244279490196917570063539966343976157459476321233940429171848106787199
+./installed/bin/cado-nfs.py -dlp -ell 79938156244279490196917570063539966343976157459476321233940429171848106787198 target=44466765521008176715623609408764237450859969023369800232513568424301429892003 79938156244279490196917570063539966343976157459476321233940429171848106787199
 
 # 同じ ell, p、異なる target に対して実行する。
 ./installed/bin/cado-nfs.py (前回の実行で教えてもらった一時ファイルの場所) target=66660761356875726919828279967833176091195706284787636435486590927603284420008
@@ -57,7 +87,7 @@ sys     0m8.115s
 
 :::
 
-GitHub Codespaces の上では前者は約 26 分、後者は約 1 分で完了した。
+GitHub Codespaces (2 cores) の上では前者は約 26 分、後者は約 1 分で完了した。
 
 なお、元の問題に戻ると、離散対数さえわかれば以下のようにして簡単にフラグが取得できる。
 
@@ -90,6 +120,35 @@ b'\x00\x00\x00\x00\x00\x00IERAE{dummy flag for test}'
 ## 小さい例だと動かない
 F_7 でまず試そうとして実行しても固まる なんだこれ
 
+::: details F_7 の素因数分解 実行
+```console
+$ ./installed/bin/cado-nfs.py parameters/factor/parameters.F7 340282366920938463463374607431768211457
+nfo:root: No database exists yet
+Info:root: Created temporary directory /tmp/cado.qn2mhtjs
+Info:Database: Database URI is db:sqlite3:///tmp/cado.qn2mhtjs/F7.db
+Info:Database: Opened connection to database /tmp/cado.qn2mhtjs/F7.db
+Info:root: Set tasks.linalg.bwc.threads=1 based on detected physical cores
+Info:root: Set tasks.threads=2 based on detected logical cpus
+Info:root: tasks.threads = 2 [via tasks.threads]
+Info:root: tasks.polyselect.threads = 2 [via tasks.polyselect.threads]
+Info:root: tasks.sieve.las.threads = 2 [via tasks.sieve.las.threads]
+Info:root: tasks.linalg.bwc.threads = 1 [via tasks.linalg.bwc.threads]
+Info:root: tasks.sqrt.threads = 2 [via tasks.threads]
+Info:root: Command line parameters: ./installed/bin/cado-nfs.py parameters/factor/parameters.F7 340282366920938463463374607431768211457
+Info:root: If this computation gets interrupted, it can be resumed with ./installed/bin/cado-nfs.py /tmp/cado.qn2mhtjs/F7.parameters_snapshot.0
+Info:API server: server whitelist is []
+Info:API server: Running from werkzeug (1 thread(s))
+Info:Lattice Sieving: param rels_wanted is 20000
+Info:Complete Factorization / Discrete logarithm: Factoring 340282366920938463463374607431768211457
+Info:API server: Running on https://localhost:45223 (Press CTRL+C to quit))
+Info:API server: You can start additional cado-nfs-client.py scripts with parameters: --server=https://localhost:45223 --certsha1=f1d24a8e9813392c4dbee212227c05483c039fb2
+Info:API server: If you want to start additional clients, remember to add their hosts to server.whitelist
+Info:Polynomial Selection (size optimized): Starting
+Info:Polynomial Selection (size optimized): 0 polynomials in queue from previous run
+Info:Polynomial Selection (size optimized): Adding workunit F7_polyselect1_0-2500 to database
+Info:Polynomial Selection (size optimized): Adding workunit F7_polyselect1_2500-5000 to database
+```
+:::
 
 ## `Number Theory for DLP: Starting` の後 404 が返ってくるんだが
 ell = p-1 とすると以下のように進まなくなる:
@@ -108,7 +167,7 @@ Info:werkzeug: 127.0.0.1 - - [26/Jun/2025 02:38:08] "GET /workunit HTTP/1.1" 404
 Info:werkzeug: 127.0.0.1 - - [26/Jun/2025 02:38:13] "GET /workunit HTTP/1.1" 404 -
 ```
 
-ell を (p-1)/2 にしよう。
+この問題では $p$ は安全素数 ($(p-1)/2$ も素数であるような素数) であり、ell を $(p-1)/2$ にすれば動く。一般の場合に ell をどうすれば良いかは未調査。もしかしたら ell は素数である必要があるかもしれない。
 
 # 背景情報
 cado-nfs のバージョン
