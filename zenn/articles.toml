@@ -15,3 +15,9 @@ filename = "tsukuctf-2025-writeup.md"
 name = "TsukuCTF 2025 writeup"
 tags = ["CTF", "crypto", "Tech"]
 uri = "https://zenn.dev/koba_e964/articles/34bf5e65d5d342"
+
+[[articles]]
+filename = "cado-nfs-ffdlp.md"
+name = "cado-nfs で FFDLP を hack しよう!"
+tags = ["CTF", "crypto", "Tech"]
+uri = "https://zenn.dev/koba_e964/articles/263643a1fc76c3"
