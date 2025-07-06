@@ -1,0 +1,66 @@
+* セキュリティー・CTF
+
+[https://www.tumblr.com/accidentallyquadratic/153545455987/rust-hash-iteration-reinsertion]
+- Rust の HashMap で計算量が 2 乗になるパターンが過去あった話
+- 2016 年の話なのでもう修正されている: [https://github.com/rust-lang/rust/pull/37470]
+- このパターンがまずかった (根本原因は二つの HashSet で seed が同じであることと、one の要素を全列挙する際にバケット順に調べること)
+>|rust|
+let mut one = HashSet::new();
+let mut two = HashSet::new();
+/* one を埋めて 500000 要素にする */
+for v in one { two.insert(v); }
+||<
+
+[https://go.dev/blog/tob-crypto-audit:title]
+- Go の暗号理論のライブラリーを監査した話
+- (Go ということを考えれば当然だが) ほとんど問題が見つからなくてすごい
+- 公開鍵への適用を意図した関数でも constant-time にするのが几帳面
+-- constant-time である必要がなさそうな関数でも constant-time にしたいときの言い訳として使える
+
+* 技術一般
+[https://blog.kondoyuko.com/entry/chatgpt-keito:title]
+- 生成 AI が得た「人格」は新しく会話を始める際に引き継げることがある。
+- これを読んだ時 (2025 年 4 月)、生成 AI と親密な関係になる人間が周りで増えている気がして恐ろしくなった。
+
+[https://crescentro.se/posts/when-unsafe/:title]
+- Rust における unsafe の定義には諸説あり、公式の中でも諸説あるという話
+- memory bug 以外の脆弱性・危険性で議論になりやすい
+-- 例: SQL injection が可能な関数は unsafe であるべきか?
+
+[https://alexgaynor.net/2025/jun/20/serialize-some-der/:title]
+- DER の読み込みを高速化した話
+- Claude に LLVM IR の高速化を任せたら正しくやってくれた
+-- Alive2 で検証したら OK だった
+--- "The pairing of an LLM with a formal verification tool like Alive2 was incredibly powerful." (LLM と、Alive2 のような形式検証ツールの組み合わせは信じられないほど強力だった。)
+- Claude に PR の作成まで任せてもうまくいった
+-- [https://github.com/llvm/llvm-project/pull/142869:title]
+
+[https://lemire.me/blog/2025/04/06/faster-shuffling-in-go-with-batching/:title]
+- 乱数生成に変数除算を使わないことで高速化
+-- 今回の記事の論点ではないが非自明。math/rand/v2 で採用されている
+- cutoff は十分小さいのでいい加減でもよい。粗い cutoff で引っ掛かったら厳密な cutoff を計算する
+-- 厳密な cutoff は 2^64 % P(n, k) の形なので、計算しようとすると変数による除算が遅い。粗い cutoff はそれらより常に大きく、2^64 よりもそこそこ小さい値であれば何でも良く、たとえば 2^60 であれば 3/4 の確率で変数による除算を回避できる。
+- 乱数生成をバッチで実行することで高速化
+-- 乱数生成が節約できる
+
+* 思想一般
+
+[https://www.amazon.co.jp/dp/B078QSCM3V:title=Make Time: How to Focus on What Matters Every Day]
+- 時間泥棒に負けずにいかに時間を作り出すか、という話
+- 新しい日本語訳が最近 (2025 年 6 月) 出版された: [https://www.amazon.co.jp/dp/B0F6CR242K/:title=とっぱらう――自分の時間を取り戻す「完璧な習慣」]
+- 我々の生活には Busy Bandwagon (いくらでも湧いて出てくる仕事の山) と Infinity Pool (無限にスクロールをして情報を得たくなる、情報の源) が溢れている。それらとうまく付き合って時間を確保しようというのがこの本の主旨で、そのためのテクニックを紹介している。
+-- "Being more productive didn’t mean I was doing the most important work; it only meant I was reacting to other people’s priorities faster." (生産性が上がったからといって、私は一番大事な仕事をしているというわけではなかった。他者の重要事により速く反応しているだけのことだった。)
+
+[https://takarakuji-dway.com/:title]
+- 宝くじ購入代行サービス。(一番利用者に有利なやり方だと) 60000 円分の宝くじ購入を 10% の手数料 (6000 円) でやってくれる。
+- このサービスがカネを取れるという発想がなく、シンプルに頭が良いと感じた。「西銀座チャンスセンター」で買うと当たりやすい、という思い込みを exploit してカネに変換する手腕が見事だと思った。
+
+[https://www.tm-office.co.jp/column/20160105.html:title=1対100でも勝つ！宮本武蔵の「極意」は合理的な戦法にあり]
+- 「神仏は実在せぬと一面でおもい、一面でそれを叶わぬまでもすがろうとする半懐疑の心情をすてていない。その半懐疑は人間の弱さの投影であることを、兵法という合理性そのものにみちた思考法のなかにいるこの若者は十分に知っていた。」
+-- 「半懐疑」を戒める評論。
+
+[https://posthog.com/founders/write-great-job-ads:title]
+- 採用広告を出す時に気をつけること
+-- 採用広告はまず hiring manager が書いて、書くことが得意な人が修正する
+-- 応募量だけ追求しても仕方ない。採用したくない人を明確にして、job description を読んだらそもそも応募しないようにしてもらおう
+- 採用だけでなくあらゆる広告に応用できそう。
