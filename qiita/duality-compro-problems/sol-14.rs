@@ -27,10 +27,11 @@ fn solve(a: &[i64]) -> Vec<i64> {
 }
 
 fn main() {
-    let a: Vec<i64> = getline().trim().split_whitespace()
+    let mut a: Vec<i64> = getline().trim().split_whitespace()
         .map(|x| x.parse().unwrap())
         .collect::<Vec<_>>();
+    a.reverse();
     let ans = solve(&a);
     eprintln!("{:?}", ans);
-    println!("{}", ans[0]);
+    println!("{}", -ans[0]);
 }
