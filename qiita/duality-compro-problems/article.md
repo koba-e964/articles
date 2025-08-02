@@ -214,7 +214,7 @@ $$(\text{最大独立集合の大きさ}) = (\text{最小パス被覆の大き�
 全ての文字列を反転して trie を構築する。葉ノードには文字列が対応し、しかもどんな文字列の suffix でもないことがわかる。葉ノードの個数を $l$ としよう。
 
 - 葉ノードに対応する文字列の集合は大きさ $l$ であり、どの二要素も互いに suffix ではない。
-- 葉ノードそれぞれに対して、根ノードから葉ノードに至るまでに出会った $S_1, \ldots, S_N$ の中の文字列をとると、これらの文字列は出会った順にパスをなす。これらのパスはちょうど $l$ 個あり $\lbrace S_1, \ldots, S_N \rbrace$ を被覆する。
+- 葉ノードそれぞれに対して、根ノードから葉ノードに至るまでに出会った $S_1, \ldots, S_N$ の中の文字列をとる (以前取られた文字列は無視する) と、これらの文字列は出会った順にパスをなす。これらのパスはちょうど $l$ 個あり $\lbrace S_1, \ldots, S_N \rbrace$ を被覆する。
 
 よって Dilworth の定理から答えは $l$ である。
 
@@ -436,10 +436,16 @@ $p$ の符号を反転させ、式の符号も反転させて最大化問題に�
 </details>
 
 # (21)-(30)
-## (21) 未解決
+## (21)
+> 長さNの整数列Aと整数Kについて、以下の最小化問題と等しい最大化問題は？
+>
+> A[i]>=Kなるiの最小値
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの整数列Aと整数Kについて、以下の最小化問題と等しい最大化問題は？<br><br>A[i]&gt;=Kなるiの最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1942792544670343208?ref_src=twsrc%5Etfw">July 9, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 </details>
 
 ## (22)
@@ -493,10 +499,26 @@ $p$ の符号を反転させ、式の符号も反転させて最大化問題に�
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">H×Wのグリッドがあり、一マスは禁止マス、いくつかがターミナルである。以下の最大化問題の答えは？<br><br>点素なパス集合によってターミナルどうしをで最大いくつ結べるか？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1944593524646723594?ref_src=twsrc%5Etfw">July 14, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (27) 未解決
+## (27)
+> 各頂点に非負整数の重みA[i]が付いたN頂点の無向二部グラフについて、以下の最大化問題と等しい最小化問題は？
+>
+> 頂点の独立集合について、選んだ頂点の重みの最大値
+
+類別: `二部グラフの双対性`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">各頂点に非負整数の重みA[i]が付いたN頂点の無向二部グラフについて、以下の最大化問題と等しい最小化問題は？<br><br>頂点の独立集合について、選んだ頂点の重みの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1945072447331446995?ref_src=twsrc%5Etfw">July 15, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+左側に $m$ 頂点、右側に $N-m$ 頂点あるとする。元々の問題を式で表現すると以下のようになる。
+
+> $0 \le x_i \le 1, 0 \le y_i \le 1$ であり、辺 $uv$ について $x_u + y_v \le 1$ という条件がある。
+> このとき $\sum_{i}A[i]x_i + \sum_{i}A[m+i]y_i$ の最大値を求めよ。
+
+これの双対は以下のようになる。
+
+> 辺 $e$ のそれぞれに対して変数 $z_e \ge 0$ がある。。各頂点 $i$ に対して、 $i$ に接続する辺全ての和に対して $\sum z_e \ge A[i]$ という制約がある。 $\sum_e z_e$ の最小値を求めよ。
+
 </details>
 
 ## (28) 未解決
@@ -536,9 +558,26 @@ $p$ の符号を反転させ、式の符号も反転させて最大化問題に�
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺の辺に重みが付いた有向グラフと、正整数Kに対して、以下の最大化問題と等しい最小化問題は？<br><br>「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947210173053092113?ref_src=twsrc%5Etfw">July 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (34) 未解決
+## (34)
+> N頂点M辺の辺に重みが付いた有向グラフがある。以下の最小化問題と等しい最小化問題は？
+>
+> 各頂点にポテンシャルp[v]を設定したとき、各辺(u,v,w)について|(p[v]-p[u])-w|のペナルティを受ける。ペナルティの総和の最小値
+
+類別: `最小費用流 (MCF) の双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺の辺に重みが付いた有向グラフがある。以下の最小化問題と等しい最小化問題は？<br><br>各頂点にポテンシャルp[v]を設定したとき、各辺(u,v,w)について|(p[v]-p[u])-w|のペナルティを受ける。ペナルティの総和の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947650328318644269?ref_src=twsrc%5Etfw">July 22, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<a href="https://www.slideshare.net/wata_orz/ss-91375739">wata さんのスライド</a>の p.47 を参照する。元の問題は以下のように書き換えることができる。
+
+> $\sum_{uv} 1 \max(0, p[v] - p[u] - w) + \sum_i 1\max(0, p[u] - p[v] + w) + $ を最小化せよ。
+
+これの双対問題は以下のようなグラフにおける最小費用流である:
+
+- 頂点: 元のグラフと同じ
+- 辺: 元のグラフの辺 $(u,v,w)$ に対して、 $u$ から $v$ に容量 $1$ コスト $w$ の辺と、 $v$ から $u$ に容量 $-1$ コスト $-w$ の辺
+
 </details>
 
 ## (35) 未解決
@@ -551,9 +590,23 @@ $p$ の符号を反転させ、式の符号も反転させて最大化問題に�
 <summary>まだ解けていない</summary>
 </details>
 
-## (37) 未解決
+## (37)
+> N頂点M辺のグラフがある。各頂点には白か黒を割り当てるが、いくつかは既に決まっている。以下の最小化問題と等しい最大化問題は？
+>
+> 両端点の色が異なるような辺の数の最小値
+
+類別: `最大フロー最小カットの双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺のグラフがある。各頂点には白か黒を割り当てるが、いくつかは既に決まっている。以下の最小化問題と等しい最大化問題は？<br><br>両端点の色が異なるような辺の数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1948735514598588424?ref_src=twsrc%5Etfw">July 25, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+元の問題は以下のようなグラフにおける最小 $s$-$t$ カットである:
+
+- 頂点: 元のグラフの頂点に $s$, $t$ の $2$ 頂点を加えたもの
+- 辺: 元のグラフの辺 $uv$ に対して、 $u \to v$ と $v \to u$ のそれぞれに重み $1$ の辺。さらに、 $s$ から白と決まっている頂点に重み $\infty$ の、黒と決まっている頂点から $t$ に重み $\infty$ の辺。
+
+最大フロー最小カット定理から、元の問題の解はこのグラフにおける最大の $s \to t$ フローの流量に等しい。
 </details>
 
 ## (38) 未解決
