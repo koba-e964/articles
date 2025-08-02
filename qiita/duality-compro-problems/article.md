@@ -16,12 +16,16 @@
 </details>
 
 ## (2)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">各頂点に整数重みA[i]が付いたN頂点の根付き木について、以下の存在命題と同値な全称命題は？<br><br>「iがjの先祖であるような(i,j)を選び、A[i]から1を引き、A[j]に1を足す」操作を繰り返して、Aの全ての要素を0にできる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1935906007823286670?ref_src=twsrc%5Etfw">June 20, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 各頂点に整数重みA[i]が付いたN頂点の根付き木について、以下の存在命題と同値な全称命題は？
+>
+> 「iがjの先祖であるような(i,j)を選び、A[i]から1を引き、A[j]に1を足す」操作を繰り返して、Aの全ての要素を0にできる
 
 類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">各頂点に整数重みA[i]が付いたN頂点の根付き木について、以下の存在命題と同値な全称命題は？<br><br>「iがjの先祖であるような(i,j)を選び、A[i]から1を引き、A[j]に1を足す」操作を繰り返して、Aの全ての要素を0にできる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1935906007823286670?ref_src=twsrc%5Etfw">June 20, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <a href="https://www.slideshare.net/wata_orz/ss-91375739">wata さんのスライド</a>の p.47 を参照する。元の命題は以下のように言い換えられる:
 
 > $N$ 頂点のネットワークがあり、頂点 $i$ の流入は $A[i]$ である。また元々の根付き木の親から子へ、容量 $\infty$ の辺がある。このネットワークでフローを流すのは実行可能である。
@@ -39,12 +43,16 @@
 </details>
 
 ## (3)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの整数列Xについて、以下の存在命題と同値な全称命題は？<br><br>「任意のiについて、i番目の頂点の入次数-出次数がX[i]である」 ようなN頂点の単純有向グラフが存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1936264117205282968?ref_src=twsrc%5Etfw">June 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 長さNの整数列Xについて、以下の存在命題と同値な全称命題は？
+>
+> 「任意のiについて、i番目の頂点の入次数-出次数がX[i]である」 ようなN頂点の単純有向グラフが存在する。
 
 類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの整数列Xについて、以下の存在命題と同値な全称命題は？<br><br>「任意のiについて、i番目の頂点の入次数-出次数がX[i]である」 ようなN頂点の単純有向グラフが存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1936264117205282968?ref_src=twsrc%5Etfw">June 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 (2) と同じように考察する。同値なフローの問題は以下である:
 
 > $N$ 頂点のネットワークがあり、頂点 $i$ の流入は $X[i]$ である。また各ペア $i \ne j$ に対し、 $i$ から $j$ へ容量 $1$ の辺がある。このネットワークでフローを流すのは実行可能である。
@@ -60,12 +68,16 @@
 </details>
 
 ## (4)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さN+Mの非負整数列Xについて、以下の存在命題と同値な全称命題は？<br><br>「任意のiについて、i番目の頂点の次数がX[i]である」 ような、頂点1,…,Nのいずれかと頂点N+1,…,N+Mのいずれかを結ぶ辺のみが存在する単純無向二部グラフが存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1936621991152451763?ref_src=twsrc%5Etfw">June 22, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 長さN+Mの非負整数列Xについて、以下の存在命題と同値な全称命題は？
+>
+>「任意のiについて、i番目の頂点の次数がX[i]である」 ような、頂点1,…,Nのいずれかと頂点N+1,…,N+Mのいずれかを結ぶ辺のみが存在する単純無向二部グラフが存在する。
 
 類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さN+Mの非負整数列Xについて、以下の存在命題と同値な全称命題は？<br><br>「任意のiについて、i番目の頂点の次数がX[i]である」 ような、頂点1,…,Nのいずれかと頂点N+1,…,N+Mのいずれかを結ぶ辺のみが存在する単純無向二部グラフが存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1936621991152451763?ref_src=twsrc%5Etfw">June 22, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 (2) と同じように考察する。同値なフローの問題は以下である:
 > $N + M$ 頂点のネットワークがあり、頂点 $i$ の流入は $X[i]$ ($1\le i \le N$) あるいは $-X[i]$ ($N+1 \le i \le N+M$) である。また各ペア $1 \le i \le N, 1 \le j \le M$ に対し、 $i$ から $N + j$ へ容量 $1$ の辺がある。このネットワークでフローを流すのは実行可能である。
 
@@ -77,10 +89,14 @@
 </details>
 
 ## (5)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上にN個の直線A[i]x+B[i]y=C[i]がある(C[i]!=0) 。以下の最大化問題と等しい最小化問題は？<br><br>原点を中心とした、どの直線とも交差しないような円の半径の最大値　<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937000655794954499?ref_src=twsrc%5Etfw">June 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 二次元平面上にN個の直線A[i]x+B[i]y=C[i]がある(C[i]!=0) 。以下の最大化問題と等しい最小化問題は？
+>
+> 原点を中心とした、どの直線とも交差しないような円の半径の最大値
 
 <details>
 <summary>意図がわかりかねている</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上にN個の直線A[i]x+B[i]y=C[i]がある(C[i]!=0) 。以下の最大化問題と等しい最小化問題は？<br><br>原点を中心とした、どの直線とも交差しないような円の半径の最大値　<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937000655794954499?ref_src=twsrc%5Etfw">June 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 円の半径 $r$ は直線の原点からの距離以下 ($r \le C[i]/\sqrt{A[i]^2 + B[i]^2}$) であるため、 $C[i]/\sqrt{A[i]^2 + B[i]^2}$ の最小値が答えである。
 この問題をどうやって線型計画問題として定式化するかは謎。
 </details>
@@ -93,12 +109,18 @@
 </details>
 
 ## (7)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の根付き木と、組(u,v,d) の形の制約M個に対して、以下の最大化問題と等しい最小化問題は？<br><br>各制約について、u→vパスの重みがd以下となるように、各辺に非負の値w[i]を与える。<br>ただし、各辺の重みは根に向かう方向に辿るときw[i], そうでないとき-w[i]。<br>1→Nパスの重みの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937721800189968485?ref_src=twsrc%5Etfw">June 25, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> N頂点の根付き木と、組(u,v,d) の形の制約M個に対して、以下の最大化問題と等しい最小化問題は？
+>
+> 各制約について、u→vパスの重みがd以下となるように、各辺に非負の値w[i]を与える。
+ただし、各辺の重みは根に向かう方向に辿るときw[i], そうでないとき-w[i]。
+> 1→Nパスの重みの最大値
 
 類別: `最小費用流 (MCF) の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の根付き木と、組(u,v,d) の形の制約M個に対して、以下の最大化問題と等しい最小化問題は？<br><br>各制約について、u→vパスの重みがd以下となるように、各辺に非負の値w[i]を与える。<br>ただし、各辺の重みは根に向かう方向に辿るときw[i], そうでないとき-w[i]。<br>1→Nパスの重みの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937721800189968485?ref_src=twsrc%5Etfw">June 25, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 あらかじめ以下のように言い換えておく。答えを -1 倍して最小化問題に変換する。
 
 > $N$ 頂点の根付き木の各頂点にポテンシャル $p_v$ を定める。 $uv$ が親子のとき $p _ u \le p _ v$ であり、制約 $(u, v, d)$ に対して $p _ v \le p _ u + d$ である。このとき $p _ 1 - p _ N$ を最小化せよ。
@@ -119,6 +141,8 @@
 <details>
 <summary>まだ解けていない</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNで総和が0の整数列Aについて、以下の最大化問題と等しい最小化問題は？<br><br>任意のiで|B[i]-B[(i+1)%N]|&lt;=1であるような長さNの数列Bについて、ΣA[i]*B[i] の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1938074738737484224?ref_src=twsrc%5Etfw">June 26, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+類題: <https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h>
 </details>
 
 ## (9) 未解決
@@ -135,32 +159,78 @@
 
 # (11)-(20)
 ## (11)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の無向グラフについて、以下の存在命題と等しい全称命題は？<br><br>奇数長の単純閉路が存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1939170725761556810?ref_src=twsrc%5Etfw">June 29, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> N頂点の無向グラフについて、以下の存在命題と等しい全称命題は？
+>
+> 奇数長の単純閉路が存在する。
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の無向グラフについて、以下の存在命題と等しい全称命題は？<br><br>奇数長の単純閉路が存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1939170725761556810?ref_src=twsrc%5Etfw">June 29, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 任意の色割り当て $f \colon V\to \lbrace 0,1\rbrace$ に対して、 $f$ は 2-彩色ではない。つまり $f(u) = f(v)$ なる辺 $uv$ が存在する。
 </details>
 
-## (12) 未解決
+## (12)
+> 正整数Nについて、以下の最大化問題の答えは？
+>
+> 1~Nの整数の部分集合であって、約数/倍数関係にあるペアが存在しないようなもののサイズの最大値は？
+
+類別: `Dilworth の定理`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">正整数Nについて、以下の最大化問題の答えは？<br><br>1~Nの整数の部分集合であって、約数/倍数関係にあるペアが存在しないようなもののサイズの最大値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1939529280800895347?ref_src=twsrc%5Etfw">June 30, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+約数/倍数関係 (**整除関係**) は推移的な関係である ($a | b$ かつ $b | c$ なら $a | c$) 。よって Dilworth の定理から、
+
+$$(\text{最大独立集合の大きさ}) = (\text{最小パス被覆の大きさ})$$
+
+が成り立つ。そのため同じ大きさの独立集合とパス被覆を構築すれば良い。
+
+- 集合 $\lbrace \lfloor N/2\rfloor + 1, \ldots, N \rbrace$ は大きさ $\lceil N/2 \rceil$ であり、どの二要素も整除関係にない。
+- $1$ 以上 $N$ 以下の奇数 $c$ それぞれに対してパス $c \to 2c \to \cdots 2^kc$ ($k$ は $2^kc \le N$ を満たす最大の非負整数) を考えると、これらのパスはちょうど $\lceil N/2 \rceil$ 個あり $\lbrace 1, \ldots, N \rbrace$ を被覆する。
+
+よって Dilworth の定理から答えは $\lceil N/2 \rceil$ である。
+
 </details>
 
-## (13) 未解決
+## (13)
+> N個の文字列S1,…,Snについて、以下の最大化問題の答えは？
+>
+> どの文字列どうしも「片方が片方のsuffix」という関係にないような添字集合のサイズの最大値
+
+類別: `Dilworth の定理`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の文字列S1,…,Snについて、以下の最大化問題の答えは？<br><br>どの文字列どうしも「片方が片方のsuffix」という関係にないような添字集合のサイズの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1939906166978732281?ref_src=twsrc%5Etfw">July 1, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+suffix かどうかの関係は推移的な関係である。よって Dilworth の定理から、
+
+$$(\text{最大独立集合の大きさ}) = (\text{最小パス被覆の大きさ})$$
+
+が成り立つ。そのため同じ大きさの独立集合とパス被覆を構築すれば良い。
+
+全ての文字列を反転して trie を構築する。葉ノードには文字列が対応し、しかもどんな文字列の suffix でもないことがわかる。葉ノードの個数を $l$ としよう。
+
+- 葉ノードに対応する文字列の集合は大きさ $l$ であり、どの二要素も互いに suffix ではない。
+- 葉ノードそれぞれに対して、根ノードから葉ノードに至るまでに出会った $S_1, \ldots, S_N$ の中の文字列をとると、これらの文字列は出会った順にパスをなす。これらのパスはちょうど $l$ 個あり $\lbrace S_1, \ldots, S_N \rbrace$ を被覆する。
+
+よって Dilworth の定理から答えは $l$ である。
+
 </details>
 
 ## (14)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの整数列Aについて、以下の最小化問題と等しい最小化問題は？<br><br>「ある要素に+1,または-1する」ことを繰り返してAを広義単調増加にするための、操作回数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1940282890593722805?ref_src=twsrc%5Etfw">July 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 長さNの整数列Aについて、以下の最小化問題と等しい最小化問題は？
+>
+> 「ある要素に+1,または-1する」ことを繰り返してAを広義単調増加にするための、操作回数の最小値
 
 類別: `最小費用流 (MCF) の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの整数列Aについて、以下の最小化問題と等しい最小化問題は？<br><br>「ある要素に+1,または-1する」ことを繰り返してAを広義単調増加にするための、操作回数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1940282890593722805?ref_src=twsrc%5Etfw">July 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <a href="https://www.slideshare.net/wata_orz/ss-91375739">wata さんのスライド</a>の p.47 を参照する。元の問題は以下のように言い換えられる:
 
 > $N$ 個の変数 $X_i$ がある。$X_i \le X_{i+1}$ の条件付きで $\sum_i |X_i - A_i|$ を最小化せよ。
@@ -245,19 +315,43 @@ $ ./sol-14 <<<"5 4 1"
 </details>
 </details>
 
-## (15) 未解決
-<details>
-<summary>まだ解けていない</summary>
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">正整数Kについて、以下の最大化問題の答えは？<br><br>どの二要素(a,b)についてもa&amp;b &lt; min(a,b)であるような、0以上2^K未満の整数の集合のサイズの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1940648567229895006?ref_src=twsrc%5Etfw">July 3, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+## (15)
+> 正整数Kについて、以下の最大化問題の答えは？
+>
+> どの二要素(a,b)についてもa&b < min(a,b)であるような、0以上2^K未満の整数の集合のサイズの最大値
 
 類別: `Dilworth の定理`
-</details>
-
-## (16)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">整数Xについて、以下の最大化問題と等しい最小化問題は？<br><br>Xの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941011933806973037?ref_src=twsrc%5Etfw">July 4, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">正整数Kについて、以下の最大化問題の答えは？<br><br>どの二要素(a,b)についてもa&amp;b &lt; min(a,b)であるような、0以上2^K未満の整数の集合のサイズの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1940648567229895006?ref_src=twsrc%5Etfw">July 3, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+`a&b < min(a,b)` の否定は `a&b == min(a,b)` であり、これは `a` や `b` を集合とみなしたときに一方が他方の部分集合であることと同値である。
+
+部分集合かどうかの関係は推移的な関係である。よって Dilworth の定理から、
+
+$$(\text{最大独立集合の大きさ}) = (\text{最小パス被覆の大きさ})$$
+
+が成り立つ。そのため同じ大きさの独立集合とパス被覆を構築すれば良い。
+
+レベル $i$ を、 $\lbrace 0, \ldots, K-1\rbrace$ の $i$ 点部分集合全体からなる集合とする。
+
+- レベル $i$ は独立集合であり、その大きさは $C(K,i)$ である。これの最大値は $i = \lfloor K/2\rfloor$ で実現される。
+- レベル $i$ とレベル $i+1$ でマッチングを作る。正則二部グラフなので必ず小さい方のサイズのマッチングは存在する。そのマッチングを利用してパス被覆を作ると、パス被覆の大きさは最大のレベルの大きさ、つまり $C(K, \lfloor K/2\rfloor)$ である。
+
+よって Dilworth の定理から答えは $C(K, \lfloor K/2\rfloor)$ である。
+
+</details>
+
+## (16)
+> 整数Xについて、以下の最大化問題と等しい最小化問題は？
+>
+> Xの最大値
+
+<details>
+<summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">整数Xについて、以下の最大化問題と等しい最小化問題は？<br><br>Xの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941011933806973037?ref_src=twsrc%5Etfw">July 4, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 制約がない状態で $1 \cdot X$ を最大化せよという問題。よって双対問題は
 
 > $0 = 1$ という条件下で $0$ を最小化せよ
@@ -266,39 +360,54 @@ $ ./sol-14 <<<"5 4 1"
 </details>
 
 ## (17)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">各辺に整数重みw[e]が付いたN頂点の平面グラフと、そのある平面埋め込みについて、以下の最小化問題と等しい最大化問題は？<br><br>平面上のどの二点も互いに行き来可能にするために、削除する辺の重みの総和の最小値<br><br>(special thanks: <a href="https://twitter.com/Katu2ou?ref_src=twsrc%5Etfw">@Katu2ou</a> )<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941378980004995438?ref_src=twsrc%5Etfw">July 5, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 各辺に整数重みw[e]が付いたN頂点の平面グラフと、そのある平面埋め込みについて、以下の最小化問題と等しい最大化問題は？
+>
+> 平面上のどの二点も互いに行き来可能にするために、削除する辺の重みの総和の最小値
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">各辺に整数重みw[e]が付いたN頂点の平面グラフと、そのある平面埋め込みについて、以下の最小化問題と等しい最大化問題は？<br><br>平面上のどの二点も互いに行き来可能にするために、削除する辺の重みの総和の最小値<br><br>(special thanks: <a href="https://twitter.com/Katu2ou?ref_src=twsrc%5Etfw">@Katu2ou</a> )<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941378980004995438?ref_src=twsrc%5Etfw">July 5, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 元の問題は平面グラフの面を頂点とみなした場合の最小全域木を求める問題である。平面グラフの面を頂点とみなした場合の全域木の補集合は平面グラフの全域木であるため、平面グラフの最大全域木を求めれば良い。
 
 </details>
 
 ## (18)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の禁止頂点を持つH×Wのグリッドグラフについて、以下の最大化問題と等しい最小化問題は？<br><br>(1,1)から(H,W)への内点素なパスの個数の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941745509368201672?ref_src=twsrc%5Etfw">July 6, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> N個の禁止頂点を持つH×Wのグリッドグラフについて、以下の最大化問題と等しい最小化問題は？
+>
+> (1,1)から(H,W)への内点素なパスの個数の最大値
 
 類別: `最大フロー最小カットの双対`
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の禁止頂点を持つH×Wのグリッドグラフについて、以下の最大化問題と等しい最小化問題は？<br><br>(1,1)から(H,W)への内点素なパスの個数の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1941745509368201672?ref_src=twsrc%5Etfw">July 6, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 問題は全ての辺の容量が 1 の最大フローとみなすことができる。それの双対は最小カットである。平面グラフの最小カットであるため、平面グラフの面を頂点としてみなして左下 ($(1,1), (H,1), (H,W)$ の外側) と右上 ($(1,1), (1,W), (H,W)$ の外側) までの最短路を求めれば良い。
 </details>
 
 ## (19)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">H×Wのグリッドがあり、そのうちNマスが黒く塗られている。以下の最小化問題と等しい最大化問題は？<br><br>いくつかの行•列を選び、全ての黒いマスが選ばれた行•列の少なくとも一つに含まれているようにするための、選ぶ行•列の総数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1942067275399680009?ref_src=twsrc%5Etfw">July 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> H×Wのグリッドがあり、そのうちNマスが黒く塗られている。以下の最小化問題と等しい最大化問題は？
+>
+> いくつかの行•列を選び、全ての黒いマスが選ばれた行•列の少なくとも一つに含まれているようにするための、選ぶ行•列の総数の最小値
 
 類別: `二部グラフの双対`
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">H×Wのグリッドがあり、そのうちNマスが黒く塗られている。以下の最小化問題と等しい最大化問題は？<br><br>いくつかの行•列を選び、全ての黒いマスが選ばれた行•列の少なくとも一つに含まれているようにするための、選ぶ行•列の総数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1942067275399680009?ref_src=twsrc%5Etfw">July 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 左に $H$ 頂点、右に $W$ 頂点ある二部グラフを考える。$(i,j)$ にある黒マスを、左の頂点 $i$ と右の頂点 $j$ を結ぶ辺とみなすと、この問題は最小辺被覆である。二部グラフにおける最小辺被覆の双対なので最大マッチングである。
 </details>
 
 ## (20)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の根付き木があり、各頂点には非負整数A[v], B[v]が書かれている。以下の最小化問題と等しい最大化問題は？<br><br>いくつかの頂点を選び、任意の頂点vについてその部分木からA[v]個以上が選ばれているようにするとき、選んだ頂点のBの値の和の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1942469997894255018?ref_src=twsrc%5Etfw">July 8, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> N頂点の根付き木があり、各頂点には非負整数A[v], B[v]が書かれている。以下の最小化問題と等しい最大化問題は？
+>
+> いくつかの頂点を選び、任意の頂点vについてその部分木からA[v]個以上が選ばれているようにするとき、選んだ頂点のBの値の和の最小値
 
 類別: `最小費用流 (MCF) の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の根付き木があり、各頂点には非負整数A[v], B[v]が書かれている。以下の最小化問題と等しい最大化問題は？<br><br>いくつかの頂点を選び、任意の頂点vについてその部分木からA[v]個以上が選ばれているようにするとき、選んだ頂点のBの値の和の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1942469997894255018?ref_src=twsrc%5Etfw">July 8, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 根を頂点 $1$ として良い。 $\sum_{w: v\text{の子孫}} C[w] \ge A[v], C[v] \ge 0$ となる最小の $C$ を計算しておく。元の問題は以下のようなネットワークにおける最小費用流と同値である:
 
@@ -334,12 +443,16 @@ $p$ の符号を反転させ、式の符号も反転させて最大化問題に�
 </details>
 
 ## (22)
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの正整数列Aと、長さMの1以上N以下の整数列Bについて、以下の存在命題と等しい全称命題は？<br><br>N個の容器に対してM回操作を行う。j回目の操作では、N個の容器のうちB[j]個を選び、球を一つずつ入れる。このようにして、最終的に各容器に入っている球の数をA[i]にすることができる。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1943161989020434433?ref_src=twsrc%5Etfw">July 10, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+> 長さNの正整数列Aと、長さMの1以上N以下の整数列Bについて、以下の存在命題と等しい全称命題は？
+>
+> N個の容器に対してM回操作を行う。j回目の操作では、N個の容器のうちB[j]個を選び、球を一つずつ入れる。このようにして、最終的に各容器に入っている球の数をA[i]にすることができる。
 
 類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
 
 <details>
 <summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの正整数列Aと、長さMの1以上N以下の整数列Bについて、以下の存在命題と等しい全称命題は？<br><br>N個の容器に対してM回操作を行う。j回目の操作では、N個の容器のうちB[j]個を選び、球を一つずつ入れる。このようにして、最終的に各容器に入っている球の数をA[i]にすることができる。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1943161989020434433?ref_src=twsrc%5Etfw">July 10, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 (2) と同じように考察する。同値なフローの問題は以下である:
 
 > $N + M$ 頂点のネットワークがあり、頂点 $1 \le i \le N$ の流入は $-A[i]$ であり、頂点 $N+1 \le N+j \le N+M$ の流入は $B[j]$ である。また各ペア $i, j$ に対し、 $N+j$ から $i$ へ容量 $1$ の辺がある。このネットワークでフローを流すのは実行可能である。
