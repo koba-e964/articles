@@ -481,10 +481,27 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N次元ベクトルx,yに対して、以下の存在命題と等しい全称命題は？<br><br>xの要素を並び替えたN!通りのベクトルの非負の加重平均としてyが表せる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1943507904335589587?ref_src=twsrc%5Etfw">July 11, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (24) 未解決
+## (24)
+> N頂点の森に対して、以下の最大化問題の答えは？
+>
+> 補グラフの最大マッチングのサイズ
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>意図がわかりかねている</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の森に対して、以下の最大化問題の答えは？<br><br>補グラフの最大マッチングのサイズ<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1943884466298232879?ref_src=twsrc%5Etfw">July 12, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+二部グラフの補グラフの最大マッチングの大きさは、
+
+- 完全二部グラフで左右の頂点数が奇数の場合、 $N/2-1$ (左と右でそれぞれ繋げるだけ繋ぐ)
+- それ以外の場合、 $\lfloor N/2 \rfloor$ (左と右で繋いで、左右繋げるところを繋ぐと最適)
+
+である。森が完全二部グラフで左右の頂点数が奇数となるのはスターグラフの場合のみであるため、
+
+- スターグラフで $N$ が偶数の場合、 $N/2-1$
+- それ以外の場合、 $\lfloor N/2 \rfloor$
+
+が答え。
+
 </details>
 
 ## (25) 未解決
@@ -571,12 +588,12 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 
 <a href="https://www.slideshare.net/wata_orz/ss-91375739">wata さんのスライド</a>の p.47 を参照する。元の問題は以下のように書き換えることができる。
 
-> $\sum_{uv} 1 \max(0, p[v] - p[u] - w) + \sum_i 1\max(0, p[u] - p[v] + w) + $ を最小化せよ。
+> $\sum_{(u,v,w)} 1 \max(0, p[v] - p[u] - w) + \sum_{(u,v,w)} 1\max(0, p[u] - p[v] + w)$ を最小化せよ。
 
 これの双対問題は以下のようなグラフにおける最小費用流である:
 
 - 頂点: 元のグラフと同じ
-- 辺: 元のグラフの辺 $(u,v,w)$ に対して、 $u$ から $v$ に容量 $1$ コスト $w$ の辺と、 $v$ から $u$ に容量 $-1$ コスト $-w$ の辺
+- 辺: 元のグラフの辺 $(u,v,w)$ に対して、 $u$ から $v$ に容量 $1$ コスト $w$ の辺と、 $v$ から $u$ に容量 $1$ コスト $-w$ の辺
 
 </details>
 
