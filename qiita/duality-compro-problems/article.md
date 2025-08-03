@@ -495,7 +495,7 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 - 完全二部グラフで左右の頂点数が奇数の場合、 $N/2-1$ (左と右でそれぞれ繋げるだけ繋ぐ)
 - それ以外の場合、 $\lfloor N/2 \rfloor$ (左と右で繋いで、左右繋げるところを繋ぐと最適)
 
-である。森が完全二部グラフで左右の頂点数が奇数となるのはスターグラフの場合のみであるため、
+である。森が完全二部グラフとなるのはスターグラフの場合のみであるため、
 
 - スターグラフで $N$ が偶数の場合、 $N/2-1$
 - それ以外の場合、 $\lfloor N/2 \rfloor$
@@ -504,10 +504,29 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 
 </details>
 
-## (25) 未解決
+## (25)
+> N頂点のPseudoforestに対して、以下の最大化問題の答えは？
+>
+> 補グラフの最大マッチングのサイズ
+
+(pseudoforest は、連結成分ごとに木 + 1 辺以下であるようなグラフ。連結成分ごとに 辺の本数 <= 頂点数 という条件でも良い)
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>意図がわかりかねている</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点のPseudoforestに対して、以下の最大化問題の答えは？<br><br>補グラフの最大マッチングのサイズ<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1944237352156901735?ref_src=twsrc%5Etfw">July 13, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+(24) と同様に、二部グラフの補グラフの最大マッチングの大きさは、
+
+- 完全二部グラフで左右の頂点数が奇数の場合、 $N/2-1$ (左と右でそれぞれ繋げるだけ繋ぐ)
+- それ以外の場合、 $\lfloor N/2 \rfloor$ (左と右で繋いで、左右繋げるところを繋ぐと最適)
+
+である。pseudoforest が完全二部グラフとなるのはスターグラフか $2+2$ の完全二部グラフ (大きさ $4$ のサイクル) の場合のみであるため、
+
+- スターグラフで $N$ が偶数の場合または大きさ $N = 4$ のサイクルの場合、 $N/2-1$
+- それ以外の場合、 $\lfloor N/2 \rfloor$
+
+が答え。
+
 </details>
 
 ## (26) 未解決
@@ -641,3 +660,29 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 <summary>まだ解けていない</summary>
 </details>
 
+# (41)-(45)
+## (41) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (42) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (43) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (44) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (45) 未解決
+<details>
+<summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの単調増加な整数列Aと正整数K,Dについて，以下の最大化問題と等しい最小化問題は？<br><br>任意の頂点の組(i,j) (i &lt; j) に対して重みfloor(A[j]-A[i])の有向辺を張ったDAGでの，K個の辺を使う1-Nパスの重みの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1951653834327298493?ref_src=twsrc%5Etfw">August 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</details>
