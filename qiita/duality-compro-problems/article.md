@@ -527,6 +527,8 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 
 が答え。
 
+TODO: 奇数サイクルのときになんとかする
+
 </details>
 
 ## (26) 未解決
@@ -582,16 +584,26 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの数列A,Bがある。以下の最小化問題と等しい最大化問題は？<br><br>x=0と初期化する。i = 1,2,…の順に、x &lt;- A[i]*|x+1| + B[i]という操作を行う。i回目の操作後x&lt;0となっているようなiの最小値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1946435928790364289?ref_src=twsrc%5Etfw">July 19, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (32) 未解決
+## (32)
+> 二次元平面上の二つの多角形A,Bについて、以下の最大化問題と等しい最小化問題は？
+>
+> 多角形Aをy軸正の方向に動かして行ったとき、多角形Bと接触しないように最大どれだけ動かせるか？
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上の二つの多角形A,Bについて、以下の最大化問題と等しい最小化問題は？<br><br>多角形Aをy軸正の方向に動かして行ったとき、多角形Bと接触しないように最大どれだけ動かせるか？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1946785998756790406?ref_src=twsrc%5Etfw">July 20, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$\min \lbrace x_2 - x_1 \mid (x_1, y) \in A, (x_2, y) \in B, x_1 \le x_2 \rbrace$
+
 </details>
 
 ## (33) 未解決
 <details>
 <summary>まだ解けていない</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺の辺に重みが付いた有向グラフと、正整数Kに対して、以下の最大化問題と等しい最小化問題は？<br><br>「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947210173053092113?ref_src=twsrc%5Etfw">July 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+類題: <a href="https://atcoder.jp/contests/jag2015autumn/tasks/icpc2015autumn_j">Longest Shortest Path (JAG Asia 2015)</a>
+
 </details>
 
 ## (34)
@@ -660,7 +672,7 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 <summary>まだ解けていない</summary>
 </details>
 
-# (41)-(45)
+# (41)-(50)
 ## (41) 未解決
 <details>
 <summary>まだ解けていない</summary>
@@ -685,4 +697,86 @@ $j \le i$ なら $A[j] < K$ になるような $i$ の最大値
 <details>
 <summary>まだ解けていない</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの単調増加な整数列Aと正整数K,Dについて，以下の最大化問題と等しい最小化問題は？<br><br>任意の頂点の組(i,j) (i &lt; j) に対して重みfloor(A[j]-A[i])の有向辺を張ったDAGでの，K個の辺を使う1-Nパスの重みの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1951653834327298493?ref_src=twsrc%5Etfw">August 2, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</details>
+
+## (46) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (47)
+> 長さNの0,1からなる列A,Bについて，以下の存在命題と等しい全称命題は？
+>
+> 01を10に置き換える操作を繰り返して，AをBに一致させることができる
+
+類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
+
+<details>
+<summary>解法</summary>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの0,1からなる列A,Bについて，以下の存在命題と等しい全称命題は？<br><br>01を10に置き換える操作を繰り返して，AをBに一致させることができる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1952354983304998995?ref_src=twsrc%5Etfw">August 4, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+(2) と同じように考察する。元の命題は以下のように言い換えられる (`0` を右に流すイメージ):
+
+> $N$ 頂点のネットワークがあり、頂点 $i$ の流入は $B[i] - A[i]$ である。また頂点 $i$ から頂点 $i+1$ へ、容量 $\infty$ の辺がある。このネットワークでフローを流すのは実行可能である。
+
+流入の和は 0 なので $\sum_i A[i] = \sum_i B[i]$ である。双対問題をとると以下のようになる。
+
+> 任意の $p$ に対して $\sum_i (B[i] - A[i]) p_i + \sum_{1 \le i \le N-1} \infty\max(0, p _ {i+1} - p _ i) \le 0$
+
+ここで、天才考察 (TODO) を行うと、 $p$ として考えるべきものはある $l$ に対して $p_i = 1 (i \ge l), p_i = 0 (i <> l)$ という形のものだけであることがわかるので、以下の命題と同値であることが結論できる。
+
+> $\sum_i A[i] = \sum_i B[i]$ かつ 任意の $l$ に対して $\sum_{i \ge l} (B[i] - A[i]) \le 0$
+
+</details>
+
+## (48) 未解決
+<details>
+<summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの0,1からなる列A,Bについて，以下の存在命題と等しい全称命題は？<br><br>001を010に置き換える操作を繰り返して，AをBに一致させることができる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1952721196312654332?ref_src=twsrc%5Etfw">August 5, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</details>
+
+## (49) 未解決
+<details>
+<summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">&#39;a&#39;,&#39;b&#39;,&#39;c&#39;からなる長さNの文字列S,Tについて，以下の存在命題と等しい全称命題は？<br><br>&quot;abc&quot;を&quot;bca&quot;に置き換える操作を繰り返して，SをTに一致させることができる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1953099791581495343?ref_src=twsrc%5Etfw">August 6, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</details>
+
+## (50) 未解決
+<details>
+<summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">&#39;a&#39;,&#39;b&#39;,&#39;c&#39;からなる長さNの文字列S,Tについて，以下の存在命題と等しい全称命題は？ <br><br>&quot;abc&quot;を&quot;bca&quot;に，&quot;bca&quot; を &quot;cab&quot; に，&quot;cab&quot; を &quot;abc&quot; に置き換える操作を繰り返して，SをTに一致させることができる <a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1953460282501787700?ref_src=twsrc%5Etfw">August 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</details>
+
+# (51)-(52)
+## (51) 未解決
+<details>
+<summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の非負整数の区間[L[i], R[i]]について、以下の存在命題と等しい全称命題は？<br><br>N頂点の単純無向グラフであって、任意の頂点iの次数が[L[i], R[i]]に収まるようなものが存在する<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1953831795218428122?ref_src=twsrc%5Etfw">August 8, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+(2) と同じように考察する。同値なフローの問題は以下である:
+
+> TODO
+
+流入の和は 0 なので TODO である。双対問題をとると以下のようになる。
+
+> TODO
+
+参考:
+- <https://en.wikipedia.org/wiki/Havel%E2%80%93Hakimi_algorithm>
+- <https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem>
+
+</details>
+
+## (52)
+> 長さNの正整数列 A と正整数 K について，以下の存在命題と等しい全称命題は？
+>
+> 「A[i] > A[j] なる (i,j) を選び，A[i]-=A[j]とする」操作を繰り返して，すべての要素を K の倍数にできる．
+
+<details>
+<summary>意図がわかりかねている</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの正整数列 A と正整数 K について，以下の存在命題と等しい全称命題は？<br><br>「A[i] &gt; A[j] なる (i,j) を選び，A[i]-=A[j]とする」操作を繰り返して，すべての要素を K の倍数にできる．<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1954193739859345705?ref_src=twsrc%5Etfw">August 9, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$A[i]$ がすべて $K$ の倍数であるのと同値。
+
 </details>
