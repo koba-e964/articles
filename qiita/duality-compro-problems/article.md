@@ -94,11 +94,28 @@
 > 原点を中心とした、どの直線とも交差しないような円の半径の最大値
 
 <details>
-<summary>意図がわかりかねている</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上にN個の直線A[i]x+B[i]y=C[i]がある(C[i]!=0) 。以下の最大化問題と等しい最小化問題は？<br><br>原点を中心とした、どの直線とも交差しないような円の半径の最大値　<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937000655794954499?ref_src=twsrc%5Etfw">June 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-円の半径 $r$ は直線の原点からの距離以下 ($r \le C[i]/\sqrt{A[i]^2 + B[i]^2}$) であるため、 $C[i]/\sqrt{A[i]^2 + B[i]^2}$ の最小値が答えである。
-この問題をどうやって線型計画問題として定式化するかは謎。
+円の半径 $r$ は直線の原点からの距離以下 ($r \le |C[i]|/\sqrt{A[i]^2 + B[i]^2}$) であるため、 $|C[i]|/\sqrt{A[i]^2 + B[i]^2}$ の最小値が答えである。
+
+以上の考察を Lagrange 双対として定式化することができる。一般性を失わず $C[i] > 0$ を仮定して良い。問題は $s^2+t^2 = 1, A[i]x + B[i]y \le C[i]$ の条件で $sx + ty$ を最大化し、 $(s, t)$ を動かして最小値を求める問題とみなせる。Lagrange 緩和すると、 $u_i \ge 0$ として
+$\sup_{x,y} sx+ty - \sum_i u_i (A[i]x + B[i]y - C[i])$ を最小化する問題とみなせる。
+
+$$g(x, y) := sx+ty - \sum_i u_i (A[i]x + B[i]y - C[i])$$
+
+とおくと、
+
+$$\partial g/\partial x = s - \sum_i u_i A[i]$$
+
+$$\partial g/\partial y = t - \sum_i u_i B[i]$$
+
+が成立する。これらのうちどちらかが非ゼロである場合、 $g(x,y)$ は一次式であり $(x, y)$ の範囲に制限はないため、 sup が際限なく大きくなってしまう。よってこれらが両方とも 0 である必要がある。
+
+以上をまとめると、 $(\sum_i u_i A[i])^2 + (\sum_i u_i B[i])^2 = 1, u_i \ge 0$ の条件下で $g = \sum_i u_i C[i]$ を最小化する問題になる。これは $u_i$ のうち一つだけ非ゼロで残りがゼロの場合に最小値が達成される。 (TODO: $g$ を固定して二乗和を最大化する問題とみなすことで証明する)
+
+$u_i$ が非ゼロだとすると $u_i = 1/\sqrt{A[i]^2+B[i]^2}$ であり、このとき $g = C[i]/\sqrt{A[i]^2+B[i]^2}$ である。
+
 </details>
 
 ## (6) 未解決
@@ -742,10 +759,22 @@ $\min \lbrace x_2 - x_1 \mid (x_1, y) \in A, (x_2, y) \in B, x_1 \le x_2 \rbrace
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">&#39;a&#39;,&#39;b&#39;,&#39;c&#39;からなる長さNの文字列S,Tについて，以下の存在命題と等しい全称命題は？<br><br>&quot;abc&quot;を&quot;bca&quot;に置き換える操作を繰り返して，SをTに一致させることができる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1953099791581495343?ref_src=twsrc%5Etfw">August 6, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (50) 未解決
+## (50)
+> 'a','b','c'からなる長さNの文字列S,Tについて，以下の存在命題と等しい全称命題は？  
+>
+>"abc"を"bca"に，"bca" を "cab" に，"cab" を "abc" に置き換える操作を繰り返して，SをTに一致させることができる
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>意図がわかりかねている</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">&#39;a&#39;,&#39;b&#39;,&#39;c&#39;からなる長さNの文字列S,Tについて，以下の存在命題と等しい全称命題は？ <br><br>&quot;abc&quot;を&quot;bca&quot;に，&quot;bca&quot; を &quot;cab&quot; に，&quot;cab&quot; を &quot;abc&quot; に置き換える操作を繰り返して，SをTに一致させることができる <a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1953460282501787700?ref_src=twsrc%5Etfw">August 7, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<https://atcoder.jp/contests/agc055/tasks/agc055_b> そのままである。mod 3 で見て $i$ 文字目を $S[i+1]- i$ とする (例: b - 2 = c) ことで、以下のような操作にできる。
+
+- 操作: $S[i] = S[i+1] = S[i+2]$ のときに、 $S[i..i+3] += 1$ を行う。
+
+ここから、 $f(S)$ を、 $S$ に 3 文字連続で同じ文字がある時に貪欲に取り除いたものと定義すると、 $f(S) = f(T)$ が必要十分条件であることがわかる。ただ、何が双対なのかは謎。
+
+類題: <https://atcoder.jp/contests/agc055/tasks/agc055_b>
 </details>
 
 # (51)-(52)
