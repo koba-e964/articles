@@ -93,6 +93,8 @@
 >
 > 原点を中心とした、どの直線とも交差しないような円の半径の最大値
 
+類別: `Lagrange 双対`
+
 <details>
 <summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上にN個の直線A[i]x+B[i]y=C[i]がある(C[i]!=0) 。以下の最大化問題と等しい最小化問題は？<br><br>原点を中心とした、どの直線とも交差しないような円の半径の最大値　<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1937000655794954499?ref_src=twsrc%5Etfw">June 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -614,10 +616,32 @@ $\min \lbrace x_2 - x_1 \mid (x_1, y) \in A, (x_2, y) \in B, x_1 \le x_2 \rbrace
 
 </details>
 
-## (33) 未解決
+## (33)
+> N頂点M辺の辺に重みが付いた有向グラフと、正整数Kに対して、以下の最大化問題と等しい最小化問題は？
+>
+> 「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？
+
 <details>
-<summary>まだ解けていない</summary>
+
+類別: `最小費用流 (MCF) の双対` `最短路の双対`
+
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺の辺に重みが付いた有向グラフと、正整数Kに対して、以下の最大化問題と等しい最小化問題は？<br><br>「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947210173053092113?ref_src=twsrc%5Etfw">July 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<a href="https://www.slideshare.net/wata_orz/ss-91375739">wata さんのスライド</a>の p.78 と同様の考察を行う。元の最大化問題は、距離をポテンシャルの差の最大値と捉え直すことによって、以下のように言い換えられる:
+
+> $\max_{x} \max_{p} K(p_N - p_1) - \sum_e x_e$ ただし $p_v - p_u \le w_{uv} + x_{uv}$
+
+$x_{uv} = \max(0, p_v - p_u - w_{uv})$ に注意すると、これは以下のように書き換えられる:
+
+> $\max_{p} K(p_N - p_1) - \sum_{uv} \max(0, p_v - p_u - w_{uv})$
+
+これを $-1$ 倍して双対をとると以下の問題である。
+
+> $N$ 頂点のネットワークがあり、頂点 1 への流入は $K$、頂点 N への流入は $-K$ である。
+> - 元々の辺 $uv$ に対して、$u$ から $v$ へ容量 $1$ コスト $w_{uv}$ の辺がある。
+>
+> このネットワークにおける最小費用流を求めよ。
 
 類題: <a href="https://atcoder.jp/contests/jag2015autumn/tasks/icpc2015autumn_j">Longest Shortest Path (JAG Asia 2015)</a>
 
@@ -648,11 +672,13 @@ $\min \lbrace x_2 - x_1 \mid (x_1, y) \in A, (x_2, y) \in B, x_1 \le x_2 \rbrace
 ## (35) 未解決
 <details>
 <summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の重みが付いた区間(l,r,w)があり、l,rはそれぞれ単調増加である。以下の最大化問題と等しい最小化問題は？<br><br>disjointな区間の集合の重みの和の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947968126341255247?ref_src=twsrc%5Etfw">July 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
 ## (36) 未解決
 <details>
 <summary>まだ解けていない</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの数列Xに対して、以下の最小化問題と等しい最小化問題は？<br><br>長さNの数列Aについて、Aを昇順に並べた数列をBとして、Σ_i (-N+2i)*B[i]+Σ_i |A[i]-X[i]|+Σ_i |A[i]-A[i+1]| の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1948393494529315128?ref_src=twsrc%5Etfw">July 24, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
 ## (37)
