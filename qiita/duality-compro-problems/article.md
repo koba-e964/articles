@@ -170,10 +170,32 @@ $u_i$ が非ゼロだとすると $u_i = 1/\sqrt{A[i]^2+B[i]^2}$ であり、こ
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの相異なる非負整数の列Aについて、以下の最小化問題と等しい最大化問題は？<br><br>各時刻 t=0,1,… で、各iで同時に、A[i]を1減らすか何もしないか選ぶ。ただし、A[i]-1と等しい要素が現在の列にある場合は減らす選択はできない。<br><br>全ての値が0以下になる時刻の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1938434100177821748?ref_src=twsrc%5Etfw">June 27, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (10) 未解決
+## (10)
+> 2×Nグリッドにいくつかの赤いマスと青いマスが存在する。赤いマスは、x座標とy座標が共に自分以下の青いマスとマッチングできる。以下の存在命題と同値な全称命題は？
+>
+> 全ての赤いマスを相異なる青いマスにマッチングできる
+
+類別: `最小費用流 (MCF) の双対` `フローの実行可能性の双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">2×Nグリッドにいくつかの赤いマスと青いマスが存在する。赤いマスは、x座標とy座標が共に自分以下の青いマスとマッチングできる。以下の存在命題と同値な全称命題は？<br><br>全ての赤いマスを相異なる青いマスにマッチングできる<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1938798748865569168?ref_src=twsrc%5Etfw">June 28, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+(2) と同じように考察する。同値なフローの問題は以下である:
+
+> $2 \times N$ 頂点のグリッド状のネットワークがあり、赤い頂点の流入は $1$ で、青い頂点の流入は $-1$ である。また $(1, N-1)$ に、合計で流入が $0$ になるように追加の流入がある (これは $0$ 以上である)。また左と下へ向かう容量 $\infty$ の辺がある。このネットワークでフローを流すのは実行可能である。
+
+頂点 $(i, j)$ が赤の場合 $X_{i,j} = 1$ 、青の場合 $X_{i,j} = -1$ 、それ以外の場合 $X_{i,j} = 0$ とする。
+これらの和は 0 以下なので $R = \sum_{i,j} X_{i,j} \le 0$ である。双対問題をとると以下のようになる。
+
+> 任意の $p$ に対して $\sum_{i,j} X_{i,j} p_{i,j} - R p_{1,N-1}+ \sum_{i,j} \infty \max(0, p _ {i,j} - p _ {i,j + 1}) + \sum_{j} \infty \max(0, p _ {0,j} - p _ {1,j}) \ge 0$
+
+ここで、天才考察 (TODO) を行うと、 $p$ として考えるべきものはある $j_0, j_1$ について $(0,0), \ldots, (0, j_0 - 1), (1, 0), \ldots, (1, j _ 1 - 1)$ の上で $p_i = 0$、そうでないところで $p_i = 1$ のものだけであることがわかるので、以下の命題と同値であることが結論できる。
+
+> 任意の $j_0, j_1$ に対して $\sum_{i, j < j_i} X_{i,j} \le 0$
+
+これは累積和などを使えば $O(N)$ 時間で判定できる。 TODO: 一点更新 query を対数時間で行う
+
 </details>
 
 # (11)-(20)
@@ -584,16 +606,31 @@ TODO: 奇数サイクルのときになんとかする
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">2N頂点の木があり、各頂点には1~Nの数が書かれている。各値はちょうど2回現れる。以下の最大化問題の答えは？<br><br>この木の補グラフについて、点素なパス集合によって同じ色の頂点を最大いくつ結べるか？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1945326265227218973?ref_src=twsrc%5Etfw">July 16, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </details>
 
-## (29) 未解決
+## (29)
+> 二次元平面上のN個の点(X[i],Y[i])について、以下の最大化問題と等しい最大化問題は？
+>
+> x1<x2 ∧ y1<y2のとき(x1,y1)から(x2,y2)へ容量1の有向辺を張ったグラフにおける、(-∞,-∞)から(∞,∞)への最大流
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>意図がわかりかねている</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">二次元平面上のN個の点(X[i],Y[i])について、以下の最大化問題と等しい最大化問題は？<br><br>x1&lt;x2 ∧ y1&lt;y2のとき(x1,y1)から(x2,y2)へ容量1の有向辺を張ったグラフにおける、(-∞,-∞)から(∞,∞)への最大流<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1945800956068917667?ref_src=twsrc%5Etfw">July 17, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$(-\infty, -\infty) \to (X[i], Y[i]) \to (\infty, \infty)$ と $(-\infty, -\infty) \to (\infty, \infty)$ を流せばよくて、答えは $N+1$ である。
+
 </details>
 
-## (30) 未解決
+## (30)
+> N頂点の木と，頂点のdisjointな部分集合S,Tに対して，以下の最大化問題と等しい最小化問題は？
+>
+> Sの頂点とTの頂点を結ぶような，辺素なパス集合のサイズの最大値
+
+類別: `最大フロー最小カットの双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の木と，頂点のdisjointな部分集合S,Tに対して，以下の最大化問題と等しい最小化問題は？<br><br>Sの頂点とTの頂点を結ぶような，辺素なパス集合のサイズの最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1946208537094607077?ref_src=twsrc%5Etfw">July 18, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$S$ や $T$ の頂点を縮約した上で、元々の無向辺を両方向の有向辺にしたグラフにおける最大フロー問題である。よって双対問題は最小カットである。
 </details>
 
 # (31)-(40)
@@ -669,10 +706,18 @@ $x_{uv} = \max(0, p_v - p_u - w_{uv})$ に注意すると、これは以下の�
 
 </details>
 
-## (35) 未解決
+## (35)
+> N個の重みが付いた区間(l,r,w)があり、l,rはそれぞれ単調増加である。以下の最大化問題と等しい最小化問題は？
+>
+> disjointな区間の集合の重みの和の最大値
+
+類別: `最短路の双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N個の重みが付いた区間(l,r,w)があり、l,rはそれぞれ単調増加である。以下の最大化問題と等しい最小化問題は？<br><br>disjointな区間の集合の重みの和の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947968126341255247?ref_src=twsrc%5Etfw">July 23, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+$l$ から $r$ に重み $-w$ の辺を、$i$ から $i+1$ に重み $0$ の辺を張ったときの、左端から右端までの距離
 </details>
 
 ## (36) 未解決
