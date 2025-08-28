@@ -707,9 +707,9 @@ $\min \lbrace x_2 - x_1 \mid (x_1, y) \in A, (x_2, y) \in B, x_1 \le x_2 \rbrace
 >
 > 「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？
 
-<details>
-
 類別: `最小費用流 (MCF) の双対` `最短路の双対`
+
+<details>
 
 <summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M辺の辺に重みが付いた有向グラフと、正整数Kに対して、以下の最大化問題と等しい最小化問題は？<br><br>「ある辺の重みを1増やし、スコアを1減らす」操作を繰り返した後、スコアに頂点1からNまでの最短距離*Kを足す。スコアの最大値は？<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1947210173053092113?ref_src=twsrc%5Etfw">July 21, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -769,10 +769,21 @@ $x_{uv} = \max(0, p_v - p_u - w_{uv})$ に注意すると、これは以下の�
 $l$ から $r$ に重み $-w$ の辺を、$i$ から $i+1$ に重み $0$ の辺を張ったときの、左端から右端までの距離
 </details>
 
-## (36) 未解決
+## (36)
+> 長さNの数列Xに対して、以下の最小化問題と等しい最小化問題は？
+>
+> 長さNの数列Aについて、Aを昇順に並べた数列をBとして、Σ_i (-N+2i)*B[i]+Σ_i |A[i]-X[i]|+Σ_i |A[i]-A[i+1]| の最小値
+
+類別: `最小費用流 (MCF) の双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの数列Xに対して、以下の最小化問題と等しい最小化問題は？<br><br>長さNの数列Aについて、Aを昇順に並べた数列をBとして、Σ_i (-N+2i)*B[i]+Σ_i |A[i]-X[i]|+Σ_i |A[i]-A[i+1]| の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1948393494529315128?ref_src=twsrc%5Etfw">July 24, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+(2) と同じ方法で考察する。 $\sum 2iB[i]$ の部分を $A[i]$ の線型結合・区間凸関数の和で表せたら勝ち。
+
+$\sum 2iB[i] = \sum 2iA[i] + \sum_{i < j} 2\max(0, A[i] - A[j])$ である。証明は A のバブルソートの過程をなぞり、 $A[i] > A[i+1]$ のときに入れ替えで値が変わらないこと、最終的に同じ値であることを示せば良い。$i,i+1$ を入れ替えると右辺の増分は $2i(A[i+1] - A[i]) - 2(i+1)(A[i] - A[i+1]) - 2\max(0, A[i] - A[i+1]) = 0$ である。
+
 </details>
 
 ## (37)
@@ -794,9 +805,27 @@ $l$ から $r$ に重み $-w$ の辺を、$i$ から $i+1$ に重み $0$ の辺�
 最大フロー最小カット定理から、元の問題の解はこのグラフにおける最大の $s \to t$ フローの流量に等しい。
 </details>
 
-## (38) 未解決
+## (38)
+> N頂点M超辺の超グラフがある。各頂点には白か黒を割り当てるが、いくつかは既に決まっている。以下の最小化問題と等しい最大化問題は？
+>
+> 結んでいる頂点の色が単一でないような超辺の数の最小値
+
+類別: `最大フロー最小カットの双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点M超辺の超グラフがある。各頂点には白か黒を割り当てるが、いくつかは既に決まっている。以下の最小化問題と等しい最大化問題は？<br><br>結んでいる頂点の色が単一でないような超辺の数の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1948988903979188392?ref_src=twsrc%5Etfw">July 26, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+超辺 $e = \lbrace x_1, \ldots, x_k\rbrace$ に対して以下のような追加の頂点と辺を作る: (参考: <https://theory-and-me.hatenablog.com/entry/2020/03/17/180157> の `3-4. 4変数以上でグラフ表現できる関数`)
+
+- 頂点 $u_e$, $v_e$
+- $u_e \to x_i \to v_e$ に容量 $1$ の辺 ($i = 1, \ldots, k$)
+- $s \to u_e, v_e \to t$ に容量 $1$ の辺
+
+この部分のカットの大きさは $e$ の色が全部同じときに $1$ で、違う色があるときに $2$ である。
+
+最大フロー最小カット定理から、元の問題の解は (このグラフにおける最大の $s \to t$ フローの流量) - (元のグラフの超辺の本数) に等しい。
+
 </details>
 
 ## (39) 未解決
