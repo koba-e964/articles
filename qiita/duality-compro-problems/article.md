@@ -156,12 +156,31 @@ $u_i$ が非ゼロだとすると $u_i = 1/\sqrt{A[i]^2+B[i]^2}$ であり、こ
 
 </details>
 
-## (8) 未解決
+## (8)
+> 長さNで総和が0の整数列Aについて、以下の最大化問題と等しい最小化問題は？
+>
+> 任意のiで|B[i]-B[(i+1)%N]|<=1であるような長さNの数列Bについて、ΣA[i]*B[i] の最大値
+
+類別: `最小費用流 (MCF) の双対`
+
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNで総和が0の整数列Aについて、以下の最大化問題と等しい最小化問題は？<br><br>任意のiで|B[i]-B[(i+1)%N]|&lt;=1であるような長さNの数列Bについて、ΣA[i]*B[i] の最大値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1938074738737484224?ref_src=twsrc%5Etfw">June 26, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-類題: <https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h>
+(2) と同様に考察する。最小化すべきものは $\sum_i -A[i]B[i] + \sum(\infty\max(0, B[i] - B[(i+1)\bmod N] - 1) + \infty\max(0, B[i] - B[(i+N-1)\bmod N] - 1))$ である。双対をとると以下のような最小費用流の問題になる。
+
+> 円環状の $N$ 頂点のネットワークがあり、頂点 $i$ の流入は $-A[i]$ である。また容量 $\infty$ コスト $1$ の辺が双方向に隣同士の頂点を結んでいる。このネットワークにおける最小費用流を求めよ。
+
+なおこの問題は双対に関係なく以下のように解ける。
+
+$P[i] := B[i] - B[(i+N-1)\bmod N]$ とおき、$C[i] := A[i] + \cdots + A[N-1]$ とおくと、 $P[0] + \cdots + P[N-1] = 0$ かつ $\sum A[i]B[i] = \sum C[i]P[i]$ である。
+
+$-1 \le P[i] \le 1$ の条件下で $\max \sum C[i]P[i]$ を求めれば良いので、 $C$ をソートして上位 $\lfloor N/2 \rfloor$ 個の和から下位 $\lfloor N/2 \rfloor$ 個の和を引けば良い。 $O(N \log N)$ 時間である。
+
+類題: 
+- <https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h>
+- <https://contest.ucup.ac/contest/2506/problem/14017>
+
 </details>
 
 ## (9) 未解決
@@ -215,11 +234,30 @@ $X_{0,i}$ に足し引きするとき、以下のステップを行う。最終�
 >
 > 奇数長の単純閉路が存在する。
 
+類別: `rank-nullty theorem` `線型方程式`
+
 <details>
 <summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">N頂点の無向グラフについて、以下の存在命題と等しい全称命題は？<br><br>奇数長の単純閉路が存在する。<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1939170725761556810?ref_src=twsrc%5Etfw">June 29, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 任意の色割り当て $f \colon V\to \lbrace 0,1\rbrace$ に対して、 $f$ は 2-彩色ではない。つまり $f(u) = f(v)$ なる辺 $uv$ が存在する。
+
+これを線形代数の概念で説明すると以下のようになる。有限体 $\mathbb{F}_{2}$ の上で議論を行う。
+
+$M$ を辺の本数として、 $A$ を $N \times M$ の[接続行列](https://en.wikipedia.org/wiki/Incidence_matrix) とするとき、奇数長の単純閉路が存在することと以下は同値である:
+
+> (i): $\exists b \in \mathbb{F}_{2}^M \ldotp \begin{pmatrix}A \\\\ {}^t1_M\end{pmatrix} b = \begin{pmatrix}0_N \\\\ 1\end{pmatrix}$
+
+また、2-彩色がないことと以下は同値である:
+
+> (ii): $\forall d \in \mathbb{F}_{2}^N \ldotp {}^td A \neq {}^t1_M$
+
+(i) は $\mathop{\mathrm{rank}}\begin{pmatrix}A \\\\ {}^t1_M\end{pmatrix} = \mathop{\mathrm{rank}} \begin{pmatrix}A & 0_N \\\\ {}^t1_M & 1\end{pmatrix}$ と同値である (参考: <https://chatgpt.com/share/68afe6e1-71e8-8010-9c67-43f878c98d8e>) $A$ を行ベクトルの変換としてみなして次元を計算すれば $\mathrm{rank} \begin{pmatrix}A & 0_N \\\\ {}^t1_M & 1\end{pmatrix} = \mathop{\mathrm{rank}} A + 1$ は明らかである。よって $\mathop{\mathrm{rank}}\begin{pmatrix}A \\\\ {}^t1_M\end{pmatrix} = \mathop{\mathrm{rank}} A + 1$ と同値である。
+
+(ii) は $A$ を行ベクトルの変換とみなしたときに ${}^t1_M$ が像に入っていないという主張なので、${}^t 1_M$ を追加したら rank が $1$ 増える、つまり $\mathop{\mathrm{rank}}\begin{pmatrix}A \\\\ {}^t 1_M\end{pmatrix} = \mathop{\mathrm{rank}} A + 1$ と同値である。
+
+よって (i) と (ii) は同値である。
+
 </details>
 
 ## (12)
