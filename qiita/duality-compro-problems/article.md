@@ -932,7 +932,7 @@ $\sum 2iB[i] = \sum 2iA[i] + \sum_{i < j} 2\max(0, A[i] - A[j])$ である。証
 類題: <https://atcoder.jp/contests/agc055/tasks/agc055_b>
 </details>
 
-# (51)-(52)
+# (51)-(60)
 ## (51) 未解決
 <details>
 <summary>まだ解けていない</summary>
@@ -963,4 +963,55 @@ $\sum 2iB[i] = \sum 2iA[i] + \sum_{i < j} 2\max(0, A[i] - A[j])$ である。証
 
 $A[i]$ がすべて $K$ の倍数であるのと同値。
 
+</details>
+
+## (53) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (54) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (55) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (56) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (57) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (58) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (59) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (60) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+# (61)-(62)
+## (61) 未解決
+<details>
+<summary>まだ解けていない</summary>
+</details>
+
+## (62) 未解決
+<details>
+<summary>まだ解けていない</summary>
 </details>
