@@ -189,10 +189,20 @@ $-1 \le P[i] \le 1$ の条件下で $\max \sum C[i]P[i]$ を求めれば良い�
 
 </details>
 
-## (9) 未解決
+## (9)
+> 長さNの相異なる非負整数の列Aについて、以下の最小化問題と等しい最大化問題は？
+>
+> 各時刻 t=0,1,… で、各iで同時に、A[i]を1減らすか何もしないか選ぶ。ただし、A[i]-1と等しい要素が現在の列にある場合は減らす選択はできない。
+>
+> 全ての値が0以下になる時刻の最小値
 <details>
-<summary>まだ解けていない</summary>
+<summary>解法</summary>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr">長さNの相異なる非負整数の列Aについて、以下の最小化問題と等しい最大化問題は？<br><br>各時刻 t=0,1,… で、各iで同時に、A[i]を1減らすか何もしないか選ぶ。ただし、A[i]-1と等しい要素が現在の列にある場合は減らす選択はできない。<br><br>全ての値が0以下になる時刻の最小値<a href="https://twitter.com/hashtag/%E6%AF%8E%E6%97%A5Duality?src=hash&amp;ref_src=twsrc%5Etfw">#毎日Duality</a></p>&mdash; ⋆꙳.*･ (@Segtree) <a href="https://twitter.com/Segtree/status/1938434100177821748?ref_src=twsrc%5Etfw">June 27, 2025</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+操作後全体を 1 増やすことにして、操作を「各 $i$ で同時に、$A[i]$ を $1$ 増やすか何もしないか選ぶ。ただし $A[i]-1$ がある場合は $1$ 増やす必要がある」と言い換えれば、停止状態における $A[i]$ の最大値の最小値がそのまま答えとなる。
+
+一般性を失わず、 $A[0], \ldots, A[N-1]$ が降順にソートされていると仮定して良い。求める値は $A[i] + 2i$ 以上であることが簡単にわかる ($A[i]$ から上に $i$ 個を少なくとも 1 個飛ばしで配置する必要がある)。逆にこれの max が求める値である。よって $\max A[i] + 2i$ が求める答えである。
+
 </details>
 
 ## (10)
