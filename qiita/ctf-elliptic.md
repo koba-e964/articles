@@ -101,7 +101,7 @@ sage: EllipticCurve(GF(998244353), [1, 1]).order()
 ```
 
 この位数が以下の場合は攻撃が可能である。楕円曲線の問題を見たら初手で位数を確認しよう。
-- $\\# E=p$ のとき: SSSA attack ([筆者の解説](https://github.com/koba-e964/code-reading/tree/master/algorithm/smart-attack)、[応用問題の解説](https://gist.github.com/elliptic-shiho/d13c2333adb4a94514753c8ca85a3f8e))
+- $\\# E=p$ のとき: SSSA attack ([筆者の解説](https://github.com/koba-e964/code-reading/tree/master/algorithm/smart-attack)、[応用問題の解法コード](https://gist.github.com/elliptic-shiho/d13c2333adb4a94514753c8ca85a3f8e))
 - $\\# E=p \pm 1$ のとき: MOV attack (有限体の上の離散対数問題になる。CTF では出題が難しそう)
 
 ## 群構造
@@ -189,7 +189,7 @@ sage: (4*z2+3)**2
 $k_1 \mid k_2$ のとき $\mathrm{GF}(p^{k_1}) \subseteq \mathrm{GF}(p^{k_2})$ である。そのため $E(\mathrm{GF}(p^{k_1})) \subseteq E(\mathrm{GF}(p^{k_2}))$ に決まっている。$K$ が体のとき $E(K)$ は群だったので、$E(\mathrm{GF}(p^{k_1}))$ の方が $E(\mathrm{GF}(p^{k_2}))$ の部分群ということである。つまり位数を見たときに $\\# E(\mathrm{GF}(p^{k_1})) \mid \\# E(\mathrm{GF}(p^{k_2}))$ が成立する。([ラグランジュの定理](https://ja.wikipedia.org/wiki/%E3%83%A9%E3%82%B0%E3%83%A9%E3%83%B3%E3%82%B8%E3%83%A5%E3%81%AE%E5%AE%9A%E7%90%86_(%E7%BE%A4%E8%AB%96))!)
 
 疑う者は以下の実験結果を見よ。$a_1 \mid a_2 \mid a_4$ や $a_2 \not \mid a_3$ が成立している。
-(ここで、 $a_k := \\# E(\mathrm{GF}(p^{k}))$ として |`E.count_points(5)` は $[a_1, a_2, a_3, a_4, a_5]$ を返す。)
+(ここで、 $a_k := \\# E(\mathrm{GF}(p^{k}))$ として `E.count_points(5)` は $[a_1, a_2, a_3, a_4, a_5]$ を返す。)
 ```python
 sage: E = EllipticCurve(GF(7), [0, 4])
 sage: E.count_points(5)
@@ -206,9 +206,11 @@ sage: 2379 % 39
 
 楕円曲線 $E$ において、$m$ 倍すると単位元 $(0:1:0)$ になる点のことを $m$ 分点とよび、その集合を $E[m]$ と表す。以下のような定理が知られている。
 
-**定理**: $p \not \mid m$ であり $E$ が十分大きい体で定義されていれば $E[m]$ は $\mathbb{Z}/m\mathbb{Z} \oplus \mathbb{Z}/m\mathbb{Z}$ と同型である。([講義資料](https://crypto.stanford.edu/pbc/notes/elliptic/torsion.html) や [Sil2016, Corollary III.6.4] など)
+**定理**: $p \not \mid m$ であり $E$ が十分大きい体[^explanation-sufficiently-large-field]で定義されていれば $E[m]$ は $\mathbb{Z}/m\mathbb{Z} \oplus \mathbb{Z}/m\mathbb{Z}$ と同型である。([講義資料](https://crypto.stanford.edu/pbc/notes/elliptic/torsion.html) や [Sil2016, Corollary III.6.4] など)
 
 この定理を使えば $E(\mathrm{GF}(p^{k}))$ が巡回群 2 個以下の直和であることはほぼ明らか。[^explanation-gens-le-2]
+
+[^explanation-sufficiently-large-field]: ここでいう「十分大きい体」とは、必要な値をすべて含んでいる拡大体を意味する。たとえば $\mathrm{GF}(7)$ で $x^2+1=0$ の根を考える時、 $\mathrm{GF}(7^2)$ はその根を含むし、 $\mathrm{GF}(7^{2k})$ はすべてその根を含む。代数閉包でもよいし普通は代数閉包を考えるが、今回は有限体の範囲で考察したかったため、このような議論にした。
 
 [^explanation-gens-le-2]: 略証: $a := \\# E(\mathrm{GF}(p^{k}))$ とする。この時十分大きい体を $\mathrm{GF}(p^{l})$ とすれば $E(\mathrm{GF}(p^{l}))[a] \simeq \mathbb{Z}/a\mathbb{Z} \oplus \mathbb{Z}/a\mathbb{Z}$ である。$E(\mathrm{GF}(p^{k}))$ は巡回群 2 個の直和の部分群なのだから、それ自身巡回群 2 個以下の直和である。
 
@@ -232,9 +234,9 @@ sage: EE.abelian_group()
 Additive abelian group isomorphic to Z/18 + Z/18 embedded in Abelian group of points on Elliptic Curve defined by y^2 = x^3 + 4 over Finite Field in t of size 7^3
 ```
 
-また、$a_k := \\# E(\mathrm{GF}(p^{k}))$ としたときに $b_k := p^k + 1 - a_k$ は以下のような 3 項漸化式に従う[^quadratic] (ここで $t$ は $E, p$ によって決まる定数):
+また、$a_k := \\# E(\mathrm{GF}(p^{k}))$ としたときに $b_k := p^k + 1 - a_k$ は以下のような 3 項漸化式に従う[^quadratic]:
 $$b_{k+2} - b_1b_{k+1} + pb_k = 0$$
-$k \ge 1$ だが $a_0 = 0, b_0 = 2$ によって補外すれば $k \ge 0$ で成り立つ。
+$k \ge 1$ だが $a_0 = 0, b_0 = 2$ によって外挿すれば $k \ge 0$ で成り立つ。
 
 [^quadratic]: 二次方程式 $x^2 - b_1x + p = 0$ の根を $\alpha, \beta$ とすれば、$b_k = \alpha^k + \beta^k$ であって $a_k = p^k + 1 - \alpha^k - \beta^k = (\alpha^k - 1)(\beta^k - 1)$ である。こう見れば $k_1 \mid k_2$ のとき $a_{k_1} \mid a_{k_2}$ であることも自明に見えるかもしれない。
 

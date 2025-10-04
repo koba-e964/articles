@@ -1,0 +1,19 @@
+version 1 を公開してからの mistakes と inaccuracies は以下の通り。
+
+# mistakes
+応用問題の解説 解説じゃなくてコードだろ
+「十分大きい体」
+三項漸化式は t を使わない
+E.count_points(5) の前に余分な | がある
+
+# inaccuracies
+対象読者に楕円曲線論をゆるふわに学びたい人を入れてもいいかも
+SageMath のインストールが難しい。https://hub.docker.com/r/sagemath/sagemath を使えば docker で起動できるはず
+EllipticCurve(GF(7), [0, 4]) 不親切かも
+count_points の説明が不親切かも
+補外 -> 外挿?
+
+$ wc ../qiita/ctf-elliptic.md 
+     294    1746   20506 ../qiita/ctf-elliptic.md
+
+20000 バイトあたりミスが 4~9 個であれば上出来。
