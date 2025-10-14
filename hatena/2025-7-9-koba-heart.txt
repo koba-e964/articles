@@ -1,0 +1,97 @@
+* セキュリティー・CTF
+
+[https://go.dev/blog/fips140:title]
+- The FIPS 140-3 Go Cryptographic Module
+- Go の暗号技術ライブラリーを FIPS 140-3 に対応させる話
+- 意見の食い違いに折り合いをつけた
+-- "FIPS 140-3 has strict rules on how cryptographic randomness is generated, which essentially enforce the use of a userspace CSPRNG. Conversely, we believe the kernel is best suited to produce secure random bytes"
+-- (FIPS 140-3 には乱数生成方法に関する厳格なルールがあり、ユーザースペースの暗号論的擬似乱数生成器を使うことを強制する。正反対に、我々はカーネルこそが安全な乱数バイトを作るのに最適な場所だと信じている。)
+- PQC も対応した。
+-- "The post-quantum ML-KEM key exchange (FIPS 203), introduced in Go 1.24, is also validated, meaning crypto/tls can establish FIPS 140-3 compliant post-quantum secure connections with X25519MLKEM768."
+-- Go の暗号技術チームは仕事が早いし正確だ。
+
+[https://words.filippo.io/assembly-mutation/:title]
+- Go Assembly Mutation Testing (Go のアッセンブリー改変テスト)
+- コードカバレッジの検査は基本的には if 文の両方の分岐を通ったことをテストするものだが、暗号技術のコードには if 文がない。
+-- "The problem is that if you run code coverage, you’ll see all “branches” light up, even if all tests actually discard the result of one of them. We could have other untested paths like #20040 and not know about it."
+-- if 文なしでどのように場合分け処理を実装するのか? [https://www.chosenplaintext.ca/articles/beginners-guide-constant-time-cryptography.html:title=一定時間演算]へようこそ。
+--- 特定の関数内部ではアッセンブリーのレベルでも分岐命令 (x86-64 の jne など) がなくなることが期待されるしコード中にも単純な if 文がないので、常にその関数の全ての命令が実行される。
+- mutation testing (改変テスト) とは?
+-- ソースコードを実際に書き換えてテスト結果が変わらなかったら、その書き換えた部分はテストされていないとみなす
+-- 普通のコードなら分岐命令になるであろう場所 (c >= 0 なら 1 増やす) などが、両方の分岐を通っているかを試験する
+--- そのような場所は arm64 だと SUBCS などの、フラグを読むが分岐はしないような命令で実現される
+--- a = carryAdd(a, b, c) の代わりに a = a + b にしたらどうなるか、など
+
+
+* 技術一般
+
+[https://go.dev/blog/swisstable:title]
+- Go の map 内部のハッシュテーブルを Swiss Table に変えた話
+- Go の map は (K comparable という制約があるので) 平衡木だと思っていたが、実はずっとハッシュテーブルだった。
+
+
+[https://kirill-markin.com/articles/notion-task-manager-guide/:title]
+- Notion で全てのタスクを単一 DB に突っ込む話
+- Notion 上で一つの DB にプロジェクトも細かいタスクも全部積んで、relation で親子関係を表現する
+-- 「双方向リレーション」は必要 (これをオンにしないと辺が無向辺になり、親子関係を適切に表現できない)
+
+
+[https://note.com/simplearchitect/n/n312c0e0e1a37:title=ディープコードリーディングのすすめ｜牛尾 剛]
+- "もうだめならどうでもいいや。と思いながら思いついた戦略は次の通りアホみたいに単純である
+-- 自分に特に関係ある主要開発者のすべてのPRを読む
+-- １週間に、２回ほど時間を予約して、他の人のPRを読む時間を作る"
+- "私が参考にしている勉強法の YouTuber の人が、新しい事を学ぶときはインデックスつまり、概要をざっとつかんでから本とかでも読むと良いと言っていたので、同じストラテジをとった。"
+- "私はこのトランジションに３日使ったが、自分がかつて感じたことのない「コンフィデンス」を感じていた。どのPRを観ても全然簡単に理解できるし、時間もかからない。これが、技術イケメンの皆さんが観てた風景なのか。"
+- 個人的にも深く理解したとたん作業スピードが劇的に上がった経験があるので、詰まった時の一手として利用したい
+- できたら大きいけどできるかどうかわからない、でも今のまま待っていてもジリ貧、みたいなときに勇気を出したい
+
+[https://bd103.github.io/blog/2025-09-01-zero-copying-strings-serde:title]
+- [https://serde.rs/:title=serde] (Rust で de facto standard な直列化ライブラリー) の面白機能の話
+- serde には文字列の参照で返す機能があるが、JSON などで escape された文字列だと発動せず <code>Err(...)</code> になる
+-- 例えば JSON 文字列 <code>{"a": "b\nc"}</code> から脱直列化しようとすると、結果に含まれる文字列 (<code>b</code>, 改行文字, <code>c</code> をこの順に並べた文字列で、hex は <code>62 0a 63</code>) がもとの JSON の部分バイト列になっておらず、serde が困って <code>Err(...)</code> にする
+- できる時だけ参照にしたいなら <code>Cow<'a, str></code> に <code>#[serde(borrow)]</code> を付けよう
+
+
+* 思想一般
+
+[https://iosdevweekly.com/issues/715/:title]
+- "Programming communities can easily become tribal. It’s easy for people to slip into thinking that “their” programming language is the best, and nothing written with other languages can be good."
+-- (プログラミングコミュニティーは容易に排外主義的になり得る。「自分たちの」プログラミング言語が最高で、他の言語で書かれたものが良いことなどありえない、という考えに陥るのはたやすい。)
+
+『滅私』
+- [https://www.amazon.co.jp/dp/B0D7VM318M]
+- ミニマリストに関する物語と思いきや、実は矛盾を抱えた人間の物語かもしれない。登場人物はミニマリストの典型というよりは、自分の問題から逃げ回ってミニマリズムなどに傾倒する人間の典型に見えた。
+
+『やり抜く力 GRIT(グリット)』
+- <https://www.amazon.co.jp/dp/4478064806>
+-- "エキスパートたちは、すでに得意なところをさらに伸ばすのではなく、具体的な弱点の克服に努める。あえて自分がまだ達成していない困難な目標を選ぶのだ。"
+
+山口周シリーズ
+- [https://note.com/shu_yamaguchi/n/n8ee3a67ce736:title]
+-- "厳密な言葉を丁寧に使って議論を積み重ねることではじめて、我々は組織における「空気」の蔓延を防ぐことが出来るのだということをゆめゆめ忘れてはならない、ということですね。"
+- [https://web.archive.org/web/20250627014103/https://news.yahoo.co.jp/articles/78dc439c8b9ddcf652859ece1348a232b85e0731:title]
+-- "まず20代であれば、自分が専門とする領域の本は少しずつ深めながら、マンダラのコアにある書籍について目を通しておけばいいと思います。"
+-- "マンダラの中心部にある本は全カテゴリーの代表的な入門書ですが、これらの本を読むことで「企業というものがどういう論理で動いているのか」ということがおおむね理解できるようになります。視座が上がるのです。"
+
+桜林 直子（サクちゃん）シリーズ
+
+- [https://note.com/sac_ring/n/ndcbfa337dfa8:title]
+-- "同じように、自分となかよくなるには、嘘をつかずに本心で自分のことをちゃんと知ることだと思う。期待をして盛ったり、謙遜でサゲたりしないで、過不足なく本当のサイズで自分のことを捉えて知ることができると、すごく仲良くなれる。"
+- [https://note.com/sac_ring/n/n0230807729d0:title]
+-- "誰と一緒にいたいか考えるとき、仕事でも恋愛でも友達でも、好き嫌いではなくて「自分が正直でいられるか」で決めるのはとてもよい方法なのだろうな。"
+- [https://note.com/sac_ring/n/ncf9dba1e88fe:title]
+-- "「自分のサイズを知る」というのは、環境や性格や「こうしたい」という希望 を洗い出して、自分だけのでこぼこを把握すること。"
+-- "たとえばわたしの場合は「決まった時間に仕事できない」（ノってるときはいくらでもやるけど、出社時間だからといってできない。他に大事な用事があったら優先したい）とか、「18時以降は働かない（働けない）」「あーちんと一緒に夏休みをとりたいから夏は働かない」とか、「自分で把握できない見えない部分があるとフリーズして機能しない」とかだった。"
+-- "「自分の持ち物を知る」というのは、「自分にできること」を並べること。"
+
+『フィードバック入門』
+- <https://www.amazon.co.jp/dp/B06VVQ8V36>
+-- "大人が何かを学ぶとき、行動を変容させるときには一定の「痛み」がともなうのです。しっかりと相手に向き合い、このセッションの目的を伝え、そのうえで、ともに改善していこうと誘うのがポイントです。"
+
+
+[https://note.com/wasemenblog/n/nd499a59ae812:title]
+>>
+"勉強だったら1日30分できるんだったら、30～35分を頑張ってみる。
+楽すぎず、苦しすぎない、ちょうど中間ぐらい、適度なストレスがかかってる状態がラーニングゾーンと呼ばれるところなので、楽すぎるコンフォートゾーンにいすぎないで、かといって苦しすぎないゾーンにいればいいんです。
+精神科の治療というのは二つポイントがあって、仕方がないということと、生まれてきてよかったと思える瞬間、この二つなんです。"
+<<
