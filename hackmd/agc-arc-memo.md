@@ -29,6 +29,9 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - <https://codeforces.com/contest/2119/problem/D>
     - <https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f>
     - <https://atcoder.jp/contests/arc207/tasks/arc207_a>
+  - JSON: <https://github.com/koba-e964/learning-trees/blob/01eb1749b2afff41346b6e696233037e386709f8/comppro-algo/%E9%A0%86%E5%88%97.json5#L29-L39>
+
+### 区間
 
 ## 問題集
 
@@ -43,7 +46,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 実装 (Rust): <https://atcoder.jp/contests/abc425/submissions/69720430>
 
-### AGC071-A (2025-03, 700) [区間 DP]
+### [AGC071-A](https://atcoder.jp/contests/agc071/tasks/agc071_a) (2025-03, 700) [区間 DP]
 累積 xor の配列を $c = (c[0], \ldots, c[N])$ と呼ぶ。
 
 多項式時間にするパート: 配列の中で隣同士の xor というのは不変である。そのため、分割された区間は「全体に何を xor するか」で特徴づけることができる。この値を $x$ と置く。
@@ -62,7 +65,7 @@ $O(N^4)$ から $O(N^3)$ にするパート: 実は、最適解は偶数長な�
 
 実装 (Rust): <https://atcoder.jp/contests/agc071/submissions/69818279>
 
-### AGC073-A (2025-09, 700) [弦, $\sum_i \lfloor i/2\rfloor C(N,i)$]
+### [AGC073-A](https://atcoder.jp/contests/agc073/tasks/agc073_a) (2025-09, 700) [弦, $\sum_i \lfloor i/2\rfloor C(N,i)$]
 
 弦で囲まれた領域の問題は、領域ごとにちょうど一つの弦に紐づけるのが重要 (一番左など)。
 
@@ -70,7 +73,7 @@ $O(N^4)$ から $O(N^3)$ にするパート: 実は、最適解は偶数長な�
 
 実装 (Rust): <https://atcoder.jp/contests/agc073/submissions/69719793>
 
-### ARC155-D (2023-03, 800) [ゲーム, 真似っこ戦略]
+### [ARC155-D](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
 うまくいかなかった戦略: 偶数個は無視できるから、単に cnt[i] = i の倍数の個数 % 2 でよい。
 うまくいかなかった理由: ある値の状態に行くためにはその値が存在する必要がある。そのため、単に偶数個同じ要素があったら消すだけではうまくいかず、 (i) 0 個、 (ii) 1 個以上の奇数個、 (iii) 2 個以上の偶数個 を区別する必要がある。
@@ -80,7 +83,21 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 
 実装 (Rust): <https://atcoder.jp/contests/arc155/submissions/69935622>
 
-### AGC072-A (2025-04, 900) [操作, 順列, スケジューリング, swap argument, 部分区間を自明な問題にする]
+### [ARC207-A](https://atcoder.jp/contests/arc207/tasks/arc207_a) (2025-10, 800) [箱根駅伝 DP]
+
+箱根駅伝 DP。 $i = 0,\ldots,N-1$ の値が左には $f[i]$ 個、右には $1$ 個あるとしたとき、マッチングを作っていく。今までに作られたマッチングの大きさを $j$ とすると、右はもちろん左のマッチング予定の頂点が何個残っているかも $j$ から計算できることに注意。
+
+実装の失敗 1: [提出 2](https://atcoder.jp/contests/arc207/submissions/70185730) -> [提出 3](https://atcoder.jp/contests/arc207/submissions/70186183)
+- DP の遷移で、「左 $f[i]$ 右 $b$ の完全二部グラフにおける大きさlt のマッチングの個数」が欲しいことがあったが、間違えて $C(f[i], \mathrm{lt})C(b,\mathrm{lt})$ にしてしまった ($\mathrm{lt}!$ を掛け忘れた)。
+- 対策?: 完全二部グラフにおける大きさ $k$ のマッチングの個数をスニペットにしておく。因子をうっかり忘れてしまうことへの根本的な対策は分からない。慣れるしかないか…?
+
+実装の失敗 2: [提出 1](https://atcoder.jp/contests/arc207/submissions/70185590) -> [提出 2](https://atcoder.jp/contests/arc207/submissions/70185730)
+- 箱根駅伝 DP において、 `=` の場合だけ lt を見るのを忘れた
+- 対策: 実装をなるべく共通化する
+
+実装 (Rust): <https://atcoder.jp/contests/arc207/submissions/70188088>
+
+### [AGC072-A](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, スケジューリング, swap argument, 部分区間を自明な問題にする]
 
 x < y < z のとき、 操作列で z,y,x という並びがあったら z,x,y にできるという性質がある。
 これがどのような場合に成立するかは考察の必要あり。この問題では ($D$ がタスクごとに一定であるため) 成り立つ。
