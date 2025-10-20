@@ -1,7 +1,6 @@
 # AGC/ARC などメモ (ネタバレあり)
 AGC/ARC などで、解法が他の問題に流用できそうなものをメモする。ABC に出てきそうな実装法の典型というよりは、考察方法の典型を書く。
 
-
 [AGC 手筋まとめ(AGCの多くの問題のネタバレを含みます)](https://www.dropbox.com/scl/fi/pi1um3izq07czb9ykfylp/AGC-AGC.paper?dl=0) の書き方を踏襲する。
 
 あくまで自分用なので、**橙**以上の人は**強い人の解説を読んでください**。
@@ -12,7 +11,9 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 |2025-10-29|v1.0.0 公開|
 
 ## 典型
-### 順列・完全マッチングの数え上げ
+### 順列・完全マッチングの典型
+- 最小値・最大値に着目する
+  - 例: [AGC043-D](https://atcoder.jp/contests/agc043/tasks/agc043_d) で $3N$ が現れた後のことを考えると、考察が進む (https://betrue12.hateblo.jp/entry/2020/03/22/005046)
 - 挿入 DP
   - <https://ricky-pon.hatenablog.com/entry/2023/07/03/120540>
   - 問題
@@ -32,6 +33,14 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - JSON: <https://github.com/koba-e964/learning-trees/blob/01eb1749b2afff41346b6e696233037e386709f8/comppro-algo/%E9%A0%86%E5%88%97.json5#L29-L39>
 
 ### 区間
+- 区間の交差[^intersection-is-not-set-theoretical] + クエリー問題
+  - 平面走査で、元々ある区間を長方形に、テスト用の区間を点にすることができる。2 個の長方形に分かれ、それらは共通部分を持たない。
+  - 問題
+    - [ABC360-F](https://atcoder.jp/contests/abc360/tasks/abc360_f)
+
+
+[^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
+
 
 ## 問題集
 
@@ -39,6 +48,25 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 配列の回転 (Aa -> aA) は、好きな要素を右から削除して左に挿入する操作と言い換えることができる。そのため、それぞれの要素がソートするために動かす必要があることと左側に自分より大きい要素があるかどうかは同値。
 
 実装 (Rust): <https://yukicoder.me/submissions/1126857>
+
+### [ABC360-F](https://atcoder.jp/contests/abc360/tasks/abc360_f) [区間の交差 + クエリー問題]
+平面走査で解ける。
+別解法: 平面走査をし、 $t$ を増やして $[t, x)$ との交差状況を考えることにする。$t = l$ になったときに $[l, r)$ との交差状況が変わる ($x < r$ で交差するようになる)。
+  - ref: <https://drken1215.hatenablog.com/entry/2024/07/06/172000>
+
+### [ABC338-G](https://atcoder.jp/contests/abc338/tasks/abc338_g) (2024-01, 600) [複雑な状態]
+
+#### 方針 1 (+ で分ける)
+
+TODO: 書く
+
+#### 方針 2 ([ユーザー解説](https://atcoder.jp/contests/abc338/editorial/11651)に近い)
+文字列 $S$ を左から見ていき、位置 $j$ を見る直前に、文字 $c$ を引数に取る関数 $c \mapsto \sum_{i=0}^{j-1} f(s[i,j) + c)$ を管理しておき、$c = s[j]$ として適用し、その後関数を更新する、という方針をとる。
+管理しておくべき関数は $c \mapsto A + B(10C + c) + (10E + Dc)$ という形で書ける。(c は数字に対応する整数としても解釈することにする)
+- 実際には、$j$ から見て (i) 前の `*` まで、(ii) 前の `+` まで、(iii) その後 で分けて足すことになる。例えば (iii) は $A$ に相当し、 $j$ の直前の `+` の位置を $k$ とすると単に $s[0,k)$ の suffix に対する $f$ の和である。 
+- TODO: わかりやすく項を分割する
+
+実装 (Rust): <https://atcoder.jp/contests/abc338/submissions/70314785>
 
 ### [ABC425-F](https://atcoder.jp/contests/abc425/tasks/abc425_f) (2025-09, 700?) [操作木を考える, 区間 DP]
 実は多項式解法があるのでそれについて書く。
