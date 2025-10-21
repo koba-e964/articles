@@ -65,6 +65,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - Dilworth の定理
     - 最大フロー最小カットの双対
     - 二部グラフの双対
+
+### マトロイドの典型
 - マトロイド
   - <https://combinatorics-fun.vercel.app/natori/202412/>
   - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
@@ -96,6 +98,26 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 独立集合オラクルなどをインクリメンタルに適用することもある。
       - 例: 閉路マトロイドで辺の部分集合に閉路がないか一回判定するには $O(E\alpha(V))$ 時間かかるが、閉路がない辺の部分集合に一つの辺を追加できるかは $O(\alpha(V))$ 時間で判定できる。
 
+### 操作で状態遷移できるか判定する系
+- 共通
+  - 前処理してわかりやすい処理にする
+  - 例: [第5回 ドワンゴからの挑戦状 本選-B XOR Spread](https://atcoder.jp/contests/dwacon5th-final/tasks/dwacon5th_final_b)
+    - $(a_{i-1}, a_{i+1}) \leftarrow (a'_{i-1}, a'_{i+1}) = (a_{i-1} \oplus a_i, a_{i+1} \oplus a_i)$  ($2 \le i \le N-1$) という操作を何回もできる
+    - $b_i := a_1 \oplus \cdots \oplus a _ i$ ($2 \le i \le N-1$) とする。元々の操作は $(b _ {i-1}, b _ i, b _ {i+1}) \leftarrow (b' _ {i-1}, b' _ i, b' _ {i+1}) = (b_i, b_{i-1}, b_{i+1})$ となる。つまり $[1, N-1]$ の範囲で $b$ の隣接 swap ができる。
+- 操作が可逆な場合
+  - 不変量を見つける
+    - xor
+    - 列を圧縮
+    - 列を伸長
+    - 置換の偶奇
+  - 問題
+    - <https://drken1215.hatenablog.com/entry/2020/09/16/180100_1>
+    - [AGC055-B ABC Supremacy](https://atcoder.jp/contests/agc055/tasks/agc055_b)
+- 操作が非可逆な場合
+  - 考察例
+    - マッチング
+  - 問題
+    - [yukicoder 1654 Binary Compression](https://yukicoder.me/problems/no/1654)
 ## 問題集
 
 ### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
