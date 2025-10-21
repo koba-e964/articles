@@ -13,11 +13,11 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ## 典型
 ### 順列・完全マッチングの典型
 - 最小値・最大値に着目する
-  - 例: [AGC043-D](https://atcoder.jp/contests/agc043/tasks/agc043_d) で $3N$ が現れた後のことを考えると、考察が進む (https://betrue12.hateblo.jp/entry/2020/03/22/005046)
+  - 例: [AGC043-D Merge Triplets](https://atcoder.jp/contests/agc043/tasks/agc043_d) で $3N$ が現れた後のことを考えると、考察が進む (https://betrue12.hateblo.jp/entry/2020/03/22/005046)
 - 挿入 DP
   - <https://ricky-pon.hatenablog.com/entry/2023/07/03/120540>
   - 問題
-    - <https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f>
+    - [CPSCO2019 Session3 Flexible Permutation](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)
 - 箱根駅伝 DP
   - <https://drken1215.hatenablog.com/entry/2019/10/05/173700>
   - (完全) マッチングの数え上げで、右が左より大きい・小さいなどの条件が掛かっているものに使える。
@@ -25,40 +25,96 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 「予約」した時には将来のペアの個数などを勘定したりせず、あくまでも決まった時に勘定することに注意。「上下の条件を満たす $p$ の個数」などではなく、マッチングの個数を数えていることを意識しよう。
     - マッチングの個数を数えるので、当然完全マッチング以外の数え上げもできる。
   - 問題
-    - <https://atcoder.jp/contests/abc134/tasks/abc134_f>
+    - [ABC134-F Permutation Oddness](https://atcoder.jp/contests/abc134/tasks/abc134_f)
     - <https://www.mathenachia.blog/agc005-d-usereditorial/>
-    - <https://codeforces.com/contest/2119/problem/D>
-    - <https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f>
-    - <https://atcoder.jp/contests/arc207/tasks/arc207_a>
+    - [CF 1035 (Div. 2) Token Removing](https://codeforces.com/contest/2119/problem/D)
+    - [CPSCO2019 Session3 Flexible Permutation](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)
+    - [ARC207-A Affinity for Artifacts](https://atcoder.jp/contests/arc207/tasks/arc207_a)
   - JSON: <https://github.com/koba-e964/learning-trees/blob/01eb1749b2afff41346b6e696233037e386709f8/comppro-algo/%E9%A0%86%E5%88%97.json5#L29-L39>
 
-### 区間
+### 区間の典型
 - 区間の交差[^intersection-is-not-set-theoretical] + クエリー問題
   - 平面走査で、元々ある区間を長方形に、テスト用の区間を点にすることができる。2 個の長方形に分かれ、それらは共通部分を持たない。
   - 問題
-    - [ABC360-F](https://atcoder.jp/contests/abc360/tasks/abc360_f)
+    - [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f)
 
 
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
 
 
+### フローの典型
+- 兆候
+  - 割り当て問題 (あるものを k 通りの方法で使用できる)
+    - <https://drken1215.hatenablog.com/entry/2023/05/01/171905>
+  - 線型計画問題
+    - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f> に問題例がある
+- 種別
+  - 最大フロー
+  - 最小費用流・最小費用循環流
+  - 二部グラフのあれこれ
+    - 最大マッチング
+    - 最大独立集合・最小頂点被覆
+  - Dilworth の定理・推移的 DAG のパス被覆
+- 計算量
+  - <https://misawa.github.io/others/flow/dinic_time_complexity.html>
+- 双対
+  - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f>
+    - 最小費用流 (MCF) の双対
+    - フローの実行可能性の双対
+    - Lagrange 双対
+    - Dilworth の定理
+    - 最大フロー最小カットの双対
+    - 二部グラフの双対
+- マトロイド
+  - <https://combinatorics-fun.vercel.app/natori/202412/>
+  - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
+  - 閉路マトロイド
+    - 最小全域木をクラスカル法で求めるときに使われるやつ (例: [解説](https://zenn.dev/convers39/articles/6126e22dd116fb))
+  - ベクトルマトロイド
+    - ベクトル空間の独立集合を独立集合とする。
+  - bicircular matroid
+    - 無向グラフについて、以下のようなペアは最大何個取り出せるか?
+      - 頂点 $v$ とそれに接続する辺 $(v, w)$ のペア。頂点も辺も重複は許さない。
+    - 連結成分ごとに見て、辺の本数と頂点数の min が上限。
+      - 頂点数を $N$ とする。木であれば辺は $N-1$ 本で上限の $N-1$ は葉を貪欲にとることで達成できる。 (任意の頂点を残せることに注意。) そうでなければ全域木を任意に取り、全域木に含まれない辺を 1 本とって $(u, v)$ としたときに、 $u$ を使わないペアを全域木から $N-1$ 個取って、残り 1 個を $(u, (u, v))$ とする。 
+    - 実はマトロイド
+      - 無向グラフに対して、独立集合を「上のペアに含まれる辺の集合」とする。
+      - 辺に適当に向きをつけて有向辺ということにすると、
+        - (i) 各 $v$ に対して $v$ を始点とする一つの辺 $v \to w$ を取れるマトロイドと
+        - (ii) 各 $v$ に対して $v$ を終点とする一つの辺 $w \to v$を取れるマトロイド
+      - の[合併](https://hitonanode.github.io/cplib-cpp/combinatorial_opt/matroid_union.hpp.html)とみなせる
+      - [横断マトロイド](https://combinatorics-fun.vercel.app/natori/202412/)でもある。左側を頂点全体、右側を辺全体とし、 $u$ や $v$ と $(u,v)$ に辺を張る。
+    - 頭の中で「れく太」と呼んだら強烈に印象に残った
+      - 問題の一つ、Card Collector の名前から
+      - <https://dmwiki.net/%E8%A7%92%E5%8F%A4+%E3%82%8C%E3%81%8F%E5%A4%AA>
+    - 問題
+      - [第一回日本最強プログラマー学生選手権-予選-E Card Collector](https://atcoder.jp/contests/jsc2019-qual/tasks/jsc2019_qual_e)
+      - [Chokudai SpeedRun 002-K 種類数 β](https://atcoder.jp/contests/chokudai_S002/tasks/chokudai_S002_k)
+  - 考えている対象がマトロイドであることが分かっても、効率的に独立集合かどうか判定できるかどうかは別問題であることに注意。
+    - 独立集合オラクル、ランクオラクル、閉路オラクルなどについて、一つから別のものを構築するのは多項式時間で可能
+    - 競プロでは多項式時間でできるだけだと意味がないことが多く、 $O(1)$ か $O(N)$ かの差が重要になりやすい。
+    - 独立集合オラクルなどをインクリメンタルに適用することもある。
+      - 例: 閉路マトロイドで辺の部分集合に閉路がないか一回判定するには $O(E\alpha(V))$ 時間かかるが、閉路がない辺の部分集合に一つの辺を追加できるかは $O(\alpha(V))$ 時間で判定できる。
+
 ## 問題集
 
-### [yukicoder 3305](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
+### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
 配列の回転 (Aa -> aA) は、好きな要素を右から削除して左に挿入する操作と言い換えることができる。そのため、それぞれの要素がソートするために動かす必要があることと左側に自分より大きい要素があるかどうかは同値。
 
 実装 (Rust): <https://yukicoder.me/submissions/1126857>
 
-### [ABC360-F](https://atcoder.jp/contests/abc360/tasks/abc360_f) [区間の交差 + クエリー問題]
+### [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f) [区間の交差 + クエリー問題]
 平面走査で解ける。
 別解法: 平面走査をし、 $t$ を増やして $[t, x)$ との交差状況を考えることにする。$t = l$ になったときに $[l, r)$ との交差状況が変わる ($x < r$ で交差するようになる)。
   - ref: <https://drken1215.hatenablog.com/entry/2024/07/06/172000>
 
-### [ABC338-G](https://atcoder.jp/contests/abc338/tasks/abc338_g) (2024-01, 600) [複雑な状態]
+### [ABC338-G evall](https://atcoder.jp/contests/abc338/tasks/abc338_g) (2024-01, 600) [複雑な状態]
 
 #### 方針 1 (+ で分ける)
 
 TODO: 書く
+
+実装 (Rust): <https://atcoder.jp/contests/abc338/submissions/70308745>
 
 #### 方針 2 ([ユーザー解説](https://atcoder.jp/contests/abc338/editorial/11651)に近い)
 文字列 $S$ を左から見ていき、位置 $j$ を見る直前に、文字 $c$ を引数に取る関数 $c \mapsto \sum_{i=0}^{j-1} f(s[i,j) + c)$ を管理しておき、$c = s[j]$ として適用し、その後関数を更新する、という方針をとる。
@@ -68,13 +124,13 @@ TODO: 書く
 
 実装 (Rust): <https://atcoder.jp/contests/abc338/submissions/70314785>
 
-### [ABC425-F](https://atcoder.jp/contests/abc425/tasks/abc425_f) (2025-09, 700?) [操作木を考える, 区間 DP]
+### [ABC425-F Inserting Process](https://atcoder.jp/contests/abc425/tasks/abc425_f) (2025-09, 700?) [操作木を考える, 区間 DP]
 実は多項式解法があるのでそれについて書く。
 文字列の先頭に `$` を追加して操作を逆側から見ると、 $s[i] \neq s[i+1]$ のときに $s[i+1]$ を消去する問題とみなせる。操作木とトポロジカルソートの対を考えることになるので、区間 DP で区間のマージの際に C(全体の操作回数, 左の操作回数) を掛けることになる。計算量は $O(N^3 \sigma^2)$ だが、この問題に限っては $O(N^3)$ でできる。
 
 実装 (Rust): <https://atcoder.jp/contests/abc425/submissions/69720430>
 
-### [AGC071-A](https://atcoder.jp/contests/agc071/tasks/agc071_a) (2025-03, 700) [区間 DP]
+### [AGC071-A XOR Cross Over](https://atcoder.jp/contests/agc071/tasks/agc071_a) (2025-03, 700) [区間 DP]
 累積 xor の配列を $c = (c[0], \ldots, c[N])$ と呼ぶ。
 
 多項式時間にするパート: 配列の中で隣同士の xor というのは不変である。そのため、分割された区間は「全体に何を xor するか」で特徴づけることができる。この値を $x$ と置く。
@@ -93,7 +149,7 @@ $O(N^4)$ から $O(N^3)$ にするパート: 実は、最適解は偶数長な�
 
 実装 (Rust): <https://atcoder.jp/contests/agc071/submissions/69818279>
 
-### [AGC073-A](https://atcoder.jp/contests/agc073/tasks/agc073_a) (2025-09, 700) [弦, $\sum_i \lfloor i/2\rfloor C(N,i)$]
+### [AGC073-A Chords and Checkered](https://atcoder.jp/contests/agc073/tasks/agc073_a) (2025-09, 700) [弦, $\sum_i \lfloor i/2\rfloor C(N,i)$]
 
 弦で囲まれた領域の問題は、領域ごとにちょうど一つの弦に紐づけるのが重要 (一番左など)。
 
@@ -101,7 +157,7 @@ $O(N^4)$ から $O(N^3)$ にするパート: 実は、最適解は偶数長な�
 
 実装 (Rust): <https://atcoder.jp/contests/agc073/submissions/69719793>
 
-### [ARC155-D](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
+### [ARC155-D Avoid Coprime Game](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
 うまくいかなかった戦略: 偶数個は無視できるから、単に cnt[i] = i の倍数の個数 % 2 でよい。
 うまくいかなかった理由: ある値の状態に行くためにはその値が存在する必要がある。そのため、単に偶数個同じ要素があったら消すだけではうまくいかず、 (i) 0 個、 (ii) 1 個以上の奇数個、 (iii) 2 個以上の偶数個 を区別する必要がある。
@@ -111,7 +167,7 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 
 実装 (Rust): <https://atcoder.jp/contests/arc155/submissions/69935622>
 
-### [ARC207-A](https://atcoder.jp/contests/arc207/tasks/arc207_a) (2025-10, 800) [箱根駅伝 DP]
+### [ARC207-A Affinity for Artifacts](https://atcoder.jp/contests/arc207/tasks/arc207_a) (2025-10, 800) [箱根駅伝 DP]
 
 箱根駅伝 DP。 $i = 0,\ldots,N-1$ の値が左には $f[i]$ 個、右には $1$ 個あるとしたとき、マッチングを作っていく。今までに作られたマッチングの大きさを $j$ とすると、右はもちろん左のマッチング予定の頂点が何個残っているかも $j$ から計算できることに注意。
 
@@ -125,7 +181,7 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 
 実装 (Rust): <https://atcoder.jp/contests/arc207/submissions/70188088>
 
-### [AGC072-A](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, スケジューリング, swap argument, 部分区間を自明な問題にする]
+### [AGC072-A Rhythm Game](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, スケジューリング, swap argument, 部分区間を自明な問題にする]
 
 x < y < z のとき、 操作列で z,y,x という並びがあったら z,x,y にできるという性質がある。
 これがどのような場合に成立するかは考察の必要あり。この問題では ($D$ がタスクごとに一定であるため) 成り立つ。
