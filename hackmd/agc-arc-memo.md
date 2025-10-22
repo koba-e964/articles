@@ -76,6 +76,10 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - Dilworth の定理
       - 最大フロー最小カットの双対
       - 二部グラフの双対
+  - 残余ネットワーク
+    - 問題
+      - [yukicoder 1123 Afforestation](https://yukicoder.me/problems/no/1123)
+      - <https://drken1215.hatenablog.com/entry/2021/08/05/173900>
 - マトロイド
   - 基本性質
     - 貪欲ができる
@@ -182,6 +186,10 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### その他 (分類できていないものを入れる)
 - 包除原理
   - <https://qiita.com/kobae964/private/ccb05edb05802853200f>
+- グリッドで縦横の次数が決まっているマッチング
+  - [yukicoder 1123 Afforestation](https://yukicoder.me/problems/no/1123)
+  - [ABC424-G Set list](https://atcoder.jp/contests/abc424/tasks/abc424_g)
+
 ## 問題集
 
 ### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
