@@ -38,9 +38,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 問題
     - [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f)
 
-
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
-
 
 ### フローの典型
 - 兆候
@@ -68,8 +66,11 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 ### マトロイドの典型
 - マトロイド
-  - <https://combinatorics-fun.vercel.app/natori/202412/>
-  - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
+  - 基本性質
+    - 貪欲ができる
+    - 極大な集合が全部同じ大きさ
+    - <https://combinatorics-fun.vercel.app/natori/202412/>
+    - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
   - 閉路マトロイド
     - 最小全域木をクラスカル法で求めるときに使われるやつ (例: [解説](https://zenn.dev/convers39/articles/6126e22dd116fb))
   - ベクトルマトロイド
@@ -77,7 +78,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - bicircular matroid
     - 無向グラフについて、以下のようなペアは最大何個取り出せるか?
       - 頂点 $v$ とそれに接続する辺 $(v, w)$ のペア。頂点も辺も重複は許さない。
-    - 連結成分ごとに見て、辺の本数と頂点数の min が上限。
+      - 接続関係についての最大二部マッチング
+    - 連結成分ごとに見て、辺の本数と頂点数の min が自明な上限かつ答え。
       - 頂点数を $N$ とする。木であれば辺は $N-1$ 本で上限の $N-1$ は葉を貪欲にとることで達成できる。 (任意の頂点を残せることに注意。) そうでなければ全域木を任意に取り、全域木に含まれない辺を 1 本とって $(u, v)$ としたときに、 $u$ を使わないペアを全域木から $N-1$ 個取って、残り 1 個を $(u, (u, v))$ とする。 
     - 実はマトロイド
       - 無向グラフに対して、独立集合を「上のペアに含まれる辺の集合」とする。
@@ -85,7 +87,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
         - (i) 各 $v$ に対して $v$ を始点とする一つの辺 $v \to w$ を取れるマトロイドと
         - (ii) 各 $v$ に対して $v$ を終点とする一つの辺 $w \to v$を取れるマトロイド
       - の[合併](https://hitonanode.github.io/cplib-cpp/combinatorial_opt/matroid_union.hpp.html)とみなせる
-      - [横断マトロイド](https://combinatorics-fun.vercel.app/natori/202412/)でもある。左側を頂点全体、右側を辺全体とし、 $u$ や $v$ と $(u,v)$ に辺を張る。
+      - [横断マトロイド (transversal matroid)](https://combinatorics-fun.vercel.app/natori/202412/)でもある。左側を頂点全体、右側を辺全体とし、 $u$ や $v$ と $(u,v)$ に辺を張り、右側に着目する。
+        - 横断マトロイドであることからもわかるように、実装時は辺だけに着目することに注意。各連結成分が木か[疑似森/なもりグラフ](https://ei1333.github.io/library/graph/others/namori-graph.hpp.html)であれば OK。
     - 頭の中で「れく太」と呼んだら強烈に印象に残った
       - 問題の一つ、Card Collector の名前から
       - <https://dmwiki.net/%E8%A7%92%E5%8F%A4+%E3%82%8C%E3%81%8F%E5%A4%AA>
@@ -93,7 +96,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - [第一回日本最強プログラマー学生選手権-予選-E Card Collector](https://atcoder.jp/contests/jsc2019-qual/tasks/jsc2019_qual_e)
       - [Chokudai SpeedRun 002-K 種類数 β](https://atcoder.jp/contests/chokudai_S002/tasks/chokudai_S002_k)
   - 考えている対象がマトロイドであることが分かっても、効率的に独立集合かどうか判定できるかどうかは別問題であることに注意。
-    - 独立集合オラクル、ランクオラクル、閉路オラクルなどについて、一つから別のものを構築するのは多項式時間で可能
+    - 独立集合オラクル、ランクオラクル、閉路オラクルなどについて、一つから別のものを構築するのは多項式時間で可能。
     - 競プロでは多項式時間でできるだけだと意味がないことが多く、 $O(1)$ か $O(N)$ かの差が重要になりやすい。
     - 独立集合オラクルなどをインクリメンタルに適用することもある。
       - 例: 閉路マトロイドで辺の部分集合に閉路がないか一回判定するには $O(E\alpha(V))$ 時間かかるが、閉路がない辺の部分集合に一つの辺を追加できるかは $O(\alpha(V))$ 時間で判定できる。
@@ -118,6 +121,26 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - マッチング
   - 問題
     - [yukicoder 1654 Binary Compression](https://yukicoder.me/problems/no/1654)
+
+### 括弧列系
+- 妥当な括弧列を作る
+  - delta, min
+    - [AOJ 2681 Parentheses](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2681) 
+      - <https://drken1215.hatenablog.com/entry/2020/10/23/172800>
+      - 並べ替えるとき、推移律が成立しないので注意 (<https://chatgpt.com/share/68f84596-84a8-8010-a03e-e77ab95b55c3>) TODO: 変数変換をどうやったか説明する
+      - 全体では推移律が成立しないが、パターンに区切ると成立するのがポイント
+
+### 数学系
+- 問題
+  - <https://drken1215.hatenablog.com/entry/2020/10/23/025800>
+
+### 苦行系
+- 実装が辛い
+  - 地道に単純化するしかなさそう…
+- 問題
+  - <https://drken1215.hatenablog.com/entry/2020/11/05/123600>
+    - 指数の塔の最大化、なおかつ辞書順最小化
+
 ## 問題集
 
 ### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
