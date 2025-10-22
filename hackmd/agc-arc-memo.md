@@ -40,31 +40,42 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
 
-### フローの典型
-- 兆候
-  - 割り当て問題 (あるものを k 通りの方法で使用できる)
-    - <https://drken1215.hatenablog.com/entry/2023/05/01/171905>
-  - 線型計画問題
-    - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f> に問題例がある
-- 種別
-  - 最大フロー
-  - 最小費用流・最小費用循環流
-  - 二部グラフのあれこれ
-    - 最大マッチング
-    - 最大独立集合・最小頂点被覆
-  - Dilworth の定理・推移的 DAG のパス被覆
-- 計算量
-  - <https://misawa.github.io/others/flow/dinic_time_complexity.html>
-- 双対
-  - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f>
-    - 最小費用流 (MCF) の双対
-    - フローの実行可能性の双対
-    - Lagrange 双対
-    - Dilworth の定理
-    - 最大フロー最小カットの双対
-    - 二部グラフの双対
-
-### マトロイドの典型
+### 凸最適化・フロー・マトロイドの典型
+- 凸最適化
+  - DP の加速
+    - Monge 性
+      - <https://qiita.com/kobae964/private/69ce90f4a3f8943bccbe>
+    - monotone minima, Knuth-Yao speedup
+      - <https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html>
+    - Alien DP
+    - Convex Hull Trick
+    - Slope Trick
+  - 問題
+    - <https://drken1215.hatenablog.com/entry/2020/01/13/011000>
+    - [yukicoder 1122 Plane Tickets](https://yukicoder.me/problems/no/1122)
+- フロー
+  - 兆候
+    - 割り当て問題 (あるものを k 通りの方法で使用できる)
+      - <https://drken1215.hatenablog.com/entry/2023/05/01/171905>
+    - 線型計画問題
+      - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f> に問題例がある
+  - 種別
+    - 最大フロー
+    - 最小費用流・最小費用循環流
+    - 二部グラフのあれこれ
+      - 最大マッチング
+      - 最大独立集合・最小頂点被覆
+    - Dilworth の定理・推移的 DAG のパス被覆
+  - 計算量
+    - <https://misawa.github.io/others/flow/dinic_time_complexity.html>
+  - 双対
+    - [競プロの双対性: Segtree さんの問題編](https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f)
+      - 最小費用流 (MCF) の双対
+      - フローの実行可能性の双対
+      - Lagrange 双対
+      - Dilworth の定理
+      - 最大フロー最小カットの双対
+      - 二部グラフの双対
 - マトロイド
   - 基本性質
     - 貪欲ができる
@@ -101,6 +112,10 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 独立集合オラクルなどをインクリメンタルに適用することもある。
       - 例: 閉路マトロイドで辺の部分集合に閉路がないか一回判定するには $O(E\alpha(V))$ 時間かかるが、閉路がない辺の部分集合に一つの辺を追加できるかは $O(\alpha(V))$ 時間で判定できる。
 
+### グラフの典型
+- 部分グラフの検出・数え上げ
+  - <https://qiita.com/kobae964/private/4a43f4bf6d0eae7839b1>
+
 ### 操作で状態遷移できるか判定する系
 - 共通
   - 前処理してわかりやすい処理にする
@@ -130,9 +145,32 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - 並べ替えるとき、推移律が成立しないので注意 (<https://chatgpt.com/share/68f84596-84a8-8010-a03e-e77ab95b55c3>) TODO: 変数変換をどうやったか説明する
       - 全体では推移律が成立しないが、パターンに区切ると成立するのがポイント
 
+### 文字列系
+- 文字列で DP
+  - 問題
+    - <https://drken1215.hatenablog.com/entry/2020/01/28/121600>
+
 ### 数学系
 - 問題
   - <https://drken1215.hatenablog.com/entry/2020/10/23/025800>
+
+### 指数系
+- $O(2^N)$ とか $O(3^N)$ とか
+  - 問題
+    - [ARC078-D](https://atcoder.jp/contests/arc078/tasks/arc078_d)
+- 枝刈りで計算量が落ちる
+  - 最大独立集合
+  - 3-SAT
+    - <https://drken1215.hatenablog.com/entry/2020/01/15/221000>
+
+### 二人ゲームの典型
+- 真似っこ戦略
+- 実験
+- 石取りゲーム
+  - [競プロの Nim 問題まとめ (ネタバレあり)](https://qiita.com/kobae964/items/775c10877763a65a0328)
+- グラフ
+  - 問題
+    - <https://drken1215.hatenablog.com/entry/2020/10/16/055000>
 
 ### 苦行系
 - 実装が辛い
@@ -141,6 +179,9 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - <https://drken1215.hatenablog.com/entry/2020/11/05/123600>
     - 指数の塔の最大化、なおかつ辞書順最小化
 
+### その他 (分類できていないものを入れる)
+- 包除原理
+  - <https://qiita.com/kobae964/private/ccb05edb05802853200f>
 ## 問題集
 
 ### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
