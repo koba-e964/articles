@@ -37,6 +37,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 平面走査で、元々ある区間を長方形に、テスト用の区間を点にすることができる。2 個の長方形に分かれ、それらは共通部分を持たない。
   - 問題
     - [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f)
+- 区間スケジューリング
+  - <https://algo-method.com/tasks/363/editorial>
 
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
 
@@ -82,14 +84,17 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - <https://drken1215.hatenablog.com/entry/2021/08/05/173900>
 - マトロイド
   - 基本性質
+    - 定義: [【月刊組合せ論 Natori】マトロイドに入門しよう【2024 年 7 月号】](https://combinatorics-fun.vercel.app/natori/202407/)
     - 貪欲ができる
     - 極大な集合が全部同じ大きさ
     - <https://combinatorics-fun.vercel.app/natori/202412/>
     - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
+    - [マトロイドの例と構成法 - Katu math](https://katu2oumath.hatenablog.com/entry/2025/04/02/202928)
   - 閉路マトロイド
     - 最小全域木をクラスカル法で求めるときに使われるやつ (例: [解説](https://zenn.dev/convers39/articles/6126e22dd116fb))
   - ベクトルマトロイド
     - ベクトル空間の独立集合を独立集合とする。
+    - 問題例: [ABC236-F Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)
   - bicircular matroid
     - 無向グラフについて、以下のようなペアは最大何個取り出せるか?
       - 頂点 $v$ とそれに接続する辺 $(v, w)$ のペア。頂点も辺も重複は許さない。
@@ -110,6 +115,14 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 問題
       - [第一回日本最強プログラマー学生選手権-予選-E Card Collector](https://atcoder.jp/contests/jsc2019-qual/tasks/jsc2019_qual_e)
       - [Chokudai SpeedRun 002-K 種類数 β](https://atcoder.jp/contests/chokudai_S002/tasks/chokudai_S002_k)
+  - 罰金付きスケジューリング問題
+    - [クリスマスですし、罰金付きスケジューリング問題でマトロイドと貪欲法の基本に入門します！](https://qiita.com/ngtkana/items/ec9319619c41b1a77572)
+    - [エイシング プログラミング コンテスト 2020-E Camel Train](https://atcoder.jp/contests/aising2020/tasks/aising2020_e)
+  - 未分類
+    - 線形マトロイド交差 [ABC399-G Colorful Spanning Tree](https://atcoder.jp/contests/abc399/tasks/abc399_g)
+    - マトロイド交差がマトロイドになってるやつ [パ研合宿コンペティション 3日目-G 落単の危機](https://atcoder.jp/contests/pakencamp-2018-day3/tasks/pakencamp_2018_day3_g)
+    - カタランマトロイド <https://x.com/Katu2ou/status/1926279713082712378> [ABC407-E Most Valuable Parentheses](https://atcoder.jp/contests/abc407/tasks/abc407_e)
+    - マトロイド交差 <https://storage.googleapis.com/wp-content.icpc.jp/sites/12/2024/12/all_with_cover_web.pdf> の H
   - 考えている対象がマトロイドであることが分かっても、効率的に独立集合かどうか判定できるかどうかは別問題であることに注意。
     - 独立集合オラクル、ランクオラクル、閉路オラクルなどについて、一つから別のものを構築するのは多項式時間で可能。
     - 競プロでは多項式時間でできるだけだと意味がないことが多く、 $O(1)$ か $O(N)$ かの差が重要になりやすい。
