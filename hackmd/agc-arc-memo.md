@@ -46,6 +46,9 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - $a_i \ge a_{i+1}$ なら左から $a_i$ を吸収できるなら $a_{i+1}$ も吸収できる。よって、$a_i$ が最大値で吸収できるなら $a_j$ ($j\ge i$) も吸収できる。
     - [yukicoder 3258 Xor Division Game](https://yukicoder.me/problems/no/3258)
 
+- その他
+  - 2 つの区間の関係は 4 パターンしかない [yukicoder 3313 Matryoshka](https://yukicoder.me/problems/no/3313)
+
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
 
 ### 凸最適化・フロー・マトロイドの典型
@@ -159,8 +162,13 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - 操作が非可逆な場合
   - 考察例
     - マッチング
-  - 問題
-    - [yukicoder 1654 Binary Compression](https://yukicoder.me/problems/no/1654)
+      - 問題
+        - [yukicoder 1654 Binary Compression](https://yukicoder.me/problems/no/1654)
+    - 区間をマージする過程の木
+      - 操作の順番が関係ない
+      - 問題
+        - [AGC009-E Eternal Average] (https://atcoder.jp/contests/agc009/tasks/agc009_e)
+      - [AOJ 1458 Tree Generators](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1458)
 
 ### 括弧列系
 - 妥当な括弧列を作る
@@ -178,6 +186,10 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### 数学系
 - 問題
   - <https://drken1215.hatenablog.com/entry/2020/10/23/025800>
+
+### 約数系
+- 問題
+  - [CF613-2F Classical?](https://codeforces.com/contest/1285/problem/F) <https://drken1215.hatenablog.com/entry/2020/01/14/023500>
 
 ### 指数系
 - $O(2^N)$ とか $O(3^N)$ とか
@@ -197,6 +209,17 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 問題
     - <https://drken1215.hatenablog.com/entry/2020/10/16/055000>
 
+### スタック系
+- 一点から左に見えるビルを列挙する
+  - https://drken1215.hatenablog.com/entry/2024/11/04/011552
+- 数列に挿入を繰り返した結果の構文解析
+  - 括弧列のように、複数文字で終わりの文字が明確だとやりやすい
+  - [AGC063-B Insert 1, 2, 3, ...](https://atcoder.jp/contests/agc063/tasks/agc063_b) <https://drken1215.hatenablog.com/entry/2023/07/31/013655>
+  - <https://drken1215.hatenablog.com/entry/2023/09/08/235429>
+  - <https://drken1215.hatenablog.com/entry/2020/12/19/230000>
+- 高速化で $\log N$ を落とす
+  - [ARC115-E LEQ and NEQ] (https://atcoder.jp/contests/arc115/tasks/arc115_e) <https://drken1215.hatenablog.com/entry/2021/03/21/235000_1>
+
 ### 苦行系
 - 実装が辛い
   - 地道に単純化するしかなさそう…
@@ -210,6 +233,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - グリッドで縦横の次数が決まっているマッチング
   - [yukicoder 1123 Afforestation](https://yukicoder.me/problems/no/1123)
   - [ABC424-G Set list](https://atcoder.jp/contests/abc424/tasks/abc424_g)
+- 多項式で数え上げ
+  - [AOJ 4007 ゲームブック](https://onlinejudge.u-aizu.ac.jp/challenges/sources/PCK/Final/4007)
 
 ## 問題集
 
