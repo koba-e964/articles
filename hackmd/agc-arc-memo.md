@@ -49,7 +49,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - その他
   - 2 つの区間の関係は 4 パターンしかない [yukicoder 3313 Matryoshka](https://yukicoder.me/problems/no/3313)
 
-[^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらも包含しないことをいう。
+[^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらももう一方を包含しないことをいう。
 
 ### 凸最適化・フロー・マトロイドの典型
 - 凸最適化
@@ -191,6 +191,18 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - 問題
   - [CF613-2F Classical?](https://codeforces.com/contest/1285/problem/F) <https://drken1215.hatenablog.com/entry/2020/01/14/023500>
 
+### パターンが限られる系
+- パターンが数通りしかない
+  - mod を見るべきところで商が数通りしかない
+    - $a \bmod b = c$ という条件があるとき、 $\lfloor a/b \rfloor = 0,1$ であれば $a = c, a = b + c$ くらいに絞れる
+    - 問題例: [ARC208-C Mod of XOR](https://atcoder.jp/contests/arc208/tasks/arc208_c)
+- パターン数のオーダーが落ちる
+  - 商の個数が sqrt
+    - $\lbrace N/i : i \in \mathbb{Z}_+ \rbrace$ の大きさが $O(\sqrt{N})$ (実際には $\le 2\sqrt{N}$)
+  - 約数の個数が sqrt 未満
+  - 累積 OR, AND, GCD の種類数が log
+    - 長さ $n$ の $2^k$ 未満の非負整数列 $a$ に対して、$\lbrace \bigvee_{i=0}^{k} a_i : 0 \le i \le n\rbrace$ の大きさが $O(k)$ (実際には $\le k + 1$)
+
 ### 指数系
 - $O(2^N)$ とか $O(3^N)$ とか
   - 問題
@@ -218,7 +230,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - <https://drken1215.hatenablog.com/entry/2023/09/08/235429>
   - <https://drken1215.hatenablog.com/entry/2020/12/19/230000>
 - 高速化で $\log N$ を落とす
-  - [ARC115-E LEQ and NEQ] (https://atcoder.jp/contests/arc115/tasks/arc115_e) <https://drken1215.hatenablog.com/entry/2021/03/21/235000_1>
+  - [ARC115-E LEQ and NEQ](https://atcoder.jp/contests/arc115/tasks/arc115_e) <https://drken1215.hatenablog.com/entry/2021/03/21/235000_1>
 
 ### 苦行系
 - 実装が辛い
@@ -297,6 +309,34 @@ $O(N^4)$ から $O(N^3)$ にするパート: 実は、最適解は偶数長な�
 
 実装 (Rust): <https://atcoder.jp/contests/agc073/submissions/69719793>
 
+### [パソコン甲子園 2021年 本選 12 平方連続部分文字列](https://onlinejudge.u-aizu.ac.jp/challenges/sources/PCK/Final/0477) (2021-11, 700?) [分割統治]
+
+$S = S[:m] + S[m:]$ と分割した時、 $m$ を跨ぐ平方連続部分文字列が $O(f(|S|))$-time でカウントできれば、分割統治によって全体のカウントは $O(f(|S|) \log |S|)$-time でできる。
+$m$ を跨ぐ平方連続部分文字列は、AmBAB か ABAmB か AmA の形である。
+- AmA を数えるのは Z-algorithm で簡単。
+- AmBAB は、 mBA の位置 ($p = m + |B| + |A|$) で全探索し、$S[m:] + S[:m]$ に対しての Z-algorithm で $p$ から右に、$\mathrm{rev}(S[:m]) + \mathrm{rev}(S[m:])$ に対しての Z-algorithm で $p$ から左に、それぞれ伸ばせるだけ伸ばして長さの合計が $p-m$ 以上であれば良い。
+
+これらは $O(|S|)$-time でできるので、全体は $O(|S| \log |S|)$-time である。
+
+### [ARC208-C Mod of XOR](https://atcoder.jp/contests/arc208/tasks/arc208_c) (2025-10, 700 -> 600?) [パターンが数通りしかない, mod を見るべきところで商が数通りしかない]
+実験していると以下のことがわかる:
+- $C = X$ の場合、 $n = 2^{30}$ などで構成できる。
+- $C \oplus X > X$ の場合、 $n = C \oplus X$ とすれば構成できる。
+- $C = 3, X = 6$ の場合などは構成できない。 $n \oplus C$ としてあり得るものは $n+3, n+1, n-1, n-3$ だが、これらのどれだとしても条件を満たさない。 $n+3,n+1$ は $n$ より大きく $n + X$ よりも小さいため、 $\bmod\ n$ で $X$ になることはない。 $n-3, n-1$ とした場合、 $n \oplus C=X$ なのだから $n = C \oplus X$ である必要がある。
+
+以上の考察をまとめると以下のようになる。
+
+- $C = X$ の場合、 $n = 2^{30}$ で構成できる。
+- $C \oplus X > X$ の場合、 $n = C \oplus X$ とすれば構成できる。
+- 以上のどれでもなく $C < X$ の場合、構成はできない。
+- 以上のどれでもない場合、 $C \oplus X \le X < C$ が成立する。このとき、 $n > X$ であれば $n \oplus C < 2n$ が成り立つので、 $n \oplus C = n + X$ である必要がある。
+  - $C$ も $X$ も最上位ビットが $2^k$ であるとしてよい。 $X < n < 2^{k+1}$ の場合は $n \oplus C < 2^k < n$ である。 $n \ge 2^{k+1}$ の場合、$n > C$ であるため、 $n \oplus C \le n + C < 2n$ が成り立つ。
+- $n \oplus C = n + C - 2(n \cap C)$ であるため、 $(n \cap C) = (C - X) / 2$ である必要がある。逆に、 $(C - X) / 2 \subseteq C$ であれば、 $n = 2^{30} + (C - X) / 2$ とすることで構成できる。
+
+$\lfloor (n \oplus C) / n\rfloor$ が 0,1 しかありえないことがキーだった。
+
+実装 (Rust): <https://atcoder.jp/contests/arc208/submissions/70716621>
+
 ### [ARC155-D Avoid Coprime Game](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
 うまくいかなかった戦略: 偶数個は無視できるから、単に cnt[i] = i の倍数の個数 % 2 でよい。
@@ -329,3 +369,14 @@ x < y < z のとき、 操作列で z,y,x という並びがあったら z,x,y �
   - このように、$i \to j$ のジャンプをしたら $[i+1,j-1]$ の区間は自明な問題になる、という構造が大事かも。 
 
 これで $O(N^3)$ にはなって、そこから $O(N^2)$ に落とすのは ABC。
+
+### [ARC186-B Typical Permutation Descriptor](https://atcoder.jp/contests/arc186/tasks/arc186_b) (2024-10, 900 -> 700?) [区間の交差]
+
+区間 $[A_i, i]$ ($1 \le i \le N$) を考えると、$N$ 個の区間は交差しない。つまり、 $l_1 = A_{r_1} < l_2 = A_{r_2} < r_1 < r_2$ となった場合、 $P_{l_2} < P_{r_2}, P_{l_2} > P_{r_1}, P_{r_1} > P_{r_2}$ となってしまい矛盾する。つまり $A_j < i < j$ に対して $A_i \ge A_j$ である。
+
+区間は入れ子状になるのだから、再帰的に考えてどうにかなりそう。
+区間 $[A_i, i]$ に対しては、 $P_i$ は $i <j$ なる $P_j$ に対して「義理立て」する必要がある ($P_i < P_j$ である必要がある) が、 $(A_i, i)$ についてはそのような義理立ては必要ない。 $[A_i, i]$ の内部では、 $[A_i, i]$ だけが世界の全てであるかのように計算すれば良くて、「義理立て」しない部分を勘定するのは $[A_i, i]$ の役目である。($(A_i, i)$ の要素を $(i, \infty)$ の要素と組み合わせて並べる。普通の combination でできる。)
+
+「条件を満たす順列が存在することが保証されます」の部分で考察の道筋が明らかになり、かなり難易度が下がっている気がする。
+
+実装 (Rust): <https://atcoder.jp/contests/arc186/submissions/70719446>
