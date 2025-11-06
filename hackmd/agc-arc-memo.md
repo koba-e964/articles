@@ -16,7 +16,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 例: [AGC043-D Merge Triplets](https://atcoder.jp/contests/agc043/tasks/agc043_d) で $3N$ が現れた後のことを考えると、考察が進む (https://betrue12.hateblo.jp/entry/2020/03/22/005046)
 - 挿入 DP
   - <https://ricky-pon.hatenablog.com/entry/2023/07/03/120540>
-  - 問題
+  - 問題例
     - [CPSCO2019 Session3 Flexible Permutation](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)
 - 箱根駅伝 DP
   - <https://drken1215.hatenablog.com/entry/2019/10/05/173700>
@@ -24,7 +24,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 一番プレインなものは 5 通りの遷移がある。両者等しい (1)、左が上下に行く (2) $\times$ 右が上下に行く (2) で $1+2\times 2=5$。
   - 「予約」した時には将来のペアの個数などを勘定したりせず、あくまでも決まった時に勘定することに注意。「上下の条件を満たす $p$ の個数」などではなく、マッチングの個数を数えていることを意識しよう。
     - マッチングの個数を数えるので、当然完全マッチング以外の数え上げもできる。
-  - 問題
+  - 問題例
     - [ABC134-F Permutation Oddness](https://atcoder.jp/contests/abc134/tasks/abc134_f)
     - <https://www.mathenachia.blog/agc005-d-usereditorial/>
     - [CF 1035 (Div. 2) Token Removing](https://codeforces.com/contest/2119/problem/D)
@@ -35,12 +35,12 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### 区間の典型
 - 区間の交差[^intersection-is-not-set-theoretical] + クエリー問題
   - 平面走査で、元々ある区間を長方形に、テスト用の区間を点にすることができる。2 個の長方形に分かれ、それらは共通部分を持たない。
-  - 問題
+  - 問題例
     - [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f)
 - 区間スケジューリング
   - <https://algo-method.com/tasks/363/editorial>
 - 区間分割
-  - 問題
+  - 問題例
     - [ARC189-D Takahashi is Slime](https://atcoder.jp/contests/arc189/tasks/arc189_d)
       -  <https://drken1215.hatenablog.com/entry/2025/01/04/101100>
       - $a_i \ge a_{i+1}$ なら左から $a_i$ を吸収できるなら $a_{i+1}$ も吸収できる。よって、$a_i$ が最大値で吸収できるなら $a_j$ ($j\ge i$) も吸収できる。
@@ -61,7 +61,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - Alien DP
     - Convex Hull Trick
     - Slope Trick
-  - 問題
+  - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/01/13/011000>
     - [yukicoder 1122 Plane Tickets](https://yukicoder.me/problems/no/1122)
 - フロー
@@ -88,7 +88,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - 最大フロー最小カットの双対
       - 二部グラフの双対
   - 残余ネットワーク
-    - 問題
+    - 問題例
       - [yukicoder 1123 Afforestation](https://yukicoder.me/problems/no/1123)
       - <https://drken1215.hatenablog.com/entry/2021/08/05/173900>
 - マトロイド
@@ -121,7 +121,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 頭の中で「れく太」と呼んだら強烈に印象に残った
       - 問題の一つ、Card Collector の名前から
       - <https://dmwiki.net/%E8%A7%92%E5%8F%A4+%E3%82%8C%E3%81%8F%E5%A4%AA>
-    - 問題
+    - 問題例
       - [第一回日本最強プログラマー学生選手権-予選-E Card Collector](https://atcoder.jp/contests/jsc2019-qual/tasks/jsc2019_qual_e)
       - [Chokudai SpeedRun 002-K 種類数 β](https://atcoder.jp/contests/chokudai_S002/tasks/chokudai_S002_k)
   - 罰金付きスケジューリング問題
@@ -156,17 +156,17 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 列を圧縮
     - 列を伸長
     - 置換の偶奇
-  - 問題
+  - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/09/16/180100_1>
     - [AGC055-B ABC Supremacy](https://atcoder.jp/contests/agc055/tasks/agc055_b)
 - 操作が非可逆な場合
   - 考察例
     - マッチング
-      - 問題
+      - 問題例
         - [yukicoder 1654 Binary Compression](https://yukicoder.me/problems/no/1654)
     - 区間をマージする過程の木
       - 操作の順番が関係ない
-      - 問題
+      - 問題例
         - [AGC009-E Eternal Average] (https://atcoder.jp/contests/agc009/tasks/agc009_e)
       - [AOJ 1458 Tree Generators](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1458)
 
@@ -180,15 +180,15 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 ### 文字列系
 - 文字列で DP
-  - 問題
+  - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/01/28/121600>
 
 ### 数学系
-- 問題
+- 問題例
   - <https://drken1215.hatenablog.com/entry/2020/10/23/025800>
 
 ### 約数系
-- 問題
+- 問題例
   - [CF613-2F Classical?](https://codeforces.com/contest/1285/problem/F) <https://drken1215.hatenablog.com/entry/2020/01/14/023500>
 
 ### パターンが限られる系
@@ -205,7 +205,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 ### 指数系
 - $O(2^N)$ とか $O(3^N)$ とか
-  - 問題
+  - 問題例
     - [ARC078-D](https://atcoder.jp/contests/arc078/tasks/arc078_d)
 - 枝刈りで計算量が落ちる
   - 最大独立集合
@@ -218,7 +218,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - 石取りゲーム
   - [競プロの Nim 問題まとめ (ネタバレあり)](https://qiita.com/kobae964/items/775c10877763a65a0328)
 - グラフ
-  - 問題
+  - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/10/16/055000>
 
 ### スタック系
@@ -235,7 +235,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### 苦行系
 - 実装が辛い
   - 地道に単純化するしかなさそう…
-- 問題
+- 問題例
   - <https://drken1215.hatenablog.com/entry/2020/11/05/123600>
     - 指数の塔の最大化、なおかつ辞書順最小化
 
@@ -333,7 +333,7 @@ $m$ を跨ぐ平方連続部分文字列は、AmBAB か ABAmB か AmA の形で�
   - $C$ も $X$ も最上位ビットが $2^k$ であるとしてよい。 $X < n < 2^{k+1}$ の場合は $n \oplus C < 2^k < n$ である。 $n \ge 2^{k+1}$ の場合、$n > C$ であるため、 $n \oplus C \le n + C < 2n$ が成り立つ。
 - $n \oplus C = n + C - 2(n \cap C)$ であるため、 $(n \cap C) = (C - X) / 2$ である必要がある。逆に、 $(C - X) / 2 \subseteq C$ であれば、 $n = 2^{30} + (C - X) / 2$ とすることで構成できる。
 
-$\lfloor (n \oplus C) / n\rfloor$ が 0,1 しかありえないことがキーだった。
+難しいケースで $\lfloor (n \oplus C) / n\rfloor$ が 0,1 しかありえないことがキーだった。
 
 実装 (Rust): <https://atcoder.jp/contests/arc208/submissions/70716621>
 
@@ -360,6 +360,29 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 - 対策: 実装をなるべく共通化する
 
 実装 (Rust): <https://atcoder.jp/contests/arc207/submissions/70188088>
+
+### [ARC203-D Insert XOR](https://atcoder.jp/contests/arc203/tasks/arc203_d) (2025-08, 800 -> 600?) [セグメント木, オートマトン]
+
+オートマトン上の DP、およびそれに付随するセグメント木で殴れるので配点ミス。
+
+うまくいかなかった戦略: 単純に左から右に見る DP (およびそれをセグメント木に載せたもの) で正解できると思ったが、サンプルも合わない。
+うまくいかなかった理由:
+- 1 1 1 0 のようなパターンで、右に 0 があるから左の 1 1 を消せる、というパターンを見落としていた。
+- 1 0 1 1 1 のようなパターンで、先に 1 番目 の 0 を消してしまうと 1 1 1 1 になり、これ以上操作できないという問題もある。この場合は先に [2,3] の 1 1 を消すべきである。
+
+うまくいかなかった戦略: 以下のような状態を持つオートマトンで最適解を計算できる。
+
+0: 初期状態。何も読んでいない
+1: 先頭から 1+ を読んだ
+2: 先頭から 0 を読んだ
+3: 先頭から 00+ を読んだ
+4: 0 も 1 も読んだことがあり、直近で 10 を読んだ
+5: 0 も 1 も読んだことがあり、直近で 100+ を読んだ
+6: 0 も 1 も読んだことがあり、直近で 1 を読んだ
+
+うまくいかなかった理由: よく考えたら、 1 0 1 0 1 のときに、最後 1 1 から減らすことはできなかった。このような場合は 2 と max をとることで対処できる。
+
+うまくいかなかった実装: naïve に 7 次正方行列をセグメント木に載せると TLE。定数倍高速化 (i <= 4, i > j の箇所を無視する) などをして AC。
 
 ### [AGC072-A Rhythm Game](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, 区間スケジューリング, swap argument, 部分区間を自明な問題にする]
 
