@@ -2,3 +2,8 @@
 filename = "agc-arc-memo.md"
 name = "AGC/ARC などメモ (ネタバレあり)"
 uri = "https://hackmd.io/@kobae964/rySAngu2xl"
+
+[[articles]]
+filename = "comppro-revival.md"
+name = "競プロ参加記 (2025-09 から)"
+uri = "https://hackmd.io/@kobae964/BJf8v3Ckbx"
