@@ -18,6 +18,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - <https://ricky-pon.hatenablog.com/entry/2023/07/03/120540>
   - 問題例
     - [CPSCO2019 Session3 Flexible Permutation](https://atcoder.jp/contests/cpsco2019-s3/tasks/cpsco2019_s3_f)
+    - [ABC431-F Almost Sorted 2](https://atcoder.jp/contests/abc431/tasks/abc431_f)
 - 箱根駅伝 DP
   - <https://drken1215.hatenablog.com/entry/2019/10/05/173700>
   - (完全) マッチングの数え上げで、右が左より大きい・小さいなどの条件が掛かっているものに使える。
@@ -45,6 +46,12 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       -  <https://drken1215.hatenablog.com/entry/2025/01/04/101100>
       - $a_i \ge a_{i+1}$ なら左から $a_i$ を吸収できるなら $a_{i+1}$ も吸収できる。よって、$a_i$ が最大値で吸収できるなら $a_j$ ($j\ge i$) も吸収できる。
     - [yukicoder 3258 Xor Division Game](https://yukicoder.me/problems/no/3258)
+- 弦
+  - 切り開いて区間の形にしよう
+    - 弦が交差しない <=> 区間に直しても交差しない
+- 区間 DP の高速化
+  - 遷移が限られて $O(N^3)$ から $O(N^2)$ に
+    - 問題例: [ARC204-B Sort Permutation](https://atcoder.jp/contests/arc204/tasks/arc204_b)
 
 - その他
   - 2 つの区間の関係は 4 パターンしかない [yukicoder 3313 Matryoshka](https://yukicoder.me/problems/no/3313)
@@ -235,6 +242,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### 苦行系
 - 実装が辛い
   - 地道に単純化するしかなさそう…
+  - ランダムテスト
+    - namespace で挟んで include し、別ファイルで呼ぶ
 - 問題例
   - <https://drken1215.hatenablog.com/entry/2020/11/05/123600>
     - 指数の塔の最大化、なおかつ辞書順最小化
@@ -383,6 +392,20 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 うまくいかなかった理由: よく考えたら、 1 0 1 0 1 のときに、最後 1 1 から減らすことはできなかった。このような場合は 2 と max をとることで対処できる。
 
 うまくいかなかった実装: naïve に 7 次正方行列をセグメント木に載せると TLE。定数倍高速化 (i <= 4, i > j の箇所を無視する) などをして AC。
+
+### [ARC207-D Devourers and Cake](https://atcoder.jp/contests/arc207/tasks/arc207_d) (2025-10, 800 -> 700?) [実験, 偶奇性, 極小なものだけ見る]
+
+実験 + 偶奇性 + 極小なものだけ見る
+
+### [ARC204-B Sort Permutation](https://atcoder.jp/contests/arc204/tasks/arc204_b) (2025-08, 800 -> 900?) [弦, 区間 DP, 区間 DP の高速化]
+多項式時間解法: まず、サイクルを分割する過程 <=> 円において交わらない (端点を共有するのは ok) 弦による全域木 というのがある。
+
+弦の問題は切り開いて区間の問題にする。こうすると交差しない区間が何個あるかの問題になる。
+
+以降サイクルサイズを $C$ とする。 $A[i] \equiv A[j] \pmod{N}$ のとき重み 1 として、最大全域木を求めれば良いのだが、普通に区間 DP をやると $O(C^3)$-time であり間に合わない。
+
+$O(C^3)$ から $O(KC^2)$ にするパート: 重み 1 の辺の集合を考える。 $a < b < c$ のとき、$(a, b), $(a, c)$ は $(a, c), (b, c)$ に変換できることを考えると、連結成分は全て一番右の頂点を中心とするスターグラフだと思うことができる。辺の次数は $K$ 以下なので、遷移 $([l + 1, m), [m, r)) \to [l, r)$ の本数の合計は $KC^2 = o(C^3)$ 以下である。
+$C \le 5000, K \le 10$ なので ok。
 
 ### [AGC072-A Rhythm Game](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, 区間スケジューリング, swap argument, 部分区間を自明な問題にする]
 
