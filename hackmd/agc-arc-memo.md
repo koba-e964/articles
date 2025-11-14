@@ -346,6 +346,14 @@ $m$ を跨ぐ平方連続部分文字列は、AmBAB か ABAmB か AmA の形で�
 
 実装 (Rust): <https://atcoder.jp/contests/arc208/submissions/70716621>
 
+### [ARC204-A Use Udon Coupon](https://atcoder.jp/contests/arc204/tasks/arc204_b) (2025-08, 700) [操作で状態遷移できるか判定する系, 前処理してわかりやすい処理にする]
+dp[a][b] = (操作 1 を a 回、操作 2 を b 回やった時の条件を満たす場合の数) と言った $O(N^2)$ の DP にしたくなる。
+dp[a][b] を見るとき、$C$ は基本 $-\sum_{i = 0}^{a-1} A_i + \sum_{j=0}^{b-1} B_i$ であって、 $\max(0, C-A_i)$ の 0 側が取られた場合にだけそこから逸脱するという事実に注目する。そうすると $D = C + \sum_{i = 0}^{a-1} A_i - \sum_{j=0}^{b-1} B_i$ という値を考えたくなる。
+- 操作 1 では、 $D' = \max(D, \sum_{i = 0}^{a-1} A_i - \sum_{j=0}^{b-1} B_i)$ という更新が走る。
+- 操作 2 では $D$ は変わらない。
+
+$D \le $(特定の値) となるパターンを数えればいいので、操作 1 で (特定の値) を越えるものを踏まなければ良い。
+
 ### [ARC155-D Avoid Coprime Game](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
 うまくいかなかった戦略: 偶数個は無視できるから、単に cnt[i] = i の倍数の個数 % 2 でよい。
