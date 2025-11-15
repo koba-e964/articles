@@ -353,7 +353,9 @@ dp[a][b] を見るとき、$C$ は基本 $-\sum_{i = 0}^{a-1} A_i + \sum_{j=0}^{
 - 操作 1 では、 $D' = \max(D, \sum_{i = 0}^{a-1} A_i - \sum_{j=0}^{b-1} B_i)$ という更新が走る。
 - 操作 2 では $D$ は変わらない。
 
-$D \le $(特定の値) となるパターンを数えればいいので、操作 1 で (特定の値) を越えるものを踏まなければ良い。
+$D \le {}$ (特定の値) となるパターンを数えればいいので、操作 1 で (特定の値) を越えるものを踏まなければ良い。
+
+実装 (Rust): <https://atcoder.jp/contests/arc204/submissions/70923515>
 
 ### [ARC155-D Avoid Coprime Game](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
@@ -415,6 +417,8 @@ TODO: i % d == 0 なる i -> d の遷移それぞれで rad(i / d) の約数を�
 
 $O(C^3)$ から $O(KC^2)$ にするパート: 重み 1 の辺の集合を考える。 $a < b < c$ のとき、$(a, b), $(a, c)$ は $(a, c), (b, c)$ に変換できることを考えると、連結成分は全て一番右の頂点を中心とするスターグラフだと思うことができる。辺の次数は $K$ 以下なので、遷移 $([l + 1, m), [m, r)) \to [l, r)$ の本数の合計は $KC^2 = o(C^3)$ 以下である。
 $C \le 5000, K \le 10$ なので ok。
+
+実装 (Rust): <https://atcoder.jp/contests/arc204/submissions/70930824>
 
 ### [AGC072-A Rhythm Game](https://atcoder.jp/contests/agc072/tasks/agc072_a) (2025-04, 900) [操作, 順列, 区間スケジューリング, swap argument, 部分区間を自明な問題にする]
 
