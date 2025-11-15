@@ -103,7 +103,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - マトロイド
   - 基本性質
     - 定義: [【月刊組合せ論 Natori】マトロイドに入門しよう【2024 年 7 月号】](https://combinatorics-fun.vercel.app/natori/202407/)
-    - 貪欲ができる
+    - 貪欲ができる (最良優先貪欲法)
     - 極大な集合が全部同じ大きさ
     - <https://combinatorics-fun.vercel.app/natori/202412/>
     - <https://maspypy.com/atcoder-jsc2019%E4%BA%88%E9%81%B8-e-card-collector-%EF%BC%88%E3%83%9E%E3%83%88%E3%83%AD%E3%82%A4%E3%83%89%EF%BC%89>
@@ -139,7 +139,14 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 未分類
     - 線形マトロイド交差 [ABC399-G Colorful Spanning Tree](https://atcoder.jp/contests/abc399/tasks/abc399_g)
     - マトロイド交差がマトロイドになってるやつ [パ研合宿コンペティション 3日目-G 落単の危機](https://atcoder.jp/contests/pakencamp-2018-day3/tasks/pakencamp_2018_day3_g)
-    - カタランマトロイド <https://x.com/Katu2ou/status/1926279713082712378> [ABC407-E Most Valuable Parentheses](https://atcoder.jp/contests/abc407/tasks/abc407_e)
+    - カタランマトロイド
+      - 括弧列の開き括弧の位置としてあり得るものが基になっているマトロイド
+      - 最初の `(` を取った後、優先度付きキューに 2 個ずつ入れる貪欲ができる
+        - 一般のマトロイドの最良優先貪欲法を使うと遅延セグメント木などが必要
+        - <https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f> の (14) と似ている
+      - 問題例
+        - <https://x.com/Katu2ou/status/1926279713082712378> [ABC407-E Most Valuable Parentheses](https://atcoder.jp/contests/abc407/tasks/abc407_e)
+        - [AGC053-B Taking the middle](https://atcoder.jp/contests/agc053/tasks/agc053_b)
     - マトロイド交差 <https://storage.googleapis.com/wp-content.icpc.jp/sites/12/2024/12/all_with_cover_web.pdf> の H
     - $k$-全域森問題 <https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20121124/1353741121.html>
     - 有向全域木 <https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20121110/1352528267.html> <https://joisino.hatenablog.com/entry/2017/01/11/230141>
@@ -148,6 +155,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 競プロでは多項式時間でできるだけだと意味がないことが多く、 $O(1)$ か $O(N)$ かの差が重要になりやすい。
     - 独立集合オラクルなどをインクリメンタルに適用することもある。
       - 例: 閉路マトロイドで辺の部分集合に閉路がないか一回判定するには $O(E\alpha(V))$ 時間かかるが、閉路がない辺の部分集合に一つの辺を追加できるかは $O(\alpha(V))$ 時間で判定できる。
+    - マトロイド研究者向け
+      - <https://matroidunion.org/>
 
 ### グラフの典型
 - 部分グラフの検出・数え上げ
@@ -229,10 +238,17 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - グラフ
   - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/10/16/055000>
+- 一方の戦略が固定
+  - 自分のムーブが可能かどうかを考える
+  - 問題例
+    - [ARC209-A Bracket Game](https://atcoder.jp/contests/arc209/tasks/arc209_a)
+    - [AGC053-B Taking the middle](https://atcoder.jp/contests/agc053/tasks/agc053_b)
+    - [キーエンス プログラミング コンテスト 2021-E Greedy Ant](https://atcoder.jp/contests/keyence2021/tasks/keyence2021_e)
+    - [EPIC Institute of Technology Round Summer 2024-D World is Mine](https://codeforces.com/contest/1987/problem/D)
 
 ### スタック系
 - 一点から左に見えるビルを列挙する
-  - https://drken1215.hatenablog.com/entry/2024/11/04/011552
+  - <https://drken1215.hatenablog.com/entry/2024/11/04/011552>
 - 数列に挿入を繰り返した結果の構文解析
   - 括弧列のように、複数文字で終わりの文字が明確だとやりやすい
   - [AGC063-B Insert 1, 2, 3, ...](https://atcoder.jp/contests/agc063/tasks/agc063_b) <https://drken1215.hatenablog.com/entry/2023/07/31/013655>
