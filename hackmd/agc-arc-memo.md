@@ -243,7 +243,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 問題例
     - [ARC209-A Bracket Game](https://atcoder.jp/contests/arc209/tasks/arc209_a)
     - [AGC053-B Taking the middle](https://atcoder.jp/contests/agc053/tasks/agc053_b)
-    - [キーエンス プログラミング コンテスト 2021-E Greedy Ant](https://atcoder.jp/contests/keyence2021/tasks/keyence2021_e)
+    - [KEYENCE2021-E Greedy Ant](https://atcoder.jp/contests/keyence2021/tasks/keyence2021_e)
     - [EPIC Institute of Technology Round Summer 2024-D World is Mine](https://codeforces.com/contest/1987/problem/D)
 
 ### スタック系
@@ -274,6 +274,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - [ABC424-G Set list](https://atcoder.jp/contests/abc424/tasks/abc424_g)
 - 多項式で数え上げ
   - [AOJ 4007 ゲームブック](https://onlinejudge.u-aizu.ac.jp/challenges/sources/PCK/Final/4007)
+- DAG 上単一終点の DP
+  - DAG なので辺を逆向きにすれば単一始点になる
 
 ## 問題集
 
@@ -373,6 +375,13 @@ dp[a][b] を見るとき、$C$ は基本 $-\sum_{i = 0}^{a-1} A_i + \sum_{j=0}^{
 $D \le {}$ (特定の値) となるパターンを数えればいいので、操作 1 で (特定の値) を越えるものを踏まなければ良い。
 
 実装 (Rust): <https://atcoder.jp/contests/arc204/submissions/70923515>
+
+### [KEYENCE2021-E Greedy Ant](https://atcoder.jp/contests/keyence2021/tasks/keyence2021_e) (2021-01, 700 -> 800?) [区間 DP, 一方の戦略が固定, DAG 上単一終点の DP]
+多項式時間解法: 蟻の隣以外をとる場合、「とる権利」を保持しておいて後でまとめてとることにしても結果は変わらない。個数を状態に入れれば、開始地点ごとに $O(N^3)$-time で、全体では $O(N^4)$-time。
+
+$O(N^4)$ から $O(N^3)$ にするパート: この DP は DAG 上の最長距離 ($(i, i, 1) \to (0, N, \mathrm{any})$) と見なすことができる。終点が同じ状態 $(0, N, \mathrm{any})$ であるため、辺の向きを逆にすると単一始点の DP となり、全体で $O(N^3)$-time になる。
+
+実装 (Rust): <https://atcoder.jp/contests/keyence2021/submissions/70993127>
 
 ### [ARC155-D Avoid Coprime Game](https://atcoder.jp/contests/arc155/tasks/arc155_d) (2023-03, 800) [ゲーム, 真似っこ戦略]
 
