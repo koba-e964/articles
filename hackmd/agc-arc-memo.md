@@ -110,6 +110,13 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - [マトロイドの例と構成法 - Katu math](https://katu2oumath.hatenablog.com/entry/2025/04/02/202928)
   - 閉路マトロイド
     - 最小全域木をクラスカル法で求めるときに使われるやつ (例: [解説](https://zenn.dev/convers39/articles/6126e22dd116fb))
+    - TODO: 最小全域木の別の解き方をまとめる
+      - <https://drken1215.hatenablog.com/entry/2019/01/15/081500>
+      - クラスカル法
+        - 分割統治などで辺の本数を減らす
+      - プリム法
+      - Borůvka 法
+      - Voronoi 図を使う方法
   - ベクトルマトロイド
     - ベクトル空間の独立集合を独立集合とする。
     - 問題例: [ABC236-F Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)
@@ -168,6 +175,8 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 例: [第5回 ドワンゴからの挑戦状 本選-B XOR Spread](https://atcoder.jp/contests/dwacon5th-final/tasks/dwacon5th_final_b)
     - $(a_{i-1}, a_{i+1}) \leftarrow (a'_{i-1}, a'_{i+1}) = (a_{i-1} \oplus a_i, a_{i+1} \oplus a_i)$  ($2 \le i \le N-1$) という操作を何回もできる
     - $b_i := a_1 \oplus \cdots \oplus a _ i$ ($2 \le i \le N-1$) とする。元々の操作は $(b _ {i-1}, b _ i, b _ {i+1}) \leftarrow (b' _ {i-1}, b' _ i, b' _ {i+1}) = (b_i, b_{i-1}, b_{i+1})$ となる。つまり $[1, N-1]$ の範囲で $b$ の隣接 swap ができる。
+  - 例: [ARC202-A Merge and Increment](https://atcoder.jp/contests/arc202/tasks/arc202_a)
+    - ランレンクス圧縮
 - 操作が可逆な場合
   - 不変量を見つける
     - xor
