@@ -14,6 +14,29 @@
 - うまく行った場合: XXXX (0%)
 - 期待値 (exp をとる): XXXX
 
+## [ARC210](https://atcoder.jp/contests/arc210/tasks) (2025-11-16)
+### よかったところ
+- A,B,C の速解きができた
+
+### 改善できそうなところ
+- D を解きたかった
+  - スーパーセットのグラフの認識について、考察も実装も苦手
+
+### 二段上のレベルのために何が必要か
+- E を解きたかった
+  - マージの過程で元々 1.01 倍以上離れていたところに挿入するときにどうすれば良いのか不明
+  - perf: [29th, 2928](https://atcoder.jp/users/Yukkku/history/share/arc210)
+
+### パフォーマンス予測
+- 実態: [53rd, 2793](https://atcoder.jp/users/kobae964/history/share/arc210)
+- うまく行った場合: [39th, 2915](https://atcoder.jp/users/SakuraCat/history/share/arc210) (5%)
+- 期待値 (exp をとる): 2800
+ 
+```python
+>>> math.log2(2**(2793/400)*0.95+2**(2915/400)*0.05)*400
+2799.753078509965
+```
+
 ## [ARC209](https://atcoder.jp/contests/arc209/tasks) (2025-11-09)
 ### よかったところ
 - A,B は解けた
@@ -39,7 +62,7 @@
 - うまく行った場合: [113th, 2440](https://atcoder.jp/users/hint908/history/share/arc209) (30%)
 - 期待値 (exp をとる): 2246
 
-```
+```python
 >>> math.log2(2**(2138/400)*0.7+2**(2440/400)*0.3)*400
 2246.230463026757
 ```
@@ -58,7 +81,7 @@
 - うまく行った場合: [90th, 2654](https://atcoder.jp/users/hitoare/history/share/arc207) (5%)
 - 期待値 (exp をとる): 2283
 
-```
+```python
 >>> math.log2(2**(2255/400)*0.95+2**(2654/400)*0.05)*400
 2283.06056768513
 ```
