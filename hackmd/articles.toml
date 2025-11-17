@@ -6,4 +6,9 @@ uri = "https://hackmd.io/@kobae964/rySAngu2xl"
 [[articles]]
 filename = "comppro-revival.md"
 name = "競プロ参加記 (2025-09 から)"
-uri = "https://hackmd.io/@kobae964/BJf8v3Ckbx"
+uri = "https://hackmd.io/@kobae964/comppro-revival"
+
+[[articles]]
+filename = "comppro-routines.md"
+name = "競競プロコンテストに参加するときのルーティーン"
+uri = "https://hackmd.io/@kobae964/comppro-routines"
