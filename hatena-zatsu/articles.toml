@@ -2,3 +2,8 @@
 filename = "on-definition.md"
 name = "「定義」は共通でなくていい、あるいはこのブログの「定義」"
 uri = "http://koba-e964-zatsu.hatenablog.com/entry/2025/11/10/185608"
+
+[[articles]]
+filename = "common-sense/article.md"
+name = "「知らないとヤバい」を拾う"
+is_draft = true
