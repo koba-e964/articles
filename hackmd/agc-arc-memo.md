@@ -370,6 +370,11 @@ $m$ を跨ぐ平方連続部分文字列は、AmBAB か ABAmB か AmA の形で�
 
 これらは $O(|S|)$-time でできるので、全体は $O(|S| \log |S|)$-time である。
 
+### [yukicoder 3370 AB → BA](https://yukicoder.me/problems/no/3370) (2025-11, 700?) [分割統治]
+<https://noshi91.hatenablog.com/entry/2023/07/21/235339> 一発なので ABC 的でもある。ここに入れるかどうかは迷った。
+
+$0 \le B[i] \le A[i]$ である弱増加な $B$ を数え上げる問題である。これは分割統治でできる。
+
 ### [ARC208-C Mod of XOR](https://atcoder.jp/contests/arc208/tasks/arc208_c) (2025-10, 700 -> 600?) [パターンが数通りしかない, mod を見るべきところで商が数通りしかない]
 実験していると以下のことがわかる:
 - $C = X$ の場合、 $n = 2^{30}$ などで構成できる。
