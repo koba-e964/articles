@@ -110,13 +110,21 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - [マトロイドの例と構成法 - Katu math](https://katu2oumath.hatenablog.com/entry/2025/04/02/202928)
   - 閉路マトロイド
     - 最小全域木をクラスカル法で求めるときに使われるやつ (例: [解説](https://zenn.dev/convers39/articles/6126e22dd116fb))
-    - TODO: 最小全域木の別の解き方をまとめる
-      - <https://drken1215.hatenablog.com/entry/2019/01/15/081500>
-      - クラスカル法
-        - 分割統治などで辺の本数を減らす
-      - プリム法
-      - Borůvka 法
-      - Voronoi 図を使う方法
+    - TODO: 閉路マトロイドでの特殊事情をまとめる
+      - TODO: 最小全域木の別の解き方をまとめる
+        - <https://drken1215.hatenablog.com/entry/2019/01/15/081500>
+        - クラスカル法
+          - 分割統治などで辺の本数を減らす
+        - プリム法
+        - Borůvka 法
+        - Voronoi 図を使う方法
+      - 基 $X$ と $e \not \in X$ に対して、 $e \in Y, |Y| = |X|, |Y \cap X| = |X| - 1$ を満たす最適な $Y$ を見つけることが <$O(N)$, $O(\log N)$> でできる
+        - [ARC093-E Bichrome Spanning Tree](https://atcoder.jp/contests/arc093/tasks/arc093_c)
+        - $X + e - f$ が独立集合であるような $f \in X$ の中で最適なものを見つける、と言っても良い
+      - 辺数を減らすテク
+        - クリークをパスグラフやスターグラフで代用など [ABC352-E Clique Connect](https://atcoder.jp/contests/abc352/tasks/abc352_e)
+      - TODO: 未分類
+        - [ARC181-E Min and Max at the edge](https://atcoder.jp/contests/arc181/tasks/arc181_e)
   - ベクトルマトロイド
     - ベクトル空間の独立集合を独立集合とする。
     - 問題例: [ABC236-F Spices](https://atcoder.jp/contests/abc236/tasks/abc236_f)
@@ -194,7 +202,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 区間をマージする過程の木
       - 操作の順番が関係ない
       - 問題例
-        - [AGC009-E Eternal Average] (https://atcoder.jp/contests/agc009/tasks/agc009_e)
+        - [AGC009-E Eternal Average](https://atcoder.jp/contests/agc009/tasks/agc009_e)
       - [AOJ 1458 Tree Generators](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=1458)
 
 ### 括弧列系
@@ -287,11 +295,17 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - DAG なので辺を逆向きにすれば単一始点になる
 
 ## 問題集
-
 ### [yukicoder 3305 Shift Sort](https://yukicoder.me/problems/no/3305) (2025-10, 550?) [配列の回転操作]
 配列の回転 (Aa -> aA) は、好きな要素を右から削除して左に挿入する操作と言い換えることができる。そのため、それぞれの要素がソートするために動かす必要があることと左側に自分より大きい要素があるかどうかは同値。
 
 実装 (Rust): <https://yukicoder.me/submissions/1126857>
+
+### [yukicoder 3376 Rectangle in Circle](https://yukicoder.me/problems/no/3376) (2025-11, 550?) [弦]
+多項式時間解法: 長方形ができる <=> 直径が 2 個埋まる なので、直径が半分埋まっているのを a　個、全部埋まっているのを b 個、孤立点の残りが c 個として $O(N^2)$ 状態の DP になる。 ($0 \le b \le 1$ に注意)
+
+$O(N^2)$ から $O(N)$ にするパート: 直径が 2 個以上ある時はつねに長方形ができてゲームが終了するので、$c$ は実は終了条件に影響しない。$c$ を取り除けば状態数は $O(N)$ である。
+
+実装 (Rust): <https://yukicoder.me/submissions/1137263>
 
 ### [ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f) [区間の交差 + クエリー問題]
 平面走査で解ける。
