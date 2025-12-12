@@ -62,6 +62,7 @@
     - DB のマイグレーション
     - クラウド
       - スケールアップ・スケールダウン
+      - Serverless architecture
     - 監視 / Observability
       - ログ
       - メトリクス
