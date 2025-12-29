@@ -1,0 +1,12 @@
+retry_count = 3
+text_file_extensions = [
+    ".md",
+]
+
+[[prefix_ignores]]
+prefix = "https://x.com/"
+reason = "x.com doesn't seem to allow scraping"
+
+[[prefix_ignores]]
+prefix = "https://www.amazon.co.jp/"
+reason = "always returns 405"
