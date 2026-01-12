@@ -3,6 +3,14 @@ text_file_extensions = [
     ".txt",
 ]
 
+[[ignore]]
+url = "https://news.yahoo.co.jp/byline/matsumotohirofumi/20200805-00191901/"
+codes = [404] # allowed codes
+reason = """This article was deleted."""
+# considered_alternatives cannot be empty
+considered_alternatives = [
+    "https://web.archive.org/web/20201003160903/https://news.yahoo.co.jp/byline/matsumotohirofumi/20200805-00191901/", # slow
+]
 [[prefix_ignores]]
 prefix = "https://x.com/"
 reason = "x.com doesn't seem to allow scraping"
@@ -81,4 +89,12 @@ reason = "disappeared"
 
 [[prefix_ignores]]
 prefix = "http://insight.btouch.net/ychess"
+reason = "disappeared"
+
+[[prefix_ignores]]
+prefix = "http://citeseerx.ist.psu.edu/"
+reason = "always returns 502"
+
+[[prefix_ignores]]
+prefix = "https://min-25.hatenablog.com/"
 reason = "disappeared"
