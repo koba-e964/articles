@@ -14,7 +14,7 @@ ep[i] := dp2[i] / i! と置くことにすると、n >= 2 のとき ep[n] = \sum
 さらに考察を進めることもできる。[tex:E := \sum_{n = 0}^{\infty} ep\[i\] x^i] と置く。このとき、漸化式を E の式で表しなおすと、[tex:E = 1 + x/2 + \int_0^x E(t)^2/2 dt] となる。両辺を微分すると [tex: E' = (1 + E^2) / 2] となり、これを初期条件 E(0) = 1 の下で解くと E(x) = tan(x/2 + pi/4) = (1 + sin x) / cos x となる。sin, cos のテイラー展開は簡単にわかり、形式的冪級数の商は O(N log N) 程度で計算する方法があるので、全体で O(N log N) 時間で解ける。
 ** 登場する典型
 - 動的 FFT
--- [http://sigma425.hatenablog.com/entry/2017/09/26/021732:title] で言われているテクニック
+-- [https://sigma425.hatenablog.com/entry/2017/09/26/021732:title] で言われているテクニック
 - 母関数
 -- 最近の流行り (?)
 -- 四則演算が O(N log N) とかでできる。分割数とかも[https://twitter.com/maroon_kuri/status/1171708639914029057:title=計算できる]らしい。

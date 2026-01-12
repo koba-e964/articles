@@ -14,9 +14,9 @@
 [http://qiita.com/hama_du/items/34955bc7dfc64ba0d5e5:embed:cite]
 [http://qiita.com/TobiasGSmollett/items/f3562a746cff2479211b#range-minimum-query:embed:cite]
 *** サンプルコード
-C++: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.cpp:title]
-Scala: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.scala:title]
-Rust: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.rs:title]
+C++: [https://github.com/koba-e964/contest/blob/master/comm/datastr/SegTree.cpp:title]
+Scala: [https://github.com/koba-e964/contest/blob/master/comm/datastr/SegTree.scala:title]
+Rust: [https://github.com/koba-e964/contest/blob/master/comm/datastr/SegTree.rs:title]
 
 
 ** BIT <=> アーベル群
@@ -30,7 +30,7 @@ Rust: [https://github.com/koba-e964/contest/blob/master/comm/SegTree.rs:title]
 [http://yukicoder.me/problems/no/449:title]
 
 *** サンプルコード
-C++: [https://github.com/koba-e964/contest/blob/master/comm/BIT.cpp:title]
+C++: [https://github.com/koba-e964/contest/blob/master/comm/datastr/BIT.cpp:title]
 
 ** 遅延セグメント木 <=> 作用付きモノイド
 [https://tomcatowl.github.io/blog/2016/12/13/ds-and-alg-2/:title]に詳しく書いてあるので、参照されたい。
@@ -64,4 +64,3 @@ Rust: [https://github.com/koba-e964/contest/blob/master/comm/Dijkstra.rs:title]
 
 (2016/12/16 16:50追記)
 翌日は[https://twitter.com/codera_iroha:title=古寺いろは@競プロ応援アカウント]さんの[http://www.slideshare.net/chokudai/iroha2016:title=AtCoderに毎回参加したくなる仕組み]と、[https://twitter.com/ainu7:title=@ainu7]さんの記事です。
-
