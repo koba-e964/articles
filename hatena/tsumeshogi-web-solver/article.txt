@@ -1,0 +1,28 @@
+メインの機能が完成したのが 2025 年 2 月だったのですが、その後なかなか解説ブログが書けなかったです。
+
+* まとめ
+詰将棋を Web 上で解くサービスを開始しました。
+
+ページ: [https://koba-e964.github.io/tsumeshogi-web-solver/:title]
+リポジトリー: [https://github.com/koba-e964/tsumeshogi-web-solver:title]
+
+><figure class="figure-image figure-image-fotolife" title="三手詰を解く">[f:id:koba-e964:20260112231400p:plain]<figcaption>三手詰を解く</figcaption></figure><
+
+* 技術スタック
+- フロントエンドは TypeScript + WASM (詰将棋ソルバー) です。WASM 部分は Rust で書きました。
+-- 将棋盤は [https://sugyan.com/shogi-player-webcomponents/] を使用しました。
+-- 詰将棋ソルバーは [https://github.com/rust-shogi-crates/shogi_mate_solver:title] を使っています。また基幹ライブラリーとして [https://github.com/rust-shogi-crates/shogi_core:title] を使いました。どちらも私が開発したものです (宣伝)。
+- バックエンドは存在しません。
+-- 強いて挙げるとすれば、CORS 回避用のプロクシーサーバーとして [https://codetabs.com/] および [https://corsproxy.io/] を使いました。これらは Web 上のコンテンツを取得するためだけに使用しています。
+
+* 新規性
+- 詰将棋を Web から取得
+-- 例えば [https://www.shogi.or.jp/tsume_shogi/everyday/2026195.html:title] などの URL を入力して <code>Set SFEN/URL</code> を押すと、そのページの盤面に自動で調整する機能があります。
+--- CORS の回避が面倒でした。CORS proxy は時間が経つと使えなくなるものもあったりするようなので、使えなくなったことの検出も [https://github.com/koba-e964/tsumeshogi-web-solver/blob/d5eae219b83db7c53495613815e8e90f0b9b64b9/www/src/kif_url.test.ts#L18-L30:title=CI でやりました]。CI は毎日走るように設定していますが、GitHub の CI は 2 ヶ月間くらい repo に触らないと無効化されてしまうので、2 ヶ月ごとに触る必要があり面倒です。
+- 分岐
+-- 既存の詰将棋ソルバーはどれも単一手順しか表示しないものでした。今回作成した詰将棋ソルバーではそこを改善し、分岐手順を全て表示するようにしました。
+--- 個人的に「詰将棋は分岐手順まで網羅して初めて解けた扱いになる」という信条があります。今回の機能実装はその信条と合致します。
+--- 詰将棋の分岐手順の方を知りたいことがありましたが、既存の詰将棋ソルバーではそこが対応できていませんでした。
+
+* 参考文献
+[https://memo.sugyan.com/entry/2022/05/10/235803:title]
