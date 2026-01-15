@@ -1,0 +1,46 @@
+* 技術一般
+[https://cat-solstice.github.io/test-pqueue/:title]
+- When O3 is 2x slower than O2
+- Rust の最適化オプションで、<code>-O3</code> の方が <code>O2</code> より遅いことがある
+-- <code>-O3</code> だと速いことを期待して CMOV (条件付き代入) 命令が使われるが、この CMOV が分岐命令より遅くなり得る
+-- "conditional moves are known to be a double-edged sword for a long time."
+--- [https://yarchive.net/comp/linux/cmov.html:title=2007 年の Linus の発言]
+--- 分岐予測失敗のペナルティーがそこまで高くない + CMOV を使うとデータの間に余計な依存関係が生まれる
+-- CMOV の生成を奨励・非奨励する方法がある
+--- match を単純に使うと分岐命令になりやすい
+--- <code>hint::black_box</code> を使うと CMOV になりやすい
+-- 暗号技術だと CMOV を使うべきだろうが、筆者の視点だとそもそも CMOV が必要な暗号技術のコードがあまり多くなさそう
+--- そもそも[https://github.com/golang/go/blob/go1.25.5/src/crypto/internal/fips140/subtle/constant_time.go#L65-L68:title=このように]算術演算で比較や分岐を行うので、なかなか CMOV を使わないはず
+
+
+* 思想一般
+[https://newsletter.pragmaticengineer.com/p/career-paths-for-software-engineers:title]
+- "Some people struggle to accept any kind of timeframe. In their minds, the instant they show mastery of some skills, then promotion should follow. But speaking as a leader, it’s not that simple. While you may believe you have shown mastery, from the outside it is often hard to tell if someone is actually good, or just got lucky on the first try. We want to avoid mistakes, so prefer to see a few things delivered in order to be sure that it is skill, not good fortune."
+-- 「信頼性」「再現性」あたりを今後の個人的なテーマにしたい
+
+[https://konifar-zatsu.hatenadiary.jp/entry/2024/10/28/193217:title]
+- 粒度を刻む
+- 「できるだけ細かくタスクを刻んで、物によってはただの"作業"レベルにする」
+-- なかなか難しい
+- 「この粒度の刻み方には一定のパターンがある。たとえば、観察、課題の整理、解決策の検討、決定軸の整理みたいな流れとか。パターンを知ることでどう刻めばいいか見当をつけやすくなる」
+-- まだわからないが、この手のフェイズ分けは身に付けたいところ。
+
+[https://blog.kyash.co/entry/2025/12/03/084032:title]
+- マネジメントと不確実性について
+-- 不確実性を自分で抱えず部下に渡すべきという話。
+--- チームが強くならないので
+
+[https://syu-m-5151.hatenablog.com/entry/2025/12/10/092706:title]
+- 「並列でタスクを回した方が効率化できる」という考え方は斬新だった。
+-- 「飽き」に対処できるというのが大きい
+-- 自分でやってみたところ、同じタスクの別箇所とかであれば効率が良さそうだった。それ以外は微妙。
+
+『クラスで２番目に可愛い女の子と友だちになった』
+isbn:B0B69X9N6V:detail
+- [https://www.amazon.co.jp/dp/B0B69X9N6V:title]
+-- タイトルを見て、よくあるマウントものかギャルと仲良くなるオタクの話かなと思ったら全然違った。
+--- ギャルと仲良くなるオタクと (おそらく) 違うのは、登場人物がみんな秘密を抱えているところ。
+-- 途中 (5 巻くらいまで) は主要な登場人物が 3 人しかいなくて読みやすい。そこからは蛇足に思えるが、読者にとっては蛇足でも登場人物たちにとっては大事な高校生活だと思うと難しい。
+
+* まとめ
+思想の話が多かった気がする。

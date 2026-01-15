@@ -1,4 +1,9 @@
 [[locks]]
+uri = "https://cat-solstice.github.io/test-pqueue/"
+hash_version = "h1"
+hash_of_content = "ee7859372813b64b2e0726689ed8d9be77f24ac5664eea606aabf87b8aa354f3533a69df651282036c22014c45bf7d60"
+
+[[locks]]
 uri = "https://memo.sugyan.com/entry/2022/05/10/235803"
 hash_version = "h1"
-hash_of_content = "ab3634af106462cedd64f4774ead1e67b0ffb6bd9bd55f536105de600a14ae5f22fc23992212bbbb6d9e30351507c406"
+hash_of_content = "74a0103957d33a72577a343936fd98fd445e88c149259860777932c7b262a2e7f9b2e8305cf1e6ec403c183302a5b75a"

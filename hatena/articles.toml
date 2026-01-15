@@ -170,3 +170,9 @@ filename = "tsumeshogi-web-solver/article.txt"
 name = "詰将棋の Web ソルバーを作った"
 tags = ["shogi", "Rust", "TypeScript"]
 uri = "https://koba-e964.hatenablog.com/entry/2026/01/12/235025"
+
+[[articles]]
+filename = "2025-10-12-koba-heart.txt"
+name = "2025 年 10-12 月 koba の心を震わせたものまとめ"
+tags = ["まとめページ"]
+uri = "https://koba-e964.hatenablog.com/entry/2026/01/14/190900"
