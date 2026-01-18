@@ -328,6 +328,17 @@ TODO: 書く
 
 実装 (Rust): <https://atcoder.jp/contests/abc338/submissions/70314785>
 
+### [ARC212-E Drop Min](https://atcoder.jp/contests/arc212/tasks/arc212_e) (2026-01, 700 -> 600) [分割統治, Cartesian tree]
+大きい方から見ていくと、例えば $N$ の左右は互いに干渉しないことがわかる。このことから分割統治ができることがわかる。
+この分割統治のやり方は [Cartesian tree](https://nyaannyaan.github.io/library/tree/cartesian-tree.hpp.html) の作成過程と同じである。(ただし min ではなく max である。) なのでマージのやり方だけ考えれば良い。各要素について、自分より小さい要素を無視した場合に一番近くに見えるものを考える。両端のことを壁と呼ぶことにする。
+また、一番近くに見えるものまでの区間で、左右にある要素の個数を $i,j$ と置く。(つまり、Cartesian tree において自分の子に対応する区間の要素数が $i,j$ である。)
+
+- 両側が壁の場合: その要素は $N$ であり、そもそも $A$ には入らない。$C(i+j,i)$ を掛ける。
+- 片側が壁の場合: 要素がある側の子に対応する区間を全て $A$ に入れた後 $A$ に入れることができる。要素を右側 ($j$ 側) とすると、 $i+j+1$ 個から $j+1$ 個選んで最後の 1 個を自分自身にすれば良いので $C(i+j+1,j+1)$ を掛ければ良い。
+- 両側が要素の場合: 左右どちらかは $A$ に入れ尽くしたあとで自分自身を入れることができる。 $\sum_{1 \le k \le i}C(i+j-k, i-k) + \sum_{1 \le k \le j}C(i+j-k, j-k) + C(i+j,i) = C(i+j,i)+C(i+j,i+1)+C(i+j,j+1)$ が[成立し](https://qiita.com/kobae964/items/b665c1f8fc8402219316)、これが掛けるべき値である。
+
+実装 (Rust): <https://atcoder.jp/contests/arc212/submissions/72577664>
+
 ### [ABC425-F Inserting Process](https://atcoder.jp/contests/abc425/tasks/abc425_f) (2025-09, 700?) [操作木を考える, 区間 DP]
 実は多項式解法があるのでそれについて書く。
 文字列の先頭に `$` を追加して操作を逆側から見ると、 $s[i] \neq s[i+1]$ のときに $s[i+1]$ を消去する問題とみなせる。操作木とトポロジカルソートの対を考えることになるので、区間 DP で区間のマージの際に C(全体の操作回数, 左の操作回数) を掛けることになる。計算量は $O(N^3 \sigma^2)$ だが、この問題に限っては $O(N^3)$ でできる。
