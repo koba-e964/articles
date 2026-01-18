@@ -21,3 +21,9 @@ filename = "cado-nfs-ffdlp.md"
 name = "cado-nfs で  256 bit の離散対数問題 (FFDLP) を hack しよう!"
 tags = ["CTF", "crypto", "Tech"]
 uri = "https://zenn.dev/koba_e964/articles/263643a1fc76c3"
+
+[[articles]]
+filename = "2026-nix.md"
+name = "2026 年に nix を始める方法"
+tags = ["環境構築", "dotfiles", "Nix", "tech"]
+uri = "https://zenn.dev/koba_e964/articles/32a7e0c345affe"

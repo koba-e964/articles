@@ -1,0 +1,100 @@
+retry_count = 3
+text_file_extensions = [
+    ".md",
+]
+
+[[prefix_ignores]]
+prefix = "https://localhost"
+reason = "doesn't make sense"
+
+[[prefix_ignores]]
+prefix = "https://x.com/"
+reason = "x.com doesn't seem to allow scraping"
+
+[[prefix_ignores]]
+prefix = "https://twitter.com/"
+reason = "x.com doesn't seem to allow scraping"
+
+[[prefix_ignores]]
+prefix = "https://www.amazon.co.jp/"
+reason = "always returns 405"
+
+[[prefix_ignores]]
+prefix = "https://geoffreysteadman.files.wordpress.com/"
+reason = "always returns 404"
+
+[[prefix_ignores]]
+prefix = "https://arxiv.org/"
+reason = "always returns 404"
+
+[[prefix_ignores]]
+prefix = "https://codingcompetitions.withgoogle.com/"
+reason = "always returns 404"
+
+[[prefix_ignores]]
+prefix = "https://mathoverflow.net/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://crypto.stackexchange.com/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://math.stackexchange.com/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://stackoverflow.com/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://atcoder.jp/"
+reason = "always returns 429"
+
+[[prefix_ignores]]
+prefix = "https://codeforces.com/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://tomcatowl.github.io/blog/"
+reason = "always returns 404. seems to have disappeared"
+
+[[prefix_ignores]]
+prefix = "https://ctf.isitdtu.com/"
+reason = "always returns 522. seems to have disappeared"
+
+[[prefix_ignores]]
+prefix = "https://spookyctf.ctfd.io/"
+reason = "always returns 404. seems to have disappeared"
+
+[[prefix_ignores]]
+prefix = "https://score.quals.seccon.jp/"
+reason = "seems to have disappeared"
+
+[[prefix_ignores]]
+prefix = "https://web-zoo-feedback-form-2af9cc09a15e.2024.ductf.dev/"
+reason = "disappeared"
+
+[[prefix_ignores]]
+prefix = "http://challs.tsukuctf.org"
+reason = "disappeared"
+
+[[prefix_ignores]]
+prefix = "https://tsubaki-musicschool.com/"
+reason = "always returns 403"
+
+[[prefix_ignores]]
+prefix = "https://www.happypianist.net"
+reason = "disappeared"
+
+[[prefix_ignores]]
+prefix = "http://insight.btouch.net/ychess"
+reason = "disappeared"
+
+[[prefix_ignores]]
+prefix = "http://citeseerx.ist.psu.edu/"
+reason = "always returns 502"
+
+[[prefix_ignores]]
+prefix = "https://min-25.hatenablog.com/"
+reason = "disappeared"
