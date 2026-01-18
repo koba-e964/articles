@@ -55,3 +55,7 @@ ARC176-D https://atcoder.jp/contests/arc176/tasks/arc176_d
 |$i=b \wedge j=a$|1|
 
 の 7 種類である。(4 頂点 4 辺のサイクルの独立集合の個数と同じ。) $i=a \wedge j=a$ のような矛盾する条件の下での和は 0 であり、あってもなくても一緒なので包除原理を考える時はあるとみなしてやれば普通の包除原理と同じ係数 ($(-1)^{\mathrm{条件の個数}}$) になることがわかる。
+
+## combination の和
+- $\sum_{-\infty < k \le x} C(k, i) = C(x + 1, i + 1)$
+- $\sum_{x \le k < \infty} C(a - k, b - k) = \sum_{-\infty < k \le a - x} C(k, a - b) = C(a - x + 1, a - b + 1)$
