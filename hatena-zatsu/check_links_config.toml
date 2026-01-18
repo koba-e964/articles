@@ -10,3 +10,11 @@ reason = "x.com doesn't seem to allow scraping"
 [[prefix_ignores]]
 prefix = "https://www.amazon.co.jp/"
 reason = "always returns 405"
+
+[[prefix_ignores]]
+prefix = "https://www.amazon.com/"
+reason = "always returns 405 from GitHub Actions"
+
+[[prefix_ignores]]
+prefix = "https://www.reddit.com/"
+reason = "always returns 403 from GitHub Actions"
