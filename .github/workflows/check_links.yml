@@ -13,6 +13,12 @@ name: Link checker
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        directory:
+         - zenn
+         - hatena-zatsu
 
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +29,17 @@ jobs:
           go-version: '1.21'
 
       - name: Check hyperlinks
+        working-directory: ${{ matrix.directory }}
         run: |
           go install github.com/koba-e964/link-checker@latest
           link-checker
+
+  check-results:
+    runs-on: ubuntu-latest
+    needs: build
+    if: failure()
+    steps:
+      - name: Check all jobs completed
+        run: |
+          echo "One or more link check jobs failed"
+          exit 1
