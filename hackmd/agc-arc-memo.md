@@ -185,6 +185,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - $b_i := a_1 \oplus \cdots \oplus a _ i$ ($2 \le i \le N-1$) とする。元々の操作は $(b _ {i-1}, b _ i, b _ {i+1}) \leftarrow (b' _ {i-1}, b' _ i, b' _ {i+1}) = (b_i, b_{i-1}, b_{i+1})$ となる。つまり $[1, N-1]$ の範囲で $b$ の隣接 swap ができる。
   - 例: [ARC202-A Merge and Increment](https://atcoder.jp/contests/arc202/tasks/arc202_a)
     - ランレンクス圧縮
+  - 操作列を逆から見る
 - 操作が可逆な場合
   - 不変量を見つける
     - xor
@@ -338,6 +339,15 @@ TODO: 書く
 - 両側が要素の場合: 左右どちらかは $A$ に入れ尽くしたあとで自分自身を入れることができる。 $\sum_{1 \le k \le i}C(i+j-k, i-k) + \sum_{1 \le k \le j}C(i+j-k, j-k) + C(i+j,i) = C(i+j,i)+C(i+j,i+1)+C(i+j,j+1)$ が[成立し](https://qiita.com/kobae964/items/b665c1f8fc8402219316)、これが掛けるべき値である。
 
 実装 (Rust): <https://atcoder.jp/contests/arc212/submissions/72577664>
+
+### [ARC212-F Add Integer](https://atcoder.jp/contests/arc212/tasks/arc212_f) (2026-01, 700) [操作列を逆から見る]
+
+最終的な列を逆から見ると、 $X,Y$ があったときに $|X-Y|$ を追加する操作とみなせる。
+- この見方をすると $0 \le A_i \le M$ が自動的に満たされる。
+- $X$ が $Y$ と比べて非常に大きいとき、操作を繰り返すと $X, Y, X-Y, X-Y-Y=X-2Y, (X-Y)-(X-2Y) = Y, \ldots$ となるので、 $3$ 項先に $X$ の値が $2Y$ だけ小さくなるパターンが見て取れる。そのため、$q = \lfloor X/Y \rfloor$ としたとき $\lfloor q/2 \rfloor$ 回操作をしたら $3\lfloor q/2 \rfloor$ 項進む。
+  - ユークリッドの互除法と同じ方法で計算量解析ができて、この再帰は $O(\log X)$ 回程度で終わる。
+
+実装 (Rust): <https://atcoder.jp/contests/arc212/submissions/72579654>
 
 ### [ABC425-F Inserting Process](https://atcoder.jp/contests/abc425/tasks/abc425_f) (2025-09, 700?) [操作木を考える, 区間 DP]
 実は多項式解法があるのでそれについて書く。
