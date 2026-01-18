@@ -3,6 +3,12 @@ text_file_extensions = [
     ".md",
 ]
 
+[[ignores]]
+url = "https://releases.nixos.org/nix/nix-"
+codes = [404]
+reason = "Not a valid URL"
+considered_alternatives = [""]
+
 [[prefix_ignores]]
 prefix = "https://localhost"
 reason = "doesn't make sense"
@@ -65,6 +71,10 @@ reason = "always returns 522. seems to have disappeared"
 
 [[prefix_ignores]]
 prefix = "https://spookyctf.ctfd.io/"
+reason = "always returns 404. seems to have disappeared"
+
+[[prefix_ignores]]
+prefix = "https://tsukuctf.org"
 reason = "always returns 404. seems to have disappeared"
 
 [[prefix_ignores]]

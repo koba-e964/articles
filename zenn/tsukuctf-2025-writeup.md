@@ -78,7 +78,7 @@ $ <test.txt base64 --decode | hexdump -C
 0000004a
 ```
 
-<https://www.ietf.org/id/draft-ietf-lamps-kyber-certificates-10.html#section-6> や <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf> の論文を見ると、その 64 バイトの前半 32 バイトが d であること、後半 32 バイトの z はなんでも良さそうなこと、与えられたファイルには 0x2c = 44 バイト残っていることがわかる。
+<https://www.ietf.org/archive/id/draft-ietf-lamps-kyber-certificates-10.html#section-6> や <https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.pdf> の論文を見ると、その 64 バイトの前半 32 バイトが d であること、後半 32 バイトの z はなんでも良さそうなこと、与えられたファイルには 0x2c = 44 バイト残っていることがわかる。
 
 openssl には seed を設定して ML-KEM-768 の鍵を作るオプションがあるのでそれを使って AC。
 
