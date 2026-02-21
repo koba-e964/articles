@@ -193,3 +193,9 @@ filename = "duality-compro-problems/article.md"
 name = "競プロの双対性: Segtree さんの問題編"
 tags = ["競技プログラミング", "双対問題"]
 uri = "https://qiita.com/kobae964/items/7bba7dbfe242b602fa4f"
+
+[[articles]]
+filename = "lucy-dp.md"
+name = "Lucy DP"
+tags = ["競技プログラミング"]
+uri = "https://qiita.com/kobae964/items/4f455f13005fec246149"
