@@ -70,6 +70,13 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - Alien DP
     - Convex Hull Trick
     - Slope Trick
+      - 解説: <https://maspypy.com/slope-trick-1-%e8%a7%a3%e8%aa%ac%e7%b7%a8>
+      - 区分線形凸関数であって、傾き整数でmax|傾き|が10^6程度であるものを管理する
+      - 傾き $\infty$ の壁を作りたい場合
+        - 傾き $g = \Omega(N)$ の半直線で代用できるかも
+          - 「リソースを外部から供給できない」から「リソースを外部から取るにはコスト $g$ かかる」に変わるので、$g$ が内部から取るコスト以上であれば OK
+      - 問題例
+        - [KUPC2016-H 壁壁壁壁壁壁壁](https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h)
   - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/01/13/011000>
     - [yukicoder 1122 Plane Tickets](https://yukicoder.me/problems/no/1122)
@@ -213,6 +220,14 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - <https://drken1215.hatenablog.com/entry/2020/10/23/172800>
       - 並べ替えるとき、推移律が成立しないので注意 (<https://chatgpt.com/share/68f84596-84a8-8010-a03e-e77ab95b55c3>) TODO: 変数変換をどうやったか説明する
       - 全体では推移律が成立しないが、パターンに区切ると成立するのがポイント
+- 数え上げ
+  - 鏡像法
+    - <https://potato167.hatenablog.com/entry/2022/06/04/041206>
+    - カタラン数などを求める時に「ボーダー突破時点で折り返す」というテクニックがあるが、代わりに初期値と鏡合わせの部分に(-1)倍を置く
+      - sum>=0という制約があるなら、DPを初期値 a[0]=1, a[-2]=-1 で開始する
+      - 0 <= sum <= k という制約があるなら、DPを初期値a[0]=1,a[-2]=-1,a[2*k]=-1,a[2*k+2]=1,...というように周期2*k+2にする
+    - 問題例
+      - <https://atcoder.jp/contests/abc309/editorial/6760?lang=ja>
 
 ### 文字列系
 - 文字列で DP
