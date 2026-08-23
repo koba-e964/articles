@@ -93,6 +93,10 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
       - 最大マッチング
       - 最大独立集合・最小頂点被覆
     - Dilworth の定理・推移的 DAG のパス被覆
+      - 二部マッチングに帰着できる
+      - 特殊例
+        - 二次元平面の右上関係 -> LDS (LIS の逆)
+        - $[1,N]$ の整除関係 -> 過半数以上全部 ($[\lfloor N/2\rfloor+1, N]$)
   - 計算量
     - <https://misawa.github.io/others/flow/dinic_time_complexity.html>
   - 双対
