@@ -294,6 +294,15 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - 高速化で $\log N$ を落とす
   - [ARC115-E LEQ and NEQ](https://atcoder.jp/contests/arc115/tasks/arc115_e) <https://drken1215.hatenablog.com/entry/2021/03/21/235000_1>
 
+### FPS系
+- 母関数の種別
+  - 通常母関数 (OGF)
+    - 普通に重みごとに個数を数える
+  - 指数的母関数 (EGF)
+    - 重み $i$ と重み $j$ のものを合成する時に、係数 $C(i+j,i)$ を掛けたいもの
+- 2次元配列で単一行や単一列を高速に計算できる例
+  - <https://oeis.org/A126198> <https://atcoder.jp/contests/abc456/tasks/abc456_g>
+
 ### 苦行系
 - 実装が辛い
   - 地道に単純化するしかなさそう…
