@@ -261,7 +261,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### 指数系
 - $O(2^N)$ とか $O(3^N)$ とか
   - 問題例
-    - [ARC078-D](https://atcoder.jp/contests/arc078/tasks/arc078_d)
+    - [ARC078-D Mole and Abandoned Mine](https://atcoder.jp/contests/arc078/tasks/arc078_d)
 - 枝刈りで計算量が落ちる
   - 最大独立集合
   - 3-SAT
@@ -301,7 +301,7 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
   - 指数的母関数 (EGF)
     - 重み $i$ と重み $j$ のものを合成する時に、係数 $C(i+j,i)$ を掛けたいもの
 - 2次元配列で単一行や単一列を高速に計算できる例
-  - <https://oeis.org/A126198> <https://atcoder.jp/contests/abc456/tasks/abc456_g>
+  - <https://oeis.org/A126198> [ABC456-G Count Holidays](https://atcoder.jp/contests/abc456/tasks/abc456_g)
 
 ### 苦行系
 - 実装が辛い
@@ -443,7 +443,7 @@ $0 \le B[i] \le A[i]$ である弱増加な $B$ を数え上げる問題であ�
 
 実装 (Rust): <https://atcoder.jp/contests/arc208/submissions/70716621>
 
-### [ARC204-A Use Udon Coupon](https://atcoder.jp/contests/arc204/tasks/arc204_b) (2025-08, 700) [操作で状態遷移できるか判定する系, 前処理してわかりやすい処理にする]
+### [ARC204-A Use Udon Coupon](https://atcoder.jp/contests/arc204/tasks/arc204_a) (2025-08, 700) [操作で状態遷移できるか判定する系, 前処理してわかりやすい処理にする]
 dp[a][b] = (操作 1 を a 回、操作 2 を b 回やった時の条件を満たす場合の数) と言った $O(N^2)$ の DP にしたくなる。
 dp[a][b] を見るとき、$C$ は基本 $-\sum_{i = 0}^{a-1} A_i + \sum_{j=0}^{b-1} B_i$ であって、 $\max(0, C-A_i)$ の 0 側が取られた場合にだけそこから逸脱するという事実に注目する。そうすると $D = C + \sum_{i = 0}^{a-1} A_i - \sum_{j=0}^{b-1} B_i$ という値を考えたくなる。
 - 操作 1 では、 $D' = \max(D, \sum_{i = 0}^{a-1} A_i - \sum_{j=0}^{b-1} B_i)$ という更新が走る。
