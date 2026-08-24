@@ -4,6 +4,37 @@
 
 `agc-arc-memo.md` は、通常更新を積んだあとにリリースコミットを作り、そのリリースコミットに対応するタグを付ける。
 
+### 問題リンクの表記
+
+問題へのリンクは、`<https://...>` だけで済ませず、基本的に問題名つきの Markdown リンクにする。裸 URL は参考記事・解説・提出・ライブラリなど、リンク先のタイトルを本文側で持たなくてもよいものに限る。
+
+AtCoder の問題は次の形を基本にする。
+
+```markdown
+[ABC360-F InterSections](https://atcoder.jp/contests/abc360/tasks/abc360_f)
+[ARC212-E Drop Min](https://atcoder.jp/contests/arc212/tasks/arc212_e)
+[AGC071-A XOR Cross Over](https://atcoder.jp/contests/agc071/tasks/agc071_a)
+```
+
+- `ABC360-F` のように、コンテスト略称と問題記号を `-` でつなぐ。
+- その後ろに半角スペースを入れて、AtCoder 上の問題タイトルを書く。
+- 企業コンテストや特殊コンテストは、既存の短い呼び名が自然ならそれを使う。例: `KEYENCE2021-E Greedy Ant`
+- 本文中で文脈上明らかな場合も、問題リンクだけは `ARC078-D` のような記号だけで終わらせず、できれば問題タイトルまで入れる。
+
+Codeforces の問題は、URL の `/contest/数値/` だけを見てリンクテキストを決めない。Codeforces では contest ID と round number が基本的に一致しないので、問題ページにアクセスして、ページ上部の round 名・Div.・問題記号・問題タイトルを確認する。
+
+通常ラウンドなら、次の短縮形を基本にする。
+
+```markdown
+[CF613-2F Classical?](https://codeforces.com/contest/1285/problem/F)
+[CF1035-2D Token Removing](https://codeforces.com/contest/2119/problem/D)
+```
+
+- `CF613-2F` のように、round number、Div.、問題記号を入れる。
+- `-2F` は `Div. 2` の `F` を表す。Div. 情報は落とさない。
+- その後ろに半角スペースを入れて、Codeforces 上の問題タイトルを書く。
+- ラウンド名自体に意味がある、または短縮形にすると分かりにくい特殊ラウンドでは、ページ上の round 名を使ってよい。例: `[EPIC Institute of Technology Round Summer 2024 (Div. 1 + Div. 2)-D World is Mine](https://codeforces.com/contest/1987/problem/D)`
+
 ### 通常更新コミット
 
 通常更新のコミットメッセージは次の形にする。
