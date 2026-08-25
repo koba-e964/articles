@@ -300,6 +300,14 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
     - 普通に重みごとに個数を数える
   - 指数的母関数 (EGF)
     - 重み $i$ と重み $j$ のものを合成する時に、係数 $C(i+j,i)$ を掛けたいもの
+- 計算テクニック
+  - 累乗
+    - (sparseな多項式の累乗) 微分方程式を立式し、低次の累乗であることを利用して係数を順に計算していく
+      - 問題: <https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse>
+      - <https://atcoder.jp/contests/abc449/editorial/17258>
+    - fps の log, exp を用いて fps pow を計算する
+      - 問題: <https://judge.yosupo.jp/problem/pow_of_formal_power_series>
+      - <https://atcoder.jp/contests/abc449/editorial/17258>
 - 2次元配列で単一行や単一列を高速に計算できる例
   - <https://oeis.org/A126198> [ABC456-G Count Holidays](https://atcoder.jp/contests/abc456/tasks/abc456_g)
 
