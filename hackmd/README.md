@@ -1,8 +1,44 @@
 # articles/hackmd
 
-## `agc-arc-memo.md` の運用規則
+## 共通の運用規則
 
-`agc-arc-memo.md` は、通常更新を積んだあとにリリースコミットを作り、そのリリースコミットに対応するタグを付ける。
+### 1.0.0 未公開の記事の更新履歴
+
+`## 更新履歴` を持つ記事では、最初に書く履歴は `v1.0.0` とする。`v1.0.0` より前の `v0.x.y` エントリーは置かない。
+
+まだ `v1.0.0` を公開していないが履歴表だけ先に置く場合、日付は stub として `YYYY-MM-DD` を使ってよい。
+
+```markdown
+|YYYY-MM-DD|v1.0.0 公開|
+```
+
+初回公開時に `YYYY-MM-DD` を実際の日付へ置き換える。
+
+### タグ
+
+リリースコミットには lightweight tag を付ける。
+
+タグ名は次の形にする。
+
+```text
+記事名-vX.Y.Z
+```
+
+例:
+
+```text
+agc-arc-memo-v1.1.1
+comppro-speedups-v1.0.0
+```
+
+更新履歴に書いた version、リリースコミットの version、タグ名の version は一致させる。
+
+### version bump の目安
+
+- 内容追加を含む公開は minor bump にする。
+- ミス修正だけの公開は patch bump にする。
+
+例えば、`v1.1.1` のあとに内容追加をまとめて公開する場合は `v1.2.0` が自然である。
 
 ### 問題リンクの表記
 
@@ -34,6 +70,49 @@ Codeforces の問題は、URL の `/contest/数値/` だけを見てリンクテ
 - `-2F` は `Div. 2` の `F` を表す。Div. 情報は落とさない。
 - その後ろに半角スペースを入れて、Codeforces 上の問題タイトルを書く。
 - ラウンド名自体に意味がある、または短縮形にすると分かりにくい特殊ラウンドでは、ページ上の round 名を使ってよい。例: `[EPIC Institute of Technology Round Summer 2024 (Div. 1 + Div. 2)-D World is Mine](https://codeforces.com/contest/1987/problem/D)`
+
+## `comppro-speedups.md` の運用規則
+
+`comppro-speedups.md` は、高速化の典型を自分用にまとめるメモである。
+
+### 書き方
+
+- `agc-arc-memo.md` と同じく、見出し、箇条書き、問題例、短い実装メモを中心にする。
+- 青向けの一般説明や、読者向けの注意書きを足しすぎない。
+- ユーザーが削った語や補足を戻さない。
+- 「A と書かなくてよい」と判断した場合、「A とは限らない」のような反対向きの説明も書かない。
+
+### 問題例
+
+- 速度比較を書く場合は、提出リンクを併記する。
+- 実行時間は提出ページ上の値をそのまま書く。推測で補わない。
+
+### 更新コミット
+
+通常更新のコミットメッセージは次の形にする。
+
+- 追加: `Update comppro-speedups.md (add 内容)`
+- 修正: `Update comppro-speedups.md (fix 内容)`
+
+### リリースコミット
+
+公開するタイミングでは、`comppro-speedups.md` の `## 更新履歴` に 1 行追加するだけのリリースコミットを作る。
+
+リリースコミットのメッセージは次の形にする。
+
+```text
+comppro-speedups vX.Y.Z
+```
+
+タグ名は次の形にする。
+
+```text
+comppro-speedups-vX.Y.Z
+```
+
+## `agc-arc-memo.md` の運用規則
+
+`agc-arc-memo.md` は、通常更新を積んだあとにリリースコミットを作り、そのリリースコミットに対応するタグを付ける。
 
 ### 通常更新コミット
 
@@ -104,8 +183,6 @@ git log --reverse --format='- %s' agc-arc-memo-vX.Y.Z..HEAD -- agc-arc-memo.md
 
 ### タグ
 
-リリースコミットには lightweight tag を付ける。
-
 タグ名は次の形にする。
 
 ```text
@@ -117,12 +194,3 @@ agc-arc-memo-vX.Y.Z
 ```text
 agc-arc-memo-v1.1.1
 ```
-
-更新履歴に書いた version、リリースコミットの version、タグ名の version は一致させる。
-
-### version bump の目安
-
-- 内容追加を含む公開は minor bump にする。
-- ミス修正だけの公開は patch bump にする。
-
-例えば、`v1.1.1` のあとに内容追加をまとめて公開する場合は `v1.2.0` が自然である。
