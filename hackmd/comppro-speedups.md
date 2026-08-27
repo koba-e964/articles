@@ -58,7 +58,7 @@
 - 問題例
   - [ABC384-G Abs Sum](https://atcoder.jp/contests/abc384/tasks/abc384_g)
     - BIT 版: [提出 78675916](https://atcoder.jp/contests/abc384/submissions/78675916), `2335 ms`
-    - SegTree 版: [提出 78675140](https://atcoder.jp/contests/abc384/submissions/78675140), `> 5000 ms`
+    - SegTree 版: [提出 78718718](https://atcoder.jp/contests/abc384/submissions/78718718), `> 5000 ms`
     - `SegTree 版 / BIT 版 > 2.1`
     - BIT 版は SegTree 版の `< 0.47` 倍の時間で動いた
 
