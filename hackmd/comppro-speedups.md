@@ -35,6 +35,9 @@
   - 辺の重みが 1 あるいは 0/1 だったら BFS にできる。定数だったらその個数だけqueueを使えばやはり log が落ちる
 - $O(2^nn)$　から $O(2^n)$ に落とす
   - $\sum_{x \in S} s[x], S \subseteq [n]$ をソートする時に、各段階でマージソートのマージをすれば $O(2^n)$
+- BITやSegtreeを累積和にする
+  - `a[i]+=1,a[i+1]-=1` と区間sum しかqueriesがないときに、累積和を直接更新して $O(1)$
+    - 例: <https://atcoder.jp/contests/abc477/editorial/25886>
 - 未分類
   - スタックによる高速化
     - 問題例
