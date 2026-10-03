@@ -60,6 +60,12 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 
 [^intersection-is-not-set-theoretical]: 区間の**交差**というとき、それは共通部分が非空であることではなく、共通部分が非空かつどちらももう一方を包含しないことをいう。
 
+### 列の典型
+- $i < j$ なる $(i, j)$ 全部に対して操作する時
+  - 分割統治
+    - $i < j$ という条件は扱いにくいが、二つの集合 $S,T$ のペア全体に対してならやりやすい場合
+    - 問題例: [ABC478-G Division Point Hull](https://atcoder.jp/contests/abc478/tasks/abc478_g)
+
 ### 凸最適化・フロー・マトロイドの典型
 - 凸最適化
   - DP の加速
@@ -187,6 +193,9 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 ### グラフの典型
 - 部分グラフの検出・数え上げ
   - <https://qiita.com/kobae964/private/4a43f4bf6d0eae7839b1>
+- グラフを強連結にする方法
+  - [ABC450-F Strongly Connected 2](https://atcoder.jp/contests/abc450/tasks/abc450_f)
+    - 辺をsourceの昇順にソートし、DP で「i番目の辺までで1からrまで到達可能にする方法」を持つ
 
 ### 操作で状態遷移できるか判定する系
 - 共通
@@ -237,10 +246,62 @@ AGC/ARC などで、解法が他の問題に流用できそうなものをメモ
 - 文字列で DP
   - 問題例
     - <https://drken1215.hatenablog.com/entry/2020/01/28/121600>
+- 部分文字列に対するクエリー問題
+  - 部分文字列の大小 → lcp (最長共通prefixの長さ) の計算 → common prefix の判定
+    - lcp さえ計算できれば、その次の文字の大小 or 長さの大小が答え
+    - 二分探索により、ある長さが common prefix か (s[a..a+k] == s[b..b+k]) の判定に帰着される
+    - common prefix の判定 $O(1)$ ← lcp の計算 $O(\log N)$ ← 部分文字列の大小 $O(\log N)$
+  - Rolling Hash
+    - 兆候
+      - 2次元配列の部分配列の等しさを検証する場合
+      - 部分文字列で演算をする場合
+        - 問題例: [ABC274-Ex XOR Sum of Arrays](https://atcoder.jp/contests/abc274/tasks/abc274_h)
+      - 部分文字列のデータを set や map に入れたい場合
+    - 注意点
+      - 衝突確率。ハッシュ値の空間が 2^32 程度で、2^16 個のハッシュ値の中から同じペアを探すと衝突するものとすべき。
+        - 空間を広げる方法: 複数baseを取る
+      - 2冪modは絶対ダメ
+      - baseを乱択する。固定だとhackされる。 <https://hos.ac/blog/#blog0003>
+  - Suffix Array
+    - 兆候
+      - suffix のソート後の順番が欲しい
+      - rolling hash だと遅い ($O(\log N)$ 倍に耐えられない)
+      - (lcp 配列を使いたい)
+        - $O(1)$ 時間で lcp が計算できる。
+    - Rolling hash で2個の文字列の比較はできるので、Suffix Array が必要な問題は上の「兆候」に限られる
+  - Z-algorithm
+    - 兆候
+      - S と S[a..] の比較だけである場合
+        - $O(1)$ 時間で lcp が計算できる。
+- 回文
+  - Manacher のアルゴリズム
+- 検索
+  - 検索パターン、検索対象文字列が固定
+    - KMP
+    - Boyer-Moore
+  - 複数パターンに対する検索
+    - Aho-Corasick
+    - Trie
+- 未整理
+  - Suffix Automaton [ABC433-G Substring Game](https://atcoder.jp/contests/abc433/tasks/abc433_g)
+  - bitset でゴリ押し <https://blog.hamayanhamayan.com/entry/2017/03/25/005452>
+    - FFT でもできる可能性あり
+    - TODO: Aizu online judge の大学有志コンテストに問題例があった気がする
+  - 文字列の無限連結
+    - <https://info.atcoder.jp/entry/algorithm_lectures/lex_min_string_concatenation>
+    - 問題例: [ABC416-G Concat (1st)](https://atcoder.jp/contests/abc416/tasks/abc416_g)
+  - 文字列の連結を最小化
+    - 前から DP + 後ろから実行可能性 DP + 最適でないパターンを取り除くと、残りは特定文字列の prefix なので、空間を節約できる
+      - [ARC058-F 文字列大好きいろはちゃん](https://atcoder.jp/contests/arc058/tasks/arc058_d)
+  - eertree
 
 ### 数学系
 - 問題例
   - <https://drken1215.hatenablog.com/entry/2020/10/23/025800>
+- 代数構造
+  - xor を「和」としたときの「積」は?
+    - 有限体とか Nimber とか
+      - 問題例: [ABC274-Ex XOR Sum of Arrays](https://atcoder.jp/contests/abc274/tasks/abc274_h)
 
 ### 約数系
 - 問題例
